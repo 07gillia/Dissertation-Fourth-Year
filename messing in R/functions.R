@@ -3,7 +3,7 @@
 ####################################################################
 
 my_functions.get_data_between <- function(start_date = '1989-08-11',end_date){
-	data.all[data.all$Date >= start_date & data.all$Date <= end_date,]
+	data.all.BAB[data.all.BAB$Date >= start_date & data.all.BAB$Date <= end_date,]
 }
 
 my_functions.buy <- function(stock, percentage_amount) {

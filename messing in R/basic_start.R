@@ -2,6 +2,11 @@
 # Basic start to getting a framework with which to trade for a year
 ####################################################################
 
+# run:
+# export LANG=en_US.UTF-8
+# export LC_ALL=en_US.UTF-8
+# Rscript basic_start.R
+
 # start with only one index - Babcock
 # we can then do the same when we get all the other data
 
@@ -10,7 +15,7 @@ message("The working directory is : ", getwd())
 
 # Set current working directory
 # This shouldn't be run anywhere else so not an issue
-setwd("/users/ColossusMini/Documents/R")
+setwd("/Users/ColossusMini/Documents/GIT/Dissertation Fourth Year/messing in R")
 
 source("functions.R")
 
@@ -23,16 +28,24 @@ source("functions.R")
 # this will be changed
 # any extra columns that are needed will be made prodominantly through SQL
 
+# the data contains NULLs these will introduce NAs when typecast
+
 # read in the babcock data and validate that it is as expected
-data.all = read.csv("BAB.csv")
-message(sprintf("The data is in a dataframe? : %s", is.data.frame(data.all)))
-if(is.data.frame(data.all)) {
-	message(sprintf("what are the dimentions of the dataframe? : x = %d by y = %d", ncol(data.all), nrow(data.all)))
+data.all.BAB = read.csv("../Data/BAB.csv")
+message(sprintf("The data is in a dataframe? : %s", is.data.frame(data.all.BAB)))
+if(is.data.frame(data.all.BAB)) {
+	message(sprintf("what are the dimentions of the dataframe? : x = %d by y = %d", ncol(data.all.BAB), nrow(data.all.BAB)))
 }
 
-data.all$Date <- as.Date(data.all$Date , "%Y-%m-%d")
+data.all.BAB$Date <- as.Date(data.all.BAB$Date , "%Y-%m-%d")
 
-str(data.all)
+data.all.BAB$Open <- as.numeric(as.character(data.all.BAB$Open))
+data.all.BAB$High <- as.numeric(as.character(data.all.BAB$High))
+data.all.BAB$Low <- as.numeric(as.character(data.all.BAB$Low))
+data.all.BAB$Close <- as.numeric(as.character(data.all.BAB$Close))
+data.all.BAB$Adj.Close <- as.numeric(as.character(data.all.BAB$Adj.Close))
+
+str(data.all.BAB)
 
 ####################################################################
 # making sure the framework is in place for iterating through the data
@@ -60,17 +73,22 @@ capital = 1000
 
 # Create the data frame for storing the stocks that we own
 portfolio = data.frame(
-   	Stock = c(),
-   	Bought.date = c(), 
-   	Bought.percentage = c(),
-   	Bought.value = c(),
-   	Bought.amount = c(),
-   	Current.value = c(),
-   	Current.ratio = c(),
-   	Sold = c(),
-   	Sold.date = c(),
-   	Sold.amount = c()
+   	Stock = factor(),
+   	Bought.date = character(), 
+   	Bought.percentage = numeric(),
+   	Bought.value = numeric(),
+   	Bought.amount = numeric(),
+   	Current.value = numeric(),
+   	Current.ratio = numeric(),
+   	Sold = numeric(),
+   	Sold.date = factor(),
+   	Sold.amount = numeric()
 )
+
+portfolio$Bought.date <- as.Date(portfolio$Bought.date , "%Y-%m-%d")
+portfolio$Sold.date <- as.Date(portfolio$Sold.date , "%Y-%m-%d")
+
+str(portfolio)
 
 ####################################################################
 # the actual doing things bit
