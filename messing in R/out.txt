@@ -1,19 +1,5 @@
-'data.frame':	7192 obs. of  7 variables:
- $ Date     : Date, format: "1989-08-11" "1989-08-14" ...
- $ Open     : num  271 304 304 311 311 ...
- $ High     : num  271 304 304 311 311 ...
- $ Low      : num  271 304 304 311 311 ...
- $ Close    : num  131 147 147 151 151 ...
- $ Adj.Close: num  271 304 304 311 311 ...
- $ Volume   : Factor w/ 5138 levels "0","1000022",..: 1 1 1 1 1 1 1 1 1 1 ...
-'data.frame':	0 obs. of  10 variables:
- $ Stock            : Factor w/ 0 levels: 
- $ Bought.date      :Class 'Date'  num(0) 
- $ Bought.percentage: num 
- $ Bought.value     : num 
- $ Bought.amount    : num 
- $ Current.value    : num 
- $ Current.ratio    : num 
- $ Sold             : num 
- $ Sold.date        :Class 'Date'  num(0) 
- $ Sold.amount      : num 
+  Stock Bought.date Bought.percentage Bought.value Bought.amount Current.value
+1   BAB  2011-07-07               100          100           100           100
+  Current.ratio  Sold  Sold.date Sold.amount
+1           100 FALSE 2011-07-07         100
+[1] "###"

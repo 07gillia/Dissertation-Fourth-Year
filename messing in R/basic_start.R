@@ -5,7 +5,7 @@
 # run:
 # export LANG=en_US.UTF-8
 # export LC_ALL=en_US.UTF-8
-# Rscript basic_start.R
+# Rscript basic_start.R > out.txt
 
 # start with only one index - Babcock
 # we can then do the same when we get all the other data
@@ -39,13 +39,13 @@ if(is.data.frame(data.all.BAB)) {
 
 data.all.BAB$Date <- as.Date(data.all.BAB$Date , "%Y-%m-%d")
 
-data.all.BAB$Open <- as.numeric(as.character(data.all.BAB$Open))
-data.all.BAB$High <- as.numeric(as.character(data.all.BAB$High))
-data.all.BAB$Low <- as.numeric(as.character(data.all.BAB$Low))
-data.all.BAB$Close <- as.numeric(as.character(data.all.BAB$Close))
-data.all.BAB$Adj.Close <- as.numeric(as.character(data.all.BAB$Adj.Close))
+suppressWarnings(data.all.BAB$Open <- as.numeric(as.character(data.all.BAB$Open)))
+suppressWarnings(data.all.BAB$High <- as.numeric(as.character(data.all.BAB$High)))
+suppressWarnings(data.all.BAB$Low <- as.numeric(as.character(data.all.BAB$Low)))
+suppressWarnings(data.all.BAB$Close <- as.numeric(as.character(data.all.BAB$Close)))
+suppressWarnings(data.all.BAB$Adj.Close <- as.numeric(as.character(data.all.BAB$Adj.Close)))
 
-str(data.all.BAB)
+#str(data.all.BAB)
 
 ####################################################################
 # making sure the framework is in place for iterating through the data
@@ -73,22 +73,26 @@ capital = 1000
 
 # Create the data frame for storing the stocks that we own
 portfolio = data.frame(
-   	Stock = factor(),
-   	Bought.date = character(), 
-   	Bought.percentage = numeric(),
-   	Bought.value = numeric(),
-   	Bought.amount = numeric(),
-   	Current.value = numeric(),
-   	Current.ratio = numeric(),
-   	Sold = numeric(),
-   	Sold.date = factor(),
-   	Sold.amount = numeric()
+   	Stock = character(),
+   	Bought.date = as.Date(character()), 
+   	Bought.percentage = double(),
+   	Bought.value = double(),
+   	Bought.amount = double(),
+   	Current.value = double(),
+   	Current.ratio = double(),
+   	Sold = logical(),
+   	Sold.date = as.Date(character()),
+   	Sold.amount = double(),
+   	stringsAsFactors=FALSE
 )
 
-portfolio$Bought.date <- as.Date(portfolio$Bought.date , "%Y-%m-%d")
-portfolio$Sold.date <- as.Date(portfolio$Sold.date , "%Y-%m-%d")
+#str(portfolio)
 
-str(portfolio)
+#print(portfolio)
+
+#portfolio[nrow(portfolio) + 1,] = c('BAB', '2011-07-07', 100, 100, 100, 100, 100, FALSE, '2011-07-07', 100)
+
+#print(portfolio)
 
 ####################################################################
 # the actual doing things bit

@@ -61,7 +61,7 @@ w = mean(0:1200)
 maths.list_squares = function(a) {
 	for(i in 1:a) {
 		b = i^2
-		print(b)
+		#print(b)
 	}
 }
 
@@ -70,7 +70,7 @@ maths.list_squares = function(a) {
 maths.list_squares_default = function(a = 10) {
 	for(i in 1:a) {
 		b = i^2
-		print(b)
+		#print(b)
 	}
 }
 
@@ -78,7 +78,37 @@ maths.list_squares_default()
 maths.list_squares_default(15)
 
 for (year in c(2010,2011,2012,2013,2014,2015)){
-  print(paste("The year is", year))
+  #print(paste("The year is", year))
 }
 
 # a for loop
+
+
+df <- data.frame(Date=as.Date(character()),
+                 File=character(), 
+                 User=character(), 
+                 stringsAsFactors=FALSE) 
+
+df1 <- data.frame(Doubles=double(),
+                 Ints=integer(),
+                 Logicals=logical(),
+                 Characters=character(),
+                 stringsAsFactors=FALSE)
+
+#str(df)
+
+print(df)
+
+#str(df1)
+
+print(df1)
+
+df[nrow(df) + 1,] = c('2001-07-07', 'test.txt', 'me')
+
+df1[nrow(df1) + 1,] = c(10.50, 16, TRUE, 'a')
+
+#str(df)
+
+print(df)
+
+print(df1)
