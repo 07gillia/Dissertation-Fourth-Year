@@ -4,4 +4,6 @@
 [1] "Iteration"
 [1] "#############################################################"
 [1] "Results"
-[1] "Percentage made over the timeframe: 108.329022245215%"
+[1] "The amount of capital spent: 10000.000000"
+[1] "The amount of capital recieved: 10832.902225"
+[1] "Percentage made over the timeframe: 108.329022%"

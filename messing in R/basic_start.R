@@ -62,8 +62,9 @@ end_date = as.Date('2017-04-28')
 # this is the budget we have
 capital = 10000
 # keep track of spending
-total_bought = 0
-total_sold = 0
+total_bought = 0.0
+total_sold = 0.0
+IO = list(total_bought, total_sold)
 
 # work in percentages?
 # give a budget?
@@ -80,7 +81,7 @@ portfolio = data.frame(
    	Bought.date = as.Date(character()), 
    	Bought.percentage = double(),
    	Bought.value = double(),
-     	Bought.amount = double(),
+    Bought.amount = double(),
    	Current.value = double(),
    	Current.ratio = double(),
    	Sold = logical(),
@@ -119,31 +120,11 @@ for (tick_number in c(1:total_ticks)) {
 	tick.open = data.tradingPeriod[tick_number,2]
 	data.usable = my_functions.get_data_between(,tick.date)
 
-    # make sure that there are rows in the portfolio
-    if(nrow(portfolio) > 0) {
-
-        total_bought = 0
-        total_sold = 0
-
-        # iterate through the portfolio
-        for (purchases in c(1:nrow(portfolio))) {
-
-            # if the row is a buy and not a sell
-            if(portfolio[purchases, 8] == FALSE) {
-                # calculate the amount that has been spent
-                total_bought = total_bought + portfolio[purchases, 4]
-            }
-            # if the row is a buy then sell
-            else {
-                # calculate the amount that has been returned
-                total_bought = total_bought + portfolio[purchases, 4]
-                total_sold = total_sold + portfolio[purchases, 10]
-            }
-        }
-    }
-
 	# this is what we do at every tick
 	# in the case of the current data, every day
+
+    # update the capital expenditure list
+    IO = my_functions.IO()
 
     # update the values in the portfolio
     portfolio = my_functions.update()
@@ -160,39 +141,51 @@ for (tick_number in c(1:total_ticks)) {
         portfolio = my_functions.sell('BAB', 1)
     }
 
-    # make sure that there are rows in the portfolio
-    if(nrow(portfolio) > 0) {
-
-        total_bought = 0
-        total_sold = 0
-
-        # iterate through the portfolio
-        for (purchases in c(1:nrow(portfolio))) {
-
-            # if the row is a buy and not a sell
-            if(portfolio[purchases, 8] == FALSE) {
-                # calculate the amount that has been spent
-                total_bought = total_bought + portfolio[purchases, 4]
-            }
-            # if the row is a buy then sell
-            else {
-                # calculate the amount that has been returned
-                total_bought = total_bought + portfolio[purchases, 4]
-                total_sold = total_sold + portfolio[purchases, 10]
-            }
-        }
-    }
+    # update the capital expenditure list
+    IO = my_functions.IO()
 }
 
 print("#############################################################")
 
 print("Results")
 
-#sprintf("The amount of capital spent: %s" ,total_bought)
-#sprintf("The amount of capital recieved: %s" ,total_sold)
+sprintf("The amount of capital spent: %f" ,IO[1])
+sprintf("The amount of capital recieved: %f" ,IO[2])
 
 #print(portfolio[])
 
-sprintf("Percentage made over the timeframe: %s%%", (total_sold/total_bought) * 100)
+result_percentage = (IO[[2]] / IO[[1]]) * 100.0
+
+sprintf("Percentage made over the timeframe: %f%%", result_percentage)
+
+#############################################################
+# Create Line Chart
+
+# convert factor to numeric for convenience 
+ntrees <- 4
+
+# get the range for the x and y axis 
+xrange <- range(data.tradingPeriod$Date) 
+yrange <- range(data.tradingPeriod$Open) 
+
+# set up the plot 
+plot(xrange, yrange, type="n", xlab="Date",
+    ylab="Stock Price (£)" ) 
+colors <- rainbow(ntrees) 
+linetype <- c(1:ntrees) 
+plotchar <- seq(18,18+ntrees,1)
+
+# add lines 
+lines(data.tradingPeriod[,1], data.tradingPeriod[,2], type="l", lwd=1.5,
+lty=linetype[1], col=colors[1], pch=plotchar[1])
+lines(data.tradingPeriod[,1], data.tradingPeriod[,3], type="l", lwd=1.5,
+lty=linetype[2], col=colors[2], pch=plotchar[2]) 
+lines(data.tradingPeriod[,1], data.tradingPeriod[,4], type="l", lwd=1.5,
+lty=linetype[3], col=colors[3], pch=plotchar[3]) 
+lines(data.tradingPeriod[,1], data.tradingPeriod[,5], type="l", lwd=1.5,
+lty=linetype[4], col=colors[4], pch=plotchar[4]) 
+
+# add a title and subtitle 
+title("Babcock Stock Price")
 
 ####################################################################

@@ -97,4 +97,34 @@ my_functions.update <- function() {
 	return(portfolio)
 }
 
+my_functions.IO <- function() {
+
+	# update the input and output capital values
+
+	# make sure that there are rows in the portfolio
+    if(nrow(portfolio) > 0) {
+
+        total_bought = 0.0
+        total_sold = 0.0
+
+        # iterate through the portfolio
+        for (purchases in c(1:nrow(portfolio))) {
+
+            # if the row is a buy and not a sell
+            if(portfolio[purchases, 8] == FALSE) {
+                # calculate the amount that has been spent
+                total_bought = total_bought + portfolio[purchases, 4]
+            }
+            # if the row is a buy then sell
+            else {
+                # calculate the amount that has been returned
+                total_bought = total_bought + portfolio[purchases, 4]
+                total_sold = total_sold + portfolio[purchases, 10]
+            }
+        }
+    }
+
+    return(list(total_bought,total_sold))
+}
+
 ####################################################################
