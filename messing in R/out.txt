@@ -1,5 +1,7 @@
-  Stock Bought.date Bought.percentage Bought.value Bought.amount Current.value
-1   BAB  2011-07-07               100          100           100           100
-  Current.ratio  Sold  Sold.date Sold.amount
-1           100 FALSE 2011-07-07         100
-[1] "###"
+[1] "#############################################################"
+[1] "Pre-Processing"
+[1] "#############################################################"
+[1] "Iteration"
+[1] "#############################################################"
+[1] "Results"
+[1] "Percentage made over the timeframe: 108.329022245215%"

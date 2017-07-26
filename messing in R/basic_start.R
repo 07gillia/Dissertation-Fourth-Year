@@ -60,7 +60,10 @@ start_date = as.Date('2016-04-25')
 # the day we end trading
 end_date = as.Date('2017-04-28')
 # this is the budget we have
-capital = 1000
+capital = 10000
+# keep track of spending
+total_bought = 0
+total_sold = 0
 
 # work in percentages?
 # give a budget?
@@ -77,48 +80,119 @@ portfolio = data.frame(
    	Bought.date = as.Date(character()), 
    	Bought.percentage = double(),
    	Bought.value = double(),
-   	Bought.amount = double(),
+     	Bought.amount = double(),
    	Current.value = double(),
    	Current.ratio = double(),
    	Sold = logical(),
    	Sold.date = as.Date(character()),
-   	Sold.amount = double(),
+   	Sold.value = double(),
    	stringsAsFactors=FALSE
 )
 
-#str(portfolio)
-
-#print(portfolio)
-
 #portfolio[nrow(portfolio) + 1,] = c('BAB', '2011-07-07', 100, 100, 100, 100, 100, FALSE, '2011-07-07', 100)
-
-#print(portfolio)
 
 ####################################################################
 # the actual doing things bit
 ####################################################################
 
-message("#############################################################")
+print("#############################################################")
+
+print("Pre-Processing")
 
 data.tradingPeriod = my_functions.get_data_between(start_date, end_date)
 
 total_ticks = nrow(data.tradingPeriod)
 
+#sprintf("The amount of capital spent: %s" ,total_bought)
+#sprintf("The amount of capital recieved: %s" ,total_sold)
+
+#print(portfolio[])
+
+print("#############################################################")
+
+print("Iteration")
+
+# loop through each row in the data
 for (tick_number in c(1:total_ticks)) {
+    # set up all the variables that will be used in this iteration
 	tick.date = as.Date(data.tradingPeriod[tick_number,1])
 	tick.open = data.tradingPeriod[tick_number,2]
 	data.usable = my_functions.get_data_between(,tick.date)
 
+    # make sure that there are rows in the portfolio
+    if(nrow(portfolio) > 0) {
+
+        total_bought = 0
+        total_sold = 0
+
+        # iterate through the portfolio
+        for (purchases in c(1:nrow(portfolio))) {
+
+            # if the row is a buy and not a sell
+            if(portfolio[purchases, 8] == FALSE) {
+                # calculate the amount that has been spent
+                total_bought = total_bought + portfolio[purchases, 4]
+            }
+            # if the row is a buy then sell
+            else {
+                # calculate the amount that has been returned
+                total_bought = total_bought + portfolio[purchases, 4]
+                total_sold = total_sold + portfolio[purchases, 10]
+            }
+        }
+    }
+
 	# this is what we do at every tick
 	# in the case of the current data, every day
+
+    # update the values in the portfolio
+    portfolio = my_functions.update()
 
 	my_date = as.Date('2016-04-25')
 
 	if(tick.date == my_date) {
-		my_functions.buy('BAB', 100)
+		portfolio = my_functions.buy('BAB', 100)
 	}
+
+    my_date = as.Date('2016-06-07')
+
+    if(tick.date == my_date) {
+        portfolio = my_functions.sell('BAB', 1)
+    }
+
+    # make sure that there are rows in the portfolio
+    if(nrow(portfolio) > 0) {
+
+        total_bought = 0
+        total_sold = 0
+
+        # iterate through the portfolio
+        for (purchases in c(1:nrow(portfolio))) {
+
+            # if the row is a buy and not a sell
+            if(portfolio[purchases, 8] == FALSE) {
+                # calculate the amount that has been spent
+                total_bought = total_bought + portfolio[purchases, 4]
+            }
+            # if the row is a buy then sell
+            else {
+                # calculate the amount that has been returned
+                total_bought = total_bought + portfolio[purchases, 4]
+                total_sold = total_sold + portfolio[purchases, 10]
+            }
+        }
+    }
 }
 
-print(portfolio)
+print("#############################################################")
+
+print("Results")
+
+#sprintf("The amount of capital spent: %s" ,total_bought)
+#sprintf("The amount of capital recieved: %s" ,total_sold)
+
+#print(portfolio[])
+
+sprintf("Percentage made over the timeframe: %s%%", (total_sold/total_bought) * 100)
 
 ####################################################################
