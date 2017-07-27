@@ -6,7 +6,7 @@ my_functions.get_data_between <- function(start_date = '1989-08-11',end_date){
 	data.all.BAB[data.all.BAB$Date >= start_date & data.all.BAB$Date <= end_date,]
 }
 
-my_functions.buy <- function(stock, percentage_amount) {
+my_functions.buy <- function(stock, capital_amount) {
 
 	# create a list to hold the variables
 	# add the stock
@@ -14,7 +14,7 @@ my_functions.buy <- function(stock, percentage_amount) {
 	# add the percentage bought
 
 	# calculate the amount bought and add it to the list
-	value_when_bought = percentage_amount * capital / 100
+	value_when_bought = capital_amount
 
 	# calculate the amount of a single stock that has been bought and add it to the list
 	amount = value_when_bought / tick.open
@@ -30,7 +30,7 @@ my_functions.buy <- function(stock, percentage_amount) {
 	# get the amount sold
 	value_when_sold = tick.open * amount
 
-	output = list(stock, tick.date, percentage_amount, value_when_bought, amount, tick.open, ratio, FALSE, tick.date, value_when_sold)
+	output = list(stock, tick.date, value_when_bought, amount, tick.open, ratio, FALSE, tick.date, value_when_sold)
 
 	#print(output)
 
@@ -47,27 +47,30 @@ my_functions.sell <- function(stock, ratio) {
 
 	total_owned_stocks = nrow(portfolio)
 
-	# loop through each purchase in the portfolio
-	for (purchase in c(1:total_owned_stocks)) {
+	if(total_owned_stocks != 0) {
 
-	    # make sure we are only iterating through the purchases that can be sold
-		if(portfolio[purchase, 8] == FALSE) {
+		# loop through each purchase in the portfolio
+		for (purchase in c(1:total_owned_stocks)) {
 
-			#set up all the variables specidfic to this purchase
-			stock_name = portfolio[purchase, 1]
-			current_ratio = portfolio[purchase, 7]
+		    # make sure we are only iterating through the purchases that can be sold
+			if(portfolio[purchase, 7] == FALSE) {
 
-			# if the stock is the one we want
-			if(stock_name == stock && current_ratio >= ratio) {
+				#set up all the variables specidfic to this purchase
+				stock_name = portfolio[purchase, 1]
+				current_ratio = portfolio[purchase, 6]
 
-				# set it to sold
-				portfolio[purchase, 8] = TRUE
+				# if the stock is the one we want
+				if(stock_name == stock && current_ratio >= ratio) {
 
-				# set the date it was sold
-				portfolio[purchase, 9] = tick.date
+					# set it to sold
+					portfolio[purchase, 7] = TRUE
 
-				# set the amount it sold for
-				portfolio[purchase, 10] = tick.open * portfolio[purchase, 5]
+					# set the date it was sold
+					portfolio[purchase, 8] = tick.date
+
+					# set the amount it sold for
+					portfolio[purchase, 9] = tick.open * portfolio[purchase, 4]
+				}
 			}
 		}
 	}
@@ -88,9 +91,9 @@ my_functions.update <- function() {
 		for (purchase in c(1:total_purchases)) {
 
 			# update the values in the current fields
-			portfolio[purchase, 6] = tick.open
+			portfolio[purchase, 5] = tick.open
 
-			portfolio[purchase, 7] = portfolio[purchase, 6] / (portfolio[purchase, 4] / portfolio[purchase, 5])
+			portfolio[purchase, 6] = portfolio[purchase, 5] / (portfolio[purchase, 3] / portfolio[purchase, 4])
 		}
 	}
 
@@ -115,19 +118,19 @@ my_functions.update_ledger <- function() {
 		for(purchase in c(1:total_purchases)) {
 
 			# if the stock has not been sold
-			if(portfolio[purchase, 8] == FALSE) {
+			if(portfolio[purchase, 7] == FALSE) {
 
 				# add the amount that the purchase is worth to the current_stock_value
-				current_stock_value = current_stock_value + portfolio[purchase, 5] * portfolio[purchase, 6]
+				current_stock_value = current_stock_value + portfolio[purchase, 4] * portfolio[purchase, 5]
 
 				# update the capital value so as to remove the capital spent on the stock initally
-				current_capital_value = current_capital_value - portfolio[purchase, 4]
+				current_capital_value = current_capital_value - portfolio[purchase, 3]
 			}
 			# if the stock has been sold
-			if(portfolio[purchase, 8]) {
+			if(portfolio[purchase, 7]) {
 
 				# increase the current capital value so as to account for money gained
-				current_capital_value = current_capital_value + portfolio[purchase, 10] - capital
+				current_capital_value = current_capital_value + portfolio[purchase, 9]
 			}
 		}
 		output = list(tick.date, current_capital_value + current_stock_value, current_stock_value, current_capital_value)

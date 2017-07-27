@@ -75,7 +75,6 @@ capital = 10000
 portfolio = data.frame(
    	Stock = character(),
    	Bought.date = as.Date(character()), 
-   	Bought.percentage = double(),
    	Bought.value = double(),
     Bought.amount = double(),
    	Current.value = double(),
@@ -94,7 +93,7 @@ ledger = data.frame(
     Capital_Value = double()
 )
 
-#portfolio[nrow(portfolio) + 1,] = c('BAB', '2011-07-07', 100, 100, 100, 100, 100, FALSE, '2011-07-07', 100)
+#portfolio[nrow(portfolio) + 1,] = c('BAB', '2011-07-07', 100, 100, 100, 100, FALSE, '2011-07-07', 100)
 
 #ledger[nrow(ledger) + 1, ] = c('2016-04-24', capital, 0, capital)
 
@@ -137,16 +136,30 @@ for (tick_number in c(1:total_ticks)) {
     "
 	my_date = as.Date('2016-04-25')
 	if(tick.date == my_date) {
-		portfolio = my_functions.buy('BAB', 100)
+		portfolio = my_functions.buy('BAB', 10000)
 	}
     my_date = as.Date('2016-06-07')
     if(tick.date == my_date) {
+        print(portfolio)
         portfolio = my_functions.sell('BAB', 1)
+        print(portfolio)
     }
     " # dummy buy and sell to make sure it works
 
     average_stock_price_last_250 = mean(tail(data.usable[ , 2], 250))
-    print(average_stock_price_last_250)
+    average_stock_price_last_50 = mean(tail(data.usable[ , 2], 50))
+    average_stock_price_last_10 = mean(tail(data.usable[ , 2], 10))
+
+    #print(average_stock_price_last_250)
+    #print(average_stock_price_last_50)
+    #print(average_stock_price_last_10)
+    #print("####")
+
+    if(tick.open < average_stock_price_last_250 * 0.95 ) {
+        portfolio = my_functions.buy('BAB', 100)
+    }
+
+    portfolio = my_functions.sell('BAB', 1.05)
 
     # update the values in the ledger
     ledger = my_functions.update_ledger()
@@ -156,9 +169,9 @@ print("#############################################################")
 
 print("Results")
 
-#print(portfolio[])
+print(portfolio[])
 
-#print(ledger[])
+print(ledger[])
 
 capital_return = tail(ledger[ , 2], 1)
 
@@ -176,7 +189,7 @@ sprintf("Percentage made over the timeframe: %f%%", result_percentage)
 ntrees <- 3
 # get the range for the x and y axis 
 xrange <- range(ledger[,1]) 
-yrange <- range(ledger[,3]) 
+yrange <- c(0,12000)
 
 # set up the plot 
 plot(xrange, yrange, type="n", xlab="Date", ylab="Amount (£)" ) 
@@ -186,13 +199,13 @@ plotchar <- seq(18,18+ntrees,1)
 
 # add lines 
 lines(ledger[,1], ledger[,2], type="l", lwd=1.5,
-lty=linetype[1], col=colors[1], pch=plotchar[1]) 
+lty=linetype[1], col='Blue', pch=plotchar[1]) 
 
 lines(ledger[,1], ledger[,3], type="l", lwd=1.5,
-lty=linetype[2], col=colors[2], pch=plotchar[2]) 
+lty=linetype[2], col='Red', pch=plotchar[2]) 
 
 lines(ledger[,1], ledger[,4], type="l", lwd=1.5,
-lty=linetype[3], col=colors[3], pch=plotchar[3]) 
+lty=linetype[3], col='Green', pch=plotchar[3]) 
 
 # add a title and subtitle 
 title("Babcock Stock Price")
