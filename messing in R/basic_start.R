@@ -61,10 +61,6 @@ start_date = as.Date('2016-04-25')
 end_date = as.Date('2017-04-28')
 # this is the budget we have
 capital = 10000
-# keep track of spending
-total_bought = 0.0
-total_sold = 0.0
-IO = list(total_bought, total_sold)
 
 # work in percentages?
 # give a budget?
@@ -90,7 +86,19 @@ portfolio = data.frame(
    	stringsAsFactors=FALSE
 )
 
+# create a dataframe to keep track of what the capital is doing
+ledger = data.frame(
+    Date = as.Date(character()),
+    Value = double(),
+    Stock_Value = double(),
+    Capital_Value = double()
+)
+
 #portfolio[nrow(portfolio) + 1,] = c('BAB', '2011-07-07', 100, 100, 100, 100, 100, FALSE, '2011-07-07', 100)
+
+#ledger[nrow(ledger) + 1, ] = c('2016-04-24', capital, 0, capital)
+
+#print(ledger)
 
 ####################################################################
 # the actual doing things bit
@@ -123,67 +131,68 @@ for (tick_number in c(1:total_ticks)) {
 	# this is what we do at every tick
 	# in the case of the current data, every day
 
-    # update the capital expenditure list
-    IO = my_functions.IO()
-
     # update the values in the portfolio
     portfolio = my_functions.update()
 
+    "
 	my_date = as.Date('2016-04-25')
-
 	if(tick.date == my_date) {
 		portfolio = my_functions.buy('BAB', 100)
 	}
-
     my_date = as.Date('2016-06-07')
-
     if(tick.date == my_date) {
         portfolio = my_functions.sell('BAB', 1)
     }
+    " # dummy buy and sell to make sure it works
 
-    # update the capital expenditure list
-    IO = my_functions.IO()
+    average_stock_price_last_250 = mean(tail(data.usable[ , 2], 250))
+    print(average_stock_price_last_250)
+
+    # update the values in the ledger
+    ledger = my_functions.update_ledger()
 }
 
 print("#############################################################")
 
 print("Results")
 
-sprintf("The amount of capital spent: %f" ,IO[1])
-sprintf("The amount of capital recieved: %f" ,IO[2])
-
 #print(portfolio[])
 
-result_percentage = (IO[[2]] / IO[[1]]) * 100.0
+#print(ledger[])
+
+capital_return = tail(ledger[ , 2], 1)
+
+result_percentage = (capital_return / capital) * 100
+
+sprintf("Raw made over the timeframe: £%f", capital_return - capital)
 
 sprintf("Percentage made over the timeframe: %f%%", result_percentage)
 
 #############################################################
-# Create Line Chart
+
+# Make the line chart to show how we did over the year
 
 # convert factor to numeric for convenience 
-ntrees <- 4
-
+ntrees <- 3
 # get the range for the x and y axis 
-xrange <- range(data.tradingPeriod$Date) 
-yrange <- range(data.tradingPeriod$Open) 
+xrange <- range(ledger[,1]) 
+yrange <- range(ledger[,3]) 
 
 # set up the plot 
-plot(xrange, yrange, type="n", xlab="Date",
-    ylab="Stock Price (£)" ) 
+plot(xrange, yrange, type="n", xlab="Date", ylab="Amount (£)" ) 
 colors <- rainbow(ntrees) 
-linetype <- c(1:ntrees) 
+linetype <- c(1,1,1)
 plotchar <- seq(18,18+ntrees,1)
 
 # add lines 
-lines(data.tradingPeriod[,1], data.tradingPeriod[,2], type="l", lwd=1.5,
-lty=linetype[1], col=colors[1], pch=plotchar[1])
-lines(data.tradingPeriod[,1], data.tradingPeriod[,3], type="l", lwd=1.5,
+lines(ledger[,1], ledger[,2], type="l", lwd=1.5,
+lty=linetype[1], col=colors[1], pch=plotchar[1]) 
+
+lines(ledger[,1], ledger[,3], type="l", lwd=1.5,
 lty=linetype[2], col=colors[2], pch=plotchar[2]) 
-lines(data.tradingPeriod[,1], data.tradingPeriod[,4], type="l", lwd=1.5,
+
+lines(ledger[,1], ledger[,4], type="l", lwd=1.5,
 lty=linetype[3], col=colors[3], pch=plotchar[3]) 
-lines(data.tradingPeriod[,1], data.tradingPeriod[,5], type="l", lwd=1.5,
-lty=linetype[4], col=colors[4], pch=plotchar[4]) 
 
 # add a title and subtitle 
 title("Babcock Stock Price")

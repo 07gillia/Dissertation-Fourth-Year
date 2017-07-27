@@ -97,34 +97,52 @@ my_functions.update <- function() {
 	return(portfolio)
 }
 
-my_functions.IO <- function() {
+my_functions.update_ledger <- function() {
 
-	# update the input and output capital values
+	# keep track of the amount of capital and stock that is available
 
-	# make sure that there are rows in the portfolio
-    if(nrow(portfolio) > 0) {
+	total_purchases = nrow(portfolio)
+	current_stock_value = 0
+	current_capital_value = 0
 
-        total_bought = 0.0
-        total_sold = 0.0
+	# take into account the inital amount invested
+	current_capital_value = current_capital_value + capital
 
-        # iterate through the portfolio
-        for (purchases in c(1:nrow(portfolio))) {
+	# make sure that the portfolio has something in it
+	if(total_purchases != 0) {
 
-            # if the row is a buy and not a sell
-            if(portfolio[purchases, 8] == FALSE) {
-                # calculate the amount that has been spent
-                total_bought = total_bought + portfolio[purchases, 4]
-            }
-            # if the row is a buy then sell
-            else {
-                # calculate the amount that has been returned
-                total_bought = total_bought + portfolio[purchases, 4]
-                total_sold = total_sold + portfolio[purchases, 10]
-            }
-        }
-    }
+		# this means that there is something in the list to iterate through, iterate through it
+		for(purchase in c(1:total_purchases)) {
 
-    return(list(total_bought,total_sold))
+			# if the stock has not been sold
+			if(portfolio[purchase, 8] == FALSE) {
+
+				# add the amount that the purchase is worth to the current_stock_value
+				current_stock_value = current_stock_value + portfolio[purchase, 5] * portfolio[purchase, 6]
+
+				# update the capital value so as to remove the capital spent on the stock initally
+				current_capital_value = current_capital_value - portfolio[purchase, 4]
+			}
+			# if the stock has been sold
+			if(portfolio[purchase, 8]) {
+
+				# increase the current capital value so as to account for money gained
+				current_capital_value = current_capital_value + portfolio[purchase, 10] - capital
+			}
+		}
+		output = list(tick.date, current_capital_value + current_stock_value, current_stock_value, current_capital_value)
+	}
+	# if the ledger is empty then add a new line with no changes
+	else {
+
+		# set a list as all the required values
+		output = list(tick.date, capital, 0 ,capital)
+	}
+
+	# set the next row of the table as the list
+	ledger[nrow(ledger) + 1, ] = output
+
+	return(ledger)
 }
 
 ####################################################################
