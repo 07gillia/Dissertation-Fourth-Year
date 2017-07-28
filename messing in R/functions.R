@@ -130,7 +130,7 @@ my_functions.update_ledger <- function() {
 			if(portfolio[purchase, 7]) {
 
 				# increase the current capital value so as to account for money gained
-				current_capital_value = current_capital_value + portfolio[purchase, 9]
+				current_capital_value = current_capital_value + portfolio[purchase, 9] - portfolio[purchase, 3]
 			}
 		}
 		output = list(tick.date, current_capital_value + current_stock_value, current_stock_value, current_capital_value)

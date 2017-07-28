@@ -5,6 +5,7 @@
 # run:
 # export LANG=en_US.UTF-8
 # export LC_ALL=en_US.UTF-8
+# change tab width
 # Rscript basic_start.R > out.txt
 
 # start with only one index - Babcock
@@ -156,7 +157,7 @@ for (tick_number in c(1:total_ticks)) {
     #print("####")
 
     if(tick.open < average_stock_price_last_250 * 0.95 ) {
-        portfolio = my_functions.buy('BAB', 100)
+        portfolio = my_functions.buy('BAB', 300)
     }
 
     portfolio = my_functions.sell('BAB', 1.05)
@@ -169,9 +170,9 @@ print("#############################################################")
 
 print("Results")
 
-print(portfolio[])
+#print(portfolio[])
 
-print(ledger[])
+#print(ledger[])
 
 capital_return = tail(ledger[ , 2], 1)
 
@@ -189,7 +190,9 @@ sprintf("Percentage made over the timeframe: %f%%", result_percentage)
 ntrees <- 3
 # get the range for the x and y axis 
 xrange <- range(ledger[,1]) 
-yrange <- c(0,12000)
+min = min(c(min(ledger[,2], ledger[,3], ledger[,4])))
+max = max(c(max(ledger[,2], ledger[,3], ledger[,4])))
+yrange <- c(min,max)
 
 # set up the plot 
 plot(xrange, yrange, type="n", xlab="Date", ylab="Amount (£)" ) 
@@ -199,7 +202,7 @@ plotchar <- seq(18,18+ntrees,1)
 
 # add lines 
 lines(ledger[,1], ledger[,2], type="l", lwd=1.5,
-lty=linetype[1], col='Blue', pch=plotchar[1]) 
+lty=linetype[1], col='Black', pch=plotchar[1]) 
 
 lines(ledger[,1], ledger[,3], type="l", lwd=1.5,
 lty=linetype[2], col='Red', pch=plotchar[2]) 
@@ -208,6 +211,6 @@ lines(ledger[,1], ledger[,4], type="l", lwd=1.5,
 lty=linetype[3], col='Green', pch=plotchar[3]) 
 
 # add a title and subtitle 
-title("Babcock Stock Price")
+title("Algorithmic Success")
 
 ####################################################################
