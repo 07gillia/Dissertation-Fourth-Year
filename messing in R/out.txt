@@ -1,4 +1,4 @@
-[1] "The working directory is : /Users/ColossusMini/Documents/GIT/Dissertation Fourth Year/messing in R"
+[1] "The working directory is : /Users/ColossusMini/Documents/Git/Dissertation Fourth Year/messing in R"
 [1] "The data is in a dataframe? : TRUE"
 [1] "what are the dimentions of the dataframe? : x = 7 by y = 7192"
            Date  Open    High   Low Close Adj.Close  Volume
