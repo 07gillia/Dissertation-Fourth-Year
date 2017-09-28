@@ -118,11 +118,14 @@ for (stock in c(1:number_of_stocks)) {
 
 	for (date_int in c(1:5)) {
 
+    print("####################")
+    print(date_int)
+
 # make sure that the data reflects this
 
 		the_data = tail(data[[stock]],10)
 		print(the_data)
-		print(date_int)
+    print(the_data[1,1])
 
 # iterate through all the trading dates and trade
 
