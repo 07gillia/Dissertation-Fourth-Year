@@ -56,95 +56,52 @@ ledger = data.frame(
 
 ####################################################################
 
-# read in the AAl data and validate that it is as expected
-"AAL"
-AAL = read.csv("../Data/AAL.csv")
-sprintf("The data is in a dataframe? : %s", is.data.frame(AAL))
-if(is.data.frame(AAL)) {
-	sprintf("what are the dimentions of the dataframe? : x = %d by y = %d", ncol(AAL), nrow(AAL))
+# read in the AA.csv data and validate it is as expected
+"AA"
+AA = read.csv("../Data/AA.csv")
+sprintf("The data is in a dataframe? : %s", is.data.frame(AA))
+if(is.data.frame(AA)) {
+  sprintf("what are the dimentions of the dataframe? : x = %d by y = %d", ncol(AA), nrow(AA))
 }
+suppressWarnings(AA$TICKER <- as.character(AA$TICKER))
+suppressWarnings(AA$DATE <- as.character(AA$DATE))
+suppressWarnings(AA$TIME <- as.character(AA$TIME))
+AA$PER <- NULL
+AA$TICKER <- substring(AA$TICKER, 5)
+AA$DATETIME = paste(AA$DATE,AA$TIME, sep="-")
+AA$TIME <- NULL
+AA$DATE <- NULL
 
-AAL$Date <- as.Date(AAL$Date , "%Y-%m-%d")
-suppressWarnings(AAL$Open <- as.numeric(as.character(AAL$Open)))
-suppressWarnings(AAL$High <- as.numeric(as.character(AAL$High)))
-suppressWarnings(AAL$Low <- as.numeric(as.character(AAL$Low)))
-suppressWarnings(AAL$Close <- as.numeric(as.character(AAL$Close)))
-suppressWarnings(AAL$Adj.Close <- as.numeric(as.character(AAL$Adj.Close)))
-
-# read in the ABF data and validate that it is as expected
-"ABF"
-ABF = read.csv("../Data/ABF.csv")
-sprintf("The data is in a dataframe? : %s", is.data.frame(ABF))
-if(is.data.frame(ABF)) {
-	sprintf("what are the dimentions of the dataframe? : x = %d by y = %d", ncol(ABF), nrow(ABF))
+# read in the AA.csv data and validate it is as expected
+"AAPL"
+AAPL = read.csv("../Data/AAPL.csv")
+sprintf("The data is in a dataframe? : %s", is.data.frame(AAPL))
+if(is.data.frame(AAPL)) {
+  sprintf("what are the dimentions of the dataframe? : x = %d by y = %d", ncol(AAPL), nrow(AAPL))
 }
+suppressWarnings(AAPL$TICKER <- as.character(AAPL$TICKER))
+suppressWarnings(AAPL$DATE <- as.character(AAPL$DATE))
+suppressWarnings(AAPL$TIME <- as.character(AAPL$TIME))
+AAPL$PER <- NULL
+AAPL$TICKER <- substring(AAPL$TICKER, 5)
+AAPL$DATETIME = paste(AAPL$DATE,AAPL$TIME, sep="-")
+AAPL$TIME <- NULL
+AAPL$DATE <- NULL
 
-ABF$Date <- as.Date(ABF$Date , "%Y-%m-%d")
-suppressWarnings(ABF$Open <- as.numeric(as.character(ABF$Open)))
-suppressWarnings(ABF$High <- as.numeric(as.character(ABF$High)))
-suppressWarnings(ABF$Low <- as.numeric(as.character(ABF$Low)))
-suppressWarnings(ABF$Close <- as.numeric(as.character(ABF$Close)))
-suppressWarnings(ABF$Adj.Close <- as.numeric(as.character(ABF$Adj.Close)))
-
-# read in the ADM data and validate that it is as expected
-"ADM"
-ADM = read.csv("../Data/ADM.csv")
-sprintf("The data is in a dataframe? : %s", is.data.frame(ADM))
-if(is.data.frame(ADM)) {
-	sprintf("what are the dimentions of the dataframe? : x = %d by y = %d", ncol(ADM), nrow(ADM))
-}
-
-ADM$Date <- as.Date(ADM$Date , "%Y-%m-%d")
-suppressWarnings(ADM$Open <- as.numeric(as.character(ADM$Open)))
-suppressWarnings(ADM$High <- as.numeric(as.character(ADM$High)))
-suppressWarnings(ADM$Low <- as.numeric(as.character(ADM$Low)))
-suppressWarnings(ADM$Close <- as.numeric(as.character(ADM$Close)))
-suppressWarnings(ADM$Adj.Close <- as.numeric(as.character(ADM$Adj.Close)))
-
-# read in the AAl data and validate that it is as expected
-"AHT"
-AHT = read.csv("../Data/AHT.csv")
-sprintf("The data is in a dataframe? : %s", is.data.frame(AHT))
-if(is.data.frame(AHT)) {
-	sprintf("what are the dimentions of the dataframe? : x = %d by y = %d", ncol(AHT), nrow(AHT))
-}
-
-AHT$Date <- as.Date(AHT$Date , "%Y-%m-%d")
-suppressWarnings(AHT$Open <- as.numeric(as.character(AHT$Open)))
-suppressWarnings(AHT$High <- as.numeric(as.character(AHT$High)))
-suppressWarnings(AHT$Low <- as.numeric(as.character(AHT$Low)))
-suppressWarnings(AHT$Close <- as.numeric(as.character(AHT$Close)))
-suppressWarnings(AHT$Adj.Close <- as.numeric(as.character(AHT$Adj.Close)))
+STOCK <- merge(AA,AAPL,by="DATETIME")
 
 
 
-# read in the BAB data and validate that it is as expected
-"BAB"
-BAB = read.csv("../Data/BAB.csv")
-sprintf("The data is in a dataframe? : %s", is.data.frame(BAB))
-if(is.data.frame(BAB)) {
-	sprintf("what are the dimentions of the dataframe? : x = %d by y = %d", ncol(BAB), nrow(BAB))
-}
+STOCK$DATETIME <- strptime(STOCK$DATETIME , format="%d/%m/%y-%H:%M")
 
-BAB$Date <- as.Date(BAB$Date , "%Y-%m-%d")
-suppressWarnings(BAB$Open <- as.numeric(as.character(BAB$Open)))
-suppressWarnings(BAB$High <- as.numeric(as.character(BAB$High)))
-suppressWarnings(BAB$Low <- as.numeric(as.character(BAB$Low)))
-suppressWarnings(BAB$Close <- as.numeric(as.character(BAB$Close)))
-suppressWarnings(BAB$Adj.Close <- as.numeric(as.character(BAB$Adj.Close)))
+positions <- order(STOCK$DATETIME)
+STOCK = STOCK[positions, ]
 
-
-
-# Do the same for all other stocks that are available
+print(STOCK)
 
 ####################################################################
 
-# a list of the stock that are being used
-data_labels = list("AAL","ABF","ADM","AHT","BAB")
-data = list(AAL,ABF,ADM,AHT,BAB)
-
-# print(data_labels)
-# print(data)
+# merge all the dataframe
 
 
 
@@ -152,10 +109,12 @@ data = list(AAL,ABF,ADM,AHT,BAB)
 # Testing - test the given algorithm over 
 ####################################################################
 
-# Get a start date
-# Get the data for the correct timeframe
-# Iterate through the data tickwise
-# Execute the trading algorithm on each tick
+# start date and time is 01/09/16 at 09:30
+# end date and time is 31/08/2017 at 15:59
+
+# 252 whole days of trading
+# 2 days of half trading closing at 1
+# a total of 98446 data points
 
 
 
