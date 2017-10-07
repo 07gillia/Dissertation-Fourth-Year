@@ -10,6 +10,16 @@ suppressWarnings(AA$DATE <- as.character(AA$DATE))
 suppressWarnings(AA$TIME <- as.character(AA$TIME))
 AA$PER <- NULL
 AA$TICKER <- substring(AA$TICKER, 5)
+AA$DATETIME = paste(AA$DATE,AA$TIME, sep="-")
+AA$TIME <- NULL
+AA$DATE <- NULL
+AA$HIGH <- NULL
+AA$LOW <- NULL
+AA$CLOSE <- NULL
+names(AA)[names(AA) == 'OPEN'] <- 'AA'
+AA$TICKER <- NULL
+
+STOCK <- merge(STOCK,AA,by="DATETIME",all=TRUE)
 
 # read in the AAPL.csv data and validate it is as expected
 "AAPL"
@@ -23,6 +33,16 @@ suppressWarnings(AAPL$DATE <- as.character(AAPL$DATE))
 suppressWarnings(AAPL$TIME <- as.character(AAPL$TIME))
 AAPL$PER <- NULL
 AAPL$TICKER <- substring(AAPL$TICKER, 5)
+AAPL$DATETIME = paste(AAPL$DATE,AAPL$TIME, sep="-")
+AAPL$TIME <- NULL
+AAPL$DATE <- NULL
+AAPL$HIGH <- NULL
+AAPL$LOW <- NULL
+AAPL$CLOSE <- NULL
+names(AAPL)[names(AAPL) == 'OPEN'] <- 'AAPL'
+AAPL$TICKER <- NULL
+
+STOCK <- merge(STOCK,AAPL,by="DATETIME",all=TRUE)
 
 # read in the ADBE.csv data and validate it is as expected
 "ADBE"
@@ -36,6 +56,16 @@ suppressWarnings(ADBE$DATE <- as.character(ADBE$DATE))
 suppressWarnings(ADBE$TIME <- as.character(ADBE$TIME))
 ADBE$PER <- NULL
 ADBE$TICKER <- substring(ADBE$TICKER, 5)
+ADBE$DATETIME = paste(ADBE$DATE,ADBE$TIME, sep="-")
+ADBE$TIME <- NULL
+ADBE$DATE <- NULL
+ADBE$HIGH <- NULL
+ADBE$LOW <- NULL
+ADBE$CLOSE <- NULL
+names(ADBE)[names(ADBE) == 'OPEN'] <- 'ADBE'
+ADBE$TICKER <- NULL
+
+STOCK <- merge(STOCK,ADBE,by="DATETIME",all=TRUE)
 
 # read in the AIG.csv data and validate it is as expected
 "AIG"
@@ -49,6 +79,16 @@ suppressWarnings(AIG$DATE <- as.character(AIG$DATE))
 suppressWarnings(AIG$TIME <- as.character(AIG$TIME))
 AIG$PER <- NULL
 AIG$TICKER <- substring(AIG$TICKER, 5)
+AIG$DATETIME = paste(AIG$DATE,AIG$TIME, sep="-")
+AIG$TIME <- NULL
+AIG$DATE <- NULL
+AIG$HIGH <- NULL
+AIG$LOW <- NULL
+AIG$CLOSE <- NULL
+names(AIG)[names(AIG) == 'OPEN'] <- 'AIG'
+AIG$TICKER <- NULL
+
+STOCK <- merge(STOCK,AIG,by="DATETIME",all=TRUE)
 
 # read in the AMAT.csv data and validate it is as expected
 "AMAT"
@@ -62,6 +102,16 @@ suppressWarnings(AMAT$DATE <- as.character(AMAT$DATE))
 suppressWarnings(AMAT$TIME <- as.character(AMAT$TIME))
 AMAT$PER <- NULL
 AMAT$TICKER <- substring(AMAT$TICKER, 5)
+AMAT$DATETIME = paste(AMAT$DATE,AMAT$TIME, sep="-")
+AMAT$TIME <- NULL
+AMAT$DATE <- NULL
+AMAT$HIGH <- NULL
+AMAT$LOW <- NULL
+AMAT$CLOSE <- NULL
+names(AMAT)[names(AMAT) == 'OPEN'] <- 'AMAT'
+AMAT$TICKER <- NULL
+
+STOCK <- merge(STOCK,AMAT,by="DATETIME",all=TRUE)
 
 # read in the AMT.csv data and validate it is as expected
 "AMT"
@@ -75,6 +125,16 @@ suppressWarnings(AMT$DATE <- as.character(AMT$DATE))
 suppressWarnings(AMT$TIME <- as.character(AMT$TIME))
 AMT$PER <- NULL
 AMT$TICKER <- substring(AMT$TICKER, 5)
+AMT$DATETIME = paste(AMT$DATE,AMT$TIME, sep="-")
+AMT$TIME <- NULL
+AMT$DATE <- NULL
+AMT$HIGH <- NULL
+AMT$LOW <- NULL
+AMT$CLOSE <- NULL
+names(AMT)[names(AMT) == 'OPEN'] <- 'AMT'
+AMT$TICKER <- NULL
+
+STOCK <- merge(STOCK,AMT,by="DATETIME",all=TRUE)
 
 # read in the ATT.csv data and validate it is as expected
 "ATT"
@@ -88,6 +148,16 @@ suppressWarnings(ATT$DATE <- as.character(ATT$DATE))
 suppressWarnings(ATT$TIME <- as.character(ATT$TIME))
 ATT$PER <- NULL
 ATT$TICKER <- substring(ATT$TICKER, 5)
+ATT$DATETIME = paste(ATT$DATE,ATT$TIME, sep="-")
+ATT$TIME <- NULL
+ATT$DATE <- NULL
+ATT$HIGH <- NULL
+ATT$LOW <- NULL
+ATT$CLOSE <- NULL
+names(ATT)[names(ATT) == 'OPEN'] <- 'ATT'
+ATT$TICKER <- NULL
+
+STOCK <- merge(STOCK,ATT,by="DATETIME",all=TRUE)
 
 # read in the AXP.csv data and validate it is as expected
 "AXP"
@@ -101,6 +171,16 @@ suppressWarnings(AXP$DATE <- as.character(AXP$DATE))
 suppressWarnings(AXP$TIME <- as.character(AXP$TIME))
 AXP$PER <- NULL
 AXP$TICKER <- substring(AXP$TICKER, 5)
+AXP$DATETIME = paste(AXP$DATE,AXP$TIME, sep="-")
+AXP$TIME <- NULL
+AXP$DATE <- NULL
+AXP$HIGH <- NULL
+AXP$LOW <- NULL
+AXP$CLOSE <- NULL
+names(AXP)[names(AXP) == 'OPEN'] <- 'AXP'
+AXP$TICKER <- NULL
+
+STOCK <- merge(STOCK,AXP,by="DATETIME",all=TRUE)
 
 # read in the BA.csv data and validate it is as expected
 "BA"
@@ -114,6 +194,16 @@ suppressWarnings(BA$DATE <- as.character(BA$DATE))
 suppressWarnings(BA$TIME <- as.character(BA$TIME))
 BA$PER <- NULL
 BA$TICKER <- substring(BA$TICKER, 5)
+BA$DATETIME = paste(BA$DATE,BA$TIME, sep="-")
+BA$TIME <- NULL
+BA$DATE <- NULL
+BA$HIGH <- NULL
+BA$LOW <- NULL
+BA$CLOSE <- NULL
+names(BA)[names(BA) == 'OPEN'] <- 'BA'
+BA$TICKER <- NULL
+
+STOCK <- merge(STOCK,BA,by="DATETIME",all=TRUE)
 
 # read in the BAC.csv data and validate it is as expected
 "BAC"
@@ -127,6 +217,16 @@ suppressWarnings(BAC$DATE <- as.character(BAC$DATE))
 suppressWarnings(BAC$TIME <- as.character(BAC$TIME))
 BAC$PER <- NULL
 BAC$TICKER <- substring(BAC$TICKER, 5)
+BAC$DATETIME = paste(BAC$DATE,BAC$TIME, sep="-")
+BAC$TIME <- NULL
+BAC$DATE <- NULL
+BAC$HIGH <- NULL
+BAC$LOW <- NULL
+BAC$CLOSE <- NULL
+names(BAC)[names(BAC) == 'OPEN'] <- 'BAC'
+BAC$TICKER <- NULL
+
+STOCK <- merge(STOCK,BAC,by="DATETIME",all=TRUE)
 
 # read in the C.csv data and validate it is as expected
 "C"
@@ -140,6 +240,16 @@ suppressWarnings(C$DATE <- as.character(C$DATE))
 suppressWarnings(C$TIME <- as.character(C$TIME))
 C$PER <- NULL
 C$TICKER <- substring(C$TICKER, 5)
+C$DATETIME = paste(C$DATE,C$TIME, sep="-")
+C$TIME <- NULL
+C$DATE <- NULL
+C$HIGH <- NULL
+C$LOW <- NULL
+C$CLOSE <- NULL
+names(C)[names(C) == 'OPEN'] <- 'C'
+C$TICKER <- NULL
+
+STOCK <- merge(STOCK,C,by="DATETIME",all=TRUE)
 
 # read in the CA.csv data and validate it is as expected
 "CA"
@@ -153,6 +263,16 @@ suppressWarnings(CA$DATE <- as.character(CA$DATE))
 suppressWarnings(CA$TIME <- as.character(CA$TIME))
 CA$PER <- NULL
 CA$TICKER <- substring(CA$TICKER, 5)
+CA$DATETIME = paste(CA$DATE,CA$TIME, sep="-")
+CA$TIME <- NULL
+CA$DATE <- NULL
+CA$HIGH <- NULL
+CA$LOW <- NULL
+CA$CLOSE <- NULL
+names(CA)[names(CA) == 'OPEN'] <- 'CA'
+CA$TICKER <- NULL
+
+STOCK <- merge(STOCK,CA,by="DATETIME",all=TRUE)
 
 # read in the CAT.csv data and validate it is as expected
 "CAT"
@@ -166,6 +286,16 @@ suppressWarnings(CAT$DATE <- as.character(CAT$DATE))
 suppressWarnings(CAT$TIME <- as.character(CAT$TIME))
 CAT$PER <- NULL
 CAT$TICKER <- substring(CAT$TICKER, 5)
+CAT$DATETIME = paste(CAT$DATE,CAT$TIME, sep="-")
+CAT$TIME <- NULL
+CAT$DATE <- NULL
+CAT$HIGH <- NULL
+CAT$LOW <- NULL
+CAT$CLOSE <- NULL
+names(CAT)[names(CAT) == 'OPEN'] <- 'CAT'
+CAT$TICKER <- NULL
+
+STOCK <- merge(STOCK,CAT,by="DATETIME",all=TRUE)
 
 # read in the CSCO.csv data and validate it is as expected
 "CSCO"
@@ -179,6 +309,16 @@ suppressWarnings(CSCO$DATE <- as.character(CSCO$DATE))
 suppressWarnings(CSCO$TIME <- as.character(CSCO$TIME))
 CSCO$PER <- NULL
 CSCO$TICKER <- substring(CSCO$TICKER, 5)
+CSCO$DATETIME = paste(CSCO$DATE,CSCO$TIME, sep="-")
+CSCO$TIME <- NULL
+CSCO$DATE <- NULL
+CSCO$HIGH <- NULL
+CSCO$LOW <- NULL
+CSCO$CLOSE <- NULL
+names(CSCO)[names(CSCO) == 'OPEN'] <- 'CSCO'
+CSCO$TICKER <- NULL
+
+STOCK <- merge(STOCK,CSCO,by="DATETIME",all=TRUE)
 
 # read in the CVX.csv data and validate it is as expected
 "CVX"
@@ -192,6 +332,16 @@ suppressWarnings(CVX$DATE <- as.character(CVX$DATE))
 suppressWarnings(CVX$TIME <- as.character(CVX$TIME))
 CVX$PER <- NULL
 CVX$TICKER <- substring(CVX$TICKER, 5)
+CVX$DATETIME = paste(CVX$DATE,CVX$TIME, sep="-")
+CVX$TIME <- NULL
+CVX$DATE <- NULL
+CVX$HIGH <- NULL
+CVX$LOW <- NULL
+CVX$CLOSE <- NULL
+names(CVX)[names(CVX) == 'OPEN'] <- 'CVX'
+CVX$TICKER <- NULL
+
+STOCK <- merge(STOCK,CVX,by="DATETIME",all=TRUE)
 
 # read in the DD.csv data and validate it is as expected
 "DD"
@@ -205,6 +355,16 @@ suppressWarnings(DD$DATE <- as.character(DD$DATE))
 suppressWarnings(DD$TIME <- as.character(DD$TIME))
 DD$PER <- NULL
 DD$TICKER <- substring(DD$TICKER, 5)
+DD$DATETIME = paste(DD$DATE,DD$TIME, sep="-")
+DD$TIME <- NULL
+DD$DATE <- NULL
+DD$HIGH <- NULL
+DD$LOW <- NULL
+DD$CLOSE <- NULL
+names(DD)[names(DD) == 'OPEN'] <- 'DD'
+DD$TICKER <- NULL
+
+STOCK <- merge(STOCK,DD,by="DATETIME",all=TRUE)
 
 # read in the DIS.csv data and validate it is as expected
 "DIS"
@@ -218,6 +378,16 @@ suppressWarnings(DIS$DATE <- as.character(DIS$DATE))
 suppressWarnings(DIS$TIME <- as.character(DIS$TIME))
 DIS$PER <- NULL
 DIS$TICKER <- substring(DIS$TICKER, 5)
+DIS$DATETIME = paste(DIS$DATE,DIS$TIME, sep="-")
+DIS$TIME <- NULL
+DIS$DATE <- NULL
+DIS$HIGH <- NULL
+DIS$LOW <- NULL
+DIS$CLOSE <- NULL
+names(DIS)[names(DIS) == 'OPEN'] <- 'DIS'
+DIS$TICKER <- NULL
+
+STOCK <- merge(STOCK,DIS,by="DATETIME",all=TRUE)
 
 # read in the EMC.csv data and validate it is as expected
 "EMC"
@@ -231,6 +401,16 @@ suppressWarnings(EMC$DATE <- as.character(EMC$DATE))
 suppressWarnings(EMC$TIME <- as.character(EMC$TIME))
 EMC$PER <- NULL
 EMC$TICKER <- substring(EMC$TICKER, 5)
+EMC$DATETIME = paste(EMC$DATE,EMC$TIME, sep="-")
+EMC$TIME <- NULL
+EMC$DATE <- NULL
+EMC$HIGH <- NULL
+EMC$LOW <- NULL
+EMC$CLOSE <- NULL
+names(EMC)[names(EMC) == 'OPEN'] <- 'EMC'
+EMC$TICKER <- NULL
+
+STOCK <- merge(STOCK,EMC,by="DATETIME",all=TRUE)
 
 # read in the FSLR.csv data and validate it is as expected
 "FSLR"
@@ -244,6 +424,16 @@ suppressWarnings(FSLR$DATE <- as.character(FSLR$DATE))
 suppressWarnings(FSLR$TIME <- as.character(FSLR$TIME))
 FSLR$PER <- NULL
 FSLR$TICKER <- substring(FSLR$TICKER, 5)
+FSLR$DATETIME = paste(FSLR$DATE,FSLR$TIME, sep="-")
+FSLR$TIME <- NULL
+FSLR$DATE <- NULL
+FSLR$HIGH <- NULL
+FSLR$LOW <- NULL
+FSLR$CLOSE <- NULL
+names(FSLR)[names(FSLR) == 'OPEN'] <- 'FSLR'
+FSLR$TICKER <- NULL
+
+STOCK <- merge(STOCK,FSLR,by="DATETIME",all=TRUE)
 
 # read in the GE.csv data and validate it is as expected
 "GE"
@@ -257,6 +447,16 @@ suppressWarnings(GE$DATE <- as.character(GE$DATE))
 suppressWarnings(GE$TIME <- as.character(GE$TIME))
 GE$PER <- NULL
 GE$TICKER <- substring(GE$TICKER, 5)
+GE$DATETIME = paste(GE$DATE,GE$TIME, sep="-")
+GE$TIME <- NULL
+GE$DATE <- NULL
+GE$HIGH <- NULL
+GE$LOW <- NULL
+GE$CLOSE <- NULL
+names(GE)[names(GE) == 'OPEN'] <- 'GE'
+GE$TICKER <- NULL
+
+STOCK <- merge(STOCK,GE,by="DATETIME",all=TRUE)
 
 # read in the GLW.csv data and validate it is as expected
 "GLW"
@@ -270,6 +470,16 @@ suppressWarnings(GLW$DATE <- as.character(GLW$DATE))
 suppressWarnings(GLW$TIME <- as.character(GLW$TIME))
 GLW$PER <- NULL
 GLW$TICKER <- substring(GLW$TICKER, 5)
+GLW$DATETIME = paste(GLW$DATE,GLW$TIME, sep="-")
+GLW$TIME <- NULL
+GLW$DATE <- NULL
+GLW$HIGH <- NULL
+GLW$LOW <- NULL
+GLW$CLOSE <- NULL
+names(GLW)[names(GLW) == 'OPEN'] <- 'GLW'
+GLW$TICKER <- NULL
+
+STOCK <- merge(STOCK,GLW,by="DATETIME",all=TRUE)
 
 # read in the GOOG.csv data and validate it is as expected
 "GOOG"
@@ -283,6 +493,16 @@ suppressWarnings(GOOG$DATE <- as.character(GOOG$DATE))
 suppressWarnings(GOOG$TIME <- as.character(GOOG$TIME))
 GOOG$PER <- NULL
 GOOG$TICKER <- substring(GOOG$TICKER, 5)
+GOOG$DATETIME = paste(GOOG$DATE,GOOG$TIME, sep="-")
+GOOG$TIME <- NULL
+GOOG$DATE <- NULL
+GOOG$HIGH <- NULL
+GOOG$LOW <- NULL
+GOOG$CLOSE <- NULL
+names(GOOG)[names(GOOG) == 'OPEN'] <- 'GOOG'
+GOOG$TICKER <- NULL
+
+STOCK <- merge(STOCK,GOOG,by="DATETIME",all=TRUE)
 
 # read in the GS.csv data and validate it is as expected
 "GS"
@@ -296,6 +516,16 @@ suppressWarnings(GS$DATE <- as.character(GS$DATE))
 suppressWarnings(GS$TIME <- as.character(GS$TIME))
 GS$PER <- NULL
 GS$TICKER <- substring(GS$TICKER, 5)
+GS$DATETIME = paste(GS$DATE,GS$TIME, sep="-")
+GS$TIME <- NULL
+GS$DATE <- NULL
+GS$HIGH <- NULL
+GS$LOW <- NULL
+GS$CLOSE <- NULL
+names(GS)[names(GS) == 'OPEN'] <- 'GS'
+GS$TICKER <- NULL
+
+STOCK <- merge(STOCK,GS,by="DATETIME",all=TRUE)
 
 # read in the HD.csv data and validate it is as expected
 "HD"
@@ -309,6 +539,16 @@ suppressWarnings(HD$DATE <- as.character(HD$DATE))
 suppressWarnings(HD$TIME <- as.character(HD$TIME))
 HD$PER <- NULL
 HD$TICKER <- substring(HD$TICKER, 5)
+HD$DATETIME = paste(HD$DATE,HD$TIME, sep="-")
+HD$TIME <- NULL
+HD$DATE <- NULL
+HD$HIGH <- NULL
+HD$LOW <- NULL
+HD$CLOSE <- NULL
+names(HD)[names(HD) == 'OPEN'] <- 'HD'
+HD$TICKER <- NULL
+
+STOCK <- merge(STOCK,HD,by="DATETIME",all=TRUE)
 
 # read in the HPQ.csv data and validate it is as expected
 "HPQ"
@@ -322,6 +562,16 @@ suppressWarnings(HPQ$DATE <- as.character(HPQ$DATE))
 suppressWarnings(HPQ$TIME <- as.character(HPQ$TIME))
 HPQ$PER <- NULL
 HPQ$TICKER <- substring(HPQ$TICKER, 5)
+HPQ$DATETIME = paste(HPQ$DATE,HPQ$TIME, sep="-")
+HPQ$TIME <- NULL
+HPQ$DATE <- NULL
+HPQ$HIGH <- NULL
+HPQ$LOW <- NULL
+HPQ$CLOSE <- NULL
+names(HPQ)[names(HPQ) == 'OPEN'] <- 'HPQ'
+HPQ$TICKER <- NULL
+
+STOCK <- merge(STOCK,HPQ,by="DATETIME",all=TRUE)
 
 # read in the IBM.csv data and validate it is as expected
 "IBM"
@@ -335,6 +585,16 @@ suppressWarnings(IBM$DATE <- as.character(IBM$DATE))
 suppressWarnings(IBM$TIME <- as.character(IBM$TIME))
 IBM$PER <- NULL
 IBM$TICKER <- substring(IBM$TICKER, 5)
+IBM$DATETIME = paste(IBM$DATE,IBM$TIME, sep="-")
+IBM$TIME <- NULL
+IBM$DATE <- NULL
+IBM$HIGH <- NULL
+IBM$LOW <- NULL
+IBM$CLOSE <- NULL
+names(IBM)[names(IBM) == 'OPEN'] <- 'IBM'
+IBM$TICKER <- NULL
+
+STOCK <- merge(STOCK,IBM,by="DATETIME",all=TRUE)
 
 # read in the INTC.csv data and validate it is as expected
 "INTC"
@@ -348,6 +608,16 @@ suppressWarnings(INTC$DATE <- as.character(INTC$DATE))
 suppressWarnings(INTC$TIME <- as.character(INTC$TIME))
 INTC$PER <- NULL
 INTC$TICKER <- substring(INTC$TICKER, 5)
+INTC$DATETIME = paste(INTC$DATE,INTC$TIME, sep="-")
+INTC$TIME <- NULL
+INTC$DATE <- NULL
+INTC$HIGH <- NULL
+INTC$LOW <- NULL
+INTC$CLOSE <- NULL
+names(INTC)[names(INTC) == 'OPEN'] <- 'INTC'
+INTC$TICKER <- NULL
+
+STOCK <- merge(STOCK,INTC,by="DATETIME",all=TRUE)
 
 # read in the IP.csv data and validate it is as expected
 "IP"
@@ -361,6 +631,16 @@ suppressWarnings(IP$DATE <- as.character(IP$DATE))
 suppressWarnings(IP$TIME <- as.character(IP$TIME))
 IP$PER <- NULL
 IP$TICKER <- substring(IP$TICKER, 5)
+IP$DATETIME = paste(IP$DATE,IP$TIME, sep="-")
+IP$TIME <- NULL
+IP$DATE <- NULL
+IP$HIGH <- NULL
+IP$LOW <- NULL
+IP$CLOSE <- NULL
+names(IP)[names(IP) == 'OPEN'] <- 'IP'
+IP$TICKER <- NULL
+
+STOCK <- merge(STOCK,IP,by="DATETIME",all=TRUE)
 
 # read in the JNJ.csv data and validate it is as expected
 "JNJ"
@@ -374,6 +654,16 @@ suppressWarnings(JNJ$DATE <- as.character(JNJ$DATE))
 suppressWarnings(JNJ$TIME <- as.character(JNJ$TIME))
 JNJ$PER <- NULL
 JNJ$TICKER <- substring(JNJ$TICKER, 5)
+JNJ$DATETIME = paste(JNJ$DATE,JNJ$TIME, sep="-")
+JNJ$TIME <- NULL
+JNJ$DATE <- NULL
+JNJ$HIGH <- NULL
+JNJ$LOW <- NULL
+JNJ$CLOSE <- NULL
+names(JNJ)[names(JNJ) == 'OPEN'] <- 'JNJ'
+JNJ$TICKER <- NULL
+
+STOCK <- merge(STOCK,JNJ,by="DATETIME",all=TRUE)
 
 # read in the JPM.csv data and validate it is as expected
 "JPM"
@@ -387,6 +677,16 @@ suppressWarnings(JPM$DATE <- as.character(JPM$DATE))
 suppressWarnings(JPM$TIME <- as.character(JPM$TIME))
 JPM$PER <- NULL
 JPM$TICKER <- substring(JPM$TICKER, 5)
+JPM$DATETIME = paste(JPM$DATE,JPM$TIME, sep="-")
+JPM$TIME <- NULL
+JPM$DATE <- NULL
+JPM$HIGH <- NULL
+JPM$LOW <- NULL
+JPM$CLOSE <- NULL
+names(JPM)[names(JPM) == 'OPEN'] <- 'JPM'
+JPM$TICKER <- NULL
+
+STOCK <- merge(STOCK,JPM,by="DATETIME",all=TRUE)
 
 # read in the KO.csv data and validate it is as expected
 "KO"
@@ -400,6 +700,16 @@ suppressWarnings(KO$DATE <- as.character(KO$DATE))
 suppressWarnings(KO$TIME <- as.character(KO$TIME))
 KO$PER <- NULL
 KO$TICKER <- substring(KO$TICKER, 5)
+KO$DATETIME = paste(KO$DATE,KO$TIME, sep="-")
+KO$TIME <- NULL
+KO$DATE <- NULL
+KO$HIGH <- NULL
+KO$LOW <- NULL
+KO$CLOSE <- NULL
+names(KO)[names(KO) == 'OPEN'] <- 'KO'
+KO$TICKER <- NULL
+
+STOCK <- merge(STOCK,KO,by="DATETIME",all=TRUE)
 
 # read in the MCD.csv data and validate it is as expected
 "MCD"
@@ -413,6 +723,16 @@ suppressWarnings(MCD$DATE <- as.character(MCD$DATE))
 suppressWarnings(MCD$TIME <- as.character(MCD$TIME))
 MCD$PER <- NULL
 MCD$TICKER <- substring(MCD$TICKER, 5)
+MCD$DATETIME = paste(MCD$DATE,MCD$TIME, sep="-")
+MCD$TIME <- NULL
+MCD$DATE <- NULL
+MCD$HIGH <- NULL
+MCD$LOW <- NULL
+MCD$CLOSE <- NULL
+names(MCD)[names(MCD) == 'OPEN'] <- 'MCD'
+MCD$TICKER <- NULL
+
+STOCK <- merge(STOCK,MCD,by="DATETIME",all=TRUE)
 
 # read in the MMM.csv data and validate it is as expected
 "MMM"
@@ -426,6 +746,16 @@ suppressWarnings(MMM$DATE <- as.character(MMM$DATE))
 suppressWarnings(MMM$TIME <- as.character(MMM$TIME))
 MMM$PER <- NULL
 MMM$TICKER <- substring(MMM$TICKER, 5)
+MMM$DATETIME = paste(MMM$DATE,MMM$TIME, sep="-")
+MMM$TIME <- NULL
+MMM$DATE <- NULL
+MMM$HIGH <- NULL
+MMM$LOW <- NULL
+MMM$CLOSE <- NULL
+names(MMM)[names(MMM) == 'OPEN'] <- 'MMM'
+MMM$TICKER <- NULL
+
+STOCK <- merge(STOCK,MMM,by="DATETIME",all=TRUE)
 
 # read in the MRK.csv data and validate it is as expected
 "MRK"
@@ -439,6 +769,16 @@ suppressWarnings(MRK$DATE <- as.character(MRK$DATE))
 suppressWarnings(MRK$TIME <- as.character(MRK$TIME))
 MRK$PER <- NULL
 MRK$TICKER <- substring(MRK$TICKER, 5)
+MRK$DATETIME = paste(MRK$DATE,MRK$TIME, sep="-")
+MRK$TIME <- NULL
+MRK$DATE <- NULL
+MRK$HIGH <- NULL
+MRK$LOW <- NULL
+MRK$CLOSE <- NULL
+names(MRK)[names(MRK) == 'OPEN'] <- 'MRK'
+MRK$TICKER <- NULL
+
+STOCK <- merge(STOCK,MRK,by="DATETIME",all=TRUE)
 
 # read in the MSFT.csv data and validate it is as expected
 "MSFT"
@@ -452,6 +792,16 @@ suppressWarnings(MSFT$DATE <- as.character(MSFT$DATE))
 suppressWarnings(MSFT$TIME <- as.character(MSFT$TIME))
 MSFT$PER <- NULL
 MSFT$TICKER <- substring(MSFT$TICKER, 5)
+MSFT$DATETIME = paste(MSFT$DATE,MSFT$TIME, sep="-")
+MSFT$TIME <- NULL
+MSFT$DATE <- NULL
+MSFT$HIGH <- NULL
+MSFT$LOW <- NULL
+MSFT$CLOSE <- NULL
+names(MSFT)[names(MSFT) == 'OPEN'] <- 'MSFT'
+MSFT$TICKER <- NULL
+
+STOCK <- merge(STOCK,MSFT,by="DATETIME",all=TRUE)
 
 # read in the PFE.csv data and validate it is as expected
 "PFE"
@@ -465,6 +815,16 @@ suppressWarnings(PFE$DATE <- as.character(PFE$DATE))
 suppressWarnings(PFE$TIME <- as.character(PFE$TIME))
 PFE$PER <- NULL
 PFE$TICKER <- substring(PFE$TICKER, 5)
+PFE$DATETIME = paste(PFE$DATE,PFE$TIME, sep="-")
+PFE$TIME <- NULL
+PFE$DATE <- NULL
+PFE$HIGH <- NULL
+PFE$LOW <- NULL
+PFE$CLOSE <- NULL
+names(PFE)[names(PFE) == 'OPEN'] <- 'PFE'
+PFE$TICKER <- NULL
+
+STOCK <- merge(STOCK,PFE,by="DATETIME",all=TRUE)
 
 # read in the PG.csv data and validate it is as expected
 "PG"
@@ -478,6 +838,16 @@ suppressWarnings(PG$DATE <- as.character(PG$DATE))
 suppressWarnings(PG$TIME <- as.character(PG$TIME))
 PG$PER <- NULL
 PG$TICKER <- substring(PG$TICKER, 5)
+PG$DATETIME = paste(PG$DATE,PG$TIME, sep="-")
+PG$TIME <- NULL
+PG$DATE <- NULL
+PG$HIGH <- NULL
+PG$LOW <- NULL
+PG$CLOSE <- NULL
+names(PG)[names(PG) == 'OPEN'] <- 'PG'
+PG$TICKER <- NULL
+
+STOCK <- merge(STOCK,PG,by="DATETIME",all=TRUE)
 
 # read in the TRV.csv data and validate it is as expected
 "TRV"
@@ -491,6 +861,16 @@ suppressWarnings(TRV$DATE <- as.character(TRV$DATE))
 suppressWarnings(TRV$TIME <- as.character(TRV$TIME))
 TRV$PER <- NULL
 TRV$TICKER <- substring(TRV$TICKER, 5)
+TRV$DATETIME = paste(TRV$DATE,TRV$TIME, sep="-")
+TRV$TIME <- NULL
+TRV$DATE <- NULL
+TRV$HIGH <- NULL
+TRV$LOW <- NULL
+TRV$CLOSE <- NULL
+names(TRV)[names(TRV) == 'OPEN'] <- 'TRV'
+TRV$TICKER <- NULL
+
+STOCK <- merge(STOCK,TRV,by="DATETIME",all=TRUE)
 
 # read in the UTX.csv data and validate it is as expected
 "UTX"
@@ -504,6 +884,16 @@ suppressWarnings(UTX$DATE <- as.character(UTX$DATE))
 suppressWarnings(UTX$TIME <- as.character(UTX$TIME))
 UTX$PER <- NULL
 UTX$TICKER <- substring(UTX$TICKER, 5)
+UTX$DATETIME = paste(UTX$DATE,UTX$TIME, sep="-")
+UTX$TIME <- NULL
+UTX$DATE <- NULL
+UTX$HIGH <- NULL
+UTX$LOW <- NULL
+UTX$CLOSE <- NULL
+names(UTX)[names(UTX) == 'OPEN'] <- 'UTX'
+UTX$TICKER <- NULL
+
+STOCK <- merge(STOCK,UTX,by="DATETIME",all=TRUE)
 
 # read in the VZ.csv data and validate it is as expected
 "VZ"
@@ -517,6 +907,16 @@ suppressWarnings(VZ$DATE <- as.character(VZ$DATE))
 suppressWarnings(VZ$TIME <- as.character(VZ$TIME))
 VZ$PER <- NULL
 VZ$TICKER <- substring(VZ$TICKER, 5)
+VZ$DATETIME = paste(VZ$DATE,VZ$TIME, sep="-")
+VZ$TIME <- NULL
+VZ$DATE <- NULL
+VZ$HIGH <- NULL
+VZ$LOW <- NULL
+VZ$CLOSE <- NULL
+names(VZ)[names(VZ) == 'OPEN'] <- 'VZ'
+VZ$TICKER <- NULL
+
+STOCK <- merge(STOCK,VZ,by="DATETIME",all=TRUE)
 
 # read in the WFC.csv data and validate it is as expected
 "WFC"
@@ -530,6 +930,16 @@ suppressWarnings(WFC$DATE <- as.character(WFC$DATE))
 suppressWarnings(WFC$TIME <- as.character(WFC$TIME))
 WFC$PER <- NULL
 WFC$TICKER <- substring(WFC$TICKER, 5)
+WFC$DATETIME = paste(WFC$DATE,WFC$TIME, sep="-")
+WFC$TIME <- NULL
+WFC$DATE <- NULL
+WFC$HIGH <- NULL
+WFC$LOW <- NULL
+WFC$CLOSE <- NULL
+names(WFC)[names(WFC) == 'OPEN'] <- 'WFC'
+WFC$TICKER <- NULL
+
+STOCK <- merge(STOCK,WFC,by="DATETIME",all=TRUE)
 
 # read in the WMT.csv data and validate it is as expected
 "WMT"
@@ -543,6 +953,16 @@ suppressWarnings(WMT$DATE <- as.character(WMT$DATE))
 suppressWarnings(WMT$TIME <- as.character(WMT$TIME))
 WMT$PER <- NULL
 WMT$TICKER <- substring(WMT$TICKER, 5)
+WMT$DATETIME = paste(WMT$DATE,WMT$TIME, sep="-")
+WMT$TIME <- NULL
+WMT$DATE <- NULL
+WMT$HIGH <- NULL
+WMT$LOW <- NULL
+WMT$CLOSE <- NULL
+names(WMT)[names(WMT) == 'OPEN'] <- 'WMT'
+WMT$TICKER <- NULL
+
+STOCK <- merge(STOCK,WMT,by="DATETIME",all=TRUE)
 
 # read in the XOM.csv data and validate it is as expected
 "XOM"
@@ -556,6 +976,16 @@ suppressWarnings(XOM$DATE <- as.character(XOM$DATE))
 suppressWarnings(XOM$TIME <- as.character(XOM$TIME))
 XOM$PER <- NULL
 XOM$TICKER <- substring(XOM$TICKER, 5)
+XOM$DATETIME = paste(XOM$DATE,XOM$TIME, sep="-")
+XOM$TIME <- NULL
+XOM$DATE <- NULL
+XOM$HIGH <- NULL
+XOM$LOW <- NULL
+XOM$CLOSE <- NULL
+names(XOM)[names(XOM) == 'OPEN'] <- 'XOM'
+XOM$TICKER <- NULL
+
+STOCK <- merge(STOCK,XOM,by="DATETIME",all=TRUE)
 
 # read in the YAHOO.csv data and validate it is as expected
 "YAHOO"
@@ -569,6 +999,16 @@ suppressWarnings(YAHOO$DATE <- as.character(YAHOO$DATE))
 suppressWarnings(YAHOO$TIME <- as.character(YAHOO$TIME))
 YAHOO$PER <- NULL
 YAHOO$TICKER <- substring(YAHOO$TICKER, 5)
+YAHOO$DATETIME = paste(YAHOO$DATE,YAHOO$TIME, sep="-")
+YAHOO$TIME <- NULL
+YAHOO$DATE <- NULL
+YAHOO$HIGH <- NULL
+YAHOO$LOW <- NULL
+YAHOO$CLOSE <- NULL
+names(YAHOO)[names(YAHOO) == 'OPEN'] <- 'YAHOO'
+YAHOO$TICKER <- NULL
+
+STOCK <- merge(STOCK,YAHOO,by="DATETIME",all=TRUE)
 
 # read in the YNDX.csv data and validate it is as expected
 "YNDX"
@@ -582,4 +1022,14 @@ suppressWarnings(YNDX$DATE <- as.character(YNDX$DATE))
 suppressWarnings(YNDX$TIME <- as.character(YNDX$TIME))
 YNDX$PER <- NULL
 YNDX$TICKER <- substring(YNDX$TICKER, 5)
+YNDX$DATETIME = paste(YNDX$DATE,YNDX$TIME, sep="-")
+YNDX$TIME <- NULL
+YNDX$DATE <- NULL
+YNDX$HIGH <- NULL
+YNDX$LOW <- NULL
+YNDX$CLOSE <- NULL
+names(YNDX)[names(YNDX) == 'OPEN'] <- 'YNDX'
+YNDX$TICKER <- NULL
+
+STOCK <- merge(STOCK,YNDX,by="DATETIME",all=TRUE)
 

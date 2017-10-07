@@ -21,7 +21,6 @@ setwd("/Users/ColossusMini/Documents/GIT/Dissertation Fourth Year/Dissertation")
 
 # Set a source file for the functions
 source("functions.R")
-source("readData.R")
 
 
 
@@ -57,51 +56,16 @@ ledger = data.frame(
 ####################################################################
 
 # read in the AA.csv data and validate it is as expected
-"AA"
-AA = read.csv("../Data/AA.csv")
-sprintf("The data is in a dataframe? : %s", is.data.frame(AA))
-if(is.data.frame(AA)) {
-  sprintf("what are the dimentions of the dataframe? : x = %d by y = %d", ncol(AA), nrow(AA))
+"STOCK"
+STOCK = read.csv("../Data/STOCK.csv")
+sprintf("The data is in a dataframe? : %s", is.data.frame(STOCK))
+if(is.data.frame(STOCK)) {
+  sprintf("what are the dimentions of the dataframe? : x = %d by y = %d", ncol(STOCK), nrow(STOCK))
 }
-suppressWarnings(AA$TICKER <- as.character(AA$TICKER))
-suppressWarnings(AA$DATE <- as.character(AA$DATE))
-suppressWarnings(AA$TIME <- as.character(AA$TIME))
-AA$PER <- NULL
-AA$TICKER <- substring(AA$TICKER, 5)
-AA$DATETIME = paste(AA$DATE,AA$TIME, sep="-")
-AA$TIME <- NULL
-AA$DATE <- NULL
-
-# read in the AA.csv data and validate it is as expected
-"AAPL"
-AAPL = read.csv("../Data/AAPL.csv")
-sprintf("The data is in a dataframe? : %s", is.data.frame(AAPL))
-if(is.data.frame(AAPL)) {
-  sprintf("what are the dimentions of the dataframe? : x = %d by y = %d", ncol(AAPL), nrow(AAPL))
-}
-suppressWarnings(AAPL$TICKER <- as.character(AAPL$TICKER))
-suppressWarnings(AAPL$DATE <- as.character(AAPL$DATE))
-suppressWarnings(AAPL$TIME <- as.character(AAPL$TIME))
-AAPL$PER <- NULL
-AAPL$TICKER <- substring(AAPL$TICKER, 5)
-AAPL$DATETIME = paste(AAPL$DATE,AAPL$TIME, sep="-")
-AAPL$TIME <- NULL
-AAPL$DATE <- NULL
-
-STOCK <- merge(AA,AAPL,by="DATETIME")
-
-
-
-STOCK$DATETIME <- strptime(STOCK$DATETIME , format="%d/%m/%y-%H:%M")
-
+STOCK$X <- NULL
+STOCK$DATETIME <- strptime(STOCK$DATETIME , format="%Y-%m-%d %H:%M:%S")
 positions <- order(STOCK$DATETIME)
 STOCK = STOCK[positions, ]
-
-print(STOCK)
-
-####################################################################
-
-# merge all the dataframe
 
 
 
@@ -111,7 +75,6 @@ print(STOCK)
 
 # start date and time is 01/09/16 at 09:30
 # end date and time is 31/08/2017 at 15:59
-
 # 252 whole days of trading
 # 2 days of half trading closing at 1
 # a total of 98446 data points
