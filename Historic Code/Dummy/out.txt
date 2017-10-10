@@ -1,0 +1,1058 @@
+# read in the AA.csv data and validate it is as expected
+"AA"
+AA = read.csv("../Data/AA.csv")
+sprintf("The data is in a dataframe? : %s", is.data.frame(AA))
+if(is.data.frame(AA)) {
+	sprintf("what are the dimentions of the dataframe? : x = %d by y = %d", ncol(AA), nrow(AA))
+}
+suppressWarnings(AA$TICKER <- as.character(AA$TICKER))
+suppressWarnings(AA$DATE <- as.character(AA$DATE))
+suppressWarnings(AA$TIME <- as.character(AA$TIME))
+AA$PER <- NULL
+AA$TICKER <- substring(AA$TICKER, 5)
+AA$DATETIME = paste(AA$DATE,AA$TIME, sep="-")
+AA$TIME <- NULL
+AA$DATE <- NULL
+AA$HIGH <- NULL
+AA$LOW <- NULL
+AA$CLOSE <- NULL
+names(AA)[names(AA) == 'OPEN'] <- 'AA'
+AA$TICKER <- NULL
+
+STOCK <- merge(STOCK,AA,by="DATETIME",all=TRUE)
+
+# read in the AAPL.csv data and validate it is as expected
+"AAPL"
+AAPL = read.csv("../Data/AAPL.csv")
+sprintf("The data is in a dataframe? : %s", is.data.frame(AAPL))
+if(is.data.frame(AAPL)) {
+	sprintf("what are the dimentions of the dataframe? : x = %d by y = %d", ncol(AAPL), nrow(AAPL))
+}
+suppressWarnings(AAPL$TICKER <- as.character(AAPL$TICKER))
+suppressWarnings(AAPL$DATE <- as.character(AAPL$DATE))
+suppressWarnings(AAPL$TIME <- as.character(AAPL$TIME))
+AAPL$PER <- NULL
+AAPL$TICKER <- substring(AAPL$TICKER, 5)
+AAPL$DATETIME = paste(AAPL$DATE,AAPL$TIME, sep="-")
+AAPL$TIME <- NULL
+AAPL$DATE <- NULL
+AAPL$HIGH <- NULL
+AAPL$LOW <- NULL
+AAPL$CLOSE <- NULL
+names(AAPL)[names(AAPL) == 'OPEN'] <- 'AAPL'
+AAPL$TICKER <- NULL
+
+STOCK <- merge(STOCK,AAPL,by="DATETIME",all=TRUE)
+
+# read in the ADBE.csv data and validate it is as expected
+"ADBE"
+ADBE = read.csv("../Data/ADBE.csv")
+sprintf("The data is in a dataframe? : %s", is.data.frame(ADBE))
+if(is.data.frame(ADBE)) {
+	sprintf("what are the dimentions of the dataframe? : x = %d by y = %d", ncol(ADBE), nrow(ADBE))
+}
+suppressWarnings(ADBE$TICKER <- as.character(ADBE$TICKER))
+suppressWarnings(ADBE$DATE <- as.character(ADBE$DATE))
+suppressWarnings(ADBE$TIME <- as.character(ADBE$TIME))
+ADBE$PER <- NULL
+ADBE$TICKER <- substring(ADBE$TICKER, 5)
+ADBE$DATETIME = paste(ADBE$DATE,ADBE$TIME, sep="-")
+ADBE$TIME <- NULL
+ADBE$DATE <- NULL
+ADBE$HIGH <- NULL
+ADBE$LOW <- NULL
+ADBE$CLOSE <- NULL
+names(ADBE)[names(ADBE) == 'OPEN'] <- 'ADBE'
+ADBE$TICKER <- NULL
+
+STOCK <- merge(STOCK,ADBE,by="DATETIME",all=TRUE)
+
+# read in the AIG.csv data and validate it is as expected
+"AIG"
+AIG = read.csv("../Data/AIG.csv")
+sprintf("The data is in a dataframe? : %s", is.data.frame(AIG))
+if(is.data.frame(AIG)) {
+	sprintf("what are the dimentions of the dataframe? : x = %d by y = %d", ncol(AIG), nrow(AIG))
+}
+suppressWarnings(AIG$TICKER <- as.character(AIG$TICKER))
+suppressWarnings(AIG$DATE <- as.character(AIG$DATE))
+suppressWarnings(AIG$TIME <- as.character(AIG$TIME))
+AIG$PER <- NULL
+AIG$TICKER <- substring(AIG$TICKER, 5)
+AIG$DATETIME = paste(AIG$DATE,AIG$TIME, sep="-")
+AIG$TIME <- NULL
+AIG$DATE <- NULL
+AIG$HIGH <- NULL
+AIG$LOW <- NULL
+AIG$CLOSE <- NULL
+names(AIG)[names(AIG) == 'OPEN'] <- 'AIG'
+AIG$TICKER <- NULL
+
+STOCK <- merge(STOCK,AIG,by="DATETIME",all=TRUE)
+
+# read in the AMAT.csv data and validate it is as expected
+"AMAT"
+AMAT = read.csv("../Data/AMAT.csv")
+sprintf("The data is in a dataframe? : %s", is.data.frame(AMAT))
+if(is.data.frame(AMAT)) {
+	sprintf("what are the dimentions of the dataframe? : x = %d by y = %d", ncol(AMAT), nrow(AMAT))
+}
+suppressWarnings(AMAT$TICKER <- as.character(AMAT$TICKER))
+suppressWarnings(AMAT$DATE <- as.character(AMAT$DATE))
+suppressWarnings(AMAT$TIME <- as.character(AMAT$TIME))
+AMAT$PER <- NULL
+AMAT$TICKER <- substring(AMAT$TICKER, 5)
+AMAT$DATETIME = paste(AMAT$DATE,AMAT$TIME, sep="-")
+AMAT$TIME <- NULL
+AMAT$DATE <- NULL
+AMAT$HIGH <- NULL
+AMAT$LOW <- NULL
+AMAT$CLOSE <- NULL
+names(AMAT)[names(AMAT) == 'OPEN'] <- 'AMAT'
+AMAT$TICKER <- NULL
+
+STOCK <- merge(STOCK,AMAT,by="DATETIME",all=TRUE)
+
+# read in the AMT.csv data and validate it is as expected
+"AMT"
+AMT = read.csv("../Data/AMT.csv")
+sprintf("The data is in a dataframe? : %s", is.data.frame(AMT))
+if(is.data.frame(AMT)) {
+	sprintf("what are the dimentions of the dataframe? : x = %d by y = %d", ncol(AMT), nrow(AMT))
+}
+suppressWarnings(AMT$TICKER <- as.character(AMT$TICKER))
+suppressWarnings(AMT$DATE <- as.character(AMT$DATE))
+suppressWarnings(AMT$TIME <- as.character(AMT$TIME))
+AMT$PER <- NULL
+AMT$TICKER <- substring(AMT$TICKER, 5)
+AMT$DATETIME = paste(AMT$DATE,AMT$TIME, sep="-")
+AMT$TIME <- NULL
+AMT$DATE <- NULL
+AMT$HIGH <- NULL
+AMT$LOW <- NULL
+AMT$CLOSE <- NULL
+names(AMT)[names(AMT) == 'OPEN'] <- 'AMT'
+AMT$TICKER <- NULL
+
+STOCK <- merge(STOCK,AMT,by="DATETIME",all=TRUE)
+
+# read in the AXP.csv data and validate it is as expected
+"AXP"
+AXP = read.csv("../Data/AXP.csv")
+sprintf("The data is in a dataframe? : %s", is.data.frame(AXP))
+if(is.data.frame(AXP)) {
+	sprintf("what are the dimentions of the dataframe? : x = %d by y = %d", ncol(AXP), nrow(AXP))
+}
+suppressWarnings(AXP$TICKER <- as.character(AXP$TICKER))
+suppressWarnings(AXP$DATE <- as.character(AXP$DATE))
+suppressWarnings(AXP$TIME <- as.character(AXP$TIME))
+AXP$PER <- NULL
+AXP$TICKER <- substring(AXP$TICKER, 5)
+AXP$DATETIME = paste(AXP$DATE,AXP$TIME, sep="-")
+AXP$TIME <- NULL
+AXP$DATE <- NULL
+AXP$HIGH <- NULL
+AXP$LOW <- NULL
+AXP$CLOSE <- NULL
+names(AXP)[names(AXP) == 'OPEN'] <- 'AXP'
+AXP$TICKER <- NULL
+
+STOCK <- merge(STOCK,AXP,by="DATETIME",all=TRUE)
+
+# read in the BA.csv data and validate it is as expected
+"BA"
+BA = read.csv("../Data/BA.csv")
+sprintf("The data is in a dataframe? : %s", is.data.frame(BA))
+if(is.data.frame(BA)) {
+	sprintf("what are the dimentions of the dataframe? : x = %d by y = %d", ncol(BA), nrow(BA))
+}
+suppressWarnings(BA$TICKER <- as.character(BA$TICKER))
+suppressWarnings(BA$DATE <- as.character(BA$DATE))
+suppressWarnings(BA$TIME <- as.character(BA$TIME))
+BA$PER <- NULL
+BA$TICKER <- substring(BA$TICKER, 5)
+BA$DATETIME = paste(BA$DATE,BA$TIME, sep="-")
+BA$TIME <- NULL
+BA$DATE <- NULL
+BA$HIGH <- NULL
+BA$LOW <- NULL
+BA$CLOSE <- NULL
+names(BA)[names(BA) == 'OPEN'] <- 'BA'
+BA$TICKER <- NULL
+
+STOCK <- merge(STOCK,BA,by="DATETIME",all=TRUE)
+
+# read in the BAC.csv data and validate it is as expected
+"BAC"
+BAC = read.csv("../Data/BAC.csv")
+sprintf("The data is in a dataframe? : %s", is.data.frame(BAC))
+if(is.data.frame(BAC)) {
+	sprintf("what are the dimentions of the dataframe? : x = %d by y = %d", ncol(BAC), nrow(BAC))
+}
+suppressWarnings(BAC$TICKER <- as.character(BAC$TICKER))
+suppressWarnings(BAC$DATE <- as.character(BAC$DATE))
+suppressWarnings(BAC$TIME <- as.character(BAC$TIME))
+BAC$PER <- NULL
+BAC$TICKER <- substring(BAC$TICKER, 5)
+BAC$DATETIME = paste(BAC$DATE,BAC$TIME, sep="-")
+BAC$TIME <- NULL
+BAC$DATE <- NULL
+BAC$HIGH <- NULL
+BAC$LOW <- NULL
+BAC$CLOSE <- NULL
+names(BAC)[names(BAC) == 'OPEN'] <- 'BAC'
+BAC$TICKER <- NULL
+
+STOCK <- merge(STOCK,BAC,by="DATETIME",all=TRUE)
+
+# read in the C.csv data and validate it is as expected
+"C"
+C = read.csv("../Data/C.csv")
+sprintf("The data is in a dataframe? : %s", is.data.frame(C))
+if(is.data.frame(C)) {
+	sprintf("what are the dimentions of the dataframe? : x = %d by y = %d", ncol(C), nrow(C))
+}
+suppressWarnings(C$TICKER <- as.character(C$TICKER))
+suppressWarnings(C$DATE <- as.character(C$DATE))
+suppressWarnings(C$TIME <- as.character(C$TIME))
+C$PER <- NULL
+C$TICKER <- substring(C$TICKER, 5)
+C$DATETIME = paste(C$DATE,C$TIME, sep="-")
+C$TIME <- NULL
+C$DATE <- NULL
+C$HIGH <- NULL
+C$LOW <- NULL
+C$CLOSE <- NULL
+names(C)[names(C) == 'OPEN'] <- 'C'
+C$TICKER <- NULL
+
+STOCK <- merge(STOCK,C,by="DATETIME",all=TRUE)
+
+# read in the CA.csv data and validate it is as expected
+"CA"
+CA = read.csv("../Data/CA.csv")
+sprintf("The data is in a dataframe? : %s", is.data.frame(CA))
+if(is.data.frame(CA)) {
+	sprintf("what are the dimentions of the dataframe? : x = %d by y = %d", ncol(CA), nrow(CA))
+}
+suppressWarnings(CA$TICKER <- as.character(CA$TICKER))
+suppressWarnings(CA$DATE <- as.character(CA$DATE))
+suppressWarnings(CA$TIME <- as.character(CA$TIME))
+CA$PER <- NULL
+CA$TICKER <- substring(CA$TICKER, 5)
+CA$DATETIME = paste(CA$DATE,CA$TIME, sep="-")
+CA$TIME <- NULL
+CA$DATE <- NULL
+CA$HIGH <- NULL
+CA$LOW <- NULL
+CA$CLOSE <- NULL
+names(CA)[names(CA) == 'OPEN'] <- 'CA'
+CA$TICKER <- NULL
+
+STOCK <- merge(STOCK,CA,by="DATETIME",all=TRUE)
+
+# read in the CAT.csv data and validate it is as expected
+"CAT"
+CAT = read.csv("../Data/CAT.csv")
+sprintf("The data is in a dataframe? : %s", is.data.frame(CAT))
+if(is.data.frame(CAT)) {
+	sprintf("what are the dimentions of the dataframe? : x = %d by y = %d", ncol(CAT), nrow(CAT))
+}
+suppressWarnings(CAT$TICKER <- as.character(CAT$TICKER))
+suppressWarnings(CAT$DATE <- as.character(CAT$DATE))
+suppressWarnings(CAT$TIME <- as.character(CAT$TIME))
+CAT$PER <- NULL
+CAT$TICKER <- substring(CAT$TICKER, 5)
+CAT$DATETIME = paste(CAT$DATE,CAT$TIME, sep="-")
+CAT$TIME <- NULL
+CAT$DATE <- NULL
+CAT$HIGH <- NULL
+CAT$LOW <- NULL
+CAT$CLOSE <- NULL
+names(CAT)[names(CAT) == 'OPEN'] <- 'CAT'
+CAT$TICKER <- NULL
+
+STOCK <- merge(STOCK,CAT,by="DATETIME",all=TRUE)
+
+# read in the CSCO.csv data and validate it is as expected
+"CSCO"
+CSCO = read.csv("../Data/CSCO.csv")
+sprintf("The data is in a dataframe? : %s", is.data.frame(CSCO))
+if(is.data.frame(CSCO)) {
+	sprintf("what are the dimentions of the dataframe? : x = %d by y = %d", ncol(CSCO), nrow(CSCO))
+}
+suppressWarnings(CSCO$TICKER <- as.character(CSCO$TICKER))
+suppressWarnings(CSCO$DATE <- as.character(CSCO$DATE))
+suppressWarnings(CSCO$TIME <- as.character(CSCO$TIME))
+CSCO$PER <- NULL
+CSCO$TICKER <- substring(CSCO$TICKER, 5)
+CSCO$DATETIME = paste(CSCO$DATE,CSCO$TIME, sep="-")
+CSCO$TIME <- NULL
+CSCO$DATE <- NULL
+CSCO$HIGH <- NULL
+CSCO$LOW <- NULL
+CSCO$CLOSE <- NULL
+names(CSCO)[names(CSCO) == 'OPEN'] <- 'CSCO'
+CSCO$TICKER <- NULL
+
+STOCK <- merge(STOCK,CSCO,by="DATETIME",all=TRUE)
+
+# read in the CVX.csv data and validate it is as expected
+"CVX"
+CVX = read.csv("../Data/CVX.csv")
+sprintf("The data is in a dataframe? : %s", is.data.frame(CVX))
+if(is.data.frame(CVX)) {
+	sprintf("what are the dimentions of the dataframe? : x = %d by y = %d", ncol(CVX), nrow(CVX))
+}
+suppressWarnings(CVX$TICKER <- as.character(CVX$TICKER))
+suppressWarnings(CVX$DATE <- as.character(CVX$DATE))
+suppressWarnings(CVX$TIME <- as.character(CVX$TIME))
+CVX$PER <- NULL
+CVX$TICKER <- substring(CVX$TICKER, 5)
+CVX$DATETIME = paste(CVX$DATE,CVX$TIME, sep="-")
+CVX$TIME <- NULL
+CVX$DATE <- NULL
+CVX$HIGH <- NULL
+CVX$LOW <- NULL
+CVX$CLOSE <- NULL
+names(CVX)[names(CVX) == 'OPEN'] <- 'CVX'
+CVX$TICKER <- NULL
+
+STOCK <- merge(STOCK,CVX,by="DATETIME",all=TRUE)
+
+# read in the DD.csv data and validate it is as expected
+"DD"
+DD = read.csv("../Data/DD.csv")
+sprintf("The data is in a dataframe? : %s", is.data.frame(DD))
+if(is.data.frame(DD)) {
+	sprintf("what are the dimentions of the dataframe? : x = %d by y = %d", ncol(DD), nrow(DD))
+}
+suppressWarnings(DD$TICKER <- as.character(DD$TICKER))
+suppressWarnings(DD$DATE <- as.character(DD$DATE))
+suppressWarnings(DD$TIME <- as.character(DD$TIME))
+DD$PER <- NULL
+DD$TICKER <- substring(DD$TICKER, 5)
+DD$DATETIME = paste(DD$DATE,DD$TIME, sep="-")
+DD$TIME <- NULL
+DD$DATE <- NULL
+DD$HIGH <- NULL
+DD$LOW <- NULL
+DD$CLOSE <- NULL
+names(DD)[names(DD) == 'OPEN'] <- 'DD'
+DD$TICKER <- NULL
+
+STOCK <- merge(STOCK,DD,by="DATETIME",all=TRUE)
+
+# read in the DIS.csv data and validate it is as expected
+"DIS"
+DIS = read.csv("../Data/DIS.csv")
+sprintf("The data is in a dataframe? : %s", is.data.frame(DIS))
+if(is.data.frame(DIS)) {
+	sprintf("what are the dimentions of the dataframe? : x = %d by y = %d", ncol(DIS), nrow(DIS))
+}
+suppressWarnings(DIS$TICKER <- as.character(DIS$TICKER))
+suppressWarnings(DIS$DATE <- as.character(DIS$DATE))
+suppressWarnings(DIS$TIME <- as.character(DIS$TIME))
+DIS$PER <- NULL
+DIS$TICKER <- substring(DIS$TICKER, 5)
+DIS$DATETIME = paste(DIS$DATE,DIS$TIME, sep="-")
+DIS$TIME <- NULL
+DIS$DATE <- NULL
+DIS$HIGH <- NULL
+DIS$LOW <- NULL
+DIS$CLOSE <- NULL
+names(DIS)[names(DIS) == 'OPEN'] <- 'DIS'
+DIS$TICKER <- NULL
+
+STOCK <- merge(STOCK,DIS,by="DATETIME",all=TRUE)
+
+# read in the EMC.csv data and validate it is as expected
+"EMC"
+EMC = read.csv("../Data/EMC.csv")
+sprintf("The data is in a dataframe? : %s", is.data.frame(EMC))
+if(is.data.frame(EMC)) {
+	sprintf("what are the dimentions of the dataframe? : x = %d by y = %d", ncol(EMC), nrow(EMC))
+}
+suppressWarnings(EMC$TICKER <- as.character(EMC$TICKER))
+suppressWarnings(EMC$DATE <- as.character(EMC$DATE))
+suppressWarnings(EMC$TIME <- as.character(EMC$TIME))
+EMC$PER <- NULL
+EMC$TICKER <- substring(EMC$TICKER, 5)
+EMC$DATETIME = paste(EMC$DATE,EMC$TIME, sep="-")
+EMC$TIME <- NULL
+EMC$DATE <- NULL
+EMC$HIGH <- NULL
+EMC$LOW <- NULL
+EMC$CLOSE <- NULL
+names(EMC)[names(EMC) == 'OPEN'] <- 'EMC'
+EMC$TICKER <- NULL
+
+STOCK <- merge(STOCK,EMC,by="DATETIME",all=TRUE)
+
+# read in the FSLR.csv data and validate it is as expected
+"FSLR"
+FSLR = read.csv("../Data/FSLR.csv")
+sprintf("The data is in a dataframe? : %s", is.data.frame(FSLR))
+if(is.data.frame(FSLR)) {
+	sprintf("what are the dimentions of the dataframe? : x = %d by y = %d", ncol(FSLR), nrow(FSLR))
+}
+suppressWarnings(FSLR$TICKER <- as.character(FSLR$TICKER))
+suppressWarnings(FSLR$DATE <- as.character(FSLR$DATE))
+suppressWarnings(FSLR$TIME <- as.character(FSLR$TIME))
+FSLR$PER <- NULL
+FSLR$TICKER <- substring(FSLR$TICKER, 5)
+FSLR$DATETIME = paste(FSLR$DATE,FSLR$TIME, sep="-")
+FSLR$TIME <- NULL
+FSLR$DATE <- NULL
+FSLR$HIGH <- NULL
+FSLR$LOW <- NULL
+FSLR$CLOSE <- NULL
+names(FSLR)[names(FSLR) == 'OPEN'] <- 'FSLR'
+FSLR$TICKER <- NULL
+
+STOCK <- merge(STOCK,FSLR,by="DATETIME",all=TRUE)
+
+# read in the GE.csv data and validate it is as expected
+"GE"
+GE = read.csv("../Data/GE.csv")
+sprintf("The data is in a dataframe? : %s", is.data.frame(GE))
+if(is.data.frame(GE)) {
+	sprintf("what are the dimentions of the dataframe? : x = %d by y = %d", ncol(GE), nrow(GE))
+}
+suppressWarnings(GE$TICKER <- as.character(GE$TICKER))
+suppressWarnings(GE$DATE <- as.character(GE$DATE))
+suppressWarnings(GE$TIME <- as.character(GE$TIME))
+GE$PER <- NULL
+GE$TICKER <- substring(GE$TICKER, 5)
+GE$DATETIME = paste(GE$DATE,GE$TIME, sep="-")
+GE$TIME <- NULL
+GE$DATE <- NULL
+GE$HIGH <- NULL
+GE$LOW <- NULL
+GE$CLOSE <- NULL
+names(GE)[names(GE) == 'OPEN'] <- 'GE'
+GE$TICKER <- NULL
+
+STOCK <- merge(STOCK,GE,by="DATETIME",all=TRUE)
+
+# read in the GLW.csv data and validate it is as expected
+"GLW"
+GLW = read.csv("../Data/GLW.csv")
+sprintf("The data is in a dataframe? : %s", is.data.frame(GLW))
+if(is.data.frame(GLW)) {
+	sprintf("what are the dimentions of the dataframe? : x = %d by y = %d", ncol(GLW), nrow(GLW))
+}
+suppressWarnings(GLW$TICKER <- as.character(GLW$TICKER))
+suppressWarnings(GLW$DATE <- as.character(GLW$DATE))
+suppressWarnings(GLW$TIME <- as.character(GLW$TIME))
+GLW$PER <- NULL
+GLW$TICKER <- substring(GLW$TICKER, 5)
+GLW$DATETIME = paste(GLW$DATE,GLW$TIME, sep="-")
+GLW$TIME <- NULL
+GLW$DATE <- NULL
+GLW$HIGH <- NULL
+GLW$LOW <- NULL
+GLW$CLOSE <- NULL
+names(GLW)[names(GLW) == 'OPEN'] <- 'GLW'
+GLW$TICKER <- NULL
+
+STOCK <- merge(STOCK,GLW,by="DATETIME",all=TRUE)
+
+# read in the GOOG.csv data and validate it is as expected
+"GOOG"
+GOOG = read.csv("../Data/GOOG.csv")
+sprintf("The data is in a dataframe? : %s", is.data.frame(GOOG))
+if(is.data.frame(GOOG)) {
+	sprintf("what are the dimentions of the dataframe? : x = %d by y = %d", ncol(GOOG), nrow(GOOG))
+}
+suppressWarnings(GOOG$TICKER <- as.character(GOOG$TICKER))
+suppressWarnings(GOOG$DATE <- as.character(GOOG$DATE))
+suppressWarnings(GOOG$TIME <- as.character(GOOG$TIME))
+GOOG$PER <- NULL
+GOOG$TICKER <- substring(GOOG$TICKER, 5)
+GOOG$DATETIME = paste(GOOG$DATE,GOOG$TIME, sep="-")
+GOOG$TIME <- NULL
+GOOG$DATE <- NULL
+GOOG$HIGH <- NULL
+GOOG$LOW <- NULL
+GOOG$CLOSE <- NULL
+names(GOOG)[names(GOOG) == 'OPEN'] <- 'GOOG'
+GOOG$TICKER <- NULL
+
+STOCK <- merge(STOCK,GOOG,by="DATETIME",all=TRUE)
+
+# read in the GS.csv data and validate it is as expected
+"GS"
+GS = read.csv("../Data/GS.csv")
+sprintf("The data is in a dataframe? : %s", is.data.frame(GS))
+if(is.data.frame(GS)) {
+	sprintf("what are the dimentions of the dataframe? : x = %d by y = %d", ncol(GS), nrow(GS))
+}
+suppressWarnings(GS$TICKER <- as.character(GS$TICKER))
+suppressWarnings(GS$DATE <- as.character(GS$DATE))
+suppressWarnings(GS$TIME <- as.character(GS$TIME))
+GS$PER <- NULL
+GS$TICKER <- substring(GS$TICKER, 5)
+GS$DATETIME = paste(GS$DATE,GS$TIME, sep="-")
+GS$TIME <- NULL
+GS$DATE <- NULL
+GS$HIGH <- NULL
+GS$LOW <- NULL
+GS$CLOSE <- NULL
+names(GS)[names(GS) == 'OPEN'] <- 'GS'
+GS$TICKER <- NULL
+
+STOCK <- merge(STOCK,GS,by="DATETIME",all=TRUE)
+
+# read in the HD.csv data and validate it is as expected
+"HD"
+HD = read.csv("../Data/HD.csv")
+sprintf("The data is in a dataframe? : %s", is.data.frame(HD))
+if(is.data.frame(HD)) {
+	sprintf("what are the dimentions of the dataframe? : x = %d by y = %d", ncol(HD), nrow(HD))
+}
+suppressWarnings(HD$TICKER <- as.character(HD$TICKER))
+suppressWarnings(HD$DATE <- as.character(HD$DATE))
+suppressWarnings(HD$TIME <- as.character(HD$TIME))
+HD$PER <- NULL
+HD$TICKER <- substring(HD$TICKER, 5)
+HD$DATETIME = paste(HD$DATE,HD$TIME, sep="-")
+HD$TIME <- NULL
+HD$DATE <- NULL
+HD$HIGH <- NULL
+HD$LOW <- NULL
+HD$CLOSE <- NULL
+names(HD)[names(HD) == 'OPEN'] <- 'HD'
+HD$TICKER <- NULL
+
+STOCK <- merge(STOCK,HD,by="DATETIME",all=TRUE)
+
+# read in the HPQ.csv data and validate it is as expected
+"HPQ"
+HPQ = read.csv("../Data/HPQ.csv")
+sprintf("The data is in a dataframe? : %s", is.data.frame(HPQ))
+if(is.data.frame(HPQ)) {
+	sprintf("what are the dimentions of the dataframe? : x = %d by y = %d", ncol(HPQ), nrow(HPQ))
+}
+suppressWarnings(HPQ$TICKER <- as.character(HPQ$TICKER))
+suppressWarnings(HPQ$DATE <- as.character(HPQ$DATE))
+suppressWarnings(HPQ$TIME <- as.character(HPQ$TIME))
+HPQ$PER <- NULL
+HPQ$TICKER <- substring(HPQ$TICKER, 5)
+HPQ$DATETIME = paste(HPQ$DATE,HPQ$TIME, sep="-")
+HPQ$TIME <- NULL
+HPQ$DATE <- NULL
+HPQ$HIGH <- NULL
+HPQ$LOW <- NULL
+HPQ$CLOSE <- NULL
+names(HPQ)[names(HPQ) == 'OPEN'] <- 'HPQ'
+HPQ$TICKER <- NULL
+
+STOCK <- merge(STOCK,HPQ,by="DATETIME",all=TRUE)
+
+# read in the IBM.csv data and validate it is as expected
+"IBM"
+IBM = read.csv("../Data/IBM.csv")
+sprintf("The data is in a dataframe? : %s", is.data.frame(IBM))
+if(is.data.frame(IBM)) {
+	sprintf("what are the dimentions of the dataframe? : x = %d by y = %d", ncol(IBM), nrow(IBM))
+}
+suppressWarnings(IBM$TICKER <- as.character(IBM$TICKER))
+suppressWarnings(IBM$DATE <- as.character(IBM$DATE))
+suppressWarnings(IBM$TIME <- as.character(IBM$TIME))
+IBM$PER <- NULL
+IBM$TICKER <- substring(IBM$TICKER, 5)
+IBM$DATETIME = paste(IBM$DATE,IBM$TIME, sep="-")
+IBM$TIME <- NULL
+IBM$DATE <- NULL
+IBM$HIGH <- NULL
+IBM$LOW <- NULL
+IBM$CLOSE <- NULL
+names(IBM)[names(IBM) == 'OPEN'] <- 'IBM'
+IBM$TICKER <- NULL
+
+STOCK <- merge(STOCK,IBM,by="DATETIME",all=TRUE)
+
+# read in the INTC.csv data and validate it is as expected
+"INTC"
+INTC = read.csv("../Data/INTC.csv")
+sprintf("The data is in a dataframe? : %s", is.data.frame(INTC))
+if(is.data.frame(INTC)) {
+	sprintf("what are the dimentions of the dataframe? : x = %d by y = %d", ncol(INTC), nrow(INTC))
+}
+suppressWarnings(INTC$TICKER <- as.character(INTC$TICKER))
+suppressWarnings(INTC$DATE <- as.character(INTC$DATE))
+suppressWarnings(INTC$TIME <- as.character(INTC$TIME))
+INTC$PER <- NULL
+INTC$TICKER <- substring(INTC$TICKER, 5)
+INTC$DATETIME = paste(INTC$DATE,INTC$TIME, sep="-")
+INTC$TIME <- NULL
+INTC$DATE <- NULL
+INTC$HIGH <- NULL
+INTC$LOW <- NULL
+INTC$CLOSE <- NULL
+names(INTC)[names(INTC) == 'OPEN'] <- 'INTC'
+INTC$TICKER <- NULL
+
+STOCK <- merge(STOCK,INTC,by="DATETIME",all=TRUE)
+
+# read in the IP.csv data and validate it is as expected
+"IP"
+IP = read.csv("../Data/IP.csv")
+sprintf("The data is in a dataframe? : %s", is.data.frame(IP))
+if(is.data.frame(IP)) {
+	sprintf("what are the dimentions of the dataframe? : x = %d by y = %d", ncol(IP), nrow(IP))
+}
+suppressWarnings(IP$TICKER <- as.character(IP$TICKER))
+suppressWarnings(IP$DATE <- as.character(IP$DATE))
+suppressWarnings(IP$TIME <- as.character(IP$TIME))
+IP$PER <- NULL
+IP$TICKER <- substring(IP$TICKER, 5)
+IP$DATETIME = paste(IP$DATE,IP$TIME, sep="-")
+IP$TIME <- NULL
+IP$DATE <- NULL
+IP$HIGH <- NULL
+IP$LOW <- NULL
+IP$CLOSE <- NULL
+names(IP)[names(IP) == 'OPEN'] <- 'IP'
+IP$TICKER <- NULL
+
+STOCK <- merge(STOCK,IP,by="DATETIME",all=TRUE)
+
+# read in the JNJ.csv data and validate it is as expected
+"JNJ"
+JNJ = read.csv("../Data/JNJ.csv")
+sprintf("The data is in a dataframe? : %s", is.data.frame(JNJ))
+if(is.data.frame(JNJ)) {
+	sprintf("what are the dimentions of the dataframe? : x = %d by y = %d", ncol(JNJ), nrow(JNJ))
+}
+suppressWarnings(JNJ$TICKER <- as.character(JNJ$TICKER))
+suppressWarnings(JNJ$DATE <- as.character(JNJ$DATE))
+suppressWarnings(JNJ$TIME <- as.character(JNJ$TIME))
+JNJ$PER <- NULL
+JNJ$TICKER <- substring(JNJ$TICKER, 5)
+JNJ$DATETIME = paste(JNJ$DATE,JNJ$TIME, sep="-")
+JNJ$TIME <- NULL
+JNJ$DATE <- NULL
+JNJ$HIGH <- NULL
+JNJ$LOW <- NULL
+JNJ$CLOSE <- NULL
+names(JNJ)[names(JNJ) == 'OPEN'] <- 'JNJ'
+JNJ$TICKER <- NULL
+
+STOCK <- merge(STOCK,JNJ,by="DATETIME",all=TRUE)
+
+# read in the JPM.csv data and validate it is as expected
+"JPM"
+JPM = read.csv("../Data/JPM.csv")
+sprintf("The data is in a dataframe? : %s", is.data.frame(JPM))
+if(is.data.frame(JPM)) {
+	sprintf("what are the dimentions of the dataframe? : x = %d by y = %d", ncol(JPM), nrow(JPM))
+}
+suppressWarnings(JPM$TICKER <- as.character(JPM$TICKER))
+suppressWarnings(JPM$DATE <- as.character(JPM$DATE))
+suppressWarnings(JPM$TIME <- as.character(JPM$TIME))
+JPM$PER <- NULL
+JPM$TICKER <- substring(JPM$TICKER, 5)
+JPM$DATETIME = paste(JPM$DATE,JPM$TIME, sep="-")
+JPM$TIME <- NULL
+JPM$DATE <- NULL
+JPM$HIGH <- NULL
+JPM$LOW <- NULL
+JPM$CLOSE <- NULL
+names(JPM)[names(JPM) == 'OPEN'] <- 'JPM'
+JPM$TICKER <- NULL
+
+STOCK <- merge(STOCK,JPM,by="DATETIME",all=TRUE)
+
+# read in the KO.csv data and validate it is as expected
+"KO"
+KO = read.csv("../Data/KO.csv")
+sprintf("The data is in a dataframe? : %s", is.data.frame(KO))
+if(is.data.frame(KO)) {
+	sprintf("what are the dimentions of the dataframe? : x = %d by y = %d", ncol(KO), nrow(KO))
+}
+suppressWarnings(KO$TICKER <- as.character(KO$TICKER))
+suppressWarnings(KO$DATE <- as.character(KO$DATE))
+suppressWarnings(KO$TIME <- as.character(KO$TIME))
+KO$PER <- NULL
+KO$TICKER <- substring(KO$TICKER, 5)
+KO$DATETIME = paste(KO$DATE,KO$TIME, sep="-")
+KO$TIME <- NULL
+KO$DATE <- NULL
+KO$HIGH <- NULL
+KO$LOW <- NULL
+KO$CLOSE <- NULL
+names(KO)[names(KO) == 'OPEN'] <- 'KO'
+KO$TICKER <- NULL
+
+STOCK <- merge(STOCK,KO,by="DATETIME",all=TRUE)
+
+# read in the MCD.W.csv data and validate it is as expected
+"MCD.W"
+MCD.W = read.csv("../Data/MCD.W.csv")
+sprintf("The data is in a dataframe? : %s", is.data.frame(MCD.W))
+if(is.data.frame(MCD.W)) {
+	sprintf("what are the dimentions of the dataframe? : x = %d by y = %d", ncol(MCD.W), nrow(MCD.W))
+}
+suppressWarnings(MCD.W$TICKER <- as.character(MCD.W$TICKER))
+suppressWarnings(MCD.W$DATE <- as.character(MCD.W$DATE))
+suppressWarnings(MCD.W$TIME <- as.character(MCD.W$TIME))
+MCD.W$PER <- NULL
+MCD.W$TICKER <- substring(MCD.W$TICKER, 5)
+MCD.W$DATETIME = paste(MCD.W$DATE,MCD.W$TIME, sep="-")
+MCD.W$TIME <- NULL
+MCD.W$DATE <- NULL
+MCD.W$HIGH <- NULL
+MCD.W$LOW <- NULL
+MCD.W$CLOSE <- NULL
+names(MCD.W)[names(MCD.W) == 'OPEN'] <- 'MCD.W'
+MCD.W$TICKER <- NULL
+
+STOCK <- merge(STOCK,MCD.W,by="DATETIME",all=TRUE)
+
+# read in the MMM.csv data and validate it is as expected
+"MMM"
+MMM = read.csv("../Data/MMM.csv")
+sprintf("The data is in a dataframe? : %s", is.data.frame(MMM))
+if(is.data.frame(MMM)) {
+	sprintf("what are the dimentions of the dataframe? : x = %d by y = %d", ncol(MMM), nrow(MMM))
+}
+suppressWarnings(MMM$TICKER <- as.character(MMM$TICKER))
+suppressWarnings(MMM$DATE <- as.character(MMM$DATE))
+suppressWarnings(MMM$TIME <- as.character(MMM$TIME))
+MMM$PER <- NULL
+MMM$TICKER <- substring(MMM$TICKER, 5)
+MMM$DATETIME = paste(MMM$DATE,MMM$TIME, sep="-")
+MMM$TIME <- NULL
+MMM$DATE <- NULL
+MMM$HIGH <- NULL
+MMM$LOW <- NULL
+MMM$CLOSE <- NULL
+names(MMM)[names(MMM) == 'OPEN'] <- 'MMM'
+MMM$TICKER <- NULL
+
+STOCK <- merge(STOCK,MMM,by="DATETIME",all=TRUE)
+
+# read in the MRK.csv data and validate it is as expected
+"MRK"
+MRK = read.csv("../Data/MRK.csv")
+sprintf("The data is in a dataframe? : %s", is.data.frame(MRK))
+if(is.data.frame(MRK)) {
+	sprintf("what are the dimentions of the dataframe? : x = %d by y = %d", ncol(MRK), nrow(MRK))
+}
+suppressWarnings(MRK$TICKER <- as.character(MRK$TICKER))
+suppressWarnings(MRK$DATE <- as.character(MRK$DATE))
+suppressWarnings(MRK$TIME <- as.character(MRK$TIME))
+MRK$PER <- NULL
+MRK$TICKER <- substring(MRK$TICKER, 5)
+MRK$DATETIME = paste(MRK$DATE,MRK$TIME, sep="-")
+MRK$TIME <- NULL
+MRK$DATE <- NULL
+MRK$HIGH <- NULL
+MRK$LOW <- NULL
+MRK$CLOSE <- NULL
+names(MRK)[names(MRK) == 'OPEN'] <- 'MRK'
+MRK$TICKER <- NULL
+
+STOCK <- merge(STOCK,MRK,by="DATETIME",all=TRUE)
+
+# read in the MSFT.csv data and validate it is as expected
+"MSFT"
+MSFT = read.csv("../Data/MSFT.csv")
+sprintf("The data is in a dataframe? : %s", is.data.frame(MSFT))
+if(is.data.frame(MSFT)) {
+	sprintf("what are the dimentions of the dataframe? : x = %d by y = %d", ncol(MSFT), nrow(MSFT))
+}
+suppressWarnings(MSFT$TICKER <- as.character(MSFT$TICKER))
+suppressWarnings(MSFT$DATE <- as.character(MSFT$DATE))
+suppressWarnings(MSFT$TIME <- as.character(MSFT$TIME))
+MSFT$PER <- NULL
+MSFT$TICKER <- substring(MSFT$TICKER, 5)
+MSFT$DATETIME = paste(MSFT$DATE,MSFT$TIME, sep="-")
+MSFT$TIME <- NULL
+MSFT$DATE <- NULL
+MSFT$HIGH <- NULL
+MSFT$LOW <- NULL
+MSFT$CLOSE <- NULL
+names(MSFT)[names(MSFT) == 'OPEN'] <- 'MSFT'
+MSFT$TICKER <- NULL
+
+STOCK <- merge(STOCK,MSFT,by="DATETIME",all=TRUE)
+
+# read in the PFE.csv data and validate it is as expected
+"PFE"
+PFE = read.csv("../Data/PFE.csv")
+sprintf("The data is in a dataframe? : %s", is.data.frame(PFE))
+if(is.data.frame(PFE)) {
+	sprintf("what are the dimentions of the dataframe? : x = %d by y = %d", ncol(PFE), nrow(PFE))
+}
+suppressWarnings(PFE$TICKER <- as.character(PFE$TICKER))
+suppressWarnings(PFE$DATE <- as.character(PFE$DATE))
+suppressWarnings(PFE$TIME <- as.character(PFE$TIME))
+PFE$PER <- NULL
+PFE$TICKER <- substring(PFE$TICKER, 5)
+PFE$DATETIME = paste(PFE$DATE,PFE$TIME, sep="-")
+PFE$TIME <- NULL
+PFE$DATE <- NULL
+PFE$HIGH <- NULL
+PFE$LOW <- NULL
+PFE$CLOSE <- NULL
+names(PFE)[names(PFE) == 'OPEN'] <- 'PFE'
+PFE$TICKER <- NULL
+
+STOCK <- merge(STOCK,PFE,by="DATETIME",all=TRUE)
+
+# read in the PG.csv data and validate it is as expected
+"PG"
+PG = read.csv("../Data/PG.csv")
+sprintf("The data is in a dataframe? : %s", is.data.frame(PG))
+if(is.data.frame(PG)) {
+	sprintf("what are the dimentions of the dataframe? : x = %d by y = %d", ncol(PG), nrow(PG))
+}
+suppressWarnings(PG$TICKER <- as.character(PG$TICKER))
+suppressWarnings(PG$DATE <- as.character(PG$DATE))
+suppressWarnings(PG$TIME <- as.character(PG$TIME))
+PG$PER <- NULL
+PG$TICKER <- substring(PG$TICKER, 5)
+PG$DATETIME = paste(PG$DATE,PG$TIME, sep="-")
+PG$TIME <- NULL
+PG$DATE <- NULL
+PG$HIGH <- NULL
+PG$LOW <- NULL
+PG$CLOSE <- NULL
+names(PG)[names(PG) == 'OPEN'] <- 'PG'
+PG$TICKER <- NULL
+
+STOCK <- merge(STOCK,PG,by="DATETIME",all=TRUE)
+
+# read in the T.csv data and validate it is as expected
+"T"
+T = read.csv("../Data/T.csv")
+sprintf("The data is in a dataframe? : %s", is.data.frame(T))
+if(is.data.frame(T)) {
+	sprintf("what are the dimentions of the dataframe? : x = %d by y = %d", ncol(T), nrow(T))
+}
+suppressWarnings(T$TICKER <- as.character(T$TICKER))
+suppressWarnings(T$DATE <- as.character(T$DATE))
+suppressWarnings(T$TIME <- as.character(T$TIME))
+T$PER <- NULL
+T$TICKER <- substring(T$TICKER, 5)
+T$DATETIME = paste(T$DATE,T$TIME, sep="-")
+T$TIME <- NULL
+T$DATE <- NULL
+T$HIGH <- NULL
+T$LOW <- NULL
+T$CLOSE <- NULL
+names(T)[names(T) == 'OPEN'] <- 'T'
+T$TICKER <- NULL
+
+STOCK <- merge(STOCK,T,by="DATETIME",all=TRUE)
+
+# read in the TRV.csv data and validate it is as expected
+"TRV"
+TRV = read.csv("../Data/TRV.csv")
+sprintf("The data is in a dataframe? : %s", is.data.frame(TRV))
+if(is.data.frame(TRV)) {
+	sprintf("what are the dimentions of the dataframe? : x = %d by y = %d", ncol(TRV), nrow(TRV))
+}
+suppressWarnings(TRV$TICKER <- as.character(TRV$TICKER))
+suppressWarnings(TRV$DATE <- as.character(TRV$DATE))
+suppressWarnings(TRV$TIME <- as.character(TRV$TIME))
+TRV$PER <- NULL
+TRV$TICKER <- substring(TRV$TICKER, 5)
+TRV$DATETIME = paste(TRV$DATE,TRV$TIME, sep="-")
+TRV$TIME <- NULL
+TRV$DATE <- NULL
+TRV$HIGH <- NULL
+TRV$LOW <- NULL
+TRV$CLOSE <- NULL
+names(TRV)[names(TRV) == 'OPEN'] <- 'TRV'
+TRV$TICKER <- NULL
+
+STOCK <- merge(STOCK,TRV,by="DATETIME",all=TRUE)
+
+# read in the UTX.csv data and validate it is as expected
+"UTX"
+UTX = read.csv("../Data/UTX.csv")
+sprintf("The data is in a dataframe? : %s", is.data.frame(UTX))
+if(is.data.frame(UTX)) {
+	sprintf("what are the dimentions of the dataframe? : x = %d by y = %d", ncol(UTX), nrow(UTX))
+}
+suppressWarnings(UTX$TICKER <- as.character(UTX$TICKER))
+suppressWarnings(UTX$DATE <- as.character(UTX$DATE))
+suppressWarnings(UTX$TIME <- as.character(UTX$TIME))
+UTX$PER <- NULL
+UTX$TICKER <- substring(UTX$TICKER, 5)
+UTX$DATETIME = paste(UTX$DATE,UTX$TIME, sep="-")
+UTX$TIME <- NULL
+UTX$DATE <- NULL
+UTX$HIGH <- NULL
+UTX$LOW <- NULL
+UTX$CLOSE <- NULL
+names(UTX)[names(UTX) == 'OPEN'] <- 'UTX'
+UTX$TICKER <- NULL
+
+STOCK <- merge(STOCK,UTX,by="DATETIME",all=TRUE)
+
+# read in the VZ.csv data and validate it is as expected
+"VZ"
+VZ = read.csv("../Data/VZ.csv")
+sprintf("The data is in a dataframe? : %s", is.data.frame(VZ))
+if(is.data.frame(VZ)) {
+	sprintf("what are the dimentions of the dataframe? : x = %d by y = %d", ncol(VZ), nrow(VZ))
+}
+suppressWarnings(VZ$TICKER <- as.character(VZ$TICKER))
+suppressWarnings(VZ$DATE <- as.character(VZ$DATE))
+suppressWarnings(VZ$TIME <- as.character(VZ$TIME))
+VZ$PER <- NULL
+VZ$TICKER <- substring(VZ$TICKER, 5)
+VZ$DATETIME = paste(VZ$DATE,VZ$TIME, sep="-")
+VZ$TIME <- NULL
+VZ$DATE <- NULL
+VZ$HIGH <- NULL
+VZ$LOW <- NULL
+VZ$CLOSE <- NULL
+names(VZ)[names(VZ) == 'OPEN'] <- 'VZ'
+VZ$TICKER <- NULL
+
+STOCK <- merge(STOCK,VZ,by="DATETIME",all=TRUE)
+
+# read in the WFC.csv data and validate it is as expected
+"WFC"
+WFC = read.csv("../Data/WFC.csv")
+sprintf("The data is in a dataframe? : %s", is.data.frame(WFC))
+if(is.data.frame(WFC)) {
+	sprintf("what are the dimentions of the dataframe? : x = %d by y = %d", ncol(WFC), nrow(WFC))
+}
+suppressWarnings(WFC$TICKER <- as.character(WFC$TICKER))
+suppressWarnings(WFC$DATE <- as.character(WFC$DATE))
+suppressWarnings(WFC$TIME <- as.character(WFC$TIME))
+WFC$PER <- NULL
+WFC$TICKER <- substring(WFC$TICKER, 5)
+WFC$DATETIME = paste(WFC$DATE,WFC$TIME, sep="-")
+WFC$TIME <- NULL
+WFC$DATE <- NULL
+WFC$HIGH <- NULL
+WFC$LOW <- NULL
+WFC$CLOSE <- NULL
+names(WFC)[names(WFC) == 'OPEN'] <- 'WFC'
+WFC$TICKER <- NULL
+
+STOCK <- merge(STOCK,WFC,by="DATETIME",all=TRUE)
+
+# read in the WMT.csv data and validate it is as expected
+"WMT"
+WMT = read.csv("../Data/WMT.csv")
+sprintf("The data is in a dataframe? : %s", is.data.frame(WMT))
+if(is.data.frame(WMT)) {
+	sprintf("what are the dimentions of the dataframe? : x = %d by y = %d", ncol(WMT), nrow(WMT))
+}
+suppressWarnings(WMT$TICKER <- as.character(WMT$TICKER))
+suppressWarnings(WMT$DATE <- as.character(WMT$DATE))
+suppressWarnings(WMT$TIME <- as.character(WMT$TIME))
+WMT$PER <- NULL
+WMT$TICKER <- substring(WMT$TICKER, 5)
+WMT$DATETIME = paste(WMT$DATE,WMT$TIME, sep="-")
+WMT$TIME <- NULL
+WMT$DATE <- NULL
+WMT$HIGH <- NULL
+WMT$LOW <- NULL
+WMT$CLOSE <- NULL
+names(WMT)[names(WMT) == 'OPEN'] <- 'WMT'
+WMT$TICKER <- NULL
+
+STOCK <- merge(STOCK,WMT,by="DATETIME",all=TRUE)
+
+# read in the XOM.csv data and validate it is as expected
+"XOM"
+XOM = read.csv("../Data/XOM.csv")
+sprintf("The data is in a dataframe? : %s", is.data.frame(XOM))
+if(is.data.frame(XOM)) {
+	sprintf("what are the dimentions of the dataframe? : x = %d by y = %d", ncol(XOM), nrow(XOM))
+}
+suppressWarnings(XOM$TICKER <- as.character(XOM$TICKER))
+suppressWarnings(XOM$DATE <- as.character(XOM$DATE))
+suppressWarnings(XOM$TIME <- as.character(XOM$TIME))
+XOM$PER <- NULL
+XOM$TICKER <- substring(XOM$TICKER, 5)
+XOM$DATETIME = paste(XOM$DATE,XOM$TIME, sep="-")
+XOM$TIME <- NULL
+XOM$DATE <- NULL
+XOM$HIGH <- NULL
+XOM$LOW <- NULL
+XOM$CLOSE <- NULL
+names(XOM)[names(XOM) == 'OPEN'] <- 'XOM'
+XOM$TICKER <- NULL
+
+STOCK <- merge(STOCK,XOM,by="DATETIME",all=TRUE)
+
+# read in the YAHOO.csv data and validate it is as expected
+"YAHOO"
+YAHOO = read.csv("../Data/YAHOO.csv")
+sprintf("The data is in a dataframe? : %s", is.data.frame(YAHOO))
+if(is.data.frame(YAHOO)) {
+	sprintf("what are the dimentions of the dataframe? : x = %d by y = %d", ncol(YAHOO), nrow(YAHOO))
+}
+suppressWarnings(YAHOO$TICKER <- as.character(YAHOO$TICKER))
+suppressWarnings(YAHOO$DATE <- as.character(YAHOO$DATE))
+suppressWarnings(YAHOO$TIME <- as.character(YAHOO$TIME))
+YAHOO$PER <- NULL
+YAHOO$TICKER <- substring(YAHOO$TICKER, 5)
+YAHOO$DATETIME = paste(YAHOO$DATE,YAHOO$TIME, sep="-")
+YAHOO$TIME <- NULL
+YAHOO$DATE <- NULL
+YAHOO$HIGH <- NULL
+YAHOO$LOW <- NULL
+YAHOO$CLOSE <- NULL
+names(YAHOO)[names(YAHOO) == 'OPEN'] <- 'YAHOO'
+YAHOO$TICKER <- NULL
+
+STOCK <- merge(STOCK,YAHOO,by="DATETIME",all=TRUE)
+
+# read in the YNDX.csv data and validate it is as expected
+"YNDX"
+YNDX = read.csv("../Data/YNDX.csv")
+sprintf("The data is in a dataframe? : %s", is.data.frame(YNDX))
+if(is.data.frame(YNDX)) {
+	sprintf("what are the dimentions of the dataframe? : x = %d by y = %d", ncol(YNDX), nrow(YNDX))
+}
+suppressWarnings(YNDX$TICKER <- as.character(YNDX$TICKER))
+suppressWarnings(YNDX$DATE <- as.character(YNDX$DATE))
+suppressWarnings(YNDX$TIME <- as.character(YNDX$TIME))
+YNDX$PER <- NULL
+YNDX$TICKER <- substring(YNDX$TICKER, 5)
+YNDX$DATETIME = paste(YNDX$DATE,YNDX$TIME, sep="-")
+YNDX$TIME <- NULL
+YNDX$DATE <- NULL
+YNDX$HIGH <- NULL
+YNDX$LOW <- NULL
+YNDX$CLOSE <- NULL
+names(YNDX)[names(YNDX) == 'OPEN'] <- 'YNDX'
+YNDX$TICKER <- NULL
+
+STOCK <- merge(STOCK,YNDX,by="DATETIME",all=TRUE)
+
+# read in the new.csv data and validate it is as expected
+"new"
+new = read.csv("../Data/new.csv")
+sprintf("The data is in a dataframe? : %s", is.data.frame(new))
+if(is.data.frame(new)) {
+	sprintf("what are the dimentions of the dataframe? : x = %d by y = %d", ncol(new), nrow(new))
+}
+suppressWarnings(new$TICKER <- as.character(new$TICKER))
+suppressWarnings(new$DATE <- as.character(new$DATE))
+suppressWarnings(new$TIME <- as.character(new$TIME))
+new$PER <- NULL
+new$TICKER <- substring(new$TICKER, 5)
+new$DATETIME = paste(new$DATE,new$TIME, sep="-")
+new$TIME <- NULL
+new$DATE <- NULL
+new$HIGH <- NULL
+new$LOW <- NULL
+new$CLOSE <- NULL
+names(new)[names(new) == 'OPEN'] <- 'new'
+new$TICKER <- NULL
+
+STOCK <- merge(STOCK,new,by="DATETIME",all=TRUE)
+

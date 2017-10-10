@@ -17,11 +17,11 @@
 sprintf("The working directory is : %s", getwd())
 
 # Set current working directory
-setwd("/Users/ColossusMini/Documents/GIT/Dissertation Fourth Year/Dissertation")
+#setwd("/Users/ColossusMini/Documents/GIT/Dissertation Fourth Year/Dissertation/Historic Code")
 
 # Set a source file for the functions
-source("functions.R")
-source("readData.R")
+#source("functions.R")
+#source("readData.R")
 
 
 
@@ -191,29 +191,6 @@ names(AMT)[names(AMT) == 'OPEN'] <- 'AMT'
 AMT$TICKER <- NULL
 
 STOCK <- merge(STOCK,AMT,by="DATETIME",all=TRUE)
-
-# read in the ATT.csv data and validate it is as expected
-"ATT"
-ATT = read.csv("../Data/ATT.csv")
-sprintf("The data is in a dataframe? : %s", is.data.frame(ATT))
-if(is.data.frame(ATT)) {
-  sprintf("what are the dimentions of the dataframe? : x = %d by y = %d", ncol(ATT), nrow(ATT))
-}
-suppressWarnings(ATT$TICKER <- as.character(ATT$TICKER))
-suppressWarnings(ATT$DATE <- as.character(ATT$DATE))
-suppressWarnings(ATT$TIME <- as.character(ATT$TIME))
-ATT$PER <- NULL
-ATT$TICKER <- substring(ATT$TICKER, 5)
-ATT$DATETIME = paste(ATT$DATE,ATT$TIME, sep="-")
-ATT$TIME <- NULL
-ATT$DATE <- NULL
-ATT$HIGH <- NULL
-ATT$LOW <- NULL
-ATT$CLOSE <- NULL
-names(ATT)[names(ATT) == 'OPEN'] <- 'ATT'
-ATT$TICKER <- NULL
-
-STOCK <- merge(STOCK,ATT,by="DATETIME",all=TRUE)
 
 # read in the AXP.csv data and validate it is as expected
 "AXP"
@@ -767,28 +744,28 @@ KO$TICKER <- NULL
 
 STOCK <- merge(STOCK,KO,by="DATETIME",all=TRUE)
 
-# read in the MCD.csv data and validate it is as expected
-"MCD"
-MCD = read.csv("../Data/MCD.csv")
-sprintf("The data is in a dataframe? : %s", is.data.frame(MCD))
-if(is.data.frame(MCD)) {
-  sprintf("what are the dimentions of the dataframe? : x = %d by y = %d", ncol(MCD), nrow(MCD))
+# read in the MCD.W.csv data and validate it is as expected
+"MCD.W"
+MCD.W = read.csv("../Data/MCD.W.csv")
+sprintf("The data is in a dataframe? : %s", is.data.frame(MCD.W))
+if(is.data.frame(MCD.W)) {
+  sprintf("what are the dimentions of the dataframe? : x = %d by y = %d", ncol(MCD.W), nrow(MCD.W))
 }
-suppressWarnings(MCD$TICKER <- as.character(MCD$TICKER))
-suppressWarnings(MCD$DATE <- as.character(MCD$DATE))
-suppressWarnings(MCD$TIME <- as.character(MCD$TIME))
-MCD$PER <- NULL
-MCD$TICKER <- substring(MCD$TICKER, 5)
-MCD$DATETIME = paste(MCD$DATE,MCD$TIME, sep="-")
-MCD$TIME <- NULL
-MCD$DATE <- NULL
-MCD$HIGH <- NULL
-MCD$LOW <- NULL
-MCD$CLOSE <- NULL
-names(MCD)[names(MCD) == 'OPEN'] <- 'MCD'
-MCD$TICKER <- NULL
+suppressWarnings(MCD.W$TICKER <- as.character(MCD.W$TICKER))
+suppressWarnings(MCD.W$DATE <- as.character(MCD.W$DATE))
+suppressWarnings(MCD.W$TIME <- as.character(MCD.W$TIME))
+MCD.W$PER <- NULL
+MCD.W$TICKER <- substring(MCD.W$TICKER, 5)
+MCD.W$DATETIME = paste(MCD.W$DATE,MCD.W$TIME, sep="-")
+MCD.W$TIME <- NULL
+MCD.W$DATE <- NULL
+MCD.W$HIGH <- NULL
+MCD.W$LOW <- NULL
+MCD.W$CLOSE <- NULL
+names(MCD.W)[names(MCD.W) == 'OPEN'] <- 'MCD.W'
+MCD.W$TICKER <- NULL
 
-STOCK <- merge(STOCK,MCD,by="DATETIME",all=TRUE)
+STOCK <- merge(STOCK,MCD.W,by="DATETIME",all=TRUE)
 
 # read in the MMM.csv data and validate it is as expected
 "MMM"
@@ -904,6 +881,29 @@ names(PG)[names(PG) == 'OPEN'] <- 'PG'
 PG$TICKER <- NULL
 
 STOCK <- merge(STOCK,PG,by="DATETIME",all=TRUE)
+
+# read in the T.csv data and validate it is as expected
+"T"
+T = read.csv("../Data/T.csv")
+sprintf("The data is in a dataframe? : %s", is.data.frame(T))
+if(is.data.frame(T)) {
+  sprintf("what are the dimentions of the dataframe? : x = %d by y = %d", ncol(T), nrow(T))
+}
+suppressWarnings(T$TICKER <- as.character(T$TICKER))
+suppressWarnings(T$DATE <- as.character(T$DATE))
+suppressWarnings(T$TIME <- as.character(T$TIME))
+T$PER <- NULL
+T$TICKER <- substring(T$TICKER, 5)
+T$DATETIME = paste(T$DATE,T$TIME, sep="-")
+T$TIME <- NULL
+T$DATE <- NULL
+T$HIGH <- NULL
+T$LOW <- NULL
+T$CLOSE <- NULL
+names(T)[names(T) == 'OPEN'] <- 'T'
+T$TICKER <- NULL
+
+STOCK <- merge(STOCK,T,by="DATETIME",all=TRUE)
 
 # read in the TRV.csv data and validate it is as expected
 "TRV"
@@ -1088,6 +1088,29 @@ names(YNDX)[names(YNDX) == 'OPEN'] <- 'YNDX'
 YNDX$TICKER <- NULL
 
 STOCK <- merge(STOCK,YNDX,by="DATETIME",all=TRUE)
+
+# read in the new.csv data and validate it is as expected
+"new"
+new = read.csv("../Data/new.csv")
+sprintf("The data is in a dataframe? : %s", is.data.frame(new))
+if(is.data.frame(new)) {
+  sprintf("what are the dimentions of the dataframe? : x = %d by y = %d", ncol(new), nrow(new))
+}
+suppressWarnings(new$TICKER <- as.character(new$TICKER))
+suppressWarnings(new$DATE <- as.character(new$DATE))
+suppressWarnings(new$TIME <- as.character(new$TIME))
+new$PER <- NULL
+new$TICKER <- substring(new$TICKER, 5)
+new$DATETIME = paste(new$DATE,new$TIME, sep="-")
+new$TIME <- NULL
+new$DATE <- NULL
+new$HIGH <- NULL
+new$LOW <- NULL
+new$CLOSE <- NULL
+names(new)[names(new) == 'OPEN'] <- 'new'
+new$TICKER <- NULL
+
+STOCK <- merge(STOCK,new,by="DATETIME",all=TRUE)
 
 STOCK$DATETIME <- strptime(STOCK$DATETIME , format="%d/%m/%y-%H:%M")
 
