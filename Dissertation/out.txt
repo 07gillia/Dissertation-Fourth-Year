@@ -2,3 +2,11 @@
 [1] "STOCK"
 [1] "The data is in a dataframe? : TRUE"
 [1] "what are the dimentions of the dataframe? : x = 55 by y = 146933"
+             DATETIME   AA  AAPL  ADBE   AIG AMAT AMT   AXP BA   BAC     C
+1 2016-03-01 09:30:00 9.11 97.66 86.15 50.59   NA  NA 56.15 NA 12.64 39.13
+     CA  CAT  CSCO   CVX DD  DIS   EMC  FSLR    GE   GLW  GOOG GS     HD HPQ
+1 29.62 68.4 26.46 84.12 NA 95.7 26.24 71.24 29.41 18.45 702.6 NA 124.91  NA
+     IBM  INTC    IP    JNJ   JPM    KO  MCD.W    MMM   MRK  MSFT   PFE    PG
+1 132.62 29.93 36.06 105.88 56.77 43.34 117.88 158.75 50.49 50.97 29.76 80.65
+     T TRV   UTX    VZ  WFC WMT  XOM YAHOO  YNDX
+1 37.1  NA 92.09 50.99 47.3  NA 80.6 32.11 13.21

@@ -63,9 +63,22 @@ if(is.data.frame(STOCK)) {
   sprintf("what are the dimentions of the dataframe? : x = %d by y = %d", ncol(STOCK), nrow(STOCK))
 }
 STOCK$X <- NULL
+STOCK$TICKER. <- NULL
+STOCK$PER. <- NULL
+STOCK$DATE. <- NULL
+STOCK$TIME. <- NULL
+STOCK$HIGH. <- NULL
+STOCK$OPEN. <- NULL
+STOCK$LOW. <- NULL
+STOCK$CLOSE. <- NULL
 STOCK$DATETIME <- strptime(STOCK$DATETIME , format="%Y-%m-%d %H:%M:%S")
 positions <- order(STOCK$DATETIME)
 STOCK = STOCK[positions, ]
+
+for (date in 1:length(STOCK$DATETIME)) {
+  print(STOCK[date,])
+  break
+}
 
 
 
