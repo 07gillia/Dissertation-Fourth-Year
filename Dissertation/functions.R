@@ -2,69 +2,64 @@
 # Useful Functions File
 ####################################################################
 
-my_functions.buy <- function(stock, capital_amount) {
+my_functions.buy <- function(stock_name, current_stock_value, capital_amount_spent, current_date) {
 
-	# buy a stock
-	# add the stock name to the portfolio
-	# add the date that it was bought
-	# add the value that was bought total
-	# add the number of shares bought
-	# add the current value of the stock
-	# add the current ratio of the bought value and current value
-	# set the variable sold to false
-	# set the sold date to null
-	# set the sold value to null
+	# given the stock and capital amount 
+	# set those in the portfolio
 
 	# create a unique id for the transaction just choose a random number
 	UID = runif(1, 0, 1000000000)
 
-	# store the amount of capital spent
-	value_when_bought = capital_amount
+	# calculate the amount of stock bought
+	bought_amount = capital_amount_spent / current_stock_value
 
-	# calculate the number of shares bought
-	amount = value_when_bought / current_stock_value
-
-	# calculate the ratio 
-	ratio = value_when_bought / current_stock_value
-
-	# amount that it could be sold for
-	total_current_value = amount * current_stock_value
+	# calculate the ratio that it was bought at, will be 1
+	current_ratio = capital_amount_spent / capital_amount_spent
 
 	# store the values in a list
-	output = list(UID, stock, current_time, value_when_bought, amount, current_stock_value, ratio, FALSE, current_time, total_current_value)
+	output = list(UID, stock_name, current_date, current_stock_value, bought_amount, current_stock_value, current_ratio, FALSE, current_date, current_stock_value)
 
-	# add to the portfoliio
+	# add to the portfolio
 	portfolio[nrow(portfolio) + 1,] = output
 
 	return(portfolio)
 }
 
-my_functions.sell <- function(UID) {
+my_functions.sell <- function(UID, current_date, current_stock_value) {
 
-	# sell the specific stock
+	# given the UID stock value and date well the specified stock
 
-	total_owned_stocks = nrow(portfolio)
+	# get the row that is being changed
+	current_row <- which(portfolio$Unique_ID == UID)
 
-	# update the values in the portfolio
-	portfolio[portfolio$UID == UID,8] = TRUE
-	portfolio[portfolio$UID == UID,9] = current_time
-	portfolio[portfolio$UID == UID,10] = portfolio[portfolio$UID = UID,5] * current_stock_value
+	# set the bool to sold
+	portfolio[current_row,8] = TRUE
+	# set the date that it was sold
+	portfolio[current_row,9] = list(current_date)
+	# set the value that it was sold for
+	portfolio[current_row,10] = current_stock_value * portfolio[current_row,5]
 
 	return(portfolio)
 }
 
-my_functions.update <- function() {
+my_functions.update <- function(current_stock, current_stock_price, current_time) {
 
-	# update the value of all the stocks that are in the portfolio
+	# iterate through all rows in the portfolio
+	# update any that are related to this stock
 
-	# iterate through the rows in the portfolio
-	for (rows in c(1:nrows(portfolio))) {
-		current_row = portfolio[,rows]
+	if(nrow(portfolio) > 0){
+		# make sure that the portfolio has something in it
 
-		# update the current value
-		current_row[6] = current_row[5] * current_stock_value
-		# update the current ratio
-		current_row[7] = current_row[4] / current_stock_value
+		for (row in 1:nrow(portfolio)) {
+			# iterate through the rows that are in the portfolio
+			if(portfolio[row,2] == current_stock && portfolio[row,8] == FALSE){
+				# check that the current row is of the same stock
+
+				portfolio[row,6] = current_stock_price
+				portfolio[row,7] = portfolio[row,6] / portfolio[row,4]
+				portfolio[row,9] = list(current_time) # THERE IS AN ISSUE HERE!!!!
+			}
+		}
 	}
 
 	return(portfolio)
@@ -72,41 +67,7 @@ my_functions.update <- function() {
 
 my_functions.update_ledger <- function() {
 
-	# keep track of the amount of capital and stock that is available
 
-	# set the initial values
-	capital_value = capital
-	stock_value = 0
-
-	for (rows in c(1:nrows(portfolio))) {
-		if(portfolio[8,rows]){
-			# means that the stock has been sold
-
-			# take off the amount spent buying the shares
-			capital_value = capital_value - portfolio[4,rows] * portfolio[5,rows]
-			# add on the amount earnt from selling the stock
-			capital_value = capital_value + portfolio[10]
-
-			# take off the value that the stock was sold for
-			stock_value = stock_value - portfolio[10]
-		}
-		else{
-			# means that the stock has not been sold yet
-
-			# decrease the amoun that was spent to buy the stock
-			capital_value = capital_value - portfolio[4,rows] * portfolio[5,rows]
-
-			# add the value of shares bought
-			stock_value = stock_value + portfolio[6]
-		}
-	}
-
-	output = list(current_time, capital_value + stock_value, stock_value, capital_value)
-
-	# add to the portfoliio
-	ledger[nrow(ledger) + 1,] = output
-
-	return(ledger)
 }
 
 ####################################################################
