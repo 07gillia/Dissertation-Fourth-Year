@@ -23,6 +23,8 @@ my_functions.buy <- function(stock_name, current_stock_value, capital_amount_spe
 	portfolio[nrow(portfolio) + 1,] = output
 
 	return(portfolio)
+
+	# this works
 }
 
 my_functions.sell <- function(UID, current_date, current_stock_value) {
@@ -40,6 +42,8 @@ my_functions.sell <- function(UID, current_date, current_stock_value) {
 	portfolio[current_row,10] = current_stock_value * portfolio[current_row,5]
 
 	return(portfolio)
+
+	# this works
 }
 
 my_functions.update <- function(current_stock, current_stock_price, current_time) {
@@ -57,17 +61,58 @@ my_functions.update <- function(current_stock, current_stock_price, current_time
 
 				portfolio[row,6] = current_stock_price
 				portfolio[row,7] = portfolio[row,6] / portfolio[row,4]
-				portfolio[row,9] = list(current_time) # THERE IS AN ISSUE HERE!!!!
+				portfolio[row,9] = list(current_time)
 			}
 		}
 	}
 
 	return(portfolio)
+
+	# this works
 }
 
-my_functions.update_ledger <- function() {
+my_functions.update_ledger <- function(current_time) {
 
+	# update the ledger for the current time with the updated
+	# amount of stocks that have been bought or sold and the amount
+	# of money that was spent or collected from these transactions
+	# this will have a row for every time in the data meaning that 
+	# even if nothing happens on a specific datetime then the row will
+	# still be added just with the same values as the one above it
 
+	# get the value of all the stock that is current owned
+	total_stock_value = 0
+	total_capital_value = 10000
+	if(nrow(portfolio) > 0){
+		# make sure that the portfolio has something in it
+		for (row in 1:nrow(portfolio)) {
+			# iterate through the rows that are in the portfolio
+			if(portfolio[row,8] == FALSE){
+				# check that the current stock has not been sold
+				total_stock_value = total_stock_value + portfolio[row,6] * portfolio[row,5]
+				# add the current value of all this stock
+				total_capital_value = total_capital_value - portfolio[row,4] * portfolio[row,5]
+				# take off the capital that was spent to buy the current stock
+			}
+			# iterate through the rows that are in the portfolio
+			if(portfolio[row,8] == TRUE){
+				# if the current stock has been sold
+				total_capital_value = total_capital_value + portfolio[row,10]
+				# add the amount of capital that was made by selling this stock
+			}
+		}
+	}
+
+	# get the total value
+	total_value = total_stock_value + total_capital_value
+
+	# add all the variables to the list
+	output = list(current_time, total_value, total_stock_value, total_capital_value)
+
+	# add the list to the ledger
+	ledger[nrow(ledger) + 1,] = output
+
+	return(portfolio)
 }
 
 ####################################################################

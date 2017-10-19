@@ -72,6 +72,16 @@ sprintf("The data is in a dataframe? : %s", is.data.frame(STOCK))
 if(is.data.frame(STOCK)) {
     sprintf("what are the dimentions of the dataframe? : x = %d by y = %d", ncol(STOCK), nrow(STOCK))
 }
+
+portfolio$Bought_date <- strptime(portfolio$Bought_date , format="%Y-%m-%d %H:%M:%S")
+portfolio$Sold_date <- strptime(portfolio$Sold_date , format="%Y-%m-%d %H:%M:%S")
+
+portfolio$Bought_date <- as.POSIXct(portfolio$Bought_date)
+portfolio$Sold_date <- as.POSIXct(portfolio$Sold_date)
+
+ledger$Date <- strptime(ledger$Date , format="%Y-%m-%d %H:%M:%S")
+ledger$Date <- as.POSIXct(ledger$Date)
+
 STOCK$X <- NULL
 STOCK$TICKER. <- NULL
 STOCK$PER. <- NULL
@@ -85,25 +95,11 @@ STOCK$DATETIME <- strptime(STOCK$DATETIME , format="%Y-%m-%d %H:%M:%S")
 positions <- order(STOCK$DATETIME)
 STOCK = STOCK[positions, ]
 
-# Show a stock price graph
-# attach(STOCK)
-# plot(DATETIME, AAPL, type = "n") 
-# lines(DATETIME, AAPL) 
-# title("AAPL Stock Price")
-
 
 
 ####################################################################
 # Testing - test the given algorithm over 
 ####################################################################
-
-# start date and time is 01/09/16 at 09:30
-# end date and time is 31/08/2017 at 15:59
-# 252 whole days of trading
-# 2 days of half trading closing at 1
-# a total of 98446 data points
-
-# 49022 is the start of trading
 
 # iterate through row 1 -> end
 for (row in c(49490:nrow(STOCK))) {
@@ -149,8 +145,10 @@ for (row in c(49490:nrow(STOCK))) {
             }
         }
     }
+    #ledger = my_functions.update_ledger(current_time)
+
     print(portfolio)
-    # print(ledger)
+    print(ledger)
 }
 
 
