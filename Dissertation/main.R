@@ -95,14 +95,20 @@ STOCK$DATETIME <- strptime(STOCK$DATETIME , format="%Y-%m-%d %H:%M:%S")
 positions <- order(STOCK$DATETIME)
 STOCK = STOCK[positions, ]
 
+total_data_points = (nrow(STOCK) - 49023) * (ncol(STOCK) - 2)
+
+# 49490
+
 
 
 ####################################################################
 # Testing - test the given algorithm over 
 ####################################################################
 
+start.time <- Sys.time()
+
 # iterate through row 1 -> end
-for (row in c(49490:nrow(STOCK))) {
+for (row in c(49022:nrow(STOCK)-390)) {
     #print(paste("ROW:", row))
 
     # iterate through the stocks in the dataframe columns 2 -> end
@@ -110,7 +116,7 @@ for (row in c(49490:nrow(STOCK))) {
         #print(paste("COLUMN:", column))
 
         # the stock could be null, if it is not trading can be done in that minute
-        if(!is.na(STOCK[row,column]) && row >= 49022){
+        if(!is.na(STOCK[row,column])){
             #print(STOCK[row,column])
 
             # set the useful variables
@@ -125,15 +131,14 @@ for (row in c(49490:nrow(STOCK))) {
             # set the rolling averages for each of the timeframes
             # averages[current_stock,1] = mean(STOCK[row-30:row, current_stock], na.rm=TRUE)
             # averages[current_stock,2] = mean(STOCK[row-180:row, current_stock], na.rm=TRUE)
-            # averages[current_stock,3] = mean(STOCK[row-360:row, current_stock], na.rm=TRUE)
+            averages[current_stock,3] = mean(STOCK[row-360:row, current_stock], na.rm=TRUE)
             # averages[current_stock,4] = mean(STOCK[row-1170:row, current_stock], na.rm=TRUE)
             # averages[current_stock,5] = mean(STOCK[row-2340:row, current_stock], na.rm=TRUE)
-            # print(averages)
 
             portfolio = my_functions.update(current_stock, current_stock_price, current_time)
 
-            if(row == 49500 && current_stock == "AAPL"){
-                portfolio = my_functions.buy(current_stock, current_stock_price, 1000, current_time)
+            if(current_stock_price < 0.96 * averages[current_stock, 3]){
+                portfolio = my_functions.buy(current_stock, current_stock_price, 100, current_time)
             }
 
             if(nrow(portfolio) > 0) {
@@ -143,19 +148,31 @@ for (row in c(49490:nrow(STOCK))) {
                     }
                 }
             }
+
+            # update progress bar
+            current_data_point = ((row - 48632) * (ncol(STOCK) - 2) + column)
+            percentage = current_data_point / total_data_points * 100
+            cat("\r",format(round(percentage, 3), nsmall = 3), "%")
         }
     }
-    #ledger = my_functions.update_ledger(current_time)
-
-    print(portfolio)
-    print(ledger)
+    ledger = my_functions.update_ledger(current_time)
 }
+
+write.table(portfolio, "portfolio.txt", sep="\t")
+write.table(ledger, "ledger.txt", sep="\t")
+
+end.time <- Sys.time()
+
+time.taken <- end.time - start.time
+print(time.taken)
+
 
 
 ####################################################################
 # Results - Show the results of the algorithm
 ####################################################################
 
-
+# A normal run that has not computational function takes
+# 31 minutes
 
 

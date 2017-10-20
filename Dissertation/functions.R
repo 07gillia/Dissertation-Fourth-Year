@@ -65,7 +65,6 @@ my_functions.update <- function(current_stock, current_stock_price, current_time
 			}
 		}
 	}
-
 	return(portfolio)
 
 	# this works
@@ -99,6 +98,8 @@ my_functions.update_ledger <- function(current_time) {
 				# if the current stock has been sold
 				total_capital_value = total_capital_value + portfolio[row,10]
 				# add the amount of capital that was made by selling this stock
+				total_capital_value = total_capital_value - portfolio[row,4] * portfolio[row,5]
+				# take off the amount that was spent on the stock in the first place
 			}
 		}
 	}
@@ -112,7 +113,7 @@ my_functions.update_ledger <- function(current_time) {
 	# add the list to the ledger
 	ledger[nrow(ledger) + 1,] = output
 
-	return(portfolio)
+	return(ledger)
 }
 
 ####################################################################
