@@ -17,7 +17,7 @@
 sprintf("The working directory is : %s", getwd())
 
 # Set current working directory
-setwd("/Users/ColossusMini/Documents/GIT/Dissertation Fourth Year/Dissertation")
+# setwd("/Users/ColossusMini/Documents/GIT/Dissertation Fourth Year/Dissertation")
 
 # Set a source file for the functions
 source("functions.R")
