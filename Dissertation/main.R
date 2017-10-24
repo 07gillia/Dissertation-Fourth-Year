@@ -112,7 +112,8 @@ for (row in c(49022:nrow(STOCK)-390)) {
     #print(paste("ROW:", row))
 
     # iterate through the stocks in the dataframe columns 2 -> end
-    for (column in c(2:ncol(STOCK))) {
+    # ncol(STOCK)
+    for (column in c(2:4)){
         #print(paste("COLUMN:", column))
 
         # the stock could be null, if it is not trading can be done in that minute
@@ -123,10 +124,6 @@ for (row in c(49022:nrow(STOCK)-390)) {
             current_time = STOCK[row,1]
             current_stock = colnames(STOCK)[column]
             current_stock_price = STOCK[row,column]
-
-            # print(current_time)
-            # print(current_stock)
-            # print(current_stock_price)
 
             # set the rolling averages for each of the timeframes
             # averages[current_stock,1] = mean(STOCK[row-30:row, current_stock], na.rm=TRUE)
@@ -174,5 +171,6 @@ print(time.taken)
 
 # A normal run that has not computational function takes
 # 31 minutes
-
+# if run with only two stocks, useful to show completeness
+# 
 
