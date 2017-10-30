@@ -113,7 +113,7 @@ for (row in c(49022:nrow(STOCK)-390)) {
 
     # iterate through the stocks in the dataframe columns 2 -> end
     # ncol(STOCK)
-    for (column in c(2:4)){
+    for (column in c(2:2)){
         #print(paste("COLUMN:", column))
 
         # the stock could be null, if it is not trading can be done in that minute
