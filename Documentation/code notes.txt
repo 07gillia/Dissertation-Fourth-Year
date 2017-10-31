@@ -13,3 +13,21 @@ notes.txt
 # a total of 98446 data points
 
 # 49022 is the start of trading
+
+Things that need to be implemented
+- When to buy
+- When to sell
+- How much to buy
+
+- How likely it is to go up and thus how much to buy
+
+- look into statistic methods
+- alpha and beta
+- The others that were mentioned
+- have a look at some other stats stuff, maybe ask someone from maths?
+- could also look at the research some other stuff
+- lots of papers have been saved
+
+- second term should be machine learning
+- SVM
+- Neural Network?
