@@ -107,18 +107,21 @@ total_data_points = (nrow(STOCK) - 49023) * (ncol(STOCK) - 2)
 
 start.time <- Sys.time()
 
+current_time = STOCK[49021,1]
+
+ledger = my_functions.update_ledger(current_time)
+
 # iterate through row 1 -> end
 for (row in c(49022:nrow(STOCK)-390)) {
-    #print(paste("ROW:", row))
+    
 
     # iterate through the stocks in the dataframe columns 2 -> end
-    # ncol(STOCK)
-    for (column in c(2:2)){
-        #print(paste("COLUMN:", column))
+    for (column in c(2:4)){
+        
 
         # the stock could be null, if it is not trading can be done in that minute
         if(!is.na(STOCK[row,column])){
-            #print(STOCK[row,column])
+            
 
             # set the useful variables
             current_time = STOCK[row,1]
@@ -135,25 +138,40 @@ for (row in c(49022:nrow(STOCK)-390)) {
             portfolio = my_functions.update(current_stock, current_stock_price, current_time)
 
             if(current_stock_price < 0.96 * averages[current_stock, 3]){
+
                 portfolio = my_functions.buy(current_stock, current_stock_price, 100, current_time)
+
             }
 
             if(nrow(portfolio) > 0) {
+
                 for (stock in 1:nrow(portfolio)) {
-                    if(portfolio[stock,7] > 1.01 && portfolio[stock,8] == FALSE){
+
+                    if(portfolio[stock,7] > 1.04 && portfolio[stock,8] == FALSE){
+
                         portfolio = my_functions.sell(portfolio[stock,1], current_time, current_stock_price)
+
                     }
+
                 }
+
             }
+
+
 
             # update progress bar
             current_data_point = ((row - 48632) * (ncol(STOCK) - 2) + column)
             percentage = current_data_point / total_data_points * 100
             cat("\r",format(round(percentage, 3), nsmall = 3), "%")
+
         }
+
     }
+
     ledger = my_functions.update_ledger(current_time)
+
 }
+
 
 write.table(portfolio, "portfolio.txt", sep="\t")
 write.table(ledger, "ledger.txt", sep="\t")
@@ -171,6 +189,7 @@ print(time.taken)
 
 # A normal run that has not computational function takes
 # 31 minutes
-# if run with only two stocks, useful to show completeness
-# 
-
+# if run with only two stocks, useful to show completeness, with liquidity calculated
+# 64.5 minutes
+# just to iterate through the data takes
+# 9 minutes
