@@ -19,14 +19,18 @@ Things that need to be implemented
 - When to sell
 - How much to buy
 
+have implemented a function to calculate the average and it seems to be faster
+
 - How likely it is to go up and thus how much to buy
 
 - look into statistic methods
-- alpha and beta
-- The others that were mentioned
+- alpha and beta. these are going to hard to implement as more data is needed
+- might use as a metric at the end?
+- sharpe ratio
 - have a look at some other stats stuff, maybe ask someone from maths?
 - could also look at the research some other stuff
 - lots of papers have been saved
+- have a look at the list of things that could be implemented in the fourth year folder
 
 - second term should be machine learning
 - SVM

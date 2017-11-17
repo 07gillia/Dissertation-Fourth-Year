@@ -51,17 +51,11 @@ ledger = data.frame(
     Date = as.Date(character()),
     Value = double(),
     Stock_Value = double(),
-    Capital_Value = double()
+    Capital_Value = double(),
+    Stock_ratio = double()
 )
 
-# create a dataframe to store different averages over timeframes
-averages = data.frame(
-    thirtyMinutes = double(),
-    threeHours = double(),
-    sixHours = double(),
-    threeDays = double(),
-    sixDays = double()
-)
+
 
 ####################################################################
 
@@ -127,17 +121,13 @@ for (row in c(49022:nrow(STOCK)-390)) {
             current_time = STOCK[row,1]
             current_stock = colnames(STOCK)[column]
             current_stock_price = STOCK[row,column]
+            current_stock_ratio = ledger[nrow(ledger), 5]
 
-            # set the rolling averages for each of the timeframes
-            # averages[current_stock,1] = mean(STOCK[row-30:row, current_stock], na.rm=TRUE)
-            # averages[current_stock,2] = mean(STOCK[row-180:row, current_stock], na.rm=TRUE)
-            averages[current_stock,3] = mean(STOCK[row-360:row, current_stock], na.rm=TRUE)
-            # averages[current_stock,4] = mean(STOCK[row-1170:row, current_stock], na.rm=TRUE)
-            # averages[current_stock,5] = mean(STOCK[row-2340:row, current_stock], na.rm=TRUE)
+            bands = my_functions.get_bollinger_bands(row, 20, current_stock)
 
             portfolio = my_functions.update(current_stock, current_stock_price, current_time)
 
-            if(current_stock_price < 0.96 * averages[current_stock, 3]){
+            if(current_stock_price < 0.96 * my_functions.get_average(row, 60, current_stock) && current_stock_ratio < 0.95){
 
                 portfolio = my_functions.buy(current_stock, current_stock_price, 100, current_time)
 
@@ -156,8 +146,6 @@ for (row in c(49022:nrow(STOCK)-390)) {
                 }
 
             }
-
-
 
             # update progress bar
             current_data_point = ((row - 48632) * (ncol(STOCK) - 2) + column)
@@ -187,9 +175,5 @@ print(time.taken)
 # Results - Show the results of the algorithm
 ####################################################################
 
-# A normal run that has not computational function takes
-# 31 minutes
-# if run with only two stocks, useful to show completeness, with liquidity calculated
-# 64.5 minutes
-# just to iterate through the data takes
-# 9 minutes
+
+

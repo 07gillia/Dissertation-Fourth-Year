@@ -107,13 +107,66 @@ my_functions.update_ledger <- function(current_time) {
 	# get the total value
 	total_value = total_stock_value + total_capital_value
 
+	# get the stock value
+	liquidity_ratio = total_stock_value/total_value
+
 	# add all the variables to the list
-	output = list(current_time, total_value, total_stock_value, total_capital_value)
+	output = list(current_time, total_value, total_stock_value, total_capital_value, liquidity_ratio)
 
 	# add the list to the ledger
 	ledger[nrow(ledger) + 1,] = output
 
 	return(ledger)
 }
+
+####################################################################
+# Other Functions
+####################################################################
+
+
+my_functions.get_average <- function(row, number_of_minutes, stock){
+
+	# given a specific stock and a timeframe give the average over that time
+	# starting from the current time
+	# to the current time - the number of minutes
+
+	start = row - number_of_minutes
+
+	average = mean(STOCK[start:row, stock], na.rm=TRUE)
+
+	return(average)
+}
+
+
+my_functions.get_standard_deviation <- function(range){
+
+	# given some variables get the standard deviation over them
+
+	result = sd(range, na.rm=TRUE)
+
+	return(result)
+}
+
+my_functions.get_bollinger_bands <- function(row, number_of_minutes, stock){
+
+	# Middle Band = 20-day simple moving average (SMA)
+  	# Upper Band = 20-day SMA + (20-day standard deviation of price x 2) 
+  	# Lower Band = 20-day SMA - (20-day standard deviation of price x 2)
+
+  	# gives an indication of how the stock will behave and the expected bounds, upper and lower
+
+  	range = STOCK[row-number_of_minutes:row,stock]
+
+  	lower_band = my_functions.get_average(row, number_of_minutes, stock) - (my_functions.get_standard_deviation(range)) * 2
+
+  	middle_band = my_functions.get_average(row, number_of_minutes, stock)
+
+  	upper_band = my_functions.get_average(row, number_of_minutes, stock) + (my_functions.get_standard_deviation(range)) * 2
+
+  	result = c(lower_band, middle_band, upper_band)
+
+  	return(result)
+}
+
 
 ####################################################################
