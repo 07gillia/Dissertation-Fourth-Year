@@ -168,5 +168,28 @@ my_functions.get_bollinger_bands <- function(row, number_of_minutes, stock){
   	return(result)
 }
 
+my_functions.chandelier_exit <- function(){
+
+	# implementation of chandelier exit
+	# Chandelier Exit (long) = 22-day High - ATR(22) x 3 
+	# Chandelier Exit (short) = 22-day Low + ATR(22) x 3
+	# ATR is needed for this
+
+	return(result)
+}
+
+my_functions.average_true_range <- function(method){
+
+	# implementation of average true range
+	# there are three different methods
+	# Method 1: Current High less the current Low
+	# Method 2: Current High less the previous Close (absolute value)
+	# Method 3: Current Low less the previous Close (absolute value)
+
+
+
+	return(result)
+}
+
 
 ####################################################################
