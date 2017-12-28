@@ -125,6 +125,16 @@ for (row in c(49022:nrow(STOCK)-390)) {
 
             bands = my_functions.get_bollinger_bands(row, 20, current_stock)
 
+            last_hour = my_functions.get_hour(row, current_stock)
+
+            max_last_hour = my_functions.get_max(last_hour)
+
+            cat("max: ", max_last_hour[1])
+
+            min_last_hour = my_functions.get_min(last_hour)
+
+            cat("min: ", min_last_hour[1])
+
             portfolio = my_functions.update(current_stock, current_stock_price, current_time)
 
             if(current_stock_price < 0.96 * my_functions.get_average(row, 60, current_stock) && current_stock_ratio < 0.95){

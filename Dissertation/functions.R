@@ -137,6 +137,67 @@ my_functions.get_average <- function(row, number_of_minutes, stock){
 	return(average)
 }
 
+my_functions.get_hour <- function(the_row, the_stock){
+
+	# get the current hour
+	# returns a list that are all values for the last hour, will wrap
+
+	from_row = the_row - 59
+
+	all_stock = STOCK[, the_stock]
+
+	result = all_stock[from_row:the_row]
+
+	return(result)
+}
+
+my_functions.get_day <- function(the_row, the_stock){
+
+	# get the current day
+	# returns a list that are all values for the last day
+
+	from_row = the_row - 389
+
+	all_stock = STOCK[, the_stock]
+
+	result = all_stock[from_row:the_row]
+
+	return(result)
+}
+
+my_functions.get_month <- function(the_row, the_stock){
+
+	# get the current month
+	# returns a list that are all the values for the last month
+
+	from_row = the_row - 7780
+
+	all_stock = STOCK[, the_stock]
+
+	result = all_stock[from_row:the_row]
+
+	return(result)
+}
+
+my_functions.get_max <- function(the_list){
+
+	# given a list of numbers get the maximum
+	# this will be used in conjunction with the get_timeframe functions
+
+	result = lapply(the_list, function(x) x[which.max(abs(x))])
+
+	return(result)
+}
+
+my_functions.get_min <- function(the_list){
+
+	# given a list of numbers get the maximum
+	# this will be used in conjunction with the get_timeframe functions
+
+	result = lapply(the_list, function(x) x[which.min(abs(x))])
+
+	return(result)
+}
 
 my_functions.get_standard_deviation <- function(range){
 
