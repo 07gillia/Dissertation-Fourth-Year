@@ -23,8 +23,6 @@ my_functions.buy <- function(stock_name, current_stock_value, capital_amount_spe
 	portfolio[nrow(portfolio) + 1,] = output
 
 	return(portfolio)
-
-	# this works
 }
 
 my_functions.sell <- function(UID, current_date, current_stock_value) {
@@ -42,8 +40,6 @@ my_functions.sell <- function(UID, current_date, current_stock_value) {
 	portfolio[current_row,10] = current_stock_value * portfolio[current_row,5]
 
 	return(portfolio)
-
-	# this works
 }
 
 my_functions.update <- function(current_stock, current_stock_price, current_time) {
@@ -66,8 +62,6 @@ my_functions.update <- function(current_stock, current_stock_price, current_time
 		}
 	}
 	return(portfolio)
-
-	# this works
 }
 
 my_functions.update_ledger <- function(current_time) {
@@ -120,7 +114,7 @@ my_functions.update_ledger <- function(current_time) {
 }
 
 ####################################################################
-# Other Functions
+# Basic Functions
 ####################################################################
 
 
@@ -141,12 +135,15 @@ my_functions.get_hour <- function(the_row, the_stock){
 
 	# get the current hour
 	# returns a list that are all values for the last hour, will wrap
+	# will also remove all NAs form the list
 
 	from_row = the_row - 59
 
 	all_stock = STOCK[, the_stock]
 
 	result = all_stock[from_row:the_row]
+
+	result = result[!is.na(result)]
 
 	return(result)
 }
@@ -155,12 +152,15 @@ my_functions.get_day <- function(the_row, the_stock){
 
 	# get the current day
 	# returns a list that are all values for the last day
+	# will also remove all NAs form the list
 
 	from_row = the_row - 389
 
 	all_stock = STOCK[, the_stock]
 
 	result = all_stock[from_row:the_row]
+
+	result = result[!is.na(result)]
 
 	return(result)
 }
@@ -169,12 +169,15 @@ my_functions.get_month <- function(the_row, the_stock){
 
 	# get the current month
 	# returns a list that are all the values for the last month
+	# will also remove all NAs form the list
 
 	from_row = the_row - 7780
 
 	all_stock = STOCK[, the_stock]
 
 	result = all_stock[from_row:the_row]
+
+	result = result[!is.na(result)]
 
 	return(result)
 }
@@ -184,9 +187,7 @@ my_functions.get_max <- function(the_list){
 	# given a list of numbers get the maximum
 	# this will be used in conjunction with the get_timeframe functions
 
-	result = lapply(the_list, function(x) x[which.max(abs(x))])
-
-	return(result)
+	return(max(the_list))
 }
 
 my_functions.get_min <- function(the_list){
@@ -194,7 +195,16 @@ my_functions.get_min <- function(the_list){
 	# given a list of numbers get the maximum
 	# this will be used in conjunction with the get_timeframe functions
 
-	result = lapply(the_list, function(x) x[which.min(abs(x))])
+	return(min(the_list))
+}
+
+my_functions.get_previous_close <- function(the_date){
+
+	# this will give the previous days close
+	# used in ATR
+	# NOT FINISHED
+
+	result = 0
 
 	return(result)
 }
@@ -207,6 +217,10 @@ my_functions.get_standard_deviation <- function(range){
 
 	return(result)
 }
+
+####################################################################
+# Advanced Functions
+####################################################################
 
 my_functions.get_bollinger_bands <- function(row, number_of_minutes, stock){
 
@@ -246,7 +260,7 @@ my_functions.average_true_range <- function(method){
 	# Method 1: Current High less the current Low
 	# Method 2: Current High less the previous Close (absolute value)
 	# Method 3: Current Low less the previous Close (absolute value)
-
+	# the answer is the greatest of all three methods
 
 
 	return(result)

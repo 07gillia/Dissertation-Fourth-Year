@@ -129,11 +129,11 @@ for (row in c(49022:nrow(STOCK)-390)) {
 
             max_last_hour = my_functions.get_max(last_hour)
 
-            cat("max: ", max_last_hour[1])
-
             min_last_hour = my_functions.get_min(last_hour)
 
-            cat("min: ", min_last_hour[1])
+            my_functions.get_previous_close(current_time)
+
+            stop("FINISHED")
 
             portfolio = my_functions.update(current_stock, current_stock_price, current_time)
 
