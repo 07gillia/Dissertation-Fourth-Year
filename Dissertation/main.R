@@ -125,13 +125,23 @@ for (row in c(49022:nrow(STOCK)-390)) {
 
             bands = my_functions.get_bollinger_bands(row, 20, current_stock)
 
-            last_hour = my_functions.get_hour(row, current_stock)
+            last_hour = my_functions.get_hour(row, current_stock, 1)
 
             max_last_hour = my_functions.get_max(last_hour)
 
             min_last_hour = my_functions.get_min(last_hour)
 
-            my_functions.get_previous_close(current_time)
+            last_close = my_functions.get_previous_close(row, current_stock)
+
+            average_true_range = my_functions.average_true_range(row, current_stock)
+
+            chandler_exit_1 = my_functions.chandelier_exit(1, row, current_stock)
+
+            chandler_exit_2 = my_functions.chandelier_exit(2, row, current_stock)
+
+            rows_since = my_functions.get_rows_since(row, current_stock, max_last_hour)
+
+            aroon = my_functions.aroon(row, current_stock, 390)
 
             stop("FINISHED")
 

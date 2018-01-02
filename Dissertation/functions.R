@@ -131,13 +131,13 @@ my_functions.get_average <- function(row, number_of_minutes, stock){
 	return(average)
 }
 
-my_functions.get_hour <- function(the_row, the_stock){
+my_functions.get_hour <- function(the_row, the_stock, multiplication){
 
 	# get the current hour
 	# returns a list that are all values for the last hour, will wrap
 	# will also remove all NAs form the list
 
-	from_row = the_row - 59
+	from_row = the_row - 59 * multiplication
 
 	all_stock = STOCK[, the_stock]
 
@@ -148,13 +148,13 @@ my_functions.get_hour <- function(the_row, the_stock){
 	return(result)
 }
 
-my_functions.get_day <- function(the_row, the_stock){
+my_functions.get_day <- function(the_row, the_stock, multiplication){
 
 	# get the current day
 	# returns a list that are all values for the last day
 	# will also remove all NAs form the list
 
-	from_row = the_row - 389
+	from_row = the_row - 389 * multiplication
 
 	all_stock = STOCK[, the_stock]
 
@@ -165,13 +165,13 @@ my_functions.get_day <- function(the_row, the_stock){
 	return(result)
 }
 
-my_functions.get_month <- function(the_row, the_stock){
+my_functions.get_month <- function(the_row, the_stock, multiplication){
 
 	# get the current month
 	# returns a list that are all the values for the last month
 	# will also remove all NAs form the list
 
-	from_row = the_row - 7780
+	from_row = the_row - 7780 * multiplication
 
 	all_stock = STOCK[, the_stock]
 
@@ -198,15 +198,28 @@ my_functions.get_min <- function(the_list){
 	return(min(the_list))
 }
 
-my_functions.get_previous_close <- function(the_date){
+my_functions.get_previous_close <- function(the_row, the_stock){
 
 	# this will give the previous days close
 	# used in ATR
 	# NOT FINISHED
 
-	result = 0
+	previous_day = row - 390
 
-	return(result)
+	date_string = STOCK[previous_day,1]
+
+	date_string = substr(date_string, 0, 10)
+
+	while(grepl(date_string , STOCK[previous_day,1], fixed=TRUE)){ # X in in Y
+
+		# iterate through the day until we reach the last day
+
+		previous_day = previous_day + 1
+	}
+
+	result = previous_day - 1
+
+	return(STOCK[result, the_stock])
 }
 
 my_functions.get_standard_deviation <- function(range){
@@ -214,6 +227,28 @@ my_functions.get_standard_deviation <- function(range){
 	# given some variables get the standard deviation over them
 
 	result = sd(range, na.rm=TRUE)
+
+	return(result)
+}
+
+my_functions.get_rows_since <- function(the_row, the_stock, the_price){
+
+	# find the number of rows from the current row that a given price was present
+
+	current_row = the_row
+
+	stock_price = STOCK[current_row, the_stock]
+
+	while(isTRUE(stock_price != the_price) | is.na(stock_price)){
+
+		# iterate backwards from the current date until the stock price is a specific value
+
+		current_row = current_row - 1
+
+		stock_price = STOCK[current_row, the_stock]
+	}
+
+	result = the_row - current_row
 
 	return(result)
 }
@@ -243,17 +278,75 @@ my_functions.get_bollinger_bands <- function(row, number_of_minutes, stock){
   	return(result)
 }
 
-my_functions.chandelier_exit <- function(){
+my_functions.chandelier_exit <- function(method, the_row, the_stock){
 
 	# implementation of chandelier exit
-	# Chandelier Exit (long) = 22-day High - ATR(22) x 3 
-	# Chandelier Exit (short) = 22-day Low + ATR(22) x 3
+	# Chandelier Exit (long) = 22-day High - (ATR(22) x 3)
+	# Chandelier Exit (short) = 22-day Low + (ATR(22) x 3)
 	# ATR is needed for this
+
+	if(method == 1){
+		# if the method is 1 then use the long method
+
+		result = my_functions.get_max(my_functions.get_day(the_row, the_stock, 22)) - (3 * my_functions.average_true_range(the_row, the_stock))
+	}
+	if(method == 2){
+		# if the method is 2 the use the short method
+
+		result = my_functions.get_min(my_functions.get_day(the_row, the_stock, 22)) + (3 * my_functions.average_true_range(the_row, the_stock))
+	}
 
 	return(result)
 }
 
-my_functions.average_true_range <- function(method){
+####################################################################
+
+my_functions.accumulation_distribution_line <- function(the_row, the_stock){
+
+	# Implementation of ADL
+	# Money Flow Multiplier = [(Close  -  Low) - (High - Close)] /(High - Low) 
+	# Money Flow Volume = Money Flow Multiplier x Volume for the Period
+	# ADL = Previous ADL + Current Period's Money Flow Volume
+	# Volume-based indicator designed to measure the cumulative flow of money into and out of a security
+
+	# Volume is not available so this might be quite hard to implement??
+
+	result = 0
+
+	return(result)	
+}
+
+my_functions.aroon <- function(the_row, the_stock, number_rows){
+
+	# Aroon-Up = ((25 - Days Since 25-day High)/25) x 100
+	# Aroon-Down = ((25 - Days Since 25-day Low)/25) x 100
+	# an indicator system that determines whether a stock is trending or not and how strong the trend is
+
+	# Aroon Oscillator = Aroon-Up - Aroon-Down
+
+	high = my_functions.get_max(my_functions.get_day(the_row, the_stock, round(number_rows/390, 0)))
+
+	low = my_functions.get_min(my_functions.get_day(the_row, the_stock, round(number_rows/390, 0)))
+
+	aroon_up = ((number_rows - my_functions.get_rows_since(the_row, the_stock, high))/ number_rows) * 100
+
+	aroon_down = ((number_rows - my_functions.get_rows_since(the_row, the_stock, low))/ number_rows) * 100
+
+	aroon_oscillator = aroon_up - aroon_down
+
+	return(c(aroon_up, aroon_down, aroon_oscillator))
+}
+
+my_functions.average_directional_index <- function(){
+
+	# to be implemented
+
+	result = 0
+
+	return(result)
+}
+
+my_functions.average_true_range <- function(the_row, the_stock){
 
 	# implementation of average true range
 	# there are three different methods
@@ -262,9 +355,15 @@ my_functions.average_true_range <- function(method){
 	# Method 3: Current Low less the previous Close (absolute value)
 	# the answer is the greatest of all three methods
 
+	method_1 = abs(my_functions.get_max(my_functions.get_hour(the_row, the_stock, 1)) - my_functions.get_min(my_functions.get_hour(the_row, the_stock, 1)))
+
+	method_2 = abs(my_functions.get_max(my_functions.get_hour(the_row, the_stock, 1)) - my_functions.get_previous_close(the_row, the_stock))
+
+	method_3 = abs(my_functions.get_min(my_functions.get_hour(the_row, the_stock, 1)) - my_functions.get_previous_close(the_row, the_stock))
+
+	result = my_functions.get_max(c(method_1, method_2, method_3))
 
 	return(result)
 }
-
 
 ####################################################################
