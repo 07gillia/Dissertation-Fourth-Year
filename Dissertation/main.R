@@ -109,7 +109,7 @@ ledger = my_functions.update_ledger(current_time)
 for (row in c(49022:nrow(STOCK)-390)) {
     
 
-    # iterate through the stocks in the dataframe columns 2 -> end
+    # iterate through the stocks in the dataframe columns 2 -> end (current = 4 end = 46)
     for (column in c(2:4)){
         
 
@@ -133,7 +133,7 @@ for (row in c(49022:nrow(STOCK)-390)) {
 
             last_close = my_functions.get_previous_close(row, current_stock)
 
-            average_true_range = my_functions.average_true_range(row, current_stock)
+            average_true_range = my_functions.average_true_range(row, current_stock, 5)
 
             chandler_exit_1 = my_functions.chandelier_exit(1, row, current_stock)
 
@@ -142,6 +142,13 @@ for (row in c(49022:nrow(STOCK)-390)) {
             rows_since = my_functions.get_rows_since(row, current_stock, max_last_hour)
 
             aroon = my_functions.aroon(row, current_stock, 390)
+
+            pdm = my_functions.plus_directional_movement(row, current_stock, 0, 5)
+
+            mdp = my_functions.minus_directional_movement(row, current_stock, 0, 5)
+
+            print(pdm)
+            print(mdp)
 
             stop("FINISHED")
 

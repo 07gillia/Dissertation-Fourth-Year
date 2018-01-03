@@ -288,12 +288,12 @@ my_functions.chandelier_exit <- function(method, the_row, the_stock){
 	if(method == 1){
 		# if the method is 1 then use the long method
 
-		result = my_functions.get_max(my_functions.get_day(the_row, the_stock, 22)) - (3 * my_functions.average_true_range(the_row, the_stock))
+		result = my_functions.get_max(my_functions.get_day(the_row, the_stock, 22)) - (3 * my_functions.average_true_range(the_row, the_stock, 22 * 6.5))
 	}
 	if(method == 2){
 		# if the method is 2 the use the short method
 
-		result = my_functions.get_min(my_functions.get_day(the_row, the_stock, 22)) + (3 * my_functions.average_true_range(the_row, the_stock))
+		result = my_functions.get_min(my_functions.get_day(the_row, the_stock, 22)) + (3 * my_functions.average_true_range(the_row, the_stock, 22 * 6.5))
 	}
 
 	return(result)
@@ -337,16 +337,140 @@ my_functions.aroon <- function(the_row, the_stock, number_rows){
 	return(c(aroon_up, aroon_down, aroon_oscillator))
 }
 
-my_functions.average_directional_index <- function(){
+my_functions.plus_directional_movement <- function(the_row, the_stock, timeframe, number_of_timeframes){
 
-	# to be implemented
+	# used as part of the average directional index
+	# current high - previous high
+	# given that this value is +ve 
+	# if negative then the plus directional indicator is 0
+
+	# using different timeframes 
+	# 0 - hour
+	# 1 - day
+	# 2 - month
 
 	result = 0
+
+	if(timeframe == 0){
+		# if the timeframe is hour
+
+		current_high = my_functions.get_max(my_functions.get_hour(the_row, the_stock, number_of_timeframes))
+
+		previous_high = my_functions.get_max(my_functions.get_hour(the_row - (60*number_of_timeframes), the_stock, number_of_timeframes))
+
+		result = current_high - previous_high
+	}
+	else if(timeframe == 1){
+		# if the timeframe is day
+
+		current_high = my_functions.get_max(my_functions.get_day(the_row, the_stock, number_of_timeframes))
+
+		previous_high = my_functions.get_max(my_functions.get_day(the_row - (390*number_of_timeframes), the_stock, number_of_timeframes))
+
+		result = current_high - previous_high
+	}
+	else if(timeframe == 2){
+		# if the timeframe is month
+
+		current_high = my_functions.get_max(my_functions.get_month(the_row, the_stock, number_of_timeframes))
+
+		previous_high = my_functions.get_max(my_functions.get_month(the_row - (7780*number_of_timeframes), the_stock, number_of_timeframes))
+
+		result = current_high - previous_high
+	}
+	else{
+		stop("Error in plus directional movement")
+	}
+
+	if(result > 0){
+		return(result)
+	}
+	else{
+		return(0)
+	}
+}
+
+my_functions.minus_directional_movement <- function(the_row, the_stock, timeframe, number_of_timeframes){
+
+	# used as part of the average directional index
+	# previous low - current low
+	# given that this value is +ve
+	# if negative then the plus directional indicator is 0
+
+	# using different timeframes 
+	# 0 - hour
+	# 1 - day
+	# 2 - month
+
+	result = 0
+
+	if(timeframe == 0){
+		# if the timeframe is hour
+
+		current_low = my_functions.get_min(my_functions.get_hour(the_row, the_stock, number_of_timeframes))
+
+		previous_low = my_functions.get_min(my_functions.get_hour(the_row - (60*number_of_timeframes), the_stock, number_of_timeframes))
+
+		result = previous_low - current_low
+	}
+	else if(timeframe == 1){
+		# if the timeframe is day
+
+		current_low = my_functions.get_min(my_functions.get_day(the_row, the_stock, number_of_timeframes))
+
+		previous_low = my_functions.get_min(my_functions.get_day(the_row - (390*number_of_timeframes), the_stock, number_of_timeframes))
+
+		result = previous_low - current_low
+	}
+	else if(timeframe == 2){
+		# if the timeframe is month
+
+		current_low = my_functions.get_min(my_functions.get_month(the_row, the_stock, number_of_timeframes))
+
+		previous_low = my_functions.get_min(my_functions.get_month(the_row - (7780*number_of_timeframes), the_stock, number_of_timeframes))
+
+		result = previous_low - current_low
+	}
+	else{
+		stop("Error in minus directional movement")
+	}
+
+	if(result > 0){
+		return(result)
+	}
+	else{
+		return(0)
+	}
+}
+
+my_functions.average_directional_index <- function(the_row, the_stock, timeframe, number_of_timeframes){
+
+	# Directional movement is calculated by comparing the difference 
+	# between two consecutive lows with the difference between their 
+	# respective highs.
+
+	result = 0
+
+	plus_directional_movement = my_functions.plus_directional_movement(the_row, the_stock, timeframe, number_of_timeframes)
+
+	minus_directional_movement = my_functions.minus_directional_movement(the_row, the_stock, timeframe, number_of_timeframes)
+
+	if(timeframe == 0){
+		number_of_hours = number_of_timeframes
+	} else if(timeframe == 1){
+		number_of_hours = number_of_timeframes * 6.5
+	} else if(timeframe == 2){
+		number_of_hours = number_of_timeframes * 6.5 * 20
+	}
+
+	ATR = my_functions.average_true_range(the_row, the_stock, number_of_hours)
+
+	# GETS COMPLEX
 
 	return(result)
 }
 
-my_functions.average_true_range <- function(the_row, the_stock){
+my_functions.average_true_range <- function(the_row, the_stock, number_of_hours){
 
 	# implementation of average true range
 	# there are three different methods
@@ -355,11 +479,11 @@ my_functions.average_true_range <- function(the_row, the_stock){
 	# Method 3: Current Low less the previous Close (absolute value)
 	# the answer is the greatest of all three methods
 
-	method_1 = abs(my_functions.get_max(my_functions.get_hour(the_row, the_stock, 1)) - my_functions.get_min(my_functions.get_hour(the_row, the_stock, 1)))
+	method_1 = abs(my_functions.get_max(my_functions.get_hour(the_row, the_stock, number_of_hours)) - my_functions.get_min(my_functions.get_hour(the_row, the_stock, number_of_hours)))
 
-	method_2 = abs(my_functions.get_max(my_functions.get_hour(the_row, the_stock, 1)) - my_functions.get_previous_close(the_row, the_stock))
+	method_2 = abs(my_functions.get_max(my_functions.get_hour(the_row, the_stock, number_of_hours)) - my_functions.get_previous_close(the_row - (60 * number_of_hours), the_stock))
 
-	method_3 = abs(my_functions.get_min(my_functions.get_hour(the_row, the_stock, 1)) - my_functions.get_previous_close(the_row, the_stock))
+	method_3 = abs(my_functions.get_min(my_functions.get_hour(the_row, the_stock, number_of_hours)) - my_functions.get_previous_close(the_row - (60 * number_of_hours), the_stock))
 
 	result = my_functions.get_max(c(method_1, method_2, method_3))
 
