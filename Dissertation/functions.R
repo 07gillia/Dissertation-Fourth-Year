@@ -490,4 +490,30 @@ my_functions.average_true_range <- function(the_row, the_stock, number_of_hours)
 	return(result)
 }
 
+my_function.get_bandwidth <- function(row, number_of_minutes, stock){
+
+	# using bollenger bands get the band width
+	# measures the percentage difference between the upper band and the lower band
+
+	boll_bands = my_functions.get_bollinger_bands(row, number_of_minutes, stock)
+
+	return(((boll_bands[3] - boll_bands[1]) / boll_bands[2]) * 100)
+}
+
+my_functions.get_B_indicator <- function(row, number_of_minutes, stock, stock_price){
+
+	# %B indicator 
+	# quantifies a security's price relative to the upper and lower Bollinger Band
+	# %B equals 1 when price is at the upper band
+	# %B equals 0 when price is at the lower band
+	# %B is above 1 when price is above the upper band
+	# %B is below 0 when price is below the lower band
+	# %B is above .50 when price is above the middle band (20-day SMA)
+	# %B is below .50 when price is below the middle band (20-day SMA)
+
+	boll_bands = my_functions.get_bollinger_bands(row, number_of_minutes, stock)
+
+	return((stock_price - boll_bands[1])/(boll_bands[3] - boll_bands[1]))	
+}
+
 ####################################################################

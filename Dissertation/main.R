@@ -147,8 +147,9 @@ for (row in c(49022:nrow(STOCK)-390)) {
 
             mdp = my_functions.minus_directional_movement(row, current_stock, 0, 5)
 
-            print(pdm)
-            print(mdp)
+            bandwidth = my_function.get_bandwidth(row, 30, current_stock)
+
+            B_quant = my_functions.get_B_indicator(row, 30, current_stock, current_stock_price)
 
             stop("FINISHED")
 
