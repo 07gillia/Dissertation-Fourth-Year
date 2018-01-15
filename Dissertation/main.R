@@ -99,6 +99,12 @@ total_data_points = (nrow(STOCK) - 49023) * (ncol(STOCK) - 2)
 # Testing - test the given algorithm over 
 ####################################################################
 
+# Pre testing to set up the environment
+
+available_columns = sample(2:46, 5, replace=F)
+
+####################################################################
+
 start.time <- Sys.time()
 
 current_time = STOCK[49021,1]
@@ -110,7 +116,7 @@ for (row in c(49022:nrow(STOCK)-390)) {
     
 
     # iterate through the stocks in the dataframe columns 2 -> end (current = 4 end = 46)
-    for (column in c(2:4)){
+    for (column in available_columns){
         
 
         # the stock could be null, if it is not trading can be done in that minute
@@ -122,38 +128,6 @@ for (row in c(49022:nrow(STOCK)-390)) {
             current_stock = colnames(STOCK)[column]
             current_stock_price = STOCK[row,column]
             current_stock_ratio = ledger[nrow(ledger), 5]
-
-            bands = my_functions.get_bollinger_bands(row, 20, current_stock)
-
-            last_hour = my_functions.get_hour(row, current_stock, 1)
-
-            max_last_hour = my_functions.get_max(last_hour)
-
-            min_last_hour = my_functions.get_min(last_hour)
-
-            last_close = my_functions.get_previous_close(row, current_stock)
-
-            average_true_range = my_functions.average_true_range(row, current_stock, 5)
-
-            chandler_exit_1 = my_functions.chandelier_exit(1, row, current_stock)
-
-            chandler_exit_2 = my_functions.chandelier_exit(2, row, current_stock)
-
-            rows_since = my_functions.get_rows_since(row, current_stock, max_last_hour)
-
-            aroon = my_functions.aroon(row, current_stock, 390)
-
-            pdm = my_functions.plus_directional_movement(row, current_stock, 0, 5)
-
-            mdp = my_functions.minus_directional_movement(row, current_stock, 0, 5)
-
-            bandwidth = my_function.get_bandwidth(row, 30, current_stock)
-
-            B_quant = my_functions.get_B_indicator(row, 30, current_stock, current_stock_price)
-
-            stop("FINISHED")
-
-            portfolio = my_functions.update(current_stock, current_stock_price, current_time)
 
             if(current_stock_price < 0.96 * my_functions.get_average(row, 60, current_stock) && current_stock_ratio < 0.95){
 
@@ -195,7 +169,11 @@ write.table(ledger, "ledger.txt", sep="\t")
 end.time <- Sys.time()
 
 time.taken <- end.time - start.time
-print(time.taken)
+write.table(time.taken, "time.txt", sep="\t")
+
+####################################################################
+
+# Post run, make sure that all the results are dealt with correctly
 
 
 

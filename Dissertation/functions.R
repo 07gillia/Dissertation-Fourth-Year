@@ -253,6 +253,49 @@ my_functions.get_rows_since <- function(the_row, the_stock, the_price){
 	return(result)
 }
 
+my_function.get_total_gain_loss <- function(the_row, the_stock, the_timeframe){
+
+	# find the total amount that a stock went up and down in the given timeframe
+
+	increase = 0
+	decrease = 0
+
+	start_row = the_row - the_timeframe
+
+	start_price = STOCK[start_row, the_stock]
+
+	if(is.na(start_price)){
+		while(is.na(start_price)){
+			start_row = start_row + 1
+			start_price = STOCK[start_row, the_stock]
+		}
+	}
+
+	for(row in start_row:the_row){
+
+		# iterate through all rows between the start row and the end row
+
+		current_price = STOCK[row, the_stock]
+
+		if(!is.na(current_price)){
+
+			difference = start_price - current_price
+
+			if(difference>0){
+				decrease = decrease + difference
+			}
+			else{
+				increase = increase - difference
+			}
+
+			start_price = current_price
+		}
+
+	}
+
+	return(c(increase, decrease))
+}
+
 ####################################################################
 # Advanced Functions
 ####################################################################
@@ -514,6 +557,22 @@ my_functions.get_B_indicator <- function(row, number_of_minutes, stock, stock_pr
 	boll_bands = my_functions.get_bollinger_bands(row, number_of_minutes, stock)
 
 	return((stock_price - boll_bands[1])/(boll_bands[3] - boll_bands[1]))	
+}
+
+my_functions.get_relative_strength_index <- function(row, the_stock, timeframe){
+
+	# RSI = 100 - (100 / 1 + RS)
+	# RS = average gain / average loss
+	# 
+	# This is done over 14 periods and is smoothed
+	#
+	# First Average Gain = Sum of Gains over the past 14 periods / 14
+	# First Average Loss = Sum of Losses over the past 14 periods / 14
+	#
+	# Average Gain = [(previous Average Gain) x 13 + current Gain] / 14
+	# Average Loss = [(previous Average Loss) x 13 + current Loss] / 14
+
+	return(0)
 }
 
 ####################################################################
