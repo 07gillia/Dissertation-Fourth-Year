@@ -1,2 +1,0 @@
-[1] "The working directory is : /Users/ColossusMini/Documents/Git/Dissertation Fourth Year/Dissertation"
-[1] "STOCK"

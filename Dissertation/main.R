@@ -103,6 +103,17 @@ total_data_points = (nrow(STOCK) - 49023) * (ncol(STOCK) - 2)
 
 available_columns = sample(2:46, 5, replace=F)
 
+write.table(available_columns, "stocks_used.txt", sep="\t")
+
+bollBands_list = c()
+chandler_exit_list_1 = c()
+chandler_exit_list_2 = c()
+
+aroon_list = c()
+ATR_list = c()
+bandwidth_list = c()
+B_indicator_list = c()
+
 ####################################################################
 
 start.time <- Sys.time()
@@ -129,25 +140,34 @@ for (row in c(49022:nrow(STOCK)-390)) {
             current_stock_price = STOCK[row,column]
             current_stock_ratio = ledger[nrow(ledger), 5]
 
-            if(current_stock_price < 0.96 * my_functions.get_average(row, 60, current_stock) && current_stock_ratio < 0.95){
+            bollBands_list = c(bollBands_list, my_functions.get_bollinger_bands(row, 120, current_stock))
+            chandler_exit_list_1 = c(chandler_exit_list_1, my_functions.chandelier_exit(1, row, current_stock))
+            chandler_exit_list_2 = c(chandler_exit_list_2, my_functions.chandelier_exit(2, row, current_stock))
 
-                portfolio = my_functions.buy(current_stock, current_stock_price, 100, current_time)
+            aroon_list = c(aroon_list, my_functions.aroon(row, current_stock, 120))
+            ATR_list = c(ATR_list, my_functions.average_true_range(row, current_stock, 4))
+            bandwidth_list = c(bandwidth_list, my_function.get_bandwidth(row, 120, current_stock))
+            B_indicator_list = c(B_indicator_list, my_functions.get_B_indicator(row, 120, current_stock, current_stock_price))
 
-            }
+            # if(current_stock_price < 0.96 * my_functions.get_average(row, 60, current_stock) && current_stock_ratio < 0.95){
 
-            if(nrow(portfolio) > 0) {
+            #     portfolio = my_functions.buy(current_stock, current_stock_price, 100, current_time)
 
-                for (stock in 1:nrow(portfolio)) {
+            # }
 
-                    if(portfolio[stock,7] > 1.04 && portfolio[stock,8] == FALSE){
+            # if(nrow(portfolio) > 0) {
 
-                        portfolio = my_functions.sell(portfolio[stock,1], current_time, current_stock_price)
+            #     for (stock in 1:nrow(portfolio)) {
 
-                    }
+            #         if(portfolio[stock,7] > 1.04 && portfolio[stock,8] == FALSE){
 
-                }
+            #             portfolio = my_functions.sell(portfolio[stock,1], current_time, current_stock_price)
 
-            }
+            #         }
+
+            #     }
+
+            # }
 
             # update progress bar
             current_data_point = ((row - 48632) * (ncol(STOCK) - 2) + column)
