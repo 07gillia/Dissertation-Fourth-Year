@@ -101,7 +101,7 @@ total_data_points = (nrow(STOCK) - 49023) * (ncol(STOCK) - 2)
 
 # Pre testing to set up the environment
 
-available_columns = sample(2:46, 5, replace=F)
+available_columns = sample(2:46, 1, replace=F)
 
 write.table(available_columns, "stocks_used.txt", sep="\t")
 
