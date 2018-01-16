@@ -122,9 +122,9 @@ current_time = STOCK[49021,1]
 
 ledger = my_functions.update_ledger(current_time)
 
-# iterate through row 1 -> end
-for (row in c(49022:nrow(STOCK)-390)) {
-    
+# iterate through row 1 -> end 
+for (row in c(130022:nrow(STOCK)-390)) {
+# start - 49022 end - nrow(STOCK)-390
 
     # iterate through the stocks in the dataframe columns 2 -> end (current = 4 end = 46)
     for (column in available_columns){
@@ -144,10 +144,10 @@ for (row in c(49022:nrow(STOCK)-390)) {
             chandler_exit_list_1 = c(chandler_exit_list_1, my_functions.chandelier_exit(1, row, current_stock))
             chandler_exit_list_2 = c(chandler_exit_list_2, my_functions.chandelier_exit(2, row, current_stock))
 
-            aroon_list = c(aroon_list, my_functions.aroon(row, current_stock, 120))
-            ATR_list = c(ATR_list, my_functions.average_true_range(row, current_stock, 4))
-            bandwidth_list = c(bandwidth_list, my_function.get_bandwidth(row, 120, current_stock))
-            B_indicator_list = c(B_indicator_list, my_functions.get_B_indicator(row, 120, current_stock, current_stock_price))
+            # aroon_list = c(aroon_list, my_functions.aroon(row, current_stock, 120))
+            # ATR_list = c(ATR_list, my_functions.average_true_range(row, current_stock, 4))
+            # bandwidth_list = c(bandwidth_list, my_function.get_bandwidth(row, 120, current_stock))
+            # B_indicator_list = c(B_indicator_list, my_functions.get_B_indicator(row, 120, current_stock, current_stock_price))
 
             # if(current_stock_price < 0.96 * my_functions.get_average(row, 60, current_stock) && current_stock_ratio < 0.95){
 
@@ -201,5 +201,56 @@ write.table(time.taken, "time.txt", sep="\t")
 # Results - Show the results of the algorithm
 ####################################################################
 
+# Create Line Chart
 
+layout(matrix(c(1,2,3), 3, 1, byrow = TRUE))
+
+# get the range for the x and y axis 
+xrange <- range(ledger$Date)
+yrange <- c(0,20000)
+
+# set up the plot 
+plot(xrange, yrange, type="n", xlab="Date",
+    ylab="Total Value (£)" )
+
+# add lines
+lines(ledger$Date, ledger$Value, type="b", lwd=1.5, lty=1, col="blue", pch=18)
+lines(ledger$Date, ledger$Stock_Value, type="b", lwd=1.5, lty=1, col="red", pch=18)
+lines(ledger$Date, ledger$Capital_Value, type="b", lwd=1.5, lty=1, col="green", pch=18)
+
+# add a title
+title("Total Value, Stock Value, and Capital Value")
+
+
+
+# get the range for the x and y axis 
+xrange <- range(ledger$Date)
+yrange <- range(bollBands_list)
+
+# set up the plot 
+plot(xrange, yrange, type="n", xlab="Date",
+    ylab="Bollinger Bands" )
+
+# add lines
+lines(ledger$Date, bollBands_list, type="b", lwd=1.5, lty=1, col="blue", pch=18)
+
+# add a title
+title("Bollinger Bands")
+
+
+
+# get the range for the x and y axis 
+xrange <- range(ledger$Date)
+yrange <- range(chandler_exit_list_1)
+
+# set up the plot 
+plot(xrange, yrange, type="n", xlab="Date",
+    ylab="Chandler Exit 1 and 2" )
+
+# add lines
+lines(ledger$Date, chandler_exit_list_1, type="b", lwd=1.5, lty=1, col="blue", pch=18)
+lines(ledger$Date, chandler_exit_list_2, type="b", lwd=1.5, lty=1, col="red", pch=18)
+
+# add a title
+title("Chandler Exit")
 

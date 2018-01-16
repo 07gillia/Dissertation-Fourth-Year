@@ -1,0 +1,1 @@
+"Unique_ID"	"Stock"	"Bought_date"	"Bought_value"	"Bought_amount"	"Current_value"	"Current_ratio"	"Sold"	"Sold_date"	"Sold_value"
