@@ -223,34 +223,34 @@ title("Total Value, Stock Value, and Capital Value")
 
 
 
-# get the range for the x and y axis 
-xrange <- range(ledger$Date)
-yrange <- range(bollBands_list)
+# # get the range for the x and y axis 
+# xrange <- range(ledger$Date)
+# yrange <- range(bollBands_list)
 
-# set up the plot 
-plot(xrange, yrange, type="n", xlab="Date",
-    ylab="Bollinger Bands" )
+# # set up the plot 
+# plot(xrange, yrange, type="n", xlab="Date",
+#     ylab="Bollinger Bands" )
 
-# add lines
-lines(ledger$Date, bollBands_list, type="b", lwd=1.5, lty=1, col="blue", pch=18)
+# # add lines
+# lines(ledger$Date, bollBands_list, type="b", lwd=1.5, lty=1, col="blue", pch=18)
 
-# add a title
-title("Bollinger Bands")
+# # add a title
+# title("Bollinger Bands")
 
 
 
-# get the range for the x and y axis 
-xrange <- range(ledger$Date)
-yrange <- range(chandler_exit_list_1)
+# # get the range for the x and y axis 
+# xrange <- range(ledger$Date)
+# yrange <- range(chandler_exit_list_1)
 
-# set up the plot 
-plot(xrange, yrange, type="n", xlab="Date",
-    ylab="Chandler Exit 1 and 2" )
+# # set up the plot 
+# plot(xrange, yrange, type="n", xlab="Date",
+#     ylab="Chandler Exit 1 and 2" )
 
-# add lines
-lines(ledger$Date, chandler_exit_list_1, type="b", lwd=1.5, lty=1, col="blue", pch=18)
-lines(ledger$Date, chandler_exit_list_2, type="b", lwd=1.5, lty=1, col="red", pch=18)
+# # add lines
+# lines(ledger$Date, chandler_exit_list_1, type="b", lwd=1.5, lty=1, col="blue", pch=18)
+# lines(ledger$Date, chandler_exit_list_2, type="b", lwd=1.5, lty=1, col="red", pch=18)
 
-# add a title
-title("Chandler Exit")
+# # add a title
+# title("Chandler Exit")
 
