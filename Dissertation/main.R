@@ -133,7 +133,7 @@ current_time = STOCK[49021,1]
 ledger = my_functions.update_ledger(current_time)
 
 # iterate through row 1 -> end 
-for (row in c(146822:nrow(STOCK)-390)) {
+for (row in c(49022:nrow(STOCK)-390)) {
 # start - 49022 end - nrow(STOCK)-390
 
     # iterate through the stocks in the dataframe columns 2 -> end (current = 4 end = 46)
@@ -160,8 +160,27 @@ for (row in c(146822:nrow(STOCK)-390)) {
             my_functions.chandelier_exit(2, row, current_stock),
             aroon_list[1],aroon_list[2],aroon_list[3],
             my_functions.average_true_range(row, current_stock, 4),
-            my_function.get_bandwidth(row, 120, current_stock),
+            my_functions.get_bandwidth(row, 120, current_stock),
             my_functions.get_B_indicator(row, 120, current_stock, current_stock_price))
+
+            if(row %% 390 == 0){
+                hour_max = my_functions.get_max(my_functions.get_hour(row, current_stock, 1))
+                hour_min = my_functions.get_min(my_functions.get_hour(row, current_stock, 1))
+                max_row = row - my_functions.get_rows_since(row, current_stock, hour_max)
+                min_row = row - my_functions.get_rows_since(row, current_stock, hour_min)
+
+                hour_max_time = STOCK[max_row,1]
+                hour_min_time = STOCK[min_row,1]
+
+                max_details = stock_insights[(stock_insights$Date == hour_max_time & stock_insights$Stock == current_stock),]
+                min_details = stock_insights[(stock_insights$Date == hour_min_time & stock_insights$Stock == current_stock),]
+
+                print("Max")
+                print(max_details)
+                print("Min")
+                print(min_details)
+                print("#################")
+            }
 
             # if(current_stock_price < 0.96 * my_functions.get_average(row, 60, current_stock) && current_stock_ratio < 0.95){
 
@@ -186,7 +205,7 @@ for (row in c(146822:nrow(STOCK)-390)) {
             # update progress bar
             current_data_point = ((row - 48632) * (ncol(STOCK) - 2) + column)
             percentage = current_data_point / total_data_points * 100
-            cat("\r",format(round(percentage, 3), nsmall = 3), "%")
+            #cat("\r",format(round(percentage, 3), nsmall = 3), "%")
 
         }
 

@@ -1,0 +1,49 @@
+[1] "The working directory is : /Users/ColossusMini/Documents/Git/Dissertation Fourth Year/Dissertation"
+[1] "STOCK"
+[1] "The data is in a dataframe? : TRUE"
+[1] "what are the dimentions of the dataframe? : x = 55 by y = 146933"
+[1] "Max"
+                   Date Stock Stock_price bollBands_lower bollBands_middle
+172 2016-08-31 10:29:00   CAT       82.26         74.1286         82.31263
+    bollBands_upper chandler_exit_1 chandler_exit_2 aroon_up aroon_down
+172        90.49666           73.49           92.09      100        100
+    aroon_oscillator ATR_list bandwidth_list B_indicator_list
+172                0     0.79       19.88523        0.4967844
+[1] "Min"
+                   Date Stock Stock_price bollBands_lower bollBands_middle
+287 2016-08-31 11:11:00   CAT       81.82        73.94948         82.13713
+    bollBands_upper chandler_exit_1 chandler_exit_2 aroon_up aroon_down
+287        90.32478           73.49           92.09      100        100
+    aroon_oscillator ATR_list bandwidth_list B_indicator_list
+287                0     0.77       19.93654        0.4806336
+[1] "#################"
+[1] "Max"
+                   Date Stock Stock_price bollBands_lower bollBands_middle
+224 2016-08-31 10:47:00  CSCO       31.41        28.62594         31.43523
+    bollBands_upper chandler_exit_1 chandler_exit_2 aroon_up aroon_down
+224        34.24451          26.795           34.97      100        100
+    aroon_oscillator ATR_list bandwidth_list B_indicator_list
+224                0    0.195        17.8735          0.49551
+[1] "Min"
+                   Date Stock Stock_price bollBands_lower bollBands_middle
+288 2016-08-31 11:11:00  CSCO      31.305         28.6025         31.41345
+    bollBands_upper chandler_exit_1 chandler_exit_2 aroon_up aroon_down
+288         34.2244          26.795           34.97      100        100
+    aroon_oscillator ATR_list bandwidth_list B_indicator_list
+288                0    0.225       17.89647        0.4807097
+[1] "#################"
+[1] "Max"
+                   Date Stock Stock_price bollBands_lower bollBands_middle
+174 2016-08-31 10:29:00  AMAT       29.76        23.85738         29.84117
+    bollBands_upper chandler_exit_1 chandler_exit_2 aroon_up aroon_down
+174        35.82497           16.55            39.4      100        100
+    aroon_oscillator ATR_list bandwidth_list B_indicator_list
+174                0     0.26       40.10428        0.4932172
+[1] "Min"
+                   Date Stock Stock_price bollBands_lower bollBands_middle
+303 2016-08-31 11:16:00  AMAT       29.64        23.79502          29.7909
+    bollBands_upper chandler_exit_1 chandler_exit_2 aroon_up aroon_down
+303        35.78678           16.55            39.4      100        100
+    aroon_oscillator ATR_list bandwidth_list B_indicator_list
+303                0    0.335       40.25312        0.4874163
+[1] "#################"

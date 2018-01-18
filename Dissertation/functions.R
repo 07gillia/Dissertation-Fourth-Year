@@ -533,7 +533,7 @@ my_functions.average_true_range <- function(the_row, the_stock, number_of_hours)
 	return(result)
 }
 
-my_function.get_bandwidth <- function(row, number_of_minutes, stock){
+my_functions.get_bandwidth <- function(row, number_of_minutes, stock){
 
 	# using bollenger bands get the band width
 	# measures the percentage difference between the upper band and the lower band
