@@ -11,7 +11,9 @@ stock_insights_temp = data.frame(
     bollBands_upper = double(),
     chandler_exit_1 = double(),
     chandler_exit_2 = double(),
-    aroon_list = double(),
+    aroon_up = double(),
+    aroon_down = double(),
+    aroon_oscillator = double(),
     ATR_list = double(),
     bandwidth_list = double(),
     B_indicator_list = double()
@@ -125,14 +127,16 @@ my_graphs.draw_graph <- function( availableStocks, stockInsights, ledger, STOCK)
 
 		# get the range for the x and y axis 
 		xrange <- range(stock_insights_temp$Date)
-		yrange <- range(stock_insights_temp$aroon_list)
+		yrange <- c(0,100)
 
 		# set up the plot 
 		plot(xrange, yrange, type="n", xlab="Date",
 		    ylab="Aroon" )
 
 		# add lines
-		lines(stock_insights_temp$Date, stock_insights_temp$aroon_list, type="l", lwd=1.5, lty=1, col="blue", pch=18)
+		lines(stock_insights_temp$Date, stock_insights_temp$aroon_up, type="l", lwd=1.5, lty=1, col="blue", pch=18)
+		lines(stock_insights_temp$Date, stock_insights_temp$aroon_down, type="l", lwd=1.5, lty=1, col="blue", pch=18)
+		lines(stock_insights_temp$Date, stock_insights_temp$aroon_oscillator, type="l", lwd=1.5, lty=1, col="red", pch=18)
 
 		title = paste("Aroon -", stock_name, sep = " ")
 
@@ -149,7 +153,7 @@ my_graphs.draw_graph <- function( availableStocks, stockInsights, ledger, STOCK)
 
 		# set up the plot 
 		plot(xrange, yrange, type="n", xlab="Date",
-		    ylab="Aroon" )
+		    ylab="Average True Range" )
 
 		# add lines
 		lines(stock_insights_temp$Date, stock_insights_temp$ATR_list, type="l", lwd=1.5, lty=1, col="blue", pch=18)
@@ -169,7 +173,7 @@ my_graphs.draw_graph <- function( availableStocks, stockInsights, ledger, STOCK)
 
 		# set up the plot 
 		plot(xrange, yrange, type="n", xlab="Date",
-		    ylab="Aroon" )
+		    ylab="Bandwidth" )
 
 		# add lines
 		lines(stock_insights_temp$Date, stock_insights_temp$bandwidth_list, type="l", lwd=1.5, lty=1, col="blue", pch=18)
@@ -189,7 +193,7 @@ my_graphs.draw_graph <- function( availableStocks, stockInsights, ledger, STOCK)
 
 		# set up the plot 
 		plot(xrange, yrange, type="n", xlab="Date",
-		    ylab="Aroon" )
+		    ylab="%B Indicator" )
 
 		# add lines
 		lines(stock_insights_temp$Date, stock_insights_temp$B_indicator_list, type="l", lwd=1.5, lty=1, col="blue", pch=18)

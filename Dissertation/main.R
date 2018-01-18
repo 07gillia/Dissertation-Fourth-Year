@@ -56,6 +56,26 @@ ledger = data.frame(
     Stock_ratio = double()
 )
 
+stock_insights = data.frame(
+    Date = as.Date(character()),
+    Stock = character(),
+    Stock_price = double(),
+    bollBands_lower = double(),
+    bollBands_middle = double(),
+    bollBands_upper = double(),
+    chandler_exit_1 = double(),
+    chandler_exit_2 = double(),
+    aroon_up = double(),
+    aroon_down = double(),
+    aroon_oscillator = double(),
+    ATR_list = double(),
+    bandwidth_list = double(),
+    B_indicator_list = double()
+)
+stock_insights$Date <- strptime(stock_insights$Date , format="%Y-%m-%d %H:%M:%S")
+stock_insights$Date <- as.POSIXct(stock_insights$Date)
+stock_insights$Stock <- lapply(stock_insights$Stock, as.character)
+
 
 
 ####################################################################
@@ -104,24 +124,6 @@ available_columns = sample(2:46, 3, replace=F)
 
 write.table(available_columns, "stocks_used.txt", sep="\t")
 
-stock_insights = data.frame(
-    Date = as.Date(character()),
-    Stock = character(),
-    Stock_price = double(),
-    bollBands_lower = double(),
-    bollBands_middle = double(),
-    bollBands_upper = double(),
-    chandler_exit_1 = double(),
-    chandler_exit_2 = double(),
-    aroon_list = double(),
-    ATR_list = double(),
-    bandwidth_list = double(),
-    B_indicator_list = double()
-)
-stock_insights$Date <- strptime(stock_insights$Date , format="%Y-%m-%d %H:%M:%S")
-stock_insights$Date <- as.POSIXct(stock_insights$Date)
-stock_insights$Stock <- lapply(stock_insights$Stock, as.character)
-
 ####################################################################
 
 start.time <- Sys.time()
@@ -131,7 +133,7 @@ current_time = STOCK[49021,1]
 ledger = my_functions.update_ledger(current_time)
 
 # iterate through row 1 -> end 
-for (row in c(145022:nrow(STOCK)-390)) {
+for (row in c(146822:nrow(STOCK)-390)) {
 # start - 49022 end - nrow(STOCK)-390
 
     # iterate through the stocks in the dataframe columns 2 -> end (current = 4 end = 46)
@@ -149,13 +151,14 @@ for (row in c(145022:nrow(STOCK)-390)) {
             current_stock_ratio = ledger[nrow(ledger), 5]
 
             bollBands_list = my_functions.get_bollinger_bands(row, 120, current_stock)
+            aroon_list = my_functions.aroon(row, current_stock, 120)
 
             stock_insights[nrow(stock_insights) + 1,] = list(current_time,
             current_stock, current_stock_price,
             bollBands_list[1], bollBands_list[2], bollBands_list[3],
             my_functions.chandelier_exit(1, row, current_stock),
             my_functions.chandelier_exit(2, row, current_stock),
-            my_functions.aroon(row, current_stock, 120),
+            aroon_list[1],aroon_list[2],aroon_list[3],
             my_functions.average_true_range(row, current_stock, 4),
             my_function.get_bandwidth(row, 120, current_stock),
             my_functions.get_B_indicator(row, 120, current_stock, current_stock_price))
@@ -205,6 +208,8 @@ write.table(time.taken, "time.txt", sep="\t")
 ####################################################################
 
 # Post run, make sure that all the results are dealt with correctly
+
+
 
 ####################################################################
 # Results - Show the results of the algorithm
