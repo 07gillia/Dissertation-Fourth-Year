@@ -131,7 +131,7 @@ current_time = STOCK[49021,1]
 ledger = my_functions.update_ledger(current_time)
 
 # iterate through row 1 -> end 
-for (row in c(49022:nrow(STOCK)-390)) {
+for (row in c(145022:nrow(STOCK)-390)) {
 # start - 49022 end - nrow(STOCK)-390
 
     # iterate through the stocks in the dataframe columns 2 -> end (current = 4 end = 46)
@@ -210,6 +210,6 @@ write.table(time.taken, "time.txt", sep="\t")
 # Results - Show the results of the algorithm
 ####################################################################
 
-my_graphs.draw_graph(1, 3, available_columns, stock_insights, ledger, STOCK)
+my_graphs.draw_graph(available_columns, stock_insights, ledger, STOCK)
 
 ####################################################################

@@ -23,7 +23,7 @@ stock_insights_temp$Stock <- lapply(stock_insights_temp$Stock, as.character)
 
 ####################################################################
 
-my_graphs.draw_graph <- function(numberCols, numberRows, availableStocks, stockInsights, ledger, STOCK){
+my_graphs.draw_graph <- function( availableStocks, stockInsights, ledger, STOCK){
 
 	# show the overall trading performance
 
@@ -55,6 +55,8 @@ my_graphs.draw_graph <- function(numberCols, numberRows, availableStocks, stockI
 
 		stock_name = colnames(STOCK)[stock]
 
+		stock_insights_temp = stock_insights_temp[is.na(stock_insights_temp$Date),]
+
 		for(row in c(1:nrow(stock_insights))){
 
 			# iterate through each row of the big dataframe
@@ -72,13 +74,13 @@ my_graphs.draw_graph <- function(numberCols, numberRows, availableStocks, stockI
 
 		# given a number of rows and columns format the layout
 
-		layout(matrix(c(1:numberRows), numberRows, numberCols, byrow = TRUE))
+		layout(matrix(c(1), 1, 1, byrow = TRUE))
 
 		# draw the graphs given
 
 		# get the range for the x and y axis
 		xrange <- range(stock_insights_temp$Date)
-		yrange <- range(min(stock_insights_temp$bollBands_lower), max(stock_insights$bollBands_upper))
+		yrange <- range(min(stock_insights_temp$bollBands_lower), max(stock_insights_temp$bollBands_upper))
 
 		# set up the plot 
 		plot(xrange, yrange, type="n", xlab="Date",
@@ -97,9 +99,11 @@ my_graphs.draw_graph <- function(numberCols, numberRows, availableStocks, stockI
 
 		####################################################################
 
+		layout(matrix(c(1), 1, 1, byrow = TRUE))
+
 		# get the range for the x and y axis
 		xrange <- range(stock_insights_temp$Date)
-		yrange <- range(min(min(stock_insights_temp$chandler_exit_1), min(stock_insights_temp$chandler_exit_2)), max(max(stock_insights$chandler_exit_1), max(stock_insights$chandler_exit_2)))
+		yrange <- range(min(min(stock_insights_temp$chandler_exit_1), min(stock_insights_temp$chandler_exit_2)), max(max(stock_insights_temp$chandler_exit_1), max(stock_insights_temp$chandler_exit_2)))
 
 		# set up the plot 
 		plot(xrange, yrange, type="n", xlab="Date",
@@ -117,6 +121,8 @@ my_graphs.draw_graph <- function(numberCols, numberRows, availableStocks, stockI
 
 		####################################################################
 
+		layout(matrix(c(1), 1, 1, byrow = TRUE))
+
 		# get the range for the x and y axis 
 		xrange <- range(stock_insights_temp$Date)
 		yrange <- range(stock_insights_temp$aroon_list)
@@ -129,6 +135,66 @@ my_graphs.draw_graph <- function(numberCols, numberRows, availableStocks, stockI
 		lines(stock_insights_temp$Date, stock_insights_temp$aroon_list, type="l", lwd=1.5, lty=1, col="blue", pch=18)
 
 		title = paste("Aroon -", stock_name, sep = " ")
+
+		# add a title
+		title(title)
+
+		####################################################################
+
+		layout(matrix(c(1), 1, 1, byrow = TRUE))
+
+		# get the range for the x and y axis 
+		xrange <- range(stock_insights_temp$Date)
+		yrange <- range(stock_insights_temp$ATR_list)
+
+		# set up the plot 
+		plot(xrange, yrange, type="n", xlab="Date",
+		    ylab="Aroon" )
+
+		# add lines
+		lines(stock_insights_temp$Date, stock_insights_temp$ATR_list, type="l", lwd=1.5, lty=1, col="blue", pch=18)
+
+		title = paste("Average True Range -", stock_name, sep = " ")
+
+		# add a title
+		title(title)
+
+		####################################################################
+
+		layout(matrix(c(1), 1, 1, byrow = TRUE))
+
+		# get the range for the x and y axis 
+		xrange <- range(stock_insights_temp$Date)
+		yrange <- range(stock_insights_temp$bandwidth_list)
+
+		# set up the plot 
+		plot(xrange, yrange, type="n", xlab="Date",
+		    ylab="Aroon" )
+
+		# add lines
+		lines(stock_insights_temp$Date, stock_insights_temp$bandwidth_list, type="l", lwd=1.5, lty=1, col="blue", pch=18)
+
+		title = paste("Bandwidth -", stock_name, sep = " ")
+
+		# add a title
+		title(title)
+
+		####################################################################
+
+		layout(matrix(c(1), 1, 1, byrow = TRUE))
+
+		# get the range for the x and y axis 
+		xrange <- range(stock_insights_temp$Date)
+		yrange <- range(stock_insights_temp$B_indicator_list)
+
+		# set up the plot 
+		plot(xrange, yrange, type="n", xlab="Date",
+		    ylab="Aroon" )
+
+		# add lines
+		lines(stock_insights_temp$Date, stock_insights_temp$B_indicator_list, type="l", lwd=1.5, lty=1, col="blue", pch=18)
+
+		title = paste("%B Indicator  -", stock_name, sep = " ")
 
 		# add a title
 		title(title)
