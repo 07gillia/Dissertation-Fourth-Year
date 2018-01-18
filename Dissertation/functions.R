@@ -253,7 +253,7 @@ my_functions.get_rows_since <- function(the_row, the_stock, the_price){
 	return(result)
 }
 
-my_function.get_total_gain_loss <- function(the_row, the_stock, the_timeframe){
+my_functions.get_total_gain_loss <- function(the_row, the_stock, the_timeframe){
 
 	# find the total amount that a stock went up and down in the given timeframe
 

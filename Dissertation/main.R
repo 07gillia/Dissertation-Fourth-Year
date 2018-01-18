@@ -76,8 +76,6 @@ stock_insights$Date <- strptime(stock_insights$Date , format="%Y-%m-%d %H:%M:%S"
 stock_insights$Date <- as.POSIXct(stock_insights$Date)
 stock_insights$Stock <- lapply(stock_insights$Stock, as.character)
 
-
-
 ####################################################################
 
 # read in the AA.csv data and validate it is as expected
@@ -124,6 +122,32 @@ available_columns = sample(2:46, 3, replace=F)
 
 write.table(available_columns, "stocks_used.txt", sep="\t")
 
+stock_variables = data.frame(
+    Max_bollBands_lower = double(46),
+    Max_bollBands_middle = double(46),
+    Max_bollBands_upper = double(46),
+    Max_chandler_exit_1 = double(46),
+    Max_chandler_exit_2 = double(46),
+    Max_aroon_up = double(46),
+    Max_aroon_down = double(46),
+    Max_aroon_oscillator = double(46),
+    Max_ATR_list = double(46),
+    Max_bandwidth_list = double(46),
+    Max_B_indicator_list = double(46),
+    Min_bollBands_lower = double(46),
+    Min_bollBands_middle = double(46),
+    Min_bollBands_upper = double(46),
+    Min_chandler_exit_1 = double(46),
+    Min_chandler_exit_2 = double(46),
+    Min_aroon_up = double(46),
+    Min_aroon_down = double(46),
+    Min_aroon_oscillator = double(46),
+    Min_ATR_list = double(46),
+    Min_bandwidth_list = double(46),
+    Min_B_indicator_list = double(46),
+    Counter = integer(46)
+)
+
 ####################################################################
 
 start.time <- Sys.time()
@@ -133,7 +157,7 @@ current_time = STOCK[49021,1]
 ledger = my_functions.update_ledger(current_time)
 
 # iterate through row 1 -> end 
-for (row in c(49022:nrow(STOCK)-390)) {
+for (row in c(145022:nrow(STOCK)-390)) {
 # start - 49022 end - nrow(STOCK)-390
 
     # iterate through the stocks in the dataframe columns 2 -> end (current = 4 end = 46)
@@ -175,11 +199,12 @@ for (row in c(49022:nrow(STOCK)-390)) {
                 max_details = stock_insights[(stock_insights$Date == hour_max_time & stock_insights$Stock == current_stock),]
                 min_details = stock_insights[(stock_insights$Date == hour_min_time & stock_insights$Stock == current_stock),]
 
-                print("Max")
-                print(max_details)
-                print("Min")
-                print(min_details)
-                print("#################")
+                max_details = max_details[-c(1,2,3)]
+                min_details = min_details[-c(1,2,3)]
+
+                all_details = c(max_details, min_details, 1)
+
+                stock_variables[column,] = stock_variables[column,] + all_details
             }
 
             # if(current_stock_price < 0.96 * my_functions.get_average(row, 60, current_stock) && current_stock_ratio < 0.95){
@@ -205,7 +230,7 @@ for (row in c(49022:nrow(STOCK)-390)) {
             # update progress bar
             current_data_point = ((row - 48632) * (ncol(STOCK) - 2) + column)
             percentage = current_data_point / total_data_points * 100
-            #cat("\r",format(round(percentage, 3), nsmall = 3), "%")
+            cat("\r",format(round(percentage, 3), nsmall = 3), "%")
 
         }
 
@@ -214,6 +239,8 @@ for (row in c(49022:nrow(STOCK)-390)) {
     ledger = my_functions.update_ledger(current_time)
 
 }
+
+print(stock_variables)
 
 
 write.table(portfolio, "portfolio.txt", sep="\t")
