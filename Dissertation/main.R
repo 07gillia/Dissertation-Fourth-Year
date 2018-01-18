@@ -100,7 +100,7 @@ total_data_points = (nrow(STOCK) - 49023) * (ncol(STOCK) - 2)
 
 # Pre testing to set up the environment
 
-available_columns = sample(2:46, 1, replace=F)
+available_columns = sample(2:46, 3, replace=F)
 
 write.table(available_columns, "stocks_used.txt", sep="\t")
 
@@ -131,7 +131,7 @@ current_time = STOCK[49021,1]
 ledger = my_functions.update_ledger(current_time)
 
 # iterate through row 1 -> end 
-for (row in c(146022:nrow(STOCK)-390)) {
+for (row in c(49022:nrow(STOCK)-390)) {
 # start - 49022 end - nrow(STOCK)-390
 
     # iterate through the stocks in the dataframe columns 2 -> end (current = 4 end = 46)
