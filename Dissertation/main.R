@@ -218,31 +218,31 @@ for (row in c(start_row:end_row)){
 
 
 
-            # if(nrow(stock_variables) > 0){
+            if(nrow(stock_variables) > 1){
 
-            #     to_trade = my_functions.get_B_indicator(row, 120, current_stock, current_stock_price) > stock_variables[current_stock,11] * 0.9
+                print(stock_variables[current_stock,11])
 
-            #     if(to_trade){
+                if(my_functions.get_B_indicator(row, 120, current_stock, current_stock_price) > stock_variables[current_stock,11] * 0.9){
 
-            #         portfolio = my_functions.buy(current_stock, current_stock_price, 100, current_time)
+                    portfolio = my_functions.buy(current_stock, current_stock_price, 100, current_time)
 
-            #     }
+                }
 
-            # }
+            }
 
-            # if(nrow(portfolio) > 0){
+            if(nrow(portfolio) > 0){
 
-            #     for (stock in 1:nrow(portfolio)) {
+                for (stock in 1:nrow(portfolio)) {
 
-            #         if(portfolio[stock,7] > 1.04 && portfolio[stock,8] == FALSE){
+                    if(portfolio[stock,7] > 1.04 && portfolio[stock,8] == FALSE){
 
-            #             portfolio = my_functions.sell(portfolio[stock,1], current_time, current_stock_price)
+                        portfolio = my_functions.sell(portfolio[stock,1], current_time, current_stock_price)
 
-            #         }
+                    }
 
-            #     }
+                }
 
-            # }
+            }
 
             # update progress bar
             current_data_point = ((row - 48632) * (ncol(STOCK) - 2) + column)
