@@ -137,7 +137,7 @@ my_functions.get_hour <- function(the_row, the_stock, multiplication){
 	# returns a list that are all values for the last hour, will wrap
 	# will also remove all NAs form the list
 
-	from_row = the_row - 59 * multiplication
+	from_row = the_row - (59 * multiplication)
 
 	all_stock = STOCK[, the_stock]
 
@@ -154,7 +154,7 @@ my_functions.get_day <- function(the_row, the_stock, multiplication){
 	# returns a list that are all values for the last day
 	# will also remove all NAs form the list
 
-	from_row = the_row - 389 * multiplication
+	from_row = the_row - (389 * multiplication)
 
 	all_stock = STOCK[, the_stock]
 
@@ -171,7 +171,7 @@ my_functions.get_month <- function(the_row, the_stock, multiplication){
 	# returns a list that are all the values for the last month
 	# will also remove all NAs form the list
 
-	from_row = the_row - 7780 * multiplication
+	from_row = the_row - (7780 * multiplication)
 
 	all_stock = STOCK[, the_stock]
 

@@ -118,7 +118,7 @@ total_data_points = (nrow(STOCK) - 49023) * (ncol(STOCK) - 2)
 
 # Pre testing to set up the environment
 
-available_columns = sample(2:46, 3, replace=F)
+available_columns = sample(2:46, 4, replace=F)
 
 write.table(available_columns, "stocks_used.txt", sep="\t")
 
@@ -156,8 +156,15 @@ current_time = STOCK[49021,1]
 
 ledger = my_functions.update_ledger(current_time)
 
+start_row = 30000
+# start - 49022
+# will be using 0 for the main run
+
+end_row = nrow(STOCK)-390
+# end - nrow(STOCK)-390
+
 # iterate through row 1 -> end 
-for (row in c(145022:nrow(STOCK)-390)) {
+for (row in c(start_row:end_row)){
 # start - 49022 end - nrow(STOCK)-390
 
     # iterate through the stocks in the dataframe columns 2 -> end (current = 4 end = 46)
@@ -174,9 +181,11 @@ for (row in c(145022:nrow(STOCK)-390)) {
             current_stock_price = STOCK[row,column]
             current_stock_ratio = ledger[nrow(ledger), 5]
 
+            # get the longer variables done
             bollBands_list = my_functions.get_bollinger_bands(row, 120, current_stock)
             aroon_list = my_functions.aroon(row, current_stock, 120)
 
+            # add to the stock insight 
             stock_insights[nrow(stock_insights) + 1,] = list(current_time,
             current_stock, current_stock_price,
             bollBands_list[1], bollBands_list[2], bollBands_list[3],
@@ -187,9 +196,10 @@ for (row in c(145022:nrow(STOCK)-390)) {
             my_functions.get_bandwidth(row, 120, current_stock),
             my_functions.get_B_indicator(row, 120, current_stock, current_stock_price))
 
-            if(row %% 390 == 0){
-                hour_max = my_functions.get_max(my_functions.get_hour(row, current_stock, 1))
-                hour_min = my_functions.get_min(my_functions.get_hour(row, current_stock, 1))
+            # for each week get a max need to be changed based on the timeframe used
+            if(row %% 390 == 0 & row > start_row + 400){
+                hour_max = my_functions.get_max(my_functions.get_day(row, current_stock, 1))
+                hour_min = my_functions.get_min(my_functions.get_day(row, current_stock, 1))
                 max_row = row - my_functions.get_rows_since(row, current_stock, hour_max)
                 min_row = row - my_functions.get_rows_since(row, current_stock, hour_min)
 
@@ -203,17 +213,24 @@ for (row in c(145022:nrow(STOCK)-390)) {
                 min_details = min_details[-c(1,2,3)]
 
                 all_details = c(max_details, min_details, 1)
-
                 stock_variables[column,] = stock_variables[column,] + all_details
             }
 
-            # if(current_stock_price < 0.96 * my_functions.get_average(row, 60, current_stock) && current_stock_ratio < 0.95){
 
-            #     portfolio = my_functions.buy(current_stock, current_stock_price, 100, current_time)
+
+            # if(nrow(stock_variables) > 0){
+
+            #     to_trade = my_functions.get_B_indicator(row, 120, current_stock, current_stock_price) > stock_variables[current_stock,11] * 0.9
+
+            #     if(to_trade){
+
+            #         portfolio = my_functions.buy(current_stock, current_stock_price, 100, current_time)
+
+            #     }
 
             # }
 
-            # if(nrow(portfolio) > 0) {
+            # if(nrow(portfolio) > 0){
 
             #     for (stock in 1:nrow(portfolio)) {
 
@@ -239,8 +256,6 @@ for (row in c(145022:nrow(STOCK)-390)) {
     ledger = my_functions.update_ledger(current_time)
 
 }
-
-print(stock_variables)
 
 
 write.table(portfolio, "portfolio.txt", sep="\t")
