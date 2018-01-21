@@ -153,15 +153,18 @@ stock_variables = data.frame(
 start.time <- Sys.time()
 
 current_time = STOCK[49021,1]
+# typical value is 49021
 
 ledger = my_functions.update_ledger(current_time)
 
-start_row = 30000
+start_row = 49022
 # start - 49022
 # will be using 0 for the main run
 
 end_row = nrow(STOCK)-390
 # end - nrow(STOCK)-390
+
+edit_variable_stock_variables = 0
 
 # iterate through row 1 -> end 
 for (row in c(start_row:end_row)){
@@ -214,15 +217,15 @@ for (row in c(start_row:end_row)){
 
                 all_details = c(max_details, min_details, 1)
                 stock_variables[column,] = stock_variables[column,] + all_details
+
+                edit_variable_stock_variables = edit_variable_stock_variables + 1
             }
 
 
 
-            if(nrow(stock_variables) > 1){
+            if(edit_variable_stock_variables > 2 & row >= 49022){
 
-                print(stock_variables[current_stock,11])
-
-                if(my_functions.get_B_indicator(row, 120, current_stock, current_stock_price) > stock_variables[current_stock,11] * 0.9){
+                if(my_functions.get_B_indicator(row, 120, current_stock, current_stock_price) > stock_variables[column,11] * 0.9){
 
                     portfolio = my_functions.buy(current_stock, current_stock_price, 100, current_time)
 
