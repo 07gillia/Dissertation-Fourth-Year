@@ -118,7 +118,7 @@ total_data_points = (nrow(STOCK) - 49023) * (ncol(STOCK) - 2)
 
 # Pre testing to set up the environment
 
-available_columns = sample(2:46, 4, replace=F)
+available_columns = sample(2:46, 1, replace=F)
 
 write.table(available_columns, "stocks_used.txt", sep="\t")
 
@@ -157,7 +157,7 @@ current_time = STOCK[49021,1]
 
 ledger = my_functions.update_ledger(current_time)
 
-start_row = 49022
+start_row = 120000
 # start - 49022
 # will be using 0 for the main run
 
@@ -223,7 +223,7 @@ for (row in c(start_row:end_row)){
 
 
 
-            if(edit_variable_stock_variables > 2 & row >= 49022){
+            if(edit_variable_stock_variables > 2 & row >= 49022 & ledger[nrow(ledger),4] >= 100){
 
                 if(my_functions.get_B_indicator(row, 120, current_stock, current_stock_price) > stock_variables[column,11] * 0.9){
 
