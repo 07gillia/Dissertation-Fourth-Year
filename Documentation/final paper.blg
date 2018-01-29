@@ -1,12 +1,12 @@
 This is BibTeX, Version 0.99d (TeX Live 2016)
 Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
-The top-level auxiliary file: final paper notes.aux
+The top-level auxiliary file: final paper.aux
 The style file: agsm.bst
-I found no \citation commands---while reading file final paper notes.aux
-I found no \bibdata command---while reading file final paper notes.aux
+I found no \citation commands---while reading file final paper.aux
+I found no \bibdata command---while reading file final paper.aux
 You've used 0 entries,
             2909 wiz_defined-function locations,
-            637 strings with 4750 characters,
+            637 strings with 4738 characters,
 and the built_in function-call counts, 32 in all, are:
 = -- 0
 > -- 0

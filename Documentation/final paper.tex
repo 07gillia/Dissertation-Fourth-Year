@@ -1,0 +1,223 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage{times}
+\usepackage{durhampaper}
+\usepackage{harvard}
+\usepackage{graphicx}
+\usepackage{longtable}
+
+\citationmode{abbr}
+\bibliographystyle{agsm}
+
+\title{Timeframe Trading Algorithms}
+\author{A.L. Gillies}
+\student{A.L. Gillies}
+\supervisor{M. R. Gadouleau}
+\degree{MEng Computer Science}
+
+\date{}
+\begin{document}
+\maketitle
+
+\begin{abstract}
+The abstract must be a Structured Abstract with the headings {\bf Context/Background}, {\bf Aims}, {\bf Method}, {\bf Results}, and {\bf Conclusions}.  This section should not be longer than half of a page, and having no more than one or two sentences under each heading is advised.\\
+
+{\bf Context/Background} - Algorithmic trading is characterised by an entirely hands off approach to stock market trading. All data manipulation, mathematical inference, machine learning and trade execution is done autonomously. With this approach, how much of an improvement can be gained over a standard interest rate provided by a high street bank, in the time frame given?\\
+
+{\bf Aims} - Using the average interest rate calculated from British banks, the aim of this paper is to show, through implementation of statistical and machine learning techniques that algorithmic trading can improve the annual return on investment over a given time frame.\\
+
+{\bf Method} - This paper will consider two possibilities for implementation of the system, a purely statistical method, relying on known practices and techniques, and a hybrid system incorporating both statistical reasoning and machine learning. The known statistical practices are mostly used by human traders to allow for data insight and are well vetted. The machine learning techniques are widely used in other contexts, with limited academic papers being available for this area.\\
+
+{\bf Results} - \\
+
+{\bf Conclusions} - \\
+\end{abstract}
+
+\begin{keywords}
+Algorithmic, Machine Learning, Statistics, R, Trading, Stocks
+\end{keywords}
+
+\iffalse
+#################################################################################
+\fi
+
+\section{Introduction}
+
+\iffalse
+This section briefly introduces the general project background, the research question you are addressing, and the project objectives.  It should be between 2 to 3 pages in length.  Do not change the font sizes or line spacing in order to put in more text.
+
+- Same as the aims just longer.\\
+- What is the aim for a year?\\
+- Objectives.\\
+- What is the state of the art in the field?\\
+- A bit of the history of trading.\\
+\fi
+
+The stock market has been an early adopter of technology since its inception, with companies wanting to get an edge over their fellows and thus earning the most money. The first computer usage in the stock market was in the early 1970s with the New York Stock Exchange introducing the DOT system or the Designated Order Turnaround system, this allowed for bypassing of brokers and routed an order for specific securities to a specialist on the trading floor. Since this point the use of machines to allow for increase throughput and speed has been pandemic. From this point it was inevitable that computers would be used to aid in the decision making process of what to buy or sell and when. This was shown to be very effective and got significant traction in the financial market in 2001 with the showcase of IBMs MGD and  Hewlett-Packard's ZIP, these two algorithmic strategies were shown to consistently outperform their human counterparts. These were both based on academic papers from 1996 so the academic conception of algorithmic applications in financial markets has been present for several decades. Whilst in the current day over one billion shares are traded every day, this would not be possible without computerised assistance. \\
+
+\label{units}
+\begin{longtable}{ |p{1.5cm}|p{5.5cm}|p{8cm}| }\hline\hline
+Unique ID & Deliverable & Description \\ \hline
+DL1 & Simulate the financial market & Have data for at least 10 companies for at least a year, with data for each minute where data is available. \\ \hline
+DL2 & Allow buying and selling of stocks & Have a functional buying and selling mechanism, with the data collected for each transaction processed. \\ \hline
+DL3 & Implement statistical methods & Implement as many statistical methods as are beneficial to allow for the insight into the data for each stock. \\ \hline
+DL4 & Implement a purely statistic strategy & Using just the statistical methods implemented in DL3, create a strategy that will buy and sell stocks to maximise profit made over the time frame given. \\ \hline
+DL5 & Create a hybrid strategy & Implement a machine learning trading strategy that uses the stock data as well as any statistical methods that are helpful to maximise profit made over the time frame given. \\ \hline
+DL6 & Implement tracking systems & Implement graphical and table outputs for the results of the computer logic and trading performance. \\ \hline
+DL7 & Create a testing criteria & Create a method with which to test the strategy so as to avoid over fitting. \\ \hline
+\caption{Deliverables}
+\end{longtable}
+
+\iffalse
+#################################################################################
+\fi
+
+\section{Related Work}
+
+\iffalse
+This section presents a survey of existing work on the problems that this project addresses.  it should be between 2 to 4 pages in length.  The rest of this section shows the formats of subsections as well as some general formatting information for tables, figures, references and equations.
+\fi
+
+
+
+\iffalse
+#################################################################################
+\fi
+
+\section{Solution}
+
+\iffalse
+This section presents the solutions to the problems in detail.  The design and implementation details should all be placed in this section.  You may create a number of subsections, each focussing on one issue.
+This section should be between 4 to 7 pages in length.
+\fi
+
+
+
+\iffalse
+#################################################################################
+\fi
+
+\section{Results}
+
+\iffalse
+this section presents the results of the solutions.  It should include information on experimental settings.  The results should demonstrate the claimed benefits/disadvantages of the proposed solutions.
+This section should be between 2 to 3 pages in length.
+\fi
+
+
+
+\iffalse
+#################################################################################
+\fi
+
+\section{Evaluation}
+
+\iffalse
+This section should between 1 to 2 pages in length.
+\fi
+
+
+
+\iffalse
+#################################################################################
+\fi
+
+\section{Conclusions}
+
+\iffalse
+This section summarises the main points of this paper.  Do not replicate the abstract as the conclusion.  A conclusion might elaborate on the importance of the work or suggest applications and extensions.  This section should be no more than 1 page in length.
+\fi
+
+
+
+\iffalse
+#################################################################################
+\fi
+
+\iffalse
+\section*{------------------------------------------------------------}
+
+\subsection{Main Text}
+
+The font used for the main text should be Times New Roman (Times) and the font size should be 12.  The first line of all paragraphs should be indented by 0.25in, except for the first paragraph of each section, subsection, subsubsection etc. (the paragraph immediately after the header) where no indentation is needed.
+
+\subsection{Figures and Tables}
+In general, figures and tables should not appear before they are cited.  Place figure captions below the figures; place table titles above the tables.  If your figure has two parts, for example, include the labels ``(a)'' and ``(b)'' as part of the artwork.  Please verify that figures and tables you mention in the text actually exist.  make sure that all tables and figures are numbered as shown in Table \ref{units} and Figure 1.
+%sort out your own preferred means of inserting figures
+
+\begin{table}[htb]
+\centering
+\caption{UNITS FOR MAGNETIC PROPERTIES}
+\vspace*{6pt}
+\label{units}
+\begin{tabular}{ccc}\hline\hline
+Symbol & Quantity & Conversion from Gaussian \\ \hline
+\end{tabular}
+\end{table}
+
+\subsection{References}
+
+The list of cited references should appear at the end of the report, ordered alphabetically by the surnames of the first authors.  References cited in the main text should use Harvard (author, date) format.  When citing a section in a book, please give the relevant page numbers, as in \cite[p293]{budgen}.  When citing, where there are either one or two authors, use the names, but if there are more than two, give the first one and use ``et al.'' as in  , except where this would be ambiguous, in which case use all author names.
+
+You need to give all authors' names in each reference.  Do not use ``et al.'' unless there are more than five authors.  Papers that have not been published should be cited as ``unpublished'' \cite{euther}.  Papers that have been submitted or accepted for publication should be cited as ``submitted for publication'' as in \cite{futher} .  You can also cite using just the year when the author's name appears in the text, as in ``but according to Futher \citeyear{futher}, we \dots''.  Where an authors has more than one publication in a year, add `a', `b' etc. after the year.
+
+\iffalse
+#################################################################################
+\fi
+
+\begin{table}[htb]
+\centering
+\caption{SUMMARY OF PAGE LENGTHS FOR SECTIONS}
+\vspace*{6pt}
+\label{summary}
+\begin{tabular}{|ll|c|} \hline
+& \multicolumn{1}{c|}{\bf Section} & {\bf Number of Pages} \\ \hline
+I. & Introduction & 2--3 \\ \hline
+II. & Related Work & 2--3 \\ \hline
+III. & Solution & 4--7 \\ \hline
+IV. & Results & 2--3 \\ \hline
+V. & Evaluation & 1-2 \\ \hline
+VI. & Conclusions & 1 \\ \hline
+\end{tabular}
+\end{table}
+
+\iffalse
+#################################################################################
+\fi
+
+\section*{Notes for the final paper}
+
+\subsection*{Data}
+- taken from a website
+- between dates
+- in format
+- using R and shell scripts managed
+- put into a single file
+- read in
+- initially had an issue with data, not enough
+- was rectified and the same steps were followed to put it in the same format
+- dumbing of the data was done ? might not mention this but we only take the open price of each minute, thus reducing the dataload, this would not be done in a full scale system as we would have all the metrics and data from the past and all maths that would be used has already been calculated.
+
+\subsection*{Notes}
+- ghomas has suggested that we run the code on the GPU as we are running a rolling average
+- It could be run on hamilton
+- This will take some research but we will continue in the research department first
+- Then we will do this parallelism
+- then we will implement some of the researched techniques
+
+- the functions we need to implement are:
+- when to buy
+- when to sell
+- how much to buy
+
+- a buy and hold strategy could be implemented first, this would be a buy early in the year and hold until the end, any short term fluctuations would not have any effect but the exact time to buy and sell could be tricky, this in an initial buy at a low price and a late sell at a high price, any fluctuations in the middle are not important only the difference in almost the whole market as this is a conservative approach to trading and will spread the bet.
+
+- genetic trading algorithm, this is more of a technique to make a strategy rather than a strategy itself, the idea is to 'learn' how to trade, using a fitness function and other such techniques on a strategy that is already in place in order to fine tune it. This may be hard to implement but could have some merit.
+
+- there is the possibility of making some machine learning algorithms that will do the same thing, this will have to be researched in R as this is new to me. The techniques are not, but the language in conjunction is.
+
+- some hands on trading strategies could be considered, just with the algorithm being the active party not the person. These include position trading, swing trading, scalping, and day trading. These can be considered.
+
+- alpha is something that may be useful, it is a metric used to measure risk. Alpha is one of five technical risk ratios; the others are beta, standard deviation, R-squared, and the Sharpe ratio. All these will be looked into, to see if any benefit can be drawn from them. They may be useful in later calculations.
+\fi
+
+\end{document}
