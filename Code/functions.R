@@ -26,39 +26,40 @@ action.buy <- function(date, time, stock, amount){
 action.sell <- function(UID, date, time, stock){
 	# The function that sells given a UID
 
-	print(UID)
-	print(date)
-	print(time)
-	print(stock)
-
-	stop()
-
-	selling_row = Active[Active$Unique_ID == UID,]
-
-	print(selling_row)
+	output = list(UID, Active[Active$Unique_ID == UID,2], Active[Active$Unique_ID == UID,3], Active[Active$Unique_ID == UID,4], Active[Active$Unique_ID == UID,5], Active[Active$Unique_ID == UID,6], date, time, Data[Data$TIME == time & Data$DATE == date,stock])
 
 	Sold[nrow(Sold) + 1,] = output
 
 	return(Sold)
 }
 
-Sold = data.frame(
-	Unique_ID = character(),
-	Date_Bought = character(),
-	Time_Bought = character(),
-	Stock = character(),
-	Number_Shares = double(),
-	Cost_Per_Share = double(),
-	Date_Sold = character(),
-	Time_Sold = character(),
-	Price_Per_Share = double(),
-	stringsAsFactors=FALSE
-)
-
-action.update <- function(){
+action.update <- function(date, capital){
 	# The function that will update the ledger every minute
 
-	return()
+	value_stock = 0
+
+	value_capital = capital
+
+	if(nrow(Active) > 0){
+		for (x in c(1:nrow(Active))) {
+			value_stock = value_stock + Active[x,5] * Active[x,6]
+			value_capital = value_capital - Active[x,5] * Active[x,6]
+		}
+	}
+
+	if(nrow(Sold) > 0){
+		for (x in c(1:nrow(Sold))) {
+			value_capital = value_capital + Sold[x,9] * Sold[x,5] - Sold[x,5] * Sold[x,6]
+		}
+	}
+
+	total_value = value_capital + value_stock
+
+	output = list(date, total_value, value_stock, value_capital)
+
+	Ledger[nrow(Ledger) + 1,] = output
+
+	return(Ledger)
 }
 
 ####################################################################

@@ -64,14 +64,14 @@ Sold = data.frame(
 )
 
 # create a dataframe to keep track of what the capital is doing
-ledger = data.frame(
+Ledger = data.frame(
     Date = character(),
-    Time = character(),
     Value = double(),
     Stock_Value = double(),
-    Capital_Value = double(),
-    Stock_ratio = double()
+    Capital_Value = double()
 )
+
+Ledger$Date = lapply(Ledger$Date, as.character)
 
 Date_List = unique(as.Date(Data$DATE, format = "%d/%m/%y"))
 Date_List = Date_List[order(Date_List)]
@@ -84,11 +84,13 @@ Stock_Names = c("AA", "AAPL", "ADBE", "AIG", "AMAT", "AMT", "AXP", "BA", "BAC", 
 ####################################################################
 
 Start_Date = 1
-# Initial value = 1 
+# Initial value = 1
 # Start trading at X?
 
 End_Date = 382
 # Initial value = 382
+
+Available_Capital = 100000
 
 Available_Stocks = sort(sample(Stock_Names, 4, replace=F))
 # Initial value = 44
@@ -98,9 +100,8 @@ sprintf("Stocks that will be used : %s", paste(Available_Stocks, collapse = " ")
 
 Available_Data = Data[ ,(which(names(Data) %in% union("TIME",union("DATE", Available_Stocks))))]
 
-counter = 0
-
 ####################################################################
+# Days
 
 for (day_index in c(Start_Date:End_Date)) {
 	# Iterate through every day of the data
@@ -109,12 +110,18 @@ for (day_index in c(Start_Date:End_Date)) {
 	current_date_data = subset(Available_Data, DATE == current_date,)
 	# Set date variables and subset the data
 
+	####################################################################
+	# Minutes
+
 	for (minute_index in c(1:nrow(current_date_data))) {
 		# Iterate through the datapoints available
 
 		current_time = as.character(current_date_data[minute_index,2])
 		current_time_data = current_date_data[minute_index,3:ncol(current_date_data)]
 		# Set the time data and subset the data further
+
+		####################################################################
+		# Stocks
 
 		for (stock_index in c(1:ncol(current_time_data))) {
 			# Iterate through the stocks available
@@ -126,9 +133,15 @@ for (day_index in c(Start_Date:End_Date)) {
 				current_stock_value = current_time_data[,stock_index]
 				# Set the stock variables
 
+				####################################################################
+				# Buy
+
 				if(day_index == 4 & minute_index == 5 & stock_index == 1){
 					Active = action.buy(current_date, current_time, current_stock, 100)
 				}
+
+				####################################################################
+				# Sell
 
 				if(nrow(Active) > 0){
 
@@ -136,16 +149,12 @@ for (day_index in c(Start_Date:End_Date)) {
 						# iterate through every stock that is currently owned
 
 						if( (Active[owned_index,5] * current_stock_value) >= (1.02 * Active[owned_index,5] * Active[owned_index,6]) && current_stock == Active[owned_index,4] ){
-							print(Active[owned_index,])
-							print(current_stock_value)
-							print(current_date)
-							print(current_time)
 
 							UID = Active[owned_index, 1]
 
-							action.sell(UID, current_date, current_time, current_stock)
+							Sold = action.sell(UID, current_date, current_time, current_stock)
 
-							stop()
+							Active = Active[!(Active$Unique_ID == UID),]
 						}
 					}
 				}
@@ -153,27 +162,21 @@ for (day_index in c(Start_Date:End_Date)) {
 		}
 	}
 
+	Ledger = action.update(current_date, Available_Capital)
+
     percentage = (day_index - Start_Date) / (End_Date - Start_Date) * 100
     cat("\r",format(round(percentage, 3), nsmall = 3), "%")
     # show a percentage in the terminal
 }
 cat("\n")
 
-print(counter)
-
 print(Active)
 print(Sold)
+print(Ledger)
 
 ####################################################################
 # Results - Show the results of the algorithm
 ####################################################################
 
-						# if( (Active[owned_index,5] * current_stock_value) >= (1.02 * Active[owned_index,5] * Active[owned_index,6]) ){
-						# 	UID = Active[owned_index,1]
-						# 	action.sell(UID, current_date, current_time, current_stock])
 
-						# 	print(Active)
-						# 	print(Sold)
 
-						# 	stop()
-						# }
