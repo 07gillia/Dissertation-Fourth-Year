@@ -82,7 +82,7 @@ Stock_Names = c("AA", "AAPL", "ADBE", "AIG", "AMAT", "AMT", "AXP", "BA", "BAC", 
 # Testing - test the given algorithm over 
 ####################################################################
 
-Start_Date = 1
+Start_Date = 50
 # Initial value = 1
 # Start trading at X?
 
@@ -133,23 +133,16 @@ for (day_index in c(Start_Date:End_Date)) {
 				# Set the stock variables
 
 				####################################################################
+				# Data collection
+
+				KAMA = action.get_kaufman_adaptive_moving_average(day_index, current_stock, current_stock_value)
+
+				####################################################################
 				# Buy
 
 				if(day_index == 60 & minute_index == 50 & stock_index == 1){
 
-					x_minutes = action.get_last_X_datapoints(current_stock, current_time, current_date, 10)
-					day = action.get_current_day_available(current_time, current_date, current_stock)
-					previous_day = action.get_previous_day(day_index, current_stock)
-					gain_loss_list = action.get_total_gain_loss(previous_day)
-					previous_day_close = action.get_previous_day_close(day_index, current_stock)
-					previous_10_days = action.get_last_X_days(day_index, current_stock, 10)
-
 					Active = action.buy(current_date, current_time, current_stock, 100000)
-
-					moving_average = action.get_moving_average(day_index, current_stock, 10)
-					bollinger_bands = action.get_bollinger_bands(day_index, current_stock)
-					chandelier_exit = action.get_chandelier_exit(day_index, current_stock)
-					ichimoku_cloud = action.get_ichimoku_cloud(day_index, current_stock)
 				}
 
 				####################################################################

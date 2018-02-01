@@ -183,10 +183,18 @@ action.get_total_gain_loss <- function(list){
 
 action.get_previous_day_close <- function(day_index, stock){
 	# get the last value of the preious day given a stock, time, and date
+	# need to make sure that data exists for that day
 
-	previous_day = action.get_previous_day(day_index, stock)
+	if(length(action.get_previous_day(day_index, stock)) < 1){
+		previous_day = action.get_previous_day(day_index - 1, stock)
+	}
+	else{
+		previous_day = action.get_previous_day(day_index, stock)
+	}
 
-	result = tail(previous_day,1)
+	previous_day = previous_day[!is.na(previous_day)]
+
+	result = previous_day[length(previous_day)]
 
 	return(result)
 }
@@ -223,6 +231,16 @@ action.get_average_true_range <- function(day_index, stock, list){
 	method_3 = abs(max(list) - action.get_previous_day_close(day_index, stock))
 
 	return(action.get_max(c(method_1, method_2, method_3)))
+}
+
+action.get_exponential_moving_average <- function(day_index, stock, days){
+	# get the EMA over the set number of days for the specific stock
+
+	data = action.get_last_X_days(day_index, stock, days)
+
+	multiplier = (2/(days + 1))
+
+	ema = 0 # hard
 }
 
 ####################################################################
@@ -289,7 +307,9 @@ action.get_ichimoku_cloud <- function(date_index, stock){
 	return(c(conversion_line, base_line, leading_span_A, leading_span_B, lagging_span))
 }
 
-action.get_kaufman_adaptive_moving_average <- function(){
+KAMA = c()
+
+action.get_kaufman_adaptive_moving_average <- function(day_index, stock, current_stock_price){ # DON'T KNOW HOW TO DO!!!!
 	# Current KAMA = Prior KAMA + SC x (Price - Prior KAMA)
 
 	# SC = [ER x (fastest SC - slowest SC) + slowest SC]2
@@ -300,11 +320,42 @@ action.get_kaufman_adaptive_moving_average <- function(){
 	# Volatility = Sum10(ABS(Close - Prior Close))
 	# Volatility is the sum of the absolute value of the last ten price changes (Close - Prior Close).
 
-	
+	change = abs(action.get_previous_day_close(day_index, stock) - action.get_previous_day_close((day_index-10), stock))
 
-	result = 0
+	volatility = 0
+
+	for (i in c(1:10)) {
+		volatility = volatility + abs(action.get_previous_day_close(day_index - i + 1, stock) - action.get_previous_day_close(day_index - i, stock))
+	}
+
+	if(change == 0 | volatility == 0){
+		ER = 0
+	}
+	else{
+		ER = change / volatility
+	}
+
+	SC = (ER * (2/(2+1) - 2/(30+1)) + 2/(30+1))^2
+
+	if(length(KAMA) < 1){
+		# if this has not been calculated before
+		result = SC * current_stock_price
+	}
+	else{
+		result = tail(KAMA,1) + SC * (current_stock_price - tail(KAMA,1))
+	}
+
+	append(KAMA, result)
 
 	return(result)
+}
+
+action.get_keltner_channels <- function(){
+	# Middle Line: 20-day exponential moving average 
+	# Upper Channel Line: 20-day EMA + (2 x ATR(10))
+	# Lower Channel Line: 20-day EMA - (2 x ATR(10))
+
+
 }
 
 ####################################################################
