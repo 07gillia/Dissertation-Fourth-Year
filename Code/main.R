@@ -135,7 +135,7 @@ for (day_index in c(Start_Date:End_Date)) {
 				####################################################################
 				# Data collection
 
-				KAMA = action.get_kaufman_adaptive_moving_average(day_index, current_stock, current_stock_value)
+				# KAMA = action.get_kaufman_adaptive_moving_average(day_index, current_stock, current_stock_value)
 
 				####################################################################
 				# Buy
@@ -179,6 +179,6 @@ cat("\n")
 # Results - Show the results of the algorithm
 ####################################################################
 
-
+graphs.plot(Ledger)
 
 ####################################################################
