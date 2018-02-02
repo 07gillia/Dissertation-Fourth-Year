@@ -8,7 +8,7 @@ action.buy <- function(date, time, stock, amount){
 	UID = round(runif(1, 0, 1000000000))
 	# create a unique id for the transaction just choose a random number
 
-	current_stock_value = Data[Data$DATE == date & Data$TIME == time,stock]
+	current_stock_value = Data[Data$DATE == date & Data$TIME == time, stock]
 	# get the current stock value
 
 	number_of_shares = amount / current_stock_value
@@ -74,6 +74,40 @@ action.time <- function(time){
 	first = substr(time,1,2)
 	second = substr(time,4,5)
 	result = paste(first,second,sep="")
+	return(result)
+}
+
+####################################################################
+# Decision Functions
+####################################################################
+
+action.should_buy <- function(current_date, current_time, current_stock){
+	# Function that will decide if the current stock should be bought or not
+
+	result = FALSE
+
+	if(current_date == 160616 & current_time == 1000 & current_stock == Available_Stocks[1]){
+		# Test to change to should buy
+
+		result = TRUE
+	}
+
+	return(result)
+}
+
+action.should_sell <- function(uid, date, time){
+	# Function that will decide if the current stock should be sold or not
+
+	result = FALSE
+
+	row = Active[Active$Unique_ID == uid,]
+
+	if((Active[Active$Unique_ID == uid, 5] * Active[Active$Unique_ID == uid, 6] * 1.04) < (Data[Data$DATE == date & Data$TIME == time, Active[Active$Unique_ID == uid,4]] * Active[Active$Unique_ID == uid, 5])){
+		# Test to change to sell
+
+		result = TRUE
+	}
+
 	return(result)
 }
 
