@@ -47,6 +47,8 @@ for (x in c(0:44)) {
 	counter = counter + 1
 }
 
+ALL$DateTime = paste(ALL$DATE,"-",ALL$TIME)
+
 print(tail(ALL,10))
 
 print(colnames(ALL))

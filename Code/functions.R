@@ -62,6 +62,21 @@ action.update <- function(date, capital){
 	return(Ledger)
 }
 
+action.date <- function(date){
+	first = substr(date,7,8)
+	second = substr(date,4,5)
+	third = substr(date,1,2)
+	result = paste(first,second,third, sep = "")
+	return(result)
+}
+
+action.time <- function(time){
+	first = substr(time,1,2)
+	second = substr(time,4,5)
+	result = paste(first,second,sep="")
+	return(result)
+}
+
 ####################################################################
 # Basic Functions
 ####################################################################
