@@ -166,28 +166,29 @@ for (date in c(Start_Date:End_Date)) {
 					Active = action.buy(current_date, current_time, stock, 1000)
 
 				}
-
-
-
-				####################################################
-				# Check if there are stocks to sell
-
-				if(nrow(Active) > 0){
-					# Means that there are active stocks
-
-					for (row in c(1:nrow(Active))) {
-						# iterate through the active stocks
-
-						if(action.should_sell(uid, current_date, current_time)){
-							# Check each row, check if it should be sold
-
-							Sold = action.sell(uid, current_date, current_time)
-							Active = Active[!(Active$Unique_ID == uid),]
-						}
-					}
-				}
 			}
 		}
+
+		####################################################
+		# Check if there are stocks to sell
+
+		if(nrow(Active) > 1){
+			# if there are stocks to trade
+
+			for (row in c(1:nrow(Active))) {
+				# for each of the sellable stocks
+
+				row_data = Active[row,]
+				row_stock_price = available_date_data[available_date_data$TIME == current_time, Active[1,4]]
+				
+				if(runif(1) < 0.001 & !is.na(row_stock_price) & !is.null(row_stock_price)){
+					# Check to see if the current row should be sold
+
+					Sold = action.sell(row_data[1,1],current_date, current_time, row_data[1,4])
+					Active = Active[!(Active$Unique_ID == row_data[1,1]),]
+				}
+			}
+		}				
 	}
 
 	percentage = (date - Start_Date) / (End_Date - Start_Date) * 100

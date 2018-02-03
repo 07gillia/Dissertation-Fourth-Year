@@ -86,6 +86,12 @@ action.should_buy <- function(current_date, current_time, current_stock){
 
 	result = FALSE
 
+	number = runif(1)
+
+	if(number < 0.0001){
+		result = TRUE
+	}
+
 	if(current_date == 160616 & current_time == 1000 & current_stock == Available_Stocks[1]){
 		# Test to change to should buy
 
@@ -102,7 +108,7 @@ action.should_sell <- function(uid, date, time){
 
 	row = Active[Active$Unique_ID == uid,]
 
-	if((Active[Active$Unique_ID == uid, 5] * Active[Active$Unique_ID == uid, 6] * 1.04) < (Data[Data$DATE == date & Data$TIME == time, Active[Active$Unique_ID == uid,4]] * Active[Active$Unique_ID == uid, 5])){
+	if((Active[Active$Unique_ID == uid, 5] * Active[Active$Unique_ID == uid, 6] * 1.04) < (available_date_data[available_date_data$TIME == time, Active[Active$Unique_ID == uid, 4]] * Active[Active$Unique_ID == uid, 5])){
 		# Test to change to sell
 
 		result = TRUE
