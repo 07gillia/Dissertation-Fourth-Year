@@ -23,10 +23,10 @@ action.buy <- function(date, time, stock, amount){
 	return(Active)
 }
 
-action.sell <- function(UID, date, time, stock){
+action.sell <- function(UID, date, time, stock, stock_price){
 	# The function that sells given a UID
 
-	output = list(UID, Active[Active$Unique_ID == UID,2], Active[Active$Unique_ID == UID,3], Active[Active$Unique_ID == UID,4], Active[Active$Unique_ID == UID,5], Active[Active$Unique_ID == UID,6], date, time, Data[Data$TIME == time & Data$DATE == date,stock])
+	output = list(UID, Active[Active$Unique_ID == UID,2], Active[Active$Unique_ID == UID,3], Active[Active$Unique_ID == UID,4], Active[Active$Unique_ID == UID,5], Active[Active$Unique_ID == UID,6], date, time, stock_price)
 
 	Sold[nrow(Sold) + 1,] = output
 
@@ -88,7 +88,7 @@ action.should_buy <- function(current_date, current_time, current_stock){
 
 	number = runif(1)
 
-	if(number < 0.0001){
+	if(number < 0.00001){
 		result = TRUE
 	}
 

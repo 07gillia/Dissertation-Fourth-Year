@@ -166,26 +166,26 @@ for (date in c(Start_Date:End_Date)) {
 					Active = action.buy(current_date, current_time, stock, 1000)
 
 				}
-			}
-		}
 
-		####################################################
-		# Check if there are stocks to sell
+				####################################################
+				# Check if there are stocks to sell
 
-		if(nrow(Active) > 1){
-			# if there are stocks to trade
+				if(nrow(Active) > 1 & is.element(stock, Active[4,])){
+					# Test if there is an row in the active dataframe that matches
 
-			for (row in c(1:nrow(Active))) {
-				# for each of the sellable stocks
+					for (row in c(1:nrow(Active))) {
+						# for each of the sellable stocks
 
-				row_data = Active[row,]
-				row_stock_price = available_date_data[available_date_data$TIME == current_time, Active[1,4]]
-				
-				if(runif(1) < 0.001 & !is.na(row_stock_price) & !is.null(row_stock_price)){
-					# Check to see if the current row should be sold
+						row_data = Active[row,]
+						row_stock_price = available_date_data[available_date_data$TIME == current_time, Active[1,4]]
+						
+						if(runif(1) < 0.001 & !is.na(row_stock_price) & !is.null(row_stock_price)){
+							# Check to see if the current row should be sold
 
-					Sold = action.sell(row_data[1,1],current_date, current_time, row_data[1,4])
-					Active = Active[!(Active$Unique_ID == row_data[1,1]),]
+							Sold = action.sell(row_data[1,1],current_date, current_time, row_data[1,4], current_stock_price)
+							Active = Active[!(Active$Unique_ID == row_data[1,1]),]
+						}
+					}
 				}
 			}
 		}				
