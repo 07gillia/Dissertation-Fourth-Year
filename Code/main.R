@@ -66,9 +66,11 @@ Sold = data.frame(
 	Stock = character(),
 	Number_Shares = double(),
 	Cost_Per_Share = double(),
+	Amount_bought = double(),
 	Date_Sold = double(),
 	Time_Sold = double(),
 	Price_Per_Share = double(),
+	Amount_sold = double(),
 	stringsAsFactors=FALSE
 )
 
@@ -164,27 +166,31 @@ for (date in c(Start_Date:End_Date)) {
 					# Test critiera for buy
 
 					Active = action.buy(current_date, current_time, stock, 1000)
-
 				}
 
-				####################################################
-				# Check if there are stocks to sell
+				if(nrow(Active) > 1){
+					# If there is something to sell
 
-				if(nrow(Active) > 1 & is.element(stock, Active[4,])){
-					# Test if there is an row in the active dataframe that matches
+					to_remove = c()
 
 					for (row in c(1:nrow(Active))) {
-						# for each of the sellable stocks
+						# Iterate through each row in active
 
-						row_data = Active[row,]
-						row_stock_price = available_date_data[available_date_data$TIME == current_time, Active[1,4]]
+						uid = Active[row, 1]
 						
-						if(runif(1) < 0.001 & !is.na(row_stock_price) & !is.null(row_stock_price)){
-							# Check to see if the current row should be sold
+						if(action.should_sell(uid, current_date, current_time) & Active[row,4] == stock){
+							# Test the sell critirea
 
-							Sold = action.sell(row_data[1,1],current_date, current_time, row_data[1,4], current_stock_price)
-							Active = Active[!(Active$Unique_ID == row_data[1,1]),]
+							row_data = Active[row,]
+
+							to_remove = union(to_remove, c(row))
+
+							Sold = action.sell(row_data, current_date, current_time, stock, current_stock_price)
 						}
+					}
+
+					if(length(to_remove != 0)){
+						Active = Active[!to_remove, ]
 					}
 				}
 			}

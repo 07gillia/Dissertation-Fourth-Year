@@ -23,10 +23,10 @@ action.buy <- function(date, time, stock, amount){
 	return(Active)
 }
 
-action.sell <- function(UID, date, time, stock, stock_price){
+action.sell <- function(row, date, time, stock, stock_price){
 	# The function that sells given a UID
 
-	output = list(UID, Active[Active$Unique_ID == UID,2], Active[Active$Unique_ID == UID,3], Active[Active$Unique_ID == UID,4], Active[Active$Unique_ID == UID,5], Active[Active$Unique_ID == UID,6], date, time, stock_price)
+	output = list(row[1], row[2], row[3], row[4], row[5], row[6], row[5]*row[6], date, time, stock_price, row[5]*stock_price)
 
 	Sold[nrow(Sold) + 1,] = output
 
@@ -88,13 +88,7 @@ action.should_buy <- function(current_date, current_time, current_stock){
 
 	number = runif(1)
 
-	if(number < 0.00001){
-		result = TRUE
-	}
-
-	if(current_date == 160616 & current_time == 1000 & current_stock == Available_Stocks[1]){
-		# Test to change to should buy
-
+	if(number < 0.0001){
 		result = TRUE
 	}
 
@@ -106,11 +100,9 @@ action.should_sell <- function(uid, date, time){
 
 	result = FALSE
 
-	row = Active[Active$Unique_ID == uid,]
+	number = runif(1)
 
-	if((Active[Active$Unique_ID == uid, 5] * Active[Active$Unique_ID == uid, 6] * 1.04) < (available_date_data[available_date_data$TIME == time, Active[Active$Unique_ID == uid, 4]] * Active[Active$Unique_ID == uid, 5])){
-		# Test to change to sell
-
+	if(number < 1){
 		result = TRUE
 	}
 
