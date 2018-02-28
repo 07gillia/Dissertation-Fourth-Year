@@ -90,7 +90,15 @@ This section presents the solutions to the problems in detail.  The design and i
 This section should be between 4 to 7 pages in length.
 \fi
 
+How the simulation was set up.\\
+The logic behind the simulation was to allow trading at a fine grain level, this needed to be permitted by the data chosen to perform the algorithms on. A drawback was that 'tick data' or data for each trade executed was found to be too costly for the project so 'minute data' was used. Minute data provides an open, high, low, and close price for a stock in the given minute, this gave plenty of data points per day of trading. A simplification was created at this point, trading was only done on the price that opened the minute. This was done to reduce the complexity of calculating any inter-minute values. The running of the simulation was based on the progression through each date of available trading and for each day iterate through every minute of the trading day, starting at 09:30 until 16:00. Each trading day has 390 points at which trading is possible, if the data permits it. This is available for X days in the 18 months of data that was used.
 
+
+Talk through what data was used.\\
+Talk through why that data was used.\\
+Why was the simulation set up that way?\\
+What statistical methods were used first?\\
+How do these methods work?\\
 
 \iffalse
 #################################################################################

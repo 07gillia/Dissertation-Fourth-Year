@@ -102,7 +102,7 @@ action.should_sell <- function(uid, date, time){
 
 	number = runif(1)
 
-	if(number < 1){
+	if(number < 0.0005){
 		result = TRUE
 	}
 
