@@ -141,6 +141,10 @@ What are some basic functions that need to be defined before they are used?\\
 
 
 
+\iffalse
+#################################################################################
+\fi
+
 \subsubsection*{Technical Overlays}
 
 \textbf{Bollinger Bands}  - Developed by John Bollinger, these are volatility bands placed above and bellow the current stock price and are based on the standard deviation. These are designed to give an indication of how the volatility of a given stock changes over time. For any given stock over a time frame X, the three bands are calculated as such:\\
@@ -192,66 +196,111 @@ Smoothing Constant = ((Efficiency Ratio x (fastest SC - slowest SC)) + slowest S
 
 Final stage is the use of the previous KAMA value to calculate the next value. \\
 
-New KAMA = Previous KAMA + (Smoothing Constant x (Current Price - Previous KAMA))
+New KAMA = Previous KAMA + (Smoothing Constant x (Current Price - Previous KAMA))\\
+
+WORK ON THIS ONE \\
 
 \iffalse
 []
 \fi
 
-\textbf{Keltner Channels} \\
+\textbf{Keltner Channels} - Very similar to Bollinger Bands but instead of using standard deviation average true range is used. Created by Chester Keltner, this indicator is made up of three lines in a similar way to Bollinger Bands.\\
+
+Upper Channel Line = Exponential Moving Average(X) + (2 x Average True Range(Y))\\ - Default X = 20, Y = 10 \\
+Middle Line = Exponential Moving Average(X)\\ - Default X = 20 \\
+Lower Channel Line = Exponential Moving Average(X) - (2 x Average True Range(Y))\\ - Default X = 20, Y = 10 \\
 
 \iffalse
 []
 \fi
 
-\textbf{Moving Averages} \\
+\textbf{Moving Averages} - These can come in multiple forms with multiple names. The catch all term for this type of smoothing average is a moving average. The most simple is known as a Simple Moving Average. This takes the average of the last X data points. There is no weighting or extra steps. A more complex version is the Exponential Moving Average, this uses weighting to give the more recent values more significance in the calculation. The initial value of EMA is the same as the SMA for the same period as EMA requires an initial value.\\
+
+EMA$_{Today}$ = (Current Stock Price x K) + (EMA$_{Yesterday}$ x (1 - K)) \\
+K = 2 / (N + 1) \\
+N = Number of periods over which the EMA is applied \\
 
 \iffalse
 []
 \fi
 
-\textbf{Moving Average Envelopes} \\
+\textbf{Moving Average Envelopes} - Based on a Moving Average, this is a percentage based envelope that provide parallel bands above and below the Moving Average. Gives an indication of trends in the data as well as an indicator for stocks that are overbought and oversold when the trend is flat.\\
+
+Upper Envelope = MovingAverage(X) + (MovingAverage(X) x Y)\\
+Lower Envelope = MovingAverage(X) - (MovingAverage(X) x Y)\\
+Typical values X = 20 and Y = 0.025\\
 
 \iffalse
 []
 \fi
 
-\textbf{Parabolic SAR} \\
+\textbf{Parabolic SAR} - Developed by Welles Wilder. SAR stands for 'stop and reverse', this was called a Parabolic Time/Price System. This indicator follows the stock price as the trend is formed, and will then 'stop and reverse' when the trend ends, to follow the new trend. This is one of the more complex indicators.\\
+
+In the case of a rising SAR:
+
+EP or extreme point is a variable that is equal to the highest value of the current uptrend.\\
+AF or acceleration factor is a variable that starts at 0.02 and is increment by 0.02 each time the EP is changed, meaning that it is incremented each time a new high is reached. The maximum value of AF is 0.2. \\
+
+SAR = SAR$_{Yesterday}$ + AF$_{Yesterday}$(EP$_{Yesterday}$ - SAR$_{Yesterday}$) \\
+
+In the case of a falling SAR:
+
+This uses the same variable names but inverse behaviour, the EP is equal to the lowest point in the current downtrend. AF is the same but is incremented when EP reaches a new low. \\
+
+SAR = SAR$_{Yesterday}$ - AF$_{Yesterday}$(EP$_{Yesterday}$ - SAR$_{Yesterday}$) \\
+
+These are used to indicate a trend and once a price falls to the other side of the value calculated in the current trend, that trend is over and SAR will flip to the opposite trend. \\
 
 \iffalse
 []
 \fi
 
-\textbf{Pivot Points} \\
+\textbf{Pivot Points} - An overlay used to indicate directional movement and then shows these in potential support and resistance levels. These are predictive indicators and they exist in multiple forms, the most well known are the standard, Denmark, and Fibonacci versions. These are calculated using the previous days high, low, and close values and are then not recalculated throughout the trading day. A calculation has multiple components, the pivot point, multiple supports, and multiple resistances.\\
+
+Standard Pivot Points. \\
+Pivot Point = (High + Low + Close)/3\\
+Support One = (PP x 2) - High\\
+Support Two = PP - (High - Low)\\
+Resistance One = (PP x 2) - Low\\
+Resistance Two = PP + (High - Low)\\
+
+Denmark Pivot Points. These are the most complex calculations as they have conditional statements in them and do not use the same calculation methods as the other two.\\
+Pivot Point = X / 4\\
+Support One = (X / 2) - High\\
+Resistance One = (X / 2) - Low\\
+
+Where X is calculated: \\
+If Close $<$ Open: X = High + (2 x Low) + Close\\
+If Close $>$ Open: X = (2 x High) + Low + Close\\
+If Close = Open: X = High + Low + (2 x Close)\\
+
+Fibonacci Pivot Points. \\
+Pivot Point = (High + Low + Close)/3\\
+Support One = PP - (0.382 x (High  -  Low))\\
+Support Two = PP - (0.618 x (High  -  Low))\\
+Support Three = PP - (1 x (High  -  Low))\\
+Resistance One = PP + (0.382 x (High  -  Low))\\
+Resistance Two = PP + (0.618 x (High  -  Low))\\
+Resistance Three = PP + (1 x (High  -  Low))\\
 
 \iffalse
 []
 \fi
 
-\textbf{Price Channels} \\
+\textbf{Price Channels} - Using three calculations to show an upper, lower, and middle bound, used to indicate the start of an upwards or downward trend and act accordingly.\\
+
+Upper = High(X)\\
+Center = (High(X) + Low(X)) / 2\\
+Lower = Low(X)\\
+The default X value is 20.\\
 
 \iffalse
 []
 \fi
 
-\textbf{Volume By Price} \\
-
 \iffalse
-[]
+#################################################################################
 \fi
-
-\textbf{Volume-Weighted Average Price (VWAP)} \\
-
-\iffalse
-[]
-\fi
-
-\textbf{ZigZag} \\
-
-\iffalse
-[]
-\fi
-
 
 \subsubsection*{Technical Indicators}
 
@@ -345,13 +394,7 @@ Williams \%R \\
 
 \subsection*{Machine Learning}
 
-What statistical methods were used first?\\
 
-Once a working simulation had been established and all functions had been shown to be working through hard coding of behaviour, statistical methods had to be implemented. These were separated into two groups, the first are called technical overlays, these are methods that provided insight into the data by providing numbers that are on the same scale as the price itself, whilst technical indicators are the other group and these give insight into the data through numbers that are in no way related to the stock price, and thus allow much more insightful comparisons to be made inter-stock as opposed to intra-stock, that is comparing two stocks is easier if technical indicators are used as opposed to using technical overlays which are very dependant on the stock price and do not translate as well between two unique stocks. \\
-
-
-
-How do these methods work?\\
 
 \iffalse
 #################################################################################
