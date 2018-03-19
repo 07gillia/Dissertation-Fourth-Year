@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.12.6)  12 MAR 2018 15:05
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.12.6)  19 MAR 2018 13:07
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -228,28 +228,433 @@ Overfull \hbox (1.65942pt too wide) in alignment at lines 58--68
 Underfull \vbox (badness 10000) detected at line 68
  []
 
-[2]
-Underfull \hbox (badness 10000) in paragraph at lines 97--102
+
+Underfull \hbox (badness 10000) in paragraph at lines 101--102
 
  []
 
-[3] (./final paper.aux) ) 
+
+Underfull \hbox (badness 10000) in paragraph at lines 103--104
+
+ []
+
+[2]
+Underfull \hbox (badness 10000) in paragraph at lines 107--108
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 109--110
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 112--113
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 114--115
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 118--119
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 120--121
+
+ []
+
+[3]
+Underfull \hbox (badness 10000) in paragraph at lines 122--123
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 126--127
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 134--135
+
+ []
+
+[4]
+Underfull \hbox (badness 10000) in paragraph at lines 136--137
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 140--141
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 146--147
+
+ []
+
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <12> on input line 148.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 148.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 148.
+
+Underfull \hbox (badness 10000) in paragraph at lines 148--151
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 152--153
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 159--160
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 161--163
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 164--165
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 170--171
+
+ []
+
+[5]
+Underfull \hbox (badness 10000) in paragraph at lines 172--178
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 183--184
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 185--188
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 189--190
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 191--192
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 193--194
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 201--202
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 207--208
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 213--214
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 219--220
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 225--226
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 231--232
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 237--238
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 243--244
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 249--250
+
+ []
+
+[6]
+Underfull \hbox (badness 10000) in paragraph at lines 258--259
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 260--261
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 262--263
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 264--265
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 266--267
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 268--269
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 270--271
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 272--273
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 274--275
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 276--277
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 278--279
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 280--281
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 282--283
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 284--285
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 286--287
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 288--289
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 290--291
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 292--293
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 294--295
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 296--297
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 298--299
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 300--301
+
+ []
+
+[7]
+Underfull \hbox (badness 10000) in paragraph at lines 302--303
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 304--305
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 306--307
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 308--309
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 310--311
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 312--313
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 314--315
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 316--317
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 318--319
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 320--321
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 322--323
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 324--325
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 326--327
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 328--329
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 330--331
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 332--333
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 334--335
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 336--337
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 338--339
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 340--341
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 348--349
+
+ []
+
+[8]
+Underfull \hbox (badness 10000) in paragraph at lines 350--351
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 354--355
+
+ []
+
+[9] (./final paper.aux) ) 
 Here is how much of TeX's memory you used:
- 1785 strings out of 493014
- 25368 string characters out of 6133351
- 94256 words of memory out of 5000000
- 5317 multiletter control sequences out of 15000+600000
- 15203 words of font info for 29 fonts, out of 8000000 for 9000
+ 1803 strings out of 493014
+ 25557 string characters out of 6133351
+ 95256 words of memory out of 5000000
+ 5328 multiletter control sequences out of 15000+600000
+ 17641 words of font info for 37 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 38i,6n,23p,1263b,172s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 38i,6n,23p,4318b,172s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2016/texmf-dist/fonts/enc/dvips/ba
-se/8r.enc}</usr/local/texlive/2016/texmf-dist/fonts/type1/urw/times/utmb8a.pfb>
-</usr/local/texlive/2016/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/loc
-al/texlive/2016/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>
-Output written on "final paper.pdf" (3 pages, 43626 bytes).
+se/8r.enc}</usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cm
+mi12.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr
+12.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.
+pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.p
+fb></usr/local/texlive/2016/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/l
+ocal/texlive/2016/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/local/texl
+ive/2016/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>
+Output written on "final paper.pdf" (9 pages, 89422 bytes).
 PDF statistics:
- 27 PDF objects out of 1000 (max. 8388607)
- 18 compressed objects within 1 object stream
+ 63 PDF objects out of 1000 (max. 8388607)
+ 44 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
