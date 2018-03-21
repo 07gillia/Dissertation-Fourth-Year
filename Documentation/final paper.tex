@@ -304,89 +304,278 @@ The default X value is 20.\\
 
 \subsubsection*{Technical Indicators}
 
-Accumulation/Distribution Line \\
+\textbf{Aroon} - Developed by Tushar Chande, Aroon is indicative of the strength of the current trend. It was designed to be similar but uniquely different to standard momentum oscillators, which focus on price relative to time, whilst Aroon focuses on time relative to price. It has two components, Up and Down, both are shown as percentages. Up will maximise on an upward trend and Down will maximise on a downward trend.\\
 
-Aroon \\
+Aroon Up = ((X - DaysSinceHigh(X))/X) x 100\\
+Aroon Down = ((X - DaysSinceLow(X))/X) x 100\\
+Default value of X = 25. //
 
-Aroon Oscillator \\
+\iffalse
+[]
+\fi
 
-Average Directional Index (ADX) \\
+\textbf{Aroon Oscillator} - A join of the two values of Aroon into a single value.\\
 
-Average True Range (ATR) \\
+Aroon Oscillator = Aroon Up - Aroon Down\\
 
-BandWidth \\
+\iffalse
+[]
+\fi
 
-\%B Indicator \\
+\textbf{Average Directional Index (ADX)} - This is part of a group of indicators developed by Welles Wilder. The group is made up of Average Directional Index, Minus Directional Index, and Plus Directional Index, and is called the Directional Movement System. \\
 
-Chaikin Money Flow (CMF) \\
+COMPLEX NEED TIME \\
 
-Chaikin Oscillator \\
+\iffalse
+[]
+\fi
 
-Chande Trend Meter (CTM) \\
+\textbf{Average True Range (ATR)} - Developed by J. Welles Wilder as a measure for volatility, ATR has been used in a wide variety of applications outside of the financial world. The initial idea was based around a concept called True Range, calculated as such:\\
 
-Commodity Channel Index (CCI) \\
+The greatest of:\\
+High(X) - Low(X)\\
+ABS(High(X) - PreviousClose)\\
+ABS(Low(X) - PreviousClose)\\
 
-Coppock Curve \\
+This was then used in conjunction with the previous ATR to calculate the new ATR.\\
 
-Correlation Coefficient \\
+New ATR = ((Prev ATR x (X-1)) + TR) / X - Default X is 14 \\
 
-DecisionPoint Price Momentum Oscillator (PMO) \\
+\iffalse
+[]
+\fi
 
-Detrended Price Oscillator (DPO) \\
+\textbf{BandWidth}  - One of the two indicators derived from Bollinger Bands by John Bollinger, the other being \%B. This is a single value that takes all Bollinger Bands as components.\\
 
-Ease of Movement (EMV) \\
+Bandwidth = ((Upper Band - Lower Band) / Middle Band) x 100 \\
 
-Force Index \\
+\iffalse
+[]
+\fi
 
-Mass Index \\
+\textbf{\%B Indicator} - Another Bollinger Band derivative, \%B indicator gives an indication as to the relationship of the current price and the Upper and Lower Bollinger Bands. \\
 
-MACD (Moving Average Convergence/Divergence Oscillator) \\
+\%B = (Current Price - Lower Band) / (Upper Band - Lower Band)\\
 
-MACD Histogram \\
+\iffalse
+[]
+\fi
 
-Money Flow Index (MFI) \\
+\textbf{Chande Trend Meter (CTM)} - Developed by Tushar Chande. This indicator assigns a numerical score to a stock based on several other indicators.\\
 
-Negative Volume Index (NVI) \\
+NEED TO RESEARCH CANT FIND AN EQUATION\\
 
-On Balance Volume (OBV) \\
+\iffalse
+[]
+\fi
 
-Percentage Price Oscillator (PPO) \\
+\textbf{Commodity Channel Index (CCI)} - Developed by Donald Lambert. Used to show a comparison between the current price and the average price over a given timespan. Uses multiple other calculations as component parts, including Simple Moving Average, Typical Price, and Mean Deviation.\\
 
-Percentage Volume Oscillator (PVO) \\
+Typical Price = (High + Low + Close) / 3\\
 
-Price Relative / Relative Strength \\
+Mean Deviation = SUM(ABS(Period Value - Period Average)) / X\\
+Default X = 20. Find the sum of the deviation from the average value of the last 20 periods within each period. \\
 
-Pring's Know Sure Thing (KST) \\
+CGI = (Typical Price - X period SMA of Typical Price) / (0.05 x Mean Deviation)//
+Default X = 20.\\
 
-Pring's Special K \\
+\iffalse
+[]
+\fi
 
-Rate of Change (ROC) and Momentum \\
+\textbf{Coppock Curve} - Developed by Edwin Coppock. Using a Weighted Moving Average as well as a period based Rate Of Change, this simple indicator as been used by many as a sell indicator as the value crosses the positive-negative boundary. It is calculated as the WMA of the ROC plus the ROC over a different period.\\
 
-Relative Strength Index (RSI) \\
+Coppock Curve = WeightedMovingAverage(X, RateOfChange(Y)) + RateOfChange(Z)\\
+Default X = 10, Y = 14, Z = 11. \\
 
-RRG Relative Strength \\
+\iffalse
+[]
+\fi
 
-StockCharts Technical Rank (SCTR) \\
+\textbf{Correlation Coefficient} - This is a measure of the similarities between two stocks, this is useful to identify trends that effect many stocks. This uses the variance of two stocks using an average price over a given time frame as well as the covariance between them.\\
 
-Slope \\
+Variance(Stock$_1$) = Average(Price$^2$, X) - (Average(Price, X)$^2$)\\
+Variance(Stock$_2$) = Average(Price$^2$, X) - (Average(Price, X)$^2$)\\
+Covariance(Stock$_1$, Stock$_2$) = Average(Price(Stock$_1$) x Price(Stock$_2$), X) - (Average(Price(Stock$_1$), X) x Average(Price(Stock$_2$), X))\\
+Correlation Coefficient = Covariance / SQRT(Variance(Stock$_1$) x Variance(Stock$_2$))\\
 
-Standard Deviation (Volatility) \\
+\iffalse
+[]
+\fi
 
-Stochastic Oscillator (Fast, Slow, and Full) \\
+\textbf{DecisionPoint Price Momentum Oscillator (PMO)} - \\
 
-StochRSI \\
+\iffalse
+[]
+\fi
 
-TRIX \\
+\textbf{Detrended Price Oscillator (DPO)} \\
 
-True Strength Index \\
+\iffalse
+[]
+\fi
 
-Ulcer Index \\
+\textbf{Ease of Movement (EMV)} \\
 
-Ultimate Oscillator \\
+\iffalse
+[]
+\fi
 
-Vortex Indicator \\
+\textbf{Force Index} \\
 
-Williams \%R \\
+\iffalse
+[]
+\fi
+
+\textbf{Mass Index} \\
+
+\iffalse
+[]
+\fi
+
+\textbf{MACD (Moving Average Convergence/Divergence Oscillator)} \\
+
+\iffalse
+[]
+\fi
+
+\textbf{MACD Histogram} \\
+
+\iffalse
+[]
+\fi
+
+\textbf{Money Flow Index (MFI)} \\
+
+\iffalse
+[]
+\fi
+
+\textbf{Negative Volume Index (NVI)} \\
+
+\iffalse
+[]
+\fi
+
+\textbf{On Balance Volume (OBV)} \\
+
+\iffalse
+[]
+\fi
+
+\textbf{Percentage Price Oscillator (PPO)} \\
+
+\iffalse
+[]
+\fi
+
+\textbf{Percentage Volume Oscillator (PVO)} \\
+
+\iffalse
+[]
+\fi
+
+\textbf{Price Relative / Relative Strength} \\
+
+\iffalse
+[]
+\fi
+
+\textbf{Pring's Know Sure Thing (KST)} \\
+
+\iffalse
+[]
+\fi
+
+\textbf{Pring's Special K} \\
+
+\iffalse
+[]
+\fi
+
+\textbf{Rate of Change (ROC) and Momentum} \\
+
+\iffalse
+[]
+\fi
+
+\textbf{Relative Strength Index (RSI)} \\
+
+\iffalse
+[]
+\fi
+
+\textbf{RRG Relative Strength} \\
+
+\iffalse
+[]
+\fi
+
+\textbf{StockCharts Technical Rank (SCTR)} \\
+
+\iffalse
+[]
+\fi
+
+\textbf{Slope} \\
+
+\iffalse
+[]
+\fi
+
+\textbf{Standard Deviation (Volatility)} \\
+
+\iffalse
+[]
+\fi
+
+\textbf{Stochastic Oscillator (Fast, Slow, and Full)} \\
+
+\iffalse
+[]
+\fi
+
+\textbf{StochRSI} \\
+
+\iffalse
+[]
+\fi
+
+\textbf{TRIX} \\
+
+\iffalse
+[]
+\fi
+
+\textbf{True Strength Index} \\
+
+\iffalse
+[]
+\fi
+
+\textbf{Ulcer Index} \\
+
+\iffalse
+[]
+\fi
+
+\textbf{Ultimate Oscillator} \\
+
+\iffalse
+[]
+\fi
+
+\textbf{Vortex Indicator} \\
+
+\iffalse
+[]
+\fi
+
+\textbf{Williams \%R} \\
+
+\iffalse
+[]
+\fi
 
 \iffalse
 #################################################################################
