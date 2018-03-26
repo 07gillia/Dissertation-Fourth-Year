@@ -403,109 +403,116 @@ Correlation Coefficient = Covariance / SQRT(Variance(Stock$_1$) x Variance(Stock
 []
 \fi
 
-\textbf{DecisionPoint Price Momentum Oscillator (PMO)} - \\
+\textbf{DecisionPoint Price Momentum Oscillator (PMO)} - An oscillator that is calculated as a smoothed version of the rate of change using the exponential moving average as part of the smoothing process. \\
+
+Smoothing Multiplier = (2 / Time period)\\
+Custom Smoothing Function = {Close - Smoothing Function(previous day)} * Smoothing Multiplier + Smoothing Function(previous day) \\
+PMO Line = 20-period Custom Smoothing of (10 * 35-period Custom Smoothing of ( ( (Today's Price/Yesterday's Price) * 100) - 100) )\\
+PMO Signal Line = 10-period EMA of the PMO Line\\
 
 \iffalse
 []
 \fi
 
-\textbf{Detrended Price Oscillator (DPO)} \\
+\textbf{Detrended Price Oscillator (DPO)} - Used to identify cycle details. High, low, and cycle length can be calculated.\\
+
+DPO = Price {X/2 + 1} periods ago less the X-period simple moving average.\\
 
 \iffalse
 []
 \fi
 
-\textbf{Ease of Movement (EMV)} \\
+\textbf{Mass Index} - Volatility indicator used to show a trend reversal before it occurs. Developed by Donald Dorsey. \\
+
+Single EMA = 9-period exponential moving average (EMA) of the high-low differential \\
+Double EMA = 9-period EMA of the 9-period EMA of the high-low differential \\
+EMA Ratio = Single EMA divided by Double EMA \\
+Mass Index = 25-period sum of the EMA Ratio \\
 
 \iffalse
 []
 \fi
 
-\textbf{Force Index} \\
+\textbf{MACD (Moving Average Convergence/Divergence Oscillator)} - Developed by Gerald Appel. Is said to be one of the most effective momentum indicators as well as being very simplistic to perform. \\
+
+MACD Line: (12-day EMA - 26-day EMA)\\
+Signal Line: 9-day EMA of MACD Line\\
+MACD Histogram: MACD Line - Signal Line\\
 
 \iffalse
 []
 \fi
 
-\textbf{Mass Index} \\
+\textbf{MACD Histogram} - Developed by Thomas Aspray as a development on the MACD, to pre-emptively detect crossovers between the two lines in MACD.\\
+
+MACD: (12-day EMA - 26-day EMA) \\
+Signal Line: 9-day EMA of MACD \\
+MACD Histogram: MACD - Signal Line \\
 
 \iffalse
 []
 \fi
 
-\textbf{MACD (Moving Average Convergence/Divergence Oscillator)} \\
+\textbf{Percentage Price Oscillator (PPO)} - A momentum oscillator that is related to MACD. Calculated as a percentage showing the relationship between two moving averages. \\
+
+Percentage Price Oscillator (PPO): {(12-day EMA - 26-day EMA)/26-day EMA} x 100 \\
+Signal Line: 9-day EMA of PPO \\
+PPO Histogram: PPO - Signal Line \\
 
 \iffalse
 []
 \fi
 
-\textbf{MACD Histogram} \\
+\textbf{Pring's Know Sure Thing (KST)} - Developed by Martin Pring. Using the smoothed rate of change over four different length periods, this momentum oscillator gives a more well based indication of movement than a typical momentum oscillator. \\
+
+RCMA1 = 10-Period SMA of 10-Period Rate-of-Change \\
+RCMA2 = 10-Period SMA of 15-Period Rate-of-Change \\
+RCMA3 = 10-Period SMA of 20-Period Rate-of-Change \\
+RCMA4 = 15-Period SMA of 30-Period Rate-of-Change \\
+KST = (RCMA1 x 1) + (RCMA2 x 2) + (RCMA3 x 3) + (RCMA4 x 4) \\
+Signal Line = 9-period SMA of KST \\
 
 \iffalse
 []
 \fi
 
-\textbf{Money Flow Index (MFI)} \\
+\textbf{Pring's Special K} - Developed by Martin Pring, this momentum oscillator is a concatenation of three different velocities to provide more stable prediction of movement. \\
+
+Special K = 10 Period Simple Moving Average of ROC(10) * 1 \\
+            + 10 Period Simple Moving Average of ROC(15) * 2 \\
+            + 10 Period Simple Moving Average of ROC(20) * 3 \\
+            + 15 Period Simple Moving Average of ROC(30) * 4 \\
+            + 50 Period Simple Moving Average of ROC(40) * 1 \\
+            + 65 Period Simple Moving Average of ROC(65) * 2 \\
+            + 75 Period Simple Moving Average of ROC(75) * 3 \\
+            +100 Period Simple Moving Average of ROC(100)* 4 \\
+            +130 Period Simple Moving Average of ROC(195)* 1 \\
+            +130 Period Simple Moving Average of ROC(265)* 2 \\
+            +130 Period Simple Moving Average of ROC(390)* 3 \\
+            +195 Period Simple Moving Average of ROC(530)* 4 \\
 
 \iffalse
 []
 \fi
 
-\textbf{Negative Volume Index (NVI)} \\
+\textbf{Rate of Change (ROC) and Momentum} - A pure momentum oscillator used in many other indicators.\\
+
+ROC = [(Close - Close n periods ago) / (Close n periods ago)] * 100 \\
 
 \iffalse
 []
 \fi
 
-\textbf{On Balance Volume (OBV)} \\
+\textbf{Relative Strength Index (RSI)} - Developed by J. Welles Wilder. A range of zero to one hundred, RSI, a momentum oscillator, gives an indication of the speed and change of price movements.\\
+
+RSI = 100 - (100 / 1 + RS) \\
+RS = Average Gain / Average Loss\\
 
 \iffalse
 []
 \fi
 
-\textbf{Percentage Price Oscillator (PPO)} \\
-
-\iffalse
-[]
-\fi
-
-\textbf{Percentage Volume Oscillator (PVO)} \\
-
-\iffalse
-[]
-\fi
-
-\textbf{Price Relative / Relative Strength} \\
-
-\iffalse
-[]
-\fi
-
-\textbf{Pring's Know Sure Thing (KST)} \\
-
-\iffalse
-[]
-\fi
-
-\textbf{Pring's Special K} \\
-
-\iffalse
-[]
-\fi
-
-\textbf{Rate of Change (ROC) and Momentum} \\
-
-\iffalse
-[]
-\fi
-
-\textbf{Relative Strength Index (RSI)} \\
-
-\iffalse
-[]
-\fi
-
-\textbf{RRG Relative Strength} \\
+\textbf{RRG Relative Strength} - \\
 
 \iffalse
 []
