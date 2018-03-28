@@ -196,6 +196,18 @@ use.get_x_day_data_points <- function(date, stock, X){
 	return(result)
 }
 
+use.get_x_since_price <- function(date, time, stock, price){
+	# get the number of periods since the price
+
+	data_available = subset(Data, DATE<=date & TIME<=time, select=stock)
+	value_vec = data_available[,1]
+	rev_value_vec = rev(value_vec)
+	rows_since = match(price,rev_value_vec)
+	result = rows_since
+
+	return(result)
+}
+
 ####################################################################
 # Advanced Functions - Technical Overlays
 ####################################################################
@@ -414,11 +426,30 @@ adv.get_price_channels <- function(date, time, stock){
 	return(result)
 }
 
-
-
 ####################################################################
 # Advanced Functions - Technical Indicators
 ####################################################################
+
+adv.get_aroon <- function(date, time, stock){
+	# get the arron
+
+	data_points = use.get_x_data_points(date, time, stock, 25)
+	max = use.get_max(data_points)
+	min = use.get_min(data_points)
+	days_since_max = use.get_x_since_price(date, time, stock, max)
+	days_since_min = use.get_x_since_price(date, time, stock, min)
+	print(max)
+	print(min)
+	print(days_since_max)
+	print(days_since_min)
+
+	aroon_up = ((25 - days_since_max) / 25) * 100
+	aroon_down = ((25 - days_since_min) / 25) * 100
+
+	result = c(aroon_up, aroon_down)
+
+	return(result)
+}
 
 adv.get_average_true_range <- function(date, time, stock, X){
 	# get the average true range
