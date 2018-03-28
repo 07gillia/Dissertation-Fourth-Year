@@ -97,7 +97,7 @@ Stock_Names = c("AA", "AAPL", "ADBE", "AIG", "AMAT", "AMT", "AXP", "BA", "BAC", 
 
 Start_Date = 1
 # Initial value = 1
-# Start trading at X?
+# Start trading at 130
 
 End_Date = 382
 # Initial value = 382
@@ -113,6 +113,48 @@ sprintf("Stocks that will be used : %s", paste(Available_Stocks, collapse = " ")
 # Output the stocks that will be used
 
 Available_Data = Data[,c("DATE","TIME", Available_Stocks)]
+
+####################################################################
+
+# Testing the function.R file
+
+random_day = sample(Date_List, 1)
+random_stock = sample(Available_Stocks, 1)
+
+print(random_day)
+print(random_stock)
+
+time_vec = subset(Data, DATE==random_day, select=TIME)
+random_time = sample(time_vec$TIME,1)
+test_vec = subset(Data, DATE==random_day, select=random_stock)
+
+print(random_time)
+
+print(tail(test_vec,10))
+print(use.get_max(test_vec))
+print(use.get_min(test_vec))
+print(use.get_average(test_vec[,1]))
+print(use.get_sd(test_vec[,1]))
+print(use.get_x_date(random_day, 1))
+print(use.get_x_close(random_day, random_stock, 1))
+print(use.get_x_open(random_day, random_stock, 1))
+print(use.get_x_data_points(random_day, random_time, random_stock, 4))
+print(tail(use.get_x_day_data_points(random_day, random_stock, 1),10))
+print("########")
+print(adv.get_bollinger_bands(random_day, random_time, random_stock))
+print(adv.get_chandelier_exit(random_day, random_time, random_stock))
+print(adv.get_ichimoku_cloud(random_day, random_time, random_stock))
+#print(adv.get_kama(random_day, random_time, random_stock))
+print(adv.get_ketler_channels(random_day, random_time, random_stock))
+#print(adv.get_ema(random_day, random_time, random_stock, 20))
+print(adv.get_moving_average_envelopes(random_day, random_time, random_stock))
+print(adv.get_pivot_points_standard(random_day, random_time, random_stock))
+print(adv.get_pivot_points_fibonacci(random_day, random_time, random_stock))
+print(adv.get_pivot_points_demark(random_day, random_time, random_stock))
+print(adv.get_price_channels(random_day, random_time, random_stock))
+
+
+stop()
 
 ####################################################################
 # Iterate through each row
@@ -162,8 +204,8 @@ for (date in c(Start_Date:End_Date)) {
 				####################################################
 				# Check if the stock should be bought
 
-				if(action.should_buy(current_date, current_time, stock)){
-					# Test critiera for buy
+				if(action.should_buy(current_date, current_time, stock) & date >= 130){
+					# Test critiera for buy and that trading is open
 
 					Active = action.buy(current_date, current_time, stock, 1000)
 				}

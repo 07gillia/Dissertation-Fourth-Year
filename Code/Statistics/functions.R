@@ -113,296 +113,325 @@ action.should_sell <- function(uid, date, time){
 # Basic Functions
 ####################################################################
 
-action.get_last_X_datapoints <- function(stock, time, date, x){
-	# given a stock, time, and date get the previous X values of that stock
+use.get_max <- function(list){
+	# given a list get the max value
 
-	current_index = Data[Data$DATE == date & Data$TIME == time,1]
-
-	start_index = current_index - x
-
-	rows = Data[c(start_index:current_index), stock]
-
-	rows = rows[!is.na(rows)]
-
-	return(rows)
-}
-
-action.get_last_X_days <- function(date_index, stock, x){
-	# get the last X days not including the current day
-
-	days = Date_List[(day_index-x):(date_index-1)]
-
-	result = Data[(which(Data$DATE %in% days)), stock]
-
-	result = result[!is.na(result)]
+	result = max(list, na.rm = TRUE)
 
 	return(result)
 }
 
-action.get_current_day_available <- function(time, date, stock){
-	# get all values that are available for a specific day
-	# given time and date, no looking into the future
+use.get_min <- function(list){
+	# given a list get the min value
 
-	current_index = Data[Data$DATE == date & Data$TIME == time,1]
-
-	day = Data[Data$DATE == date & Data$X <= current_index, stock]
-
-	day = day[!is.na(day)]
-
-	return(day)
-}
-
-action.get_previous_day <- function(day_index, stock){
-	# get all values of the previous day given date
-
-	date = Date_List[day_index - 1]
-
-	day = Data[Data$DATE == date,stock]
-
-	day = day[!is.na(day)]
-
-	return(day)
-}
-
-action.get_previous_date <- function(day_index){
-	# return the date of the day before the current date
-
-	date = Date_List[day_index - 1]
-
-	return(date)
-}
-
-action.get_max <- function(list){
-	# given a vector find the maximum value
-
-	result = max(list, na.rm = FALSE)
+	result = min(list, na.rm = TRUE)
 
 	return(result)
 }
 
-action.get_min <- function(list){
-	# given a vector find the minimum value
+use.get_average <- function(list){
+	# given a list get the average value
 
-	result = min(list, na.rm = FALSE)
-
-	return(result)
-}
-
-action.get_average <- function(list){
-
-	result = mean(list)
-
-	return(list)
-}
-
-action.get_standard_deviation <- function(list){
-	# given some variables get the standard deviation over them
-
-	result = sd(list)
+	result = mean(list, na.rm = TRUE)
 
 	return(result)
 }
 
-action.get_total_gain_loss <- function(list){
-	# get the total amount that a stock increased in value by given a list
+use.get_sd <- function(list){
+	# given a list get the standard deviation
 
-	total_gain = 0
-	total_loss = 0
+	result = sd(list, na.rm = TRUE)
 
-	for (i in c(2:length(list)-1)){
+	return(result)
+}
 
-		current = list[i]
-		next_value = list[i+1]
+use.get_x_date <- function(date, X){
+	# given a date get the date X days ago
 
-		if(current > next_value){
-			total_loss = total_loss + current - next_value
-		}
-		else if(current < next_value){
-			total_gain = total_gain + next_value - current
-		}
-	}
-	return(c(total_gain, total_loss))
+	index = match(date,Date_List)
+	result = Date_List[index - X]
+
+	return(result)
+}
+
+use.get_x_close <- function(date, stock, X){
+	# given a date get the previous days close
+
+	prev_date = use.get_x_date(date, X)
+	prev_date_data = subset(Data, DATE==prev_date, select=stock)
+	stock_data = na.omit(prev_date_data)
+	result = tail(stock_data[, stock],1)
+
+	return(result)
+}
+
+use.get_x_open <- function(date, stock, X){
+	# given a date get the open X days ago
+
+	prev_date = use.get_x_date(date, X)
+	prev_date_data = subset(Data, DATE==prev_date, select=stock)
+	stock_data = na.omit(prev_date_data)
+	result = head(stock_data[, stock],1)
+
+	return(result)
+}
+
+use.get_x_data_points <- function(date, time, stock, X){
+	# given a date, time, and stock get the last X data points that are not NA
+
+	stock_data = subset(Data, DATE<=date & TIME<=time, select=stock)
+	stock_data = na.omit(stock_data)
+	result = tail(stock_data[,stock], X)
+
+	return(result)
+}
+
+use.get_x_day_data_points <- function(date, stock, X){
+	# get the full day of data X days ago
+
+	day_to_get = use.get_x_date(date, X)
+	day_data = subset(Data, DATE==day_to_get, select=stock)
+	result = na.omit(day_data)
+
+	return(result)
 }
 
 ####################################################################
-# Advanced Functions
+# Advanced Functions - Technical Overlays
 ####################################################################
 
-action.get_previous_day_close <- function(day_index, stock){
-	# get the last value of the preious day given a stock, time, and date
-	# need to make sure that data exists for that day
+adv.get_bollinger_bands <- function(date, time, stock){
+	# get the bollinger bands
 
-	if(length(action.get_previous_day(day_index, stock)) < 1){
-		previous_day = action.get_previous_day(day_index - 1, stock)
-	}
-	else{
-		previous_day = action.get_previous_day(day_index, stock)
-	}
+	data_points = use.get_x_data_points(date, time, stock, 20)
 
-	previous_day = previous_day[!is.na(previous_day)]
+	middle_band = use.get_average(data_points)
+	upper_band = use.get_average(data_points) + (use.get_sd(data_points) * 2)
+	lower_band = use.get_average(data_points) - (use.get_sd(data_points) * 2)
 
-	result = previous_day[length(previous_day)]
+	result = c(middle_band, upper_band, lower_band)
 
 	return(result)
 }
 
-action.get_moving_average <- function(day_index, stock, days){
-	# a simple moving average calculation
+adv.get_chandelier_exit <- function(date, time, stock){
+	# get the chandelier exit
 
-	if(day_index < days){
-		stop("Error with get moving average")
-	}
+	data_points = use.get_x_data_points(date, time, stock, 22)
 
-	counter = 0
+	long = use.get_max(data_points) - adv.get_average_true_range(date, time, stock, 22)
+	short = use.get_min(data_points) + adv.get_average_true_range(date, time, stock, 22)
 
-	for (day in c((day_index-days):(day_index-1))) {
-		# iterate through each date
-
-		counter = counter + action.get_previous_day_close(day, stock)
-	}
-
-	result = counter / days
+	result = c(long, short)
 
 	return(result)
 }
 
-action.get_average_true_range <- function(day_index, stock, list){
-	# Method 1: Current High less the current Low
-	# Method 2: Current High less the previous Close (absolute value)
-	# Method 3: Current Low less the previous Close (absolute value)
+adv.get_ichimoku_cloud <- function(date, time, stock){
+	# get the values of the ichimoku cloud
 
-	method_1 = max(list) - min(list)
+	data_points = use.get_x_data_points(date, time, stock, 9)
+	line_1 = (use.get_max(data_points) + use.get_min(data_points)) / 2
 
-	method_2 = abs(max(list) - action.get_previous_day_close(day_index, stock))
+	data_points = use.get_x_data_points(date, time, stock, 26)
+	line_2 = (use.get_max(data_points) + use.get_min(data_points)) / 2
 
-	method_3 = abs(max(list) - action.get_previous_day_close(day_index, stock))
+	line_3 = (line_1 + line_2) / 2
 
-	return(action.get_max(c(method_1, method_2, method_3)))
+	data_points = use.get_x_data_points(date, time, stock, 52)
+	line_4 = (use.get_max(data_points) + use.get_min(data_points)) / 2
+
+	line_5 = use.get_x_close(date, stock, 26)
+
+	result = c(line_1, line_2, line_3, line_4, line_5)
+
+	return(result)
 }
 
-action.get_exponential_moving_average <- function(day_index, stock, days){
-	# get the EMA over the set number of days for the specific stock
+adv.get_kama <- function(date, time, stock){
+	# get Kaufman's Adaptive Moving Average
+	# SOMETIMES DOESNT WORK - NEEDS CHECKING
 
-	data = action.get_last_X_days(day_index, stock, days)
-
-	multiplier = (2/(days + 1))
-
-	ema = 0 # hard
-}
-
-####################################################################
-# Technical Indicators
-####################################################################
-
-action.get_bollinger_bands <- function(day_index, stock){
-	# Middle Band = 20-day simple moving average (SMA)
-  	# Upper Band = 20-day SMA + (20-day standard deviation of price x 2) 
-	# Lower Band = 20-day SMA - (20-day standard deviation of price x 2)
-
-	# SMA - simple moving average
-
-	if(day_index < 20){
-		stop("Error with Bollinger Bands")
-	}
-
-	SMA = action.get_moving_average(day_index, stock, 20)
-
-	SD = action.get_standard_deviation(action.get_last_X_days(day_index, stock,20)) 
-
-	middle_band = SMA
-	upper_band = SMA + SD * 2
-	lower_band = SMA - SD * 2
-
-	return(c(lower_band, middle_band, upper_band))
-}
-
-action.get_chandelier_exit <- function(day_index, stock){
-	# Chandelier Exit (long) = 22-day High - ATR(22) x 3 
-	# Chandelier Exit (short) = 22-day Low + ATR(22) x 3
-
-	x22_days = action.get_last_X_days(day_index, stock, 22)
-	x22_day_max = action.get_max(x22_days)
-	x22_day_min = action.get_min(x22_days)
-
-	long = x22_day_max - (action.get_average_true_range(day_index, stock, x22_days) * 3)
-	short = x22_day_min - (action.get_average_true_range(day_index, stock, x22_days) * 3)
-
-	return(c(long, short))
-}
-
-action.get_ichimoku_cloud <- function(date_index, stock){
-	# conversion line = (9-period high + 9-period low)/2))
-	# base line = (26-period high + 26-period low)/2))
-	# leading span A = (Conversion Line + Base Line)/2))
-	# leading span B = (52-period high + 52-period low)/2))
-	# lagging span = Close plotted 26 days in the past
-
-	if(date_index < 52){
-		stop("Error in Ichimoku Cloud")
-	}
-
-	conversion_line = (action.get_max(action.get_last_X_days(date_index, stock, 9)) + action.get_min(action.get_last_X_days(date_index, stock, 9)))/2
-
-	base_line = (action.get_max(action.get_last_X_days(date_index, stock, 26)) + action.get_min(action.get_last_X_days(date_index, stock, 26)))/2
-
-	leading_span_A = (conversion_line + base_line)/2
-
-	leading_span_B = (action.get_max(action.get_last_X_days(date_index, stock, 52)) + action.get_min(action.get_last_X_days(date_index, stock, 52)))/2
-
-	lagging_span = action.get_previous_day_close(day_index-26, stock)
-
-	return(c(conversion_line, base_line, leading_span_A, leading_span_B, lagging_span))
-}
-
-KAMA = c()
-
-action.get_kaufman_adaptive_moving_average <- function(day_index, stock, current_stock_price){ # DON'T KNOW HOW TO DO!!!!
-	# Current KAMA = Prior KAMA + SC x (Price - Prior KAMA)
-
-	# SC = [ER x (fastest SC - slowest SC) + slowest SC]2
-	# SC = [ER x (2/(2+1) - 2/(30+1)) + 2/(30+1)]2
-
-	# ER = Change/Volatility
-	# Change = ABS(Close - Close (10 periods ago))
-	# Volatility = Sum10(ABS(Close - Prior Close))
-	# Volatility is the sum of the absolute value of the last ten price changes (Close - Prior Close).
-
-	change = abs(action.get_previous_day_close(day_index, stock) - action.get_previous_day_close((day_index-10), stock))
-
+	change = abs(use.get_x_close(date, stock, 1) - use.get_x_close(date, stock, 10))
 	volatility = 0
-
 	for (i in c(1:10)) {
-		volatility = volatility + abs(action.get_previous_day_close(day_index - i + 1, stock) - action.get_previous_day_close(day_index - i, stock))
+		volatility = volatility + abs(use.get_x_close(date, stock, i) - use.get_x_close(date, stock, i + 1))
 	}
+	ER = change / volatility
 
-	if(change == 0 | volatility == 0){
-		ER = 0
-	}
-	else{
-		ER = change / volatility
-	}
+	SC = (ER * (2/(2+1) - 2/(30+1)) + 2/(30+1)) ^ 2
 
-	SC = (ER * (2/(2+1) - 2/(30+1)) + 2/(30+1))^2
+	data_points = use.get_x_data_points(date, time, stock, 15)
+	prior_kama = use.get_average(data_points)
 
-	if(length(KAMA) < 1){
-		# if this has not been calculated before
-		result = SC * current_stock_price
-	}
-	else{
-		result = tail(KAMA,1) + SC * (current_stock_price - tail(KAMA,1))
-	}
-
-	append(KAMA, result)
+	result = prior_kama + SC * (use.get_x_data_points(date, time, stock, 1) - prior_kama)
 
 	return(result)
 }
 
-action.get_keltner_channels <- function(){
-	# Middle Line: 20-day exponential moving average 
-	# Upper Channel Line: 20-day EMA + (2 x ATR(10))
-	# Lower Channel Line: 20-day EMA - (2 x ATR(10))
+adv.get_ketler_channels <- function(date, time, stock){
+	# get the ketler channels
+
+	data_points = use.get_x_data_points(date, time, stock, 20)
+	middle_line = use.get_average(data_points)
+	upper_channel_line = use.get_average(data_points) + (2 * adv.get_average_true_range(date, time, stock, 10))
+	lower_channel_line = use.get_average(data_points) - (2 * adv.get_average_true_range(date, time, stock, 10))
+
+	result = c(middle_line, upper_channel_line, lower_channel_line)
+
+	return(result)
+}
+
+adv.get_ema <- function(date, time, stock, X){
+	# get the exponential moving average over X number of iterations
+	# IS BROKEN NEED CHECKING
+
+	start_date = use.get_x_date(date, X)
+	data_points = use.get_x_data_points(start_date, time, stock, 10)
+	initial_value = use.get_average(data_points)
+	multiplier = 2 / (X + 1)
+
+	for (i in c(1:X)) {
+		ema_close = use.get_x_close(date, stock, X - i)
+		ema_previous_day = initial_value
+		EMA = (ema_close - ema_previous_day) * multiplier + ema_previous_day
+
+		initial_value = EMA
+	}
+
+	result = EMA
+
+	return(result)
+}
+
+adv.get_moving_average_envelopes <- function(date, time, stock){
+	# get MAE
+
+	data_points = use.get_x_data_points(date, time, stock, 20)
+	upper_envelope = use.get_average(data_points) + (use.get_average(data_points) * 0.025)
+	lower_envelope = use.get_average(data_points) - (use.get_average(data_points) * 0.025)
+
+	result = c(upper_envelope, lower_envelope)
+
+	return(result)
+}
+
+adv.get_parabloic_sar <- function(date, time, stock){
+	# calculate parabloic SAR
+	# WHAT IS THE INITAL VALUE
+
+	result = 0
+
+	return(result)
+}
+
+adv.get_pivot_points_standard <- function(date, time, stock){
+	# calculate privot points
+
+	data_points = use.get_x_day_data_points(date, stock, 1)
+
+	high = use.get_max(data_points)
+	low = use.get_min(data_points)
+	close = use.get_x_close(date, stock, 1)
+
+	PP = (high + low + close) / 3
+	support_1 = (PP * 2) - high
+	support_2 = PP - (high - low)
+	resistance_1 = (PP * 2) - low
+	resistance_2 = PP + (high - low)
+
+	result = c(PP, support_1, support_2, resistance_1, resistance_2)
+
+	return(result)
+}
+
+adv.get_pivot_points_fibonacci <- function(date, time, stock){
+	# calculate privot points
+
+	data_points = use.get_x_day_data_points(date, stock, 1)
+
+	high = use.get_max(data_points)
+	low = use.get_min(data_points)
+	close = use.get_x_close(date, stock, 1)
+
+	PP = (high + low + close) / 3
+	support_1 = PP - (0.382 * (high - low))
+	support_2 = PP - (0.618 * (high - low))
+	support_3 = PP - (1 * (high - low))
+	resistance_1 = PP + (0.382 * (high - low))
+	resistance_2 = PP + (0.618 * (high - low))
+	resistance_3 = PP + (1 * (high - low))
+
+	result = c(PP, support_1, support_2, support_3, resistance_1, resistance_2, resistance_3)
+
+	return(result)
+}
+
+adv.get_pivot_points_demark <- function(date, time, stock){
+	# calculate privot points
+
+	data_points = use.get_x_day_data_points(date, stock, 1)
+
+	high = use.get_max(data_points)
+	low = use.get_min(data_points)
+	close = use.get_x_close(date, stock, 1)
+	open = use.get_x_open(date, stock, 0)
+
+	if(close < open){
+		X = high + (2 * low) + close
+	}
+	else if(close > open){
+		X = (2 * high) + low + close
+	}
+	else if (close == open){
+		X = high + low + (2 * close)
+	}
+	else{
+		print("there is a problem with PPD")
+		stop()
+	}
+
+	PP = X / 4
+	support_1 = (X / 2) - high
+	resistance_1 = (X / 2) - low
+
+	result = c(PP, support_1, resistance_1)
+
+	return(result)
+}
+
+adv.get_price_channels <- function(date, time, stock){
+	# get the price channels
+
+	data_points = use.get_x_data_points(date, time, stock, 20)
+
+	upper_channel_line = use.get_max(data_points)
+	lower_channel_line = use.get_min(data_points)
+	center_channel_line = (upper_channel_line + lower_channel_line) / 2
+
+	result = c(upper_channel_line, lower_channel_line, center_channel_line)
+
+	return(result)
+}
 
 
+
+####################################################################
+# Advanced Functions - Technical Indicators
+####################################################################
+
+adv.get_average_true_range <- function(date, time, stock, X){
+	# get the average true range
+
+	data_points = use.get_x_data_points(date, time, stock, X)
+
+	method_1 = use.get_max(data_points) - use.get_min(data_points)
+	method_2 = abs(use.get_max(data_points) - use.get_x_close(date, stock, 1))
+	method_3 = abs(use.get_min(data_points) - use.get_x_close(date, stock, 1))
+
+	result = use.get_max(c(method_1, method_2, method_3))
+
+	return(result)
 }
 
 ####################################################################
