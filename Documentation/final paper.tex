@@ -512,73 +512,123 @@ RS = Average Gain / Average Loss\\
 []
 \fi
 
-\textbf{RRG Relative Strength} - \\
-
-\iffalse
-[]
-\fi
-
 \textbf{StockCharts Technical Rank (SCTR)} \\
 
-\iffalse
-[]
-\fi
-
-\textbf{Slope} \\
+MIGHT BE USEFUL BUT CHECK FIRST\\
 
 \iffalse
 []
 \fi
 
-\textbf{Standard Deviation (Volatility)} \\
+\textbf{Slope} - A very simple idea. The main concept is to calculate the line of best fit over a given time frame to show to trend over that time frame. This is a very simple tool used to give general trends.\\
 
 \iffalse
 []
 \fi
 
-\textbf{Stochastic Oscillator (Fast, Slow, and Full)} \\
+\textbf{Stochastic Oscillator (Fast, Slow, and Full)} - Developed by George C. Lane. A momentum indicator that uses the close data along with the range between the high and low values over a given period to show the current momentum. Lane states; this "follows the speed or the momentum of price. As a rule, the momentum changes direction before price." \\
+
+\%K = (Close - Lowest Low over X)/(Highest High over X - Lowest Low over X) * 100.\\
+\%D = Simple Moving Average of \%K over Y Periods. \\
+Default value of X is 14. Default value of Y is 3.\\
 
 \iffalse
 []
 \fi
 
-\textbf{StochRSI} \\
+\textbf{StochRSI} - Developed together by Tushar Chande and Stanley Kroll. Using Relative Strength Index or RSI, StochRSI is a measure of RSI relative to the max range of RSI over a set period. This indicator has a range of 0 to 1 with 0 indicating the lowest point over the period with 1 indicating the highest point over the period.\\
+
+StochRSI = (RSI - Lowest Low RSI over X) / (Highest High RSI over X - Lowest Low RSI over X)\\
+Default X value is 14.\\
 
 \iffalse
 []
 \fi
 
-\textbf{TRIX} \\
+\textbf{TRIX} - Developed by Jack Hutson. A triple smoothed Exponential Moving Average is used to calculate the percentage change over the last period.\\
+
+Single Smoothed EMA = EMA of Close over X periods.\\
+Double Smoothed EMA = EMA of Single Smoothed EMA over X periods.\\
+Triple Smoothed EMA = EMA of Double Smoothed EMA over X periods.\\
+TRIX = Single period percentage change in Triple Smoothed EMA. \\
 
 \iffalse
 []
 \fi
 
-\textbf{True Strength Index} \\
+\textbf{True Strength Index} - Developed by William Blau. Using two double smoothed price changes this is a momentum oscillator with the benefit of being relatively resistant to noise. Made up of two double smoothed price changes and the TSI calculation, this is a relatively simple indicator.\\
+
+Double Smoother Price Change.\\
+PC = Current Price minus Prior Price\\
+Single Smoothed PC = EMA of PC over X periods.\\
+Double Smoothed PC = EMA over Y periods of Single Smoothed PC.\\
+Default X value is 25. Default Y value is 13.\\
+
+Double Smoothed Absolute Price Change. \\
+Absolute PC = ABS(Current Price minus Prior Price)\\
+Single Smoothed PC = EMA of APC over X periods.\\
+Double Smoothed PC = EMA over Y periods of Single Smoothed APC.\\
+Default X value is 25. Default Y value is 13.\\
+
+True Strength Value.\\
+TSI = 100 x (Double Smoothed Price Change / Double Smoothed Absolute Price Change)\\
 
 \iffalse
 []
 \fi
 
-\textbf{Ulcer Index} \\
+\textbf{Ulcer Index} - Developed by Peter Martin and Byron McCann. This volatility indicator was originally designed to measure downside risk in mutual funds, although it has now been re-purposed.  \\
+
+Percent-Drawdown = ((Close - Max Close over X periods)/Max Close over X periods) x 100\\
+Squared Average = (Sum of Percent-Drawdown over X periods Squared)/X\\
+Ulcer Index = Square Root of Squared Average\\
+Default X value is 14.\\
 
 \iffalse
 []
 \fi
 
-\textbf{Ultimate Oscillator} \\
+\textbf{Ultimate Oscillator} - Developed by Larry Williams. This is a triple time frame based momentum oscillator. The use of multiple time frames is limit the effect that noise can have on a typical momentum oscillator. There are several steps to the Ultimate Oscillator, all of which rely on Buying Pressure, BP, and True Range, TR.\\
+
+BP = Close - Min(Low, Prior Close)\\
+TR = Max(High, Prior Close)  -  Min(Low, Prior Close)\\
+
+Average X = (BP Sum over X periods) / (TR Sum over X periods)\\
+Average Y = (BP Sum over Y periods) / (TR Sum over Y periods)\\
+Average Z = (BP Sum over Z periods) / (TR Sum over Z periods)\\
+
+Ultimate Oscillator = 100 x ((4 x Average X)+(2 x Average Y)+Average Z)/(4+2+1)\\
+Default values are X = 7, Y = 14, Z = 28.\\
 
 \iffalse
 []
 \fi
 
-\textbf{Vortex Indicator} \\
+\textbf{Vortex Indicator} - Developed by Etienne Botes and Douglas Siepman, based on the work of Welles Wilder and Viktor Schauberger. Using the relationship between two oscillators a base, one capturing positive trend movement and the other capturing negative, the vortex indicator is adept as showing the bias of the data.\\
+
++VM = ABS(Current High - Prior Low)\\
+-VM = ABS(Prior Low - Current High)\\
+
++VMX = Sum of +VM over X periods \\
+-VMX = Sum of -VM over X periods \\
+
+TRX = Sum of True Range over X periods \\
+
++VIX = +VMX/TRX \\
+-VIX = -VMX/TRX \\
+
+Default X value is 14.\\
+
+The crossovers of these two values is then used to identify the start and end of a trend and the direction of said trend.\\
 
 \iffalse
 []
 \fi
 
-\textbf{Williams \%R} \\
+\textbf{Williams \%R} - Developed by Larry Williams and based on the Stochastic Oscillator developed by George C. Lane. This is the inverse of the Fast SO as the FSO reflects the relationship between the Close and the Lowest Low over a given period, whilst this reflects the relationship between the Close and the Highest High. This momentum indicator has the same benefits and drawbacks as the Stochastic Oscillator.\\
+
+\%R = (Highest High over X - Close)/(Highest High over X - Lowest Low over X) * -100\\
+Default value of X is 14. \\
 
 \iffalse
 []
