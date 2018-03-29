@@ -120,28 +120,17 @@ Available_Data = Data[,c("DATE","TIME", Available_Stocks)]
 
 random_day = sample(Date_List, 1)
 random_stock = sample(Available_Stocks, 1)
-
-print(random_day)
-print(random_stock)
-
 time_vec = subset(Data, DATE==random_day, select=TIME)
 random_time = sample(time_vec$TIME,1)
 test_vec = subset(Data, DATE==random_day, select=random_stock)
 
+print(random_day)
 print(random_time)
-
+print(random_stock)
 print(tail(test_vec,10))
-print(use.get_max(test_vec))
-print(use.get_min(test_vec))
-print(use.get_average(test_vec[,1]))
-print(use.get_sd(test_vec[,1]))
-print(use.get_x_date(random_day, 1))
-print(use.get_x_close(random_day, random_stock, 1))
-print(use.get_x_open(random_day, random_stock, 1))
-print(use.get_x_data_points(random_day, random_time, random_stock, 4))
-print(tail(use.get_x_day_data_points(random_day, random_stock, 1),10))
 print("########")
-print(adv.get_aroon(random_day, random_time, random_stock))
+
+print(adv.get_rate_of_change(random_day, random_time, random_stock, 4))
 
 stop()
 

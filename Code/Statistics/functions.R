@@ -197,13 +197,27 @@ use.get_x_day_data_points <- function(date, stock, X){
 }
 
 use.get_x_since_price <- function(date, time, stock, price){
-	# get the number of periods since the price
+	# get the number of periods since the price specified
 
 	data_available = subset(Data, DATE<=date & TIME<=time, select=stock)
 	value_vec = data_available[,1]
 	rev_value_vec = rev(value_vec)
+	rev_value_vec = na.omit(rev_value_vec)
 	rows_since = match(price,rev_value_vec)
 	result = rows_since
+
+	return(result)
+}
+
+use.get_typical_price <- function(date, stock){
+	# calculate the typical price of that day for that stock
+
+	day_data = use.get_x_day_data_points(date, stock, 0)
+	high = use.get_max(day_data)
+	low = use.get_min(day_data)
+	close = use.get_x_close(date, stock, 0)
+
+	result = (high + low + close) / 3 
 
 	return(result)
 }
@@ -438,15 +452,30 @@ adv.get_aroon <- function(date, time, stock){
 	min = use.get_min(data_points)
 	days_since_max = use.get_x_since_price(date, time, stock, max)
 	days_since_min = use.get_x_since_price(date, time, stock, min)
-	print(max)
-	print(min)
-	print(days_since_max)
-	print(days_since_min)
 
-	aroon_up = ((25 - days_since_max) / 25) * 100
-	aroon_down = ((25 - days_since_min) / 25) * 100
+	aroon_up = ((25.0 - days_since_max) / 25.0) * 100.0
+	aroon_down = ((25.0 - days_since_min) / 25.0) * 100.0
 
 	result = c(aroon_up, aroon_down)
+
+	return(result)
+}
+
+adv.get_aroon_oscillator <- function(date, time, stock){
+	# use the aroon function to get the aroon oscillator
+
+	aroon = adv.get_aroon(date, time, stock)
+
+	result = aroon[1] - aroon[2]
+
+	return(result)
+}
+
+adv.get_average_directional_index <- function(date, time, stock){
+	# get the ADI
+	# THIS IS COMPLEX AND NEEDS TIME
+
+	result = 0
 
 	return(result)
 }
@@ -461,6 +490,221 @@ adv.get_average_true_range <- function(date, time, stock, X){
 	method_3 = abs(use.get_min(data_points) - use.get_x_close(date, stock, 1))
 
 	result = use.get_max(c(method_1, method_2, method_3))
+
+	return(result)
+}
+
+adv.get_bandwidth <- function(date, time, stock){
+	# use the bollinger bands to get bandwidth
+
+	bands = adv.get_bollinger_bands(date, time, stock)
+
+	result = ((bands[2] - bands[3]) / bands[1]) * 100
+
+	return(result)
+}
+
+adv.get__B <- function(date, time, stock){
+	# use the bollinger bands to calculate %B
+
+	bands = adv.get_bollinger_bands(date, time, stock)
+
+	result = (use.get_x_data_points(date, time, stock, 1) - bands[3]) / (bands[2] - bands[3])
+
+	return(result)
+}
+
+adv.get_commodity_channel_index <- function(date, time, stock){
+	# calculate the CCI
+
+	constant = 0.015
+	current_tp = use.get_typical_price(date, stock)
+	list_tp = c()
+	for (i in c(1:20)) {
+		new_date = use.get_x_date(date, i)
+		list_tp = c(list_tp, use.get_typical_price(new_date, stock))
+	}
+	sma_tp = use.get_average(list_tp)
+	MD = sum(abs(list_tp - sma_tp)) / 20
+
+	result = (current_tp - sma_tp) / (constant * MD)
+
+	return(result)
+}
+
+adv.get_coppock_curve <- function(date, time, stock){
+	# calculate the coppock curve
+	# NEED EMA WHICH IS BROKEN
+
+	result = 0
+
+	return(result)
+}
+
+adv.get_correlation_coefficient <- function(date, time, stock){
+	# calculate the CC
+
+	result = 0
+
+	return(result)
+}
+
+adv.get_price_momentum_oscillator <- function(date, time, stock){
+	# calculate the PMO
+
+	result = 0
+
+	return(result)
+}
+
+adv.get_detrended_price_oscillator <- function(date, time, stock){
+	# calculate DPO
+
+	result = 0
+
+	return(result)
+}
+
+adv.get_mass_index <- function(date, time, stock){
+	# calculate mass index
+
+	result = 0
+
+	return(result)
+}
+
+adv.get_macd <- function(date, time, stock){
+	# calculate Moving Average Convergence/Divergence
+
+	result = 0
+
+	return(result)
+}
+
+adv.get_macd_histogram <- function(date, time, stock){
+	# calculate MACD-Histogram
+
+	result = 0
+
+	return(result)
+}
+
+adv.get_ppo <- function(date, time, stock){
+	# calculate Percentage Price Oscillator
+
+	result = 0
+
+	return(result)
+}
+
+adv.get_kst <- function(date, time, stock){
+	# calculate Know Sure Thing
+
+	result = 0
+
+	return(result)
+}
+
+adv.get_special_k <- function(date, time, stock){
+	# calculate Pring Special K
+
+	result = 0
+
+	return(result)
+}
+
+adv.get_rate_of_change <- function(date, time, stock, X){
+	# ge the rate of change of a stock from X periods ago
+
+	result = ((use.get_x_close(date, stock, 0) - use.get_x_close(date, stock, X)) / use.get_x_close(date, stock, X)) * 100
+
+	return(result)
+}
+
+adv.get_rsi <- function(date, time, stock){
+	# calculate relative strength index
+
+	result = 0
+
+	return(result)
+}
+
+adv.get_sctr <- function(date, time, stock){
+	# calculate StockCharts Technical Rank
+
+	result = 0
+
+	return(result)
+}
+
+adv.get_slope <- function(date, time, stock){
+	# calculate 
+
+	result = 0
+
+	return(result)
+}
+
+adv.get_so <- function(date, time, stock){
+	# calculate Stochastic Oscillator
+
+	result = 0
+
+	return(result)
+}
+
+adv.get_stoch_rsi <- function(date, time, stock){
+	# calculate StochRSI
+
+	result = 0
+
+	return(result)
+}
+
+adv.get_trix <- function(date, time, stock){
+	# calculate trix
+
+	result = 0
+
+	return(result)
+}
+
+adv.get_tsi <- function(date, time, stock){
+	# calculate true strength index
+
+	result = 0
+
+	return(result)
+}
+
+adv.get_ulcer_index <- function(date, time, stock){
+	# calculate ulcer index
+
+	result = 0
+
+	return(result)
+}
+
+adv.get_UO <- function(date, time, stock){
+	# calculate ultimate oscilator
+
+	result = 0
+
+	return(result)
+}
+
+adv.get_vortex <- function(date, time, stock){
+	# calculate vortex indicator
+
+	result = 0
+
+	return(result)
+}
+
+adv.get__R <- function(date, time, stock){
+	# calculate williams %R
+
+	result = 0
 
 	return(result)
 }
