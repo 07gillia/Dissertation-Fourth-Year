@@ -151,6 +151,11 @@ use.get_x_date <- function(date, X){
 	index = match(date,Date_List)
 	result = Date_List[index - X]
 
+	if(index <= X){
+		print("There has been an issue with get_x_date")
+		stop()
+	}
+
 	return(result)
 }
 
@@ -218,6 +223,32 @@ use.get_typical_price <- function(date, stock){
 	close = use.get_x_close(date, stock, 0)
 
 	result = (high + low + close) / 3 
+
+	return(result)
+}
+
+use.get_total_gain_loss <- function(date, time, stock, X){
+	# find the total amount that a stock went up and down in X periods
+
+	data_points = use.get_x_data_points(date, time, stock, X)
+
+	gain = 0
+	loss = 0
+
+	for (i in c(1:(length(data_points) - 1))) {
+
+		first = data_points[0+i]
+		second = data_points[1+i]
+
+		if(first < second){
+			gain = gain + (second - first)
+		}
+		else if(first > second){
+			loss = loss + (first - second)
+		}
+	}
+
+	result = c(gain, loss)
 
 	return(result)
 }
@@ -310,7 +341,6 @@ adv.get_ketler_channels <- function(date, time, stock){
 
 adv.get_ema <- function(date, time, stock, X){
 	# get the exponential moving average over X number of iterations
-	# IS BROKEN NEED CHECKING
 
 	start_date = use.get_x_date(date, X)
 	data_points = use.get_x_data_points(start_date, time, stock, 10)
@@ -534,39 +564,91 @@ adv.get_commodity_channel_index <- function(date, time, stock){
 
 adv.get_coppock_curve <- function(date, time, stock){
 	# calculate the coppock curve
-	# NEED EMA WHICH IS BROKEN
 
-	result = 0
+	dummy_list = c()
+
+	for (i in c(1:10)) {
+
+		new_date = use.get_x_date(date, i)
+
+		roc_14 = adv.get_rate_of_change(new_date, time, stock, 14)
+		roc_11 = adv.get_rate_of_change(new_date, time, stock, 11)
+
+		temp = roc_14 + roc_11
+
+		dummy_list = c(dummy_list, temp)
+	}
+
+	result = use.get_average(dummy_list)
 
 	return(result)
 }
 
 adv.get_correlation_coefficient <- function(date, time, stock){
 	# calculate the CC
+	# MIGHT NOT BE USEFUL AT ALL
 
 	result = 0
 
 	return(result)
 }
 
-adv.get_price_momentum_oscillator <- function(date, time, stock){
+adv.get_price_momentum_oscillator <- function(date, time, stock, X){
 	# calculate the PMO
+	# DIFFICULT NEED TIME
+
+	smoothing_multiplier = (2 / X)
 
 	result = 0
 
 	return(result)
 }
 
-adv.get_detrended_price_oscillator <- function(date, time, stock){
+adv.get_detrended_price_oscillator <- function(date, time, stock, X){
 	# calculate DPO
 
-	result = 0
+	data_points = use.get_x_data_points(date, time, stock, X)
+	average = use.get_average(data_points)
+	index = X / 2 + 1
+
+	price = tail(use.get_x_data_points(date, time, stock, index),1)
+
+	result = price - average
 
 	return(result)
 }
 
 adv.get_mass_index <- function(date, time, stock){
 	# calculate mass index
+
+	# THIS ONE IS HARD
+
+	# Single EMA = 9-period exponential moving average (EMA) of the high-low differential
+	# Double EMA = 9-period EMA of the 9-period EMA of the high-low differential
+	# EMA Ratio = Single EMA divided by Double EMA 
+	# Mass Index = 25-period sum of the EMA Ratio 
+
+	dummy_list = c()
+	single_ema_list = c()
+
+	for (i in c(1:9)) {
+
+		for (j in c(1:9)) {
+			data_points = use.get_x_day_data_points(date, j)
+			max = use.get_max(data_points)
+			min = use.get_min(data_points)
+			difference = max - min
+
+			dummy_list = c(dummy_list, difference)
+		}
+
+		single_ema = use.get_average(dummy_list)
+		single_ema_list = c(single_ema_list, single_ema)
+	}
+
+	double_ema = use.get_average(single_ema_list)
+
+
 
 	result = 0
 
@@ -576,7 +658,23 @@ adv.get_mass_index <- function(date, time, stock){
 adv.get_macd <- function(date, time, stock){
 	# calculate Moving Average Convergence/Divergence
 
-	result = 0
+	signal_line_list = c()
+
+	for (i in c(1:9)) {
+		new_date = use.get_x_date(date, (i-1))
+
+		data_points_12 = use.get_x_data_points(new_date, time, stock, 12)
+		data_points_26 = use.get_x_data_points(new_date, time, stock, 26)
+		aver_12 = use.get_average(data_points_12)
+		aver_26 = use.get_average(data_points_26)
+		macd_line = aver_12 - aver_26
+
+		signal_line_list = c(signal_line_list, macd_line)
+	}
+
+	signal_line = use.get_average(signal_line_list)
+
+	result = c(signal_line_list[1], signal_line)
 
 	return(result)
 }
@@ -584,7 +682,9 @@ adv.get_macd <- function(date, time, stock){
 adv.get_macd_histogram <- function(date, time, stock){
 	# calculate MACD-Histogram
 
-	result = 0
+	macd = adv.get_macd(date, time, stock)
+
+	result = macd[1] - macd[2]
 
 	return(result)
 }
@@ -592,7 +692,25 @@ adv.get_macd_histogram <- function(date, time, stock){
 adv.get_ppo <- function(date, time, stock){
 	# calculate Percentage Price Oscillator
 
-	result = 0
+	signal_line_list = c()
+
+	for (i in 1:9) {
+		new_date = use.get_x_date(date, (i-1))
+
+		data_points_12 = use.get_x_data_points(new_date, time, stock, 12)
+		data_points_26 = use.get_x_data_points(new_date, time, stock, 26)
+		aver_12 = use.get_average(data_points_12)
+		aver_26 = use.get_average(data_points_26)
+		PPO = ((aver_12 - aver_26) / aver_26) * 100
+
+		signal_line_list = c(signal_line_list, PPO)
+	}
+
+	signal_line = use.get_average(signal_line_list)
+
+	histogram = signal_line_list[1] - signal_line
+
+	result = c(signal_line_list[1], signal_line, histogram)
 
 	return(result)
 }
@@ -600,15 +718,98 @@ adv.get_ppo <- function(date, time, stock){
 adv.get_kst <- function(date, time, stock){
 	# calculate Know Sure Thing
 
-	result = 0
+	# RCMA1 = 10-Period SMA of 10-Period Rate-of-Change 
+	# RCMA2 = 10-Period SMA of 15-Period Rate-of-Change 
+	# RCMA3 = 10-Period SMA of 20-Period Rate-of-Change 
+	# RCMA4 = 15-Period SMA of 30-Period Rate-of-Change 
+	# KST = (RCMA1 x 1) + (RCMA2 x 2) + (RCMA3 x 3) + (RCMA4 x 4)  
+	# Signal Line = 9-period SMA of KST
+
+	signal_line_list = c()
+
+	for (j in c(1:9)) {
+		start_date = use.get_x_date(date, 9)
+
+		roc_10_list = c()
+		roc_15_list = c()
+		roc_20_list = c()
+		roc_30_list = c()
+
+		for (i in c(1:15)) {
+			new_date = use.get_x_date(start_date, (i-1))
+
+			roc_10 = adv.get_rate_of_change(new_date, time, stock, 10)
+			roc_15 = adv.get_rate_of_change(new_date, time, stock, 15)
+			roc_20 = adv.get_rate_of_change(new_date, time, stock, 20)
+			roc_30 = adv.get_rate_of_change(new_date, time, stock, 30)
+
+			roc_10_list = c(roc_10_list, roc_10)
+			roc_15_list = c(roc_15_list, roc_15)
+			roc_20_list = c(roc_20_list, roc_20)
+			roc_30_list = c(roc_30_list, roc_30)
+		}
+
+		RCMA1 = use.get_average(head(roc_10_list, 10))
+		RCMA2 = use.get_average(head(roc_15_list, 10))
+		RCMA3 = use.get_average(head(roc_20_list, 10))
+		RCMA4 = use.get_average(head(roc_30_list, 15))
+
+		KST = (RCMA1 * 1) + (RCMA2 * 2) + (RCMA3 * 3) + (RCMA4 * 4)
+		signal_line_list = c(signal_line_list, KST)
+	}
+
+	result = use.get_average(signal_line_list)
 
 	return(result)
 }
 
 adv.get_special_k <- function(date, time, stock){
 	# calculate Pring Special K
+	# this requires a lot of data and isn't always useful
+	# HAS NOT BEEN TESTED, ALWAYS RUNS OUT OF DATA
 
-	result = 0
+    roc_10_list = c()
+    roc_15_list = c()
+    roc_20_list = c()
+    roc_30_list = c()
+    roc_40_list = c()
+    roc_65_list = c()
+    roc_75_list = c()
+    roc_100_list = c()
+    roc_195_list = c()
+    roc_265_list = c()
+    roc_390_list = c()
+    roc_530_list = c()
+
+    for (i in 1:195) {
+    	new_date = use.get_x_date(date, (i-1))
+
+    	roc_10_list = c(roc_10_list, adv.get_rate_of_change(new_date, time, stock, 10))
+    	roc_15_list = c(roc_15_list, adv.get_rate_of_change(new_date, time, stock, 15))
+    	roc_20_list = c(roc_20_list, adv.get_rate_of_change(new_date, time, stock, 20))
+    	roc_30_list = c(roc_30_list, adv.get_rate_of_change(new_date, time, stock, 30))
+    	roc_40_list = c(roc_40_list, adv.get_rate_of_change(new_date, time, stock, 40))
+    	roc_65_list = c(roc_65_list, adv.get_rate_of_change(new_date, time, stock, 65))
+    	roc_75_list = c(roc_75_list, adv.get_rate_of_change(new_date, time, stock, 75))
+    	roc_100_list = c(roc_100_list, adv.get_rate_of_change(new_date, time, stock, 100))
+    	roc_195_list = c(roc_195_list, adv.get_rate_of_change(new_date, time, stock, 195))
+    	roc_265_list = c(roc_265_list, adv.get_rate_of_change(new_date, time, stock, 265))
+    	roc_390_list = c(roc_390_list, adv.get_rate_of_change(new_date, time, stock, 390))
+    	roc_530_list = c(roc_530_list, adv.get_rate_of_change(new_date, time, stock, 530))
+    }
+
+	result = (use.get_average(head(roc_10_list,10)) * 1)
+			+(use.get_average(head(roc_15_list,10)) * 2)
+			+(use.get_average(head(roc_20_list, 10)) * 3)
+			+(use.get_average(head(roc_30_list, 15)) * 4)
+			+(use.get_average(head(roc_40_list, 50)) * 1)
+			+(use.get_average(head(roc_65_list, 65)) * 2)
+			+(use.get_average(head(roc_75_list, 75)) * 3)
+			+(use.get_average(head(roc_100_list, 100)) * 4)
+			+(use.get_average(head(roc_195_list, 130)) * 1)
+			+(use.get_average(head(roc_265_list, 130)) * 2)
+			+(use.get_average(head(roc_390_list, 130)) * 3)
+			+(use.get_average(head(roc_530_list, 195)) * 4)
 
 	return(result)
 }
@@ -624,7 +825,13 @@ adv.get_rate_of_change <- function(date, time, stock, X){
 adv.get_rsi <- function(date, time, stock){
 	# calculate relative strength index
 
-	result = 0
+    gain_loss = use.get_total_gain_loss(date, time, stock, 14)
+    average_gain = gain_loss[1] / 14
+    average_loss = gain_loss[2] / 14
+    RS = average_gain / average_loss
+    RSI = 100 - (100 / 1 + RS)
+
+	result = RSI
 
 	return(result)
 }
@@ -632,7 +839,20 @@ adv.get_rsi <- function(date, time, stock){
 adv.get_sctr <- function(date, time, stock){
 	# calculate StockCharts Technical Rank
 
-	result = 0
+	price = use.get_x_data_points(date, time, stock, 1)
+	ema_200 = use.get_average(use.get_x_data_points(date, time, stock, 200))
+	long_1 = ((price / ema_200) * 100) - 100
+
+	long_2 = adv.get_rate_of_change(date, time, stock, 125)
+
+	ema_50 = use.get_average(use.get_x_data_points(date, time, stock, 50))
+	medium_1 = ((price / ema_50) * 100) - 100
+
+	medium_2 = adv.get_rate_of_change(date, time, stock, 20)
+
+	short_2 = adv.get_rsi(date, time, stock)
+
+	result = c(long_1, long_2, medium_1, medium_2, short_2)
 
 	return(result)
 }

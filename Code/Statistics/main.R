@@ -130,7 +130,7 @@ print(random_stock)
 print(tail(test_vec,10))
 print("########")
 
-print(adv.get_rate_of_change(random_day, random_time, random_stock, 4))
+print(adv.get_sctr(random_day, random_time, random_stock))
 
 stop()
 
