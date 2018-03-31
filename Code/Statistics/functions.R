@@ -718,13 +718,6 @@ adv.get_ppo <- function(date, time, stock){
 adv.get_kst <- function(date, time, stock){
 	# calculate Know Sure Thing
 
-	# RCMA1 = 10-Period SMA of 10-Period Rate-of-Change 
-	# RCMA2 = 10-Period SMA of 15-Period Rate-of-Change 
-	# RCMA3 = 10-Period SMA of 20-Period Rate-of-Change 
-	# RCMA4 = 15-Period SMA of 30-Period Rate-of-Change 
-	# KST = (RCMA1 x 1) + (RCMA2 x 2) + (RCMA3 x 3) + (RCMA4 x 4)  
-	# Signal Line = 9-period SMA of KST
-
 	signal_line_list = c()
 
 	for (j in c(1:9)) {
@@ -920,11 +913,6 @@ adv.get_stoch_rsi <- function(date, time, stock){
 adv.get_trix <- function(date, time, stock){
 	# calculate trix
 
-	# 1. Single-Smoothed EMA = 15-period EMA of the closing price
-	# 2. Double-Smoothed EMA = 15-period EMA of Single-Smoothed EMA
-	# 3. Triple-Smoothed EMA = 15-period EMA of Double-Smoothed EMA
-	# 4. TRIX = 1-period percent change in Triple-Smoothed EMA
-
 	triple_smoothed_list = c()
 
 	for (i in c(1:15)) {
@@ -995,10 +983,6 @@ adv.get_tsi <- function(date, time, stock){
 
 adv.get_ulcer_index <- function(date, time, stock){
 	# calculate ulcer index
-
-	# Percent-Drawdown = ((Close - 14-period Max Close)/14-period Max Close) x 100
-	# Squared Average = (14-period Sum of Percent-Drawdown Squared)/14 
-	# Ulcer Index = Square Root of Squared Average
 
 	average_squared_list = c()
 
