@@ -130,7 +130,7 @@ print(random_stock)
 print(tail(test_vec,10))
 print("########")
 
-print(adv.get_sctr(random_day, random_time, random_stock))
+print(adv.get__R(random_day, random_time, random_stock))
 
 stop()
 

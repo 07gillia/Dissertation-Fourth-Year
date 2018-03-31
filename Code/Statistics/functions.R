@@ -857,18 +857,40 @@ adv.get_sctr <- function(date, time, stock){
 	return(result)
 }
 
-adv.get_slope <- function(date, time, stock){
-	# calculate 
+adv.get_slope <- function(date, time, stock, X){
+	# calculate the line of best fit over X datapoints
 
-	result = 0
+	x_axis = c(1:X)
+	y_axis = use.get_x_data_points(date, time, stock, X)
+
+	fit = lm(y_axis~x_axis)
+
+	result = summary(fit)
 
 	return(result)
 }
 
 adv.get_so <- function(date, time, stock){
 	# calculate Stochastic Oscillator
+	# NOT CONVINCED
 
-	result = 0
+	d_list = c()
+
+	for (i in c(1:3)) {
+		new_date = use.get_x_date(date, (i-1))
+
+		close = use.get_x_close(new_date, stock, 1)
+		data_points = use.get_x_data_points(new_date, time, stock, 14)
+		max = use.get_max(data_points)
+		min = use.get_min(data_points)
+
+		k_ = (close - min) / (max - min)
+		d_list = c(d_list, k_)
+	}
+
+	print(d_list)
+
+	result = use.get_average(d_list)
 
 	return(result)
 }
@@ -876,7 +898,21 @@ adv.get_so <- function(date, time, stock){
 adv.get_stoch_rsi <- function(date, time, stock){
 	# calculate StochRSI
 
-	result = 0
+	stoch_rsi_list = c()
+
+	for (i in c(1:14)) {
+		new_date = use.get_x_date(date, (i-1))
+
+		rsi = adv.get_rsi(new_date, time, stock)
+
+		stoch_rsi_list = c(stoch_rsi_list, rsi)
+	}
+
+	low = use.get_min(stoch_rsi_list)
+	high = use.get_max(stoch_rsi_list)
+	rsi = stoch_rsi_list[1]
+
+	result = (rsi - low) / (high - low)
 
 	return(result)
 }
@@ -884,7 +920,40 @@ adv.get_stoch_rsi <- function(date, time, stock){
 adv.get_trix <- function(date, time, stock){
 	# calculate trix
 
-	result = 0
+	# 1. Single-Smoothed EMA = 15-period EMA of the closing price
+	# 2. Double-Smoothed EMA = 15-period EMA of Single-Smoothed EMA
+	# 3. Triple-Smoothed EMA = 15-period EMA of Double-Smoothed EMA
+	# 4. TRIX = 1-period percent change in Triple-Smoothed EMA
+
+	triple_smoothed_list = c()
+
+	for (i in c(1:15)) {
+		new_date = use.get_x_date(date, (i-1))
+
+		double_smoothed_list = c()
+
+		for (j in c(1:15)) {
+			newer_date = use.get_x_date(new_date, (j-1))
+
+			single_smoothed_list = c()
+
+			for (k in c(1:15)) {
+				newest_date = use.get_x_date(newer_date, (k-1))
+				close = use.get_x_close(newest_date, stock, 1)
+
+				single_smoothed_list = c(single_smoothed_list, close)
+			}
+
+			double_smoothed_list = c(double_smoothed_list, use.get_average(single_smoothed_list))
+		}
+
+		triple_smoothed_list = c(triple_smoothed_list, use.get_average(double_smoothed_list))
+	}
+
+	first = triple_smoothed_list[1]
+	second = triple_smoothed_list[2]
+
+	result = ((second / first) * 100) - 100
 
 	return(result)
 }
@@ -892,7 +961,34 @@ adv.get_trix <- function(date, time, stock){
 adv.get_tsi <- function(date, time, stock){
 	# calculate true strength index
 
-	result = 0
+	double_smoothed_list = c()
+	double_smoothed_list_abs = c()
+
+	for (i in c(1:13)) {
+		new_date = use.get_x_date(date, (i-1))
+
+		single_smoothed_list = c()
+		single_smoothed_list_abs = c()
+
+		for (j in c(1:25)) {
+			newer_date = use.get_x_date(new_date, (j-1))
+
+			data_points = use.get_x_data_points(newer_date, time, stock, 2)			
+			PC = data_points[1] - data_points[2]
+			PC_abs = abs(data_points[1] - data_points[2])
+
+			single_smoothed_list = c(single_smoothed_list, PC)
+			single_smoothed_list_abs = c(single_smoothed_list_abs, PC_abs)
+		}
+
+		double_smoothed_list = c(double_smoothed_list, use.get_average(single_smoothed_list))
+		double_smoothed_list_abs = c(double_smoothed_list_abs, use.get_average(single_smoothed_list_abs))
+	}
+
+	double_smoothed = use.get_average(double_smoothed_list)
+	double_smoothed_abs = use.get_average(double_smoothed_list_abs)
+
+	result = 100 * (double_smoothed / double_smoothed_abs)
 
 	return(result)
 }
@@ -900,7 +996,35 @@ adv.get_tsi <- function(date, time, stock){
 adv.get_ulcer_index <- function(date, time, stock){
 	# calculate ulcer index
 
-	result = 0
+	# Percent-Drawdown = ((Close - 14-period Max Close)/14-period Max Close) x 100
+	# Squared Average = (14-period Sum of Percent-Drawdown Squared)/14 
+	# Ulcer Index = Square Root of Squared Average
+
+	average_squared_list = c()
+
+	for (i in c(1:14)) {
+		new_date = use.get_x_date(date, (i-1))
+
+		close_list = c()
+
+		for (j in c(1:14)) {
+			newer_date = use.get_x_date(new_date, (j-1))
+
+			close = use.get_x_close(newer_date, stock, 1)
+
+			close_list = c(close_list, close)
+		}
+
+		max = use.get_max(close_list)
+		close = close_list[1]
+		PD = ((close - max) / max) * 100
+
+		average_squared_list = c(average_squared_list, (PD * PD))
+	}
+
+	SA = use.get_average(average_squared_list)
+
+	result = sqrt(SA)
 
 	return(result)
 }
@@ -908,7 +1032,28 @@ adv.get_ulcer_index <- function(date, time, stock){
 adv.get_UO <- function(date, time, stock){
 	# calculate ultimate oscilator
 
-	result = 0
+	BP_list = c()
+	TR_list = c()
+
+	for (i in c(28)) {
+		new_date = use.get_x_date(date, (i-1))
+
+		close = use.get_x_close(new_date, stock, 0)
+		min = use.get_min(use.get_x_day_data_points(new_date, stock, 0))
+		max = use.get_max(use.get_x_day_data_points(new_date, stock, 0))
+
+		BP = close - use.get_min(c(close, min))
+		TR = use.get_max(c(max, close)) - use.get_min(c(min, close))
+
+		BP_list = c(BP_list, BP)
+		TR_list = c(TR_list, TR)
+	}
+
+	average7 = sum(head(BP_list, 7)) / sum(head(TR_list, 7))
+	average14 = sum(head(BP_list, 14)) / sum(head(TR_list, 14))
+	average28 = sum(head(BP_list, 28)) / sum(head(TR_list, 28))
+
+	result = 100 * ((4 * average7) + (2 * average14) + (average28)) / (4 + 2 + 1)
 
 	return(result)
 }
@@ -916,15 +1061,43 @@ adv.get_UO <- function(date, time, stock){
 adv.get_vortex <- function(date, time, stock){
 	# calculate vortex indicator
 
-	result = 0
+	vm_plus_list = c()
+	vm_minus_list = c()
+	tr_list = c()
+
+	for (i in c(1:14)) {
+		new_date = use.get_x_date(date, (i-1))
+
+		current_high = use.get_max(use.get_x_day_data_points(new_date, stock, 0))
+		current_low = use.get_min(use.get_x_day_data_points(new_date, stock, 0))
+		prior_high = use.get_max(use.get_x_day_data_points(new_date, stock, 1))
+		prior_low = use.get_min(use.get_x_day_data_points(new_date, stock, 1))
+
+		vm_plus = current_high - prior_low
+		vm_minus = current_low - prior_high
+		tr = adv.get_average_true_range(new_date, time, stock, 1)
+
+		vm_plus_list = c(vm_plus_list, vm_plus)
+		vm_minus_list = c(vm_minus_list, vm_minus)
+		tr_list = c(tr_list, tr)
+	}
+
+	vi_plus = sum(vm_plus_list) / sum(tr_list)
+	vi_minus = sum(vm_minus_list) / sum (tr_list)
+
+	result = c(vi_plus, vi_minus)
 
 	return(result)
 }
 
 adv.get__R <- function(date, time, stock){
 	# calculate williams %R
+	# NOT SURE ABOUT THIS
 
-	result = 0
+	data_points = use.get_x_data_points(date, time, stock, 14)
+	close = use.get_x_close(date, stock, 1)
+
+	result = ((use.get_max(data_points) - close) / (use.get_max(data_points) - use.get_min(data_points))) * -100
 
 	return(result)
 }
