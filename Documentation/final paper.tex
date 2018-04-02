@@ -56,6 +56,8 @@ This section briefly introduces the general project background, the research que
 
 The stock market has been an early adopter of technology since its inception, with companies wanting to get an edge over their fellows and thus earning the most money. The first computer usage in the stock market was in the early 1970s with the New York Stock Exchange introducing the DOT system or the Designated Order Turnaround system, this allowed for bypassing of brokers and routed an order for specific securities to a specialist on the trading floor. Since this point the use of machines to allow for increase throughput and speed has been pandemic. From this point it was inevitable that computers would be used to aid in the decision making process of what to buy or sell and when. This was shown to be very effective and got significant traction in the financial market in 2001 with the showcase of IBMs MGD and  Hewlett-Packard's ZIP, these two algorithmic strategies were shown to consistently outperform their human counterparts. These were both based on academic papers from 1996 so the academic conception of algorithmic applications in financial markets has been present for several decades. Whilst in the current day over one billion shares are traded every day, this would not be possible without computerised assistance. \\
 
+The aim of any algorithmic trading system is to 'beat the market' that is to buy low and sell high so gain the most capital over any given time frame, be that a day, a year, or a decade. This paper will look into the challenge faced by these algorithms and if, using any available tools, it is possible to outstrip any high street banks offering rates. This will be done through simulation of a stock market, using real stock data, and the simulation of buying and selling these stocks by an algorithm.\\
+
 \label{units}
 \begin{longtable}{ |p{1.5cm}|p{5.5cm}|p{8cm}| }\hline\hline
 Unique ID & Deliverable & Description \\ \hline
@@ -100,32 +102,110 @@ This section should be between 4 to 7 pages in length.
 
 \subsubsection*{Logic}
 
-How the simulation was set up.\\
-
-The logic behind the simulation was to allow trading at a fine grain level, this needed to be permitted by the data chosen to perform the algorithms on. A drawback was that 'tick data' or data for each trade executed was found to be too costly for the project so 'minute data' was used. Minute data provides an open, high, low, and close price for a stock in the given minute, this gave plenty of data points per day of trading. A simplification was created at this point, trading was only done on the price that opened the minute. This was done to reduce the complexity of calculating any inter-minute values. The running of the simulation was based on the progression through each date of available trading and for each day iterate through every minute of the trading day, starting at 09:30 until 16:00. Each trading day has 390 points at which trading is possible, if the data permits it. This is available for X days in the 18 months of data that was used. \\
+The logic behind the simulation was to allow trading at a fine grain level, this needed to be permitted by the data chosen to perform the algorithms on. A drawback was that 'tick data' or data for each trade executed was found to be too costly for the project so 'minute data' was used. Minute data provides an open, high, low, and close price for a stock in the given minute, this gave plenty of data points per day of trading. A simplification was created at this point, trading was only done on the price that opened the minute. This was done to reduce the complexity of calculating any inter-minute values. The running of the simulation was based on the progression through each date of available trading and for each day iterate through every minute of the trading day, starting at 09:30 until 16:00. Each trading day has 390 points at which trading is possible, if the data permits it. This is available for 382 days in the 18 months of data that was used. 
 
 \subsubsection*{Data}
 
-Talk through what data was used.\\
+Forty Five different stocks were used in this paper, taking from each the maximum number of data points available between 01/03/2016 and 01/09/2017 giving an eighteen month window in which the first six months did not allow for trading to occur, only for data collection and training of models, which will be discussed in depth further in the paper, then the final twelve months are for testing each algorithmic approach. There were some limitations with the data that was used. Due to the volatility of the stock market and the fact that some days trading was halted for a myriad of reasons, there are not 390 data points per day, for eighteen months. Trading is not available on weekends, or on bank or national holidays, or if trading is halted for some other reason. This meant that the solution had to take into account holes in the data. These gaps are also not regular, any given day can be cut short or a whole day could be taken without a pattern. Gaps also exist in minutes that no trades were executed, this removes any values from the data and removes the possibility of trading within these minutes.\\
 
-Forty Five different stocks were used in this paper, taking from each the maximum number of data points available between 01/03/2016 and 01/09/2017 giving an eighteen month window in which the first six months did not allow for trading to occur, only for data collection and training of models, which will be discussed in depth further in the paper, then the final twelve months are for testing each algorithmic approach. There were some limitations with the data that was used. Due to the volatility of the stock market and the fact that some days trading was halted for a myriad of reasons, there are not 390 data points per day, for eighteen months. Trading is not available on weekends, or on bank or national holidays, or if trading is halted for some other reason. This meant that the solution had to take into account holes in the data.\\
+The data was taken from the NASDAQ, the second largest stock market in the world. The number of stocks used was arbitrarily big enough to provide enough data to test any given algorithm, some of which were found to prefer an abundance of data whilst others were much more short sighted and volatile. \\
 
+The data downloaded was in the form:
 
-Talk through why that data was used.\\
+\label{units}
+\begin{longtable}{ |p{1.5cm}|p{1.5cm}|p{1.5cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}| }\hline\hline
+Ticker & Date & Time & Open & High & Low & Close \\ \hline
+AA & 01/03/16 & 09:30 & 9.1100000 & 9.1300000 & 9.1100000 & 9.1100000 \\ \hline
+... & ... & ... & ... & ... & ... & ... \\ \hline
+\caption{AA Data}
+\end{longtable}
 
-The data was taken from the NASDAQ, the second largest stock market in the world. The number of stocks used was arbitrarily big enough to provide enough data to test any given algorithm, some of which were found to prefer an abundance of data whilst others were much more short sighted. \\
+This was then converted using an R script into the form:
+
+\label{units}
+\begin{longtable}{ |p{1.5cm}|p{1.5cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}|p{1.5cm}| }\hline\hline
+Date & Time & AA & AAPL & ADBE & AIG & ... \\ \hline
+01/03/16 & 09:30 & 9.11 & 97.66 & 86.15 & 50.59 & ... \\ \hline
+... & ... & ... & ... & ... & ... & ... \\ \hline
+\caption{All Data}
+\end{longtable}
+
+Thus reducing computational overhead from the running of the simulation as all data manipulation had been done prior to the data being used. In the final form no other alterations had to be made to the data other than set data types. 
 
 \subsubsection*{Set up}
 
-Why was the simulation set up that way?\\
+The simulation was set up in such a way so as to minimise the impact that gaps in the data would cause. This meant using the data to provide the iteration behaviour. The data input in the form of Table 3 was cast for each row using a typecast function to allow correct manipulation of numerical values the dates were converted to numerical values for correct comparison, as were the times. The stock values were also numerical. \\
 
+The simulation then uses all unique dates within the Dates column to allow for iteration through the table at the highest level, through each individual day. One the data had been sub-sampled for that day, then a list of unique minutes was created. Once the data had been further sub-sampled to the current minute, each of the stock columns were iterated through and tested for NA values. If an NA value is present for that stock then it is passed over. If the value is available however then two functions are used, 'shouldBuy' and 'shouldSell'. The first used is 'shouldBuy', this will take input of current date, current time, and current stock, to allow for a decision to be made on weather to buy an amount of that stock or not. These functions are based on manipulations of three other tables, 'Active', 'Sold', and 'Ledger'. They take the form:
+
+\label{units}
+\begin{longtable}{ |p{2.25cm}|p{2.25cm}|p{2.25cm}|p{2.25cm}|p{2.25cm}|p{2.25cm}| }\hline\hline
+Unique ID & Date Bought & Time Bought & Stock & Number of Shares & Cost per Share \\ \hline
+... & ... & ... & ... & ... & ... \\ \hline
+\caption{Active}
+\end{longtable}
+
+\label{units}
+\begin{longtable}{ |p{2.25cm}|p{2.25cm}|p{2.25cm}|p{2.25cm}|p{2.25cm}|p{2.25cm}| }\hline\hline
+Unique ID & Date Bought & Time Bought & Stock & Number of Shares & Cost per Share \\ \hline
+... & ... & ... & ... & ... & ... \\ \hline
+Amount Bought & Date Sold & Time Sold & Price per Share & Amount Sold & \\ \hline
+... & ... & ... & ... & ... &  \\ \hline
+\caption{Sold}
+\end{longtable}
+
+\label{units}
+\begin{longtable}{ |p{2.25cm}|p{2.25cm}|p{2.25cm}|p{2.25cm}| }\hline\hline
+Date & Value & Stock Value & Capital Value \\ \hline
+... & ... & ... & ...  \\ \hline
+\caption{Ledger}
+\end{longtable}
+
+Each also comes with its own population function, 'Buy', 'Sell', 'Update'. The first two are called if any decision is made. If a stocks value is such that the 'shouldBuy' function returns true then the 'Buy' function is called, taking input of date, time, stock, and amount. This is then added as another row to the Active table, as this is now an active stock that can be sold. The amount of any given stock that should be purchased is calculated through another function 'getAmount', this will test all calculations done in 'shouldBuy' and calculate a confidence value that will then dictate, using the amount of liquid capital available, the amount of the stock that will be bought. The 'shouldSell' function is then queried every time an updated value is available for any given row in the 'Active' table. Using the new value a decision will be made if the stock should be sold, if this is found to be the case then the 'Sell' function is called. The function will remove the row of the 'Active' table that corresponds to this block of stock to be sold and add it to the 'Sold' table along with all the details of the transaction. \\
+
+The final table is 'Ledger' which uses the function 'Update', this is called on a regular basis to allow for tracking of the algorithm throughout the simulation. All overall details of capital are stored in this table. The Date column is a concatenation of both Time and Date in any other table to allow for minute by minute updates of the simulation or if this is not required then daily updates are possible.
+
+\iffalse
 The simulation was set up in an iterative way in order to minimise the disruptions that missing data would cause, whilst also being exhaustive and searching for data given a reference point is straightforward, so no data point is missed or an inaccurate search is done. A simple testing framework was set up during implementation, variable controlled which stocks were being iterated through at any given moment,what dates were available, when any trade execution could commence, and the amount of capital that was available to any given algorithm. Once these had been established then each date from the start date to the end date variables was found through merged table of all dates across all stocks as some stocks are available to trade when others are not, these are then iterated through. Within this loop is another very similar loop that performs the same action but for minutes rather than dates. All available times are found for the specific date, and iterated through. Finally, for each stock that is available, during testing not all stocks were used so as to help with the removal of bugs, instead a random number generator would choose a predefined number of stocks and iterate over these instead. A stock value is found for that date, at that time, for that stock. Once this has been done then then calculations can be made to decide if any action needs to be taken given this new information. Any buy or sell actions are handled by a single function each that will take in all current information, including the time, date, and stock price. These two functions shall be known as the 'shouldBuy' and 'shouldSell' functions throughout this paper. These functions will be given all available information and will then make a decision using the methods they have been assigned. Any action that is taken will be stored in tables set up before the simulation was started. There are three tables, initially only two were used but a third was introduced at a later date to increase the speed of execution of the simulation. These tables are 'Active', 'Sold', and 'Ledger'. Active is any bundle of stocks that have been bought by the algorithm, stored as a row containing; A unique identifying number to allow for easy retrieval of the row, the date on which the stock was bought, the time at which the stock was bought, the name of the stock, the number of shares that were bought during this execution, and the cost per share or stock price as these are the same. This table is iterated through every time a new stock price becomes available for a stock that is present in the table and the 'shouldSell' function is called, then any necessary calculations are done to decide if this bundle of stocks should be sold or not. If it is decided that this bundle should be sold then this row is removed from the 'Active' table and added to the 'Sold' table. This table contains the same headers as the 'Active' table with the addition of the total amount bought, meaning number of shares multiplied by price they were bought at, the date sold on, the time sold at, the price per share that they were sold at, and the total amount sold. The two totals, total bought and total sold, may seem to be superfluous by they are relied upon by the final table. This table is the most used, it has a row added each time a change is made within the simulation regardless of any actions taken. Each minute a new row is added to this table to keep track of all capital that is within the simulation, the reason for this table is to show at the end of the simulation all trades that were performed and the amount of capital that is liquid or in stocks at any given moment. During implementation minute by minute updates were not required and this only served to increase the execution time of the simulation by a significant amount, and thus the function that adds a new row to this table was only called at the end of each day iteration instead of at the end of each minute iteration. This table contains the heading; date - this was a concatenation of both time and date with a simplified name, value - this was the total value within the simulation, stock value - this is the total amount of capital that are currently within stocks, and capital value - this is the amount of liquid capital available. \\
 
 ADD THREE TABLES TO SHOW HOW THEY LOOK\\
+\fi
 
 \subsubsection*{Functions}
 
-What functions are critical to the running of the simulation? \\
+These are some of the more regularly utilised functions in the simulation and are the key underpinnings of the statistical and machine learning techniques that are used throughout the simulation. \\
+
+\textbf{Buy}(Date, Time, Stock, Amount) - Adds a row to the 'Active' table. \\
+
+\textbf{Sell}(RowData, Date, Time, Stock, StockPrice) - Adds a row to the 'Sold' table and removes the corresponding row of the 'Active' table.\\
+
+\textbf{Update}(Date, TotalCapital) - Adds a row to the 'Ledger' table for re-tracking of the simulation.\\
+
+\textbf{shouldBuy}(Time, Date, Stock) - Calculates using any method set if the current stock should be bought at the current price.\\
+
+\textbf{shouldSell}(UniqueID, Date, Time) - Calculates if the given block of stocks should be sold at the current price.\\
+
+\textbf{getMax}(List) - Get the maximum value of the given list.\\
+
+\textbf{getMin}(List) - Get the minimum value of the given list.\\
+
+\textbf{getAverage}(List) - Get the mean value of the given list.\\
+
+\textbf{getSD}(List) - Get the standard deviation of the given list.\\
+
+\textbf{getXDate}(Date, X) - Get the date X days ago.\\
+
+\textbf{getXClose}(Date, Stock, X) - Get the close X days ago.\\
+
+\textbf{getXOpen}(Date, Stock, X) - Get the open X days ago.\\
+
+\textbf{getXDataPoints}(Date, Time, Stock, X) - Get the last X data points for the given stock.\\
+
+\textbf{getXDayDataPoints}(Date, Stock, X) - Get all data for the day X days ago.\\
+
+\textbf{getXSincePrice}(Date, Time, Stock, Price) - Get the number of data points between the current data point and the last data point that had the given price.\\
+
+\textbf{getTotalGainLoss}(Date, Time, Stock, X) - Over the last X data points get the total gain and loss.\\
 
 \iffalse
 #################################################################################
@@ -133,15 +213,7 @@ What functions are critical to the running of the simulation? \\
 
 \subsection*{Statistical Methods}
 
-What statistical methods were used first?\\
-
-Once a working simulation had been established and all functions had been shown to be working through hard coding of behaviour, statistical methods had to be implemented. These were separated into two groups, the first are called technical overlays, these are methods that provided insight into the data by providing numbers that are on the same scale as the price itself, whilst technical indicators are the other group and these give insight into the data through numbers that are in no way related to the stock price, and thus allow much more insightful comparisons to be made inter-stock as opposed to intra-stock, that is comparing two stocks is easier if technical indicators are used as opposed to using technical overlays which are very dependant on the stock price and do not translate as well between two unique stocks. \\
-
-\subsubsection*{Basic Functions}
-
-What are some basic functions that need to be defined before they are used?\\
-
-
+Once a working simulation had been established and all functions had been shown to be working through hard coding of behaviour, statistical methods had to be implemented. These were separated into two groups, the first are called technical overlays, these are methods that provided insight into the data by providing numbers that are on the same scale as the price itself, whilst technical indicators are the other group and these give insight into the data through numbers that are in no way related to the stock price, and thus allow much more insightful comparisons to be made inter-stock as opposed to intra-stock, that is comparing two stocks is easier if technical indicators are used as opposed to using technical overlays which are very dependant on the stock price and do not translate as well to comparisons between two unique stocks. \\
 
 \iffalse
 #################################################################################
@@ -640,9 +712,17 @@ Default value of X is 14. \\
 #################################################################################
 \fi
 
+\subsubsection*{Testing}
+
+Once each of these methods had been implemented they were each tested. With each being subtly different, the exact testing methods used for each one differed slightly. An example; with Moving Averages two were calculated with the difference being the length over which they were calculated. Then the relationship between these two was observed and if the shorter term average was significantly higher than the longer term average then an upward trend was being observed, when the short term average was significantly lower than the long term average then the opposite was true. The exact testing criteria for each is not shown but the results for each distinct method is shown in the results section.
+
+\iffalse
+#################################################################################
+\fi
+
 \subsection*{Machine Learning}
 
-
+Machine Learning is a very broad topic with much of contemporary computer science based on it or consisting of research done around it. 
 
 \iffalse
 #################################################################################
