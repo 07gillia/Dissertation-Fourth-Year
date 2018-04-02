@@ -31,7 +31,7 @@ start.time <- Sys.time()
 
 # Read in the data file of all stocks
 "Reading Stock Data"
-Data = read.csv("../../Data/ALLSTOCKS.csv")
+Data = read.csv("../Data/ALLSTOCKS.csv")
 sprintf("The data is in a dataframe? : %s", is.data.frame(Data))
 if(is.data.frame(Data)) {
     sprintf("What are the dimentions of the dataframe? : x = %d by y = %d", ncol(Data), nrow(Data))
