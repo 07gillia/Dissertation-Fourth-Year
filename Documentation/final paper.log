@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.12.6)  2 APR 2018 14:40
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.12.6)  2 APR 2018 16:43
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -85,6 +85,12 @@ Package: longtable 2014/10/28 v4.11 Multi-page Table package (DPC)
 \LT@p@ftn=\toks15
 )
 (./final paper.aux
+
+LaTeX Warning: Label `units' multiply defined.
+
+
+LaTeX Warning: Label `units' multiply defined.
+
 
 LaTeX Warning: Label `units' multiply defined.
 
@@ -951,16 +957,29 @@ Underfull \hbox (badness 10000) in paragraph at lines 704--706
 
  []
 
-[16] (./final paper.aux)
+
+Underfull \vbox (badness 10000) detected at line 737
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 747
+ []
+
+[16]
+Underfull \hbox (badness 10000) in paragraph at lines 749--750
+
+ []
+
+[17] (./final paper.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 1808 strings out of 493014
- 25582 string characters out of 6133351
- 99779 words of memory out of 5000000
- 5333 multiletter control sequences out of 15000+600000
+ 1810 strings out of 493014
+ 25595 string characters out of 6133351
+ 99912 words of memory out of 5000000
+ 5335 multiletter control sequences out of 15000+600000
  17641 words of font info for 37 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  38i,6n,23p,4318b,194s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -973,10 +992,10 @@ e/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2
 16/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2016/texmf-d
 ist/fonts/type1/urw/times/utmbi8a.pfb></usr/local/texlive/2016/texmf-dist/fonts
 /type1/urw/times/utmr8a.pfb>
-Output written on "final paper.pdf" (16 pages, 117204 bytes).
+Output written on "final paper.pdf" (17 pages, 120202 bytes).
 PDF statistics:
- 89 PDF objects out of 1000 (max. 8388607)
- 62 compressed objects within 1 object stream
+ 92 PDF objects out of 1000 (max. 8388607)
+ 64 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
