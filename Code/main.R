@@ -104,7 +104,7 @@ End_Date = 382
 
 Available_Capital = 100000
 
-Available_Stocks = sort(sample(Stock_Names, 44, replace=F))
+Available_Stocks = sort(sample(Stock_Names, 4, replace=F))
 # Initial value = 44
 
 Available_Dates = unique(Data$DATE)
@@ -118,21 +118,11 @@ Available_Data = Data[,c("DATE","TIME", Available_Stocks)]
 
 # Testing the function.R file
 
-random_day = sample(Date_List, 1)
-random_stock = sample(Available_Stocks, 1)
-time_vec = subset(Data, DATE==random_day, select=TIME)
-random_time = sample(time_vec$TIME,1)
-test_vec = subset(Data, DATE==random_day, select=random_stock)
-
-# print(random_day)
-# print(random_time)
-# print(random_stock)
-# print(tail(test_vec,10))
-# print("########")
-
-# print(adv.get__R(random_day, random_time, random_stock))
-
-# stop()
+# random_day = sample(Date_List, 1)
+# random_stock = sample(Available_Stocks, 1)
+# time_vec = subset(Data, DATE==random_day, select=TIME)
+# random_time = sample(time_vec$TIME,1)
+# test_vec = subset(Data, DATE==random_day, select=random_stock)
 
 ####################################################################
 # Iterate through each row

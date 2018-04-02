@@ -1087,3 +1087,21 @@ adv.get__R <- function(date, time, stock){
 }
 
 ####################################################################
+# Machine Learning - All ML related stuff
+####################################################################
+
+# create a function that takes in current time, date, and stock
+# then creates a table that has column decision
+# this will mostly be populated with NO
+# for both SVMs
+# but where troughs and peaks exist 
+# it is YES for buy and sell SVMs respectively
+# the functions that decided these peaks and troughs will be the deciding bit
+
+# x  <- sample(1:10, 10, replace=TRUE)
+# y  <- sample(1:1000, 10, replace=TRUE)
+
+# svm_model1 <- svm(x,y)
+# summary(svm_model1)
+
+####################################################################
