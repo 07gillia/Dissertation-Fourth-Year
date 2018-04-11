@@ -702,7 +702,7 @@ The crossovers of these two values is then used to identify the start and end of
 \textbf{Williams \%R} - Developed by Larry Williams and based on the Stochastic Oscillator developed by George C. Lane. This is the inverse of the Fast SO as the FSO reflects the relationship between the Close and the Lowest Low over a given period, whilst this reflects the relationship between the Close and the Highest High. This momentum indicator has the same benefits and drawbacks as the Stochastic Oscillator.\\
 
 \%R = (Highest High over X - Close)/(Highest High over X - Lowest Low over X) * -100\\
-Default value of X is 14. \\
+Default value of X is 14.
 
 \iffalse
 []
@@ -714,7 +714,7 @@ Default value of X is 14. \\
 
 \subsubsection*{Testing}
 
-Once each of these methods had been implemented they were each tested. With each being subtly different, the exact testing methods used for each one differed slightly. An example; with Moving Averages two were calculated with the difference being the length over which they were calculated. Then the relationship between these two was observed and if the shorter term average was significantly higher than the longer term average then an upward trend was being observed, when the short term average was significantly lower than the long term average then the opposite was true. Once each has been tested individually they can also be used in conjunction with other techniques, this has also been shown in the results section. 
+Once each of these methods had been implemented they were each tested. With each being subtly different, the exact testing methods used for each one differed slightly. An example; with Moving Averages two were calculated with the difference being the length over which they were calculated. Then the relationship between these two was observed and if the shorter term average was significantly higher than the longer term average then an upward trend was being observed, when the short term average was significantly lower than the long term average then the opposite was true. Once each has been tested individually they can also be used in conjunction with other techniques, this has also been shown in the results section. \\
 
 \iffalse
 #################################################################################
@@ -722,11 +722,13 @@ Once each of these methods had been implemented they were each tested. With each
 
 \subsection*{Machine Learning}
 
-Machine Learning is a very broad topic with much of contemporary computer science based on it or consisting of research done around it. The main technique that is being applied is that of a Support Vector Machine or SVM. This maximises the distance between two clusters.
+Machine Learning is a very broad topic with much of contemporary computer science based on it or consisting of research done around it. The main technique that is being applied is that of a Support Vector Machine or SVM. This maximises the distance between two clusters, and is based in statistical learning theory. Using a kernel mapping, that is mapping a vector into a higher dimensional space, allows for linear separation to be performed, even on non linear datasets if the correct kernel mapping is chosen. Linear separation is the key to this machine learning technique, it maximises the distance between the known elements of each of the two classes using was is basically a constraint satisfaction problem. This 'margin' between the two classes is our confidence in the separation, if the margin is small then there is very little distance within the higher dimensional space between the two classes meaning a smaller confidence of success, if the margin is large then there is a higher confidence in the successful determination of a given points class. 
 
 \subsubsection*{Set Up}
 
-The set up of data and input revolved around two functions. These are 'getPeaks' and 'getTroughs'. They take input of date, time, stock, and X, where X is the number of data points that are being used for learning. 'getPeaks' will take this input, sub-sample the data and find all points in the data that would have been optimal to sell at, that is all the peaks. 'getTroughs' will do the opposite, it will find all points at which it would have been optimal to buy. This data is then stored in tables 'SVMBuyData' and 'SVMSellData'. These are in the form:
+The set up of data and input revolved around two functions. These are 'getPeaks' and 'getTroughs'.
+
+They take input of date, time, stock, and X, X is the number of data points that will be used to make a decision about the buying or selling potential of the given data point. After X/2 data points have passed then a decision will be made using X/2 data points either side. 'getPeaks' will take this input, sub-sample the data and decide if this point was optimal to sell at, meaning it is a peak. 'getTroughs' will do the opposite, it will decide if this is a point at which it would have been optimal to buy. This data is then stored in tables 'SVMBuyData' and 'SVMSellData'. These are in the form:
 
 \label{units}
 \begin{longtable}{ |p{2.25cm}|p{2.25cm}|p{2.25cm}|p{2.25cm}| }\hline\hline
@@ -748,17 +750,17 @@ Date & Time & Stock Value & Should Sell \\ \hline
 
 These tables are then used as input to the SVM learning function that is found as part of the e1071 CRAN library, which contains all set up and query functions for the SVM.\\
 
-The functions 'getPeaks' and 'getTroughs' function in a similar way to 'shouldBuy' and 'shouldSell', they are very tune-able and are able to be changed to very different techniques without having an effect on the main functionality of the simulation. An example of a technique that could be used within these functions is to differentiate. This technique is designed around the idea that data can be modelled as an equation and when the gradient of the line is 0, this is a stationary point, these will either be peaks or troughs. Then the second derivative is used in conjunction with the data either side of the current point to decide if this stationary point is a peak or trough.
+The functions 'getPeaks' and 'getTroughs' function in a similar way to 'shouldBuy' and 'shouldSell', they are very tune-able and are able to be changed to very different techniques without having an effect on the main functionality of the simulation. An example of a technique that could be used within these functions is to differentiate. This technique is designed around the idea that data can be modelled as an equation and when the gradient of the line is 0, this is a stationary point, these will either be peaks or troughs. Then the second derivative is used in conjunction with the data either side of the current point to decide if this stationary point is a peak or trough. This is an example of one of the many techniques used. Other techniques used are; \\
 
-ADD ALL TECHNIQUES USED HERE
+Rolling average - Take the highest points over variable length rolling average. \\
+Spikes - Take any point as a peak if both neighbours are lower that that value and the inverse for troughs. \\
+Median - Take the top and bottom X\% of values. 
 
 \subsubsection*{Query}
 
-The query of the SVM is fairly simple, a new data point will be added and using the pre-learned model, it will be decided which group it will fall into. 
+The query function within the e1071 library is very simple, given an SVM that has learnt its separator a function call will return the group that the given point belongs to.
 
-TWO QUERY FUNCTIONS? YES
-
-This is all managed by the 'Query' function, taking input if date, time, and stock, whilst the number of data points to learn from will be predetermined to provide optimal performance. The 'Query' function will then create the data on which the SVM will be trained using 'getPeaks' and 'getTroughs' and using the built in training function will create a fully trained SVM which will then be queried using the built in query functions that will return a decision
+This system is managed within the 'shouldBuy' and 'shouldSell' functions that were discussed within the statistical methods section. These have been modified so as to retrain and query the 'shouldBuySVM' and the 'shouldSellSVM' each time that they are called. Firstly one of these functions will be called within the simulation, for simplicity, 'shouldBuy' will be used as an example. 'shouldBuy' is called, within this function is the call to create and train the SVM associated with this function, namely 'shouldBuySVM', this is trained on the dataframe that is shown in table 7. The data within this dataframe has been continuously updated throughout the simulation so as to avoid bulk computation when the SVM is used. This is done by continual calls to the 'getPeaks' function on regular intervals. Once the SVM has been trained then it is queried with the latest price for the given stock. This will return a class and then a decision will be made based on the class that has been returned.
 
 \iffalse
 #################################################################################
