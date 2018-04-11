@@ -81,7 +81,13 @@ DL7 & Create a testing criteria & Create a method with which to test the strateg
 This section presents a survey of existing work on the problems that this project addresses.  it should be between 2 to 4 pages in length.  The rest of this section shows the formats of subsections as well as some general formatting information for tables, figures, references and equations.
 \fi
 
+The related work in this field is limited. This is due to the state of the art being controlled by large companies that use the work within this field to make money and being the state of the art means that the company that has it will make the most money, resulting in a limited flow of information on anything that is current, as any sharing of information will result in that edge being lost and any money that was being made along with it. There are papers that exist that are seen as classic within the academic field of trading but within the world of algorithmic trading past papers are seen more as a has-been example of what was done in the past and bares little fruit with relevance to what is being done today. \\
 
+Classic financial papers such as those that include the Black-Scholes Model are seen as pivotal in the study of academic finance and have been read by many within the financial world but offer very little in the way of computational finance. The same can be said for papers that cover the application and implications of brownian motion, or the effect of the efficient market hypothesis. Both very applicable to the modern world of finance as a whole, but almost unusable within the context of this paper. \\
+
+Books published within the last decade are so far out of touch with the 'Electronic and Algorithmic Trading Technology - The Complete Guide', released in 2007 providing a very detailed description of all routing and pair trading techniques that are being used by a stock exchange to facilitate trading in the modern day and a long history of the adoption of algorithmic trading. Any strategies that are suggested are based on volume weighted average or time weighted average and have already been tested thoroughly and are not ground breaking or competitive within modern markets. Other publications that have been found show similar limitations. Papers based around any machine learning techniques focus on k-means clustering or the Ising model, the Monte-Carlo or Wolff algorithm especially, have been thoroughly explored and show thorough testing in modern markets are not competitive as they once were. Any paper that uses a different technique or shows the theoretical possibility of using many techniques in conjunction does not provide data or tangible results for any of the techniques instead suggests theoretical applications and limited or narrow real world applications.\\
+
+Within this paper the statistical methods used have been found through papers that explore any data insight model that have been outlined within papers in the last half century, and are still useful within the modern day. These are basic 'bread and butter' methods that are useful but not ground breaking. The machine learning technique has been shown to work as well as any other in theory and so will be tested more rigorously.\\
 
 \iffalse
 #################################################################################
@@ -175,36 +181,52 @@ ADD THREE TABLES TO SHOW HOW THEY LOOK\\
 
 These are some of the more regularly utilised functions in the simulation and are the key underpinnings of the statistical and machine learning techniques that are used throughout the simulation. \\
 
+\noindent
 \textbf{Buy}(Date, Time, Stock, Amount) - Adds a row to the 'Active' table. \\
 
+\noindent
 \textbf{Sell}(RowData, Date, Time, Stock, StockPrice) - Adds a row to the 'Sold' table and removes the corresponding row of the 'Active' table.\\
 
+\noindent
 \textbf{Update}(Date, TotalCapital) - Adds a row to the 'Ledger' table for re-tracking of the simulation.\\
 
+\noindent
 \textbf{shouldBuy}(Time, Date, Stock) - Calculates using any method set if the current stock should be bought at the current price.\\
 
+\noindent
 \textbf{shouldSell}(UniqueID, Date, Time) - Calculates if the given block of stocks should be sold at the current price.\\
 
+\noindent
 \textbf{getMax}(List) - Get the maximum value of the given list.\\
 
+\noindent
 \textbf{getMin}(List) - Get the minimum value of the given list.\\
 
+\noindent
 \textbf{getAverage}(List) - Get the mean value of the given list.\\
 
+\noindent
 \textbf{getSD}(List) - Get the standard deviation of the given list.\\
 
+\noindent
 \textbf{getXDate}(Date, X) - Get the date X days ago.\\
 
+\noindent
 \textbf{getXClose}(Date, Stock, X) - Get the close X days ago.\\
 
+\noindent
 \textbf{getXOpen}(Date, Stock, X) - Get the open X days ago.\\
 
+\noindent
 \textbf{getXDataPoints}(Date, Time, Stock, X) - Get the last X data points for the given stock.\\
 
+\noindent
 \textbf{getXDayDataPoints}(Date, Stock, X) - Get all data for the day X days ago.\\
 
+\noindent
 \textbf{getXSincePrice}(Date, Time, Stock, Price) - Get the number of data points between the current data point and the last data point that had the given price.\\
 
+\noindent
 \textbf{getTotalGainLoss}(Date, Time, Stock, X) - Over the last X data points get the total gain and loss.\\
 
 \iffalse
@@ -223,10 +245,12 @@ Once a working simulation had been established and all functions had been shown 
 
 \textbf{Bollinger Bands}  - Developed by John Bollinger, these are volatility bands placed above and bellow the current stock price and are based on the standard deviation. These are designed to give an indication of how the volatility of a given stock changes over time. For any given stock over a time frame X, the three bands are calculated as such:\\
 
+\noindent
 Upper band $=$ Simple Moving Average$(X)$ $+$ (Standard Deviation$(X) * 2$)\\
 Middle band $=$ Simple Moving Average$(X)$\\
 Upper band $=$ Simple Moving Average$(X)$ $-$ (Standard Deviation$(X) * 2$)\\
 
+\noindent
 The standard time period is 20 days.\\
 
 \iffalse
@@ -234,19 +258,24 @@ The standard time period is 20 days.\\
 [Bollinger on bollinger bands]
 \fi
 
+\noindent
 \textbf{Chandelier Exit} - Developed by Charles Le Beau, this is designed to help stay within a trend and not to exit early. In the case of an uptrend the Chandelier Exit will typically be below the stock price and the inverse is true in the case of a downtrend. To calculate it over a time period X:\\
 
+\noindent
 Long = High(X) - (Average True Range(X) * 3)\\
 Short = Low(X) + (Average True Range(X) * 3)\\
 
+\noindent
 The standard time period is 22 days.\\
 
 \iffalse
 []
 \fi
 
+\noindent
 \textbf{Ichimoku Cloud} - A multifaceted indicator developed by Goichi Hosoda, a Japanese journalist. This is an average based trend identifying indicator based on the standard candlestick charts. This indicator is used as a basis in a number of other theories including Target Price Theory. There are five plots within Ichimoku Cloud.\\
 
+\noindent
 Using time period X.\\
 Tenkan-sen or Conversion line = (High(X) + Low(X)) / 2  - Default X is 9 \\
 Kijun-sen or Base line = (High(X) + Low(X)) / 2 - Default X is 26 \\
@@ -258,18 +287,24 @@ Chikou Span or Lagging span = CloseXPeriodsAgo(X) - Default X is 26\\
 []
 \fi
 
+\noindent
 \textbf{Kaufman's Adaptive Moving Average (KAMA)} - Created by Perry Kaufman, this indicator is designed to remove market noise during volatile periods. It takes three parameters, X, Y, and Z. X is the number of periods that is used by the first step of the calculation, known as the efficiency ratio. This will be shown later. The second is the number of periods for the first and fastest exponential moving average or EMA. Third is the number of periods for the second and slowest EMA. The defaults for these values are (10, 2, 30). \\
 
+\noindent
 Efficiency Ratio = Change/Volatility\\
 Change = Absolute Value(Close(Now) - CloseXPeriodsAgo(X)) - Default X is 10 \\
 Volatility = Sum(Absolute Value(Close - CloseXPeridsAgo(X))) - Default X is 1, this sum is done 10 times, for the last 10 changes in price.\\
 
+\noindent
 The next stage of KAMA is a smoothing constant is calculated. \\
 
+\noindent
 Smoothing Constant = ((Efficiency Ratio x (fastest SC - slowest SC)) + slowest SC)$^2$\\
 
+\noindent
 Final stage is the use of the previous KAMA value to calculate the next value. \\
 
+\noindent
 New KAMA = Previous KAMA + (Smoothing Constant x (Current Price - Previous KAMA))\\
 
 WORK ON THIS ONE \\
@@ -278,8 +313,10 @@ WORK ON THIS ONE \\
 []
 \fi
 
+\noindent
 \textbf{Keltner Channels} - Very similar to Bollinger Bands but instead of using standard deviation average true range is used. Created by Chester Keltner, this indicator is made up of three lines in a similar way to Bollinger Bands.\\
 
+\noindent
 Upper Channel Line = Exponential Moving Average(X) + (2 x Average True Range(Y))\\ - Default X = 20, Y = 10 \\
 Middle Line = Exponential Moving Average(X)\\ - Default X = 20 \\
 Lower Channel Line = Exponential Moving Average(X) - (2 x Average True Range(Y))\\ - Default X = 20, Y = 10 \\
@@ -288,8 +325,10 @@ Lower Channel Line = Exponential Moving Average(X) - (2 x Average True Range(Y))
 []
 \fi
 
+\noindent
 \textbf{Moving Averages} - These can come in multiple forms with multiple names. The catch all term for this type of smoothing average is a moving average. The most simple is known as a Simple Moving Average. This takes the average of the last X data points. There is no weighting or extra steps. A more complex version is the Exponential Moving Average, this uses weighting to give the more recent values more significance in the calculation. The initial value of EMA is the same as the SMA for the same period as EMA requires an initial value.\\
 
+\noindent
 EMA$_{Today}$ = (Current Stock Price x K) + (EMA$_{Yesterday}$ x (1 - K)) \\
 K = 2 / (N + 1) \\
 N = Number of periods over which the EMA is applied \\
@@ -298,8 +337,10 @@ N = Number of periods over which the EMA is applied \\
 []
 \fi
 
+\noindent
 \textbf{Moving Average Envelopes} - Based on a Moving Average, this is a percentage based envelope that provide parallel bands above and below the Moving Average. Gives an indication of trends in the data as well as an indicator for stocks that are overbought and oversold when the trend is flat.\\
 
+\noindent
 Upper Envelope = MovingAverage(X) + (MovingAverage(X) x Y)\\
 Lower Envelope = MovingAverage(X) - (MovingAverage(X) x Y)\\
 Typical values X = 20 and Y = 0.025\\
@@ -308,29 +349,39 @@ Typical values X = 20 and Y = 0.025\\
 []
 \fi
 
+\noindent
 \textbf{Parabolic SAR} - Developed by Welles Wilder. SAR stands for 'stop and reverse', this was called a Parabolic Time/Price System. This indicator follows the stock price as the trend is formed, and will then 'stop and reverse' when the trend ends, to follow the new trend. This is one of the more complex indicators.\\
 
+\noindent
 In the case of a rising SAR:
 
+\noindent
 EP or extreme point is a variable that is equal to the highest value of the current uptrend.\\
 AF or acceleration factor is a variable that starts at 0.02 and is increment by 0.02 each time the EP is changed, meaning that it is incremented each time a new high is reached. The maximum value of AF is 0.2. \\
 
+\noindent
 SAR = SAR$_{Yesterday}$ + AF$_{Yesterday}$(EP$_{Yesterday}$ - SAR$_{Yesterday}$) \\
 
+\noindent
 In the case of a falling SAR:
 
+\noindent
 This uses the same variable names but inverse behaviour, the EP is equal to the lowest point in the current downtrend. AF is the same but is incremented when EP reaches a new low. \\
 
+\noindent
 SAR = SAR$_{Yesterday}$ - AF$_{Yesterday}$(EP$_{Yesterday}$ - SAR$_{Yesterday}$) \\
 
+\noindent
 These are used to indicate a trend and once a price falls to the other side of the value calculated in the current trend, that trend is over and SAR will flip to the opposite trend. \\
 
 \iffalse
 []
 \fi
 
+\noindent
 \textbf{Pivot Points} - An overlay used to indicate directional movement and then shows these in potential support and resistance levels. These are predictive indicators and they exist in multiple forms, the most well known are the standard, Denmark, and Fibonacci versions. These are calculated using the previous days high, low, and close values and are then not recalculated throughout the trading day. A calculation has multiple components, the pivot point, multiple supports, and multiple resistances.\\
 
+\noindent
 Standard Pivot Points. \\
 Pivot Point = (High + Low + Close)/3\\
 Support One = (PP x 2) - High\\
@@ -338,16 +389,19 @@ Support Two = PP - (High - Low)\\
 Resistance One = (PP x 2) - Low\\
 Resistance Two = PP + (High - Low)\\
 
+\noindent
 Denmark Pivot Points. These are the most complex calculations as they have conditional statements in them and do not use the same calculation methods as the other two.\\
 Pivot Point = X / 4\\
 Support One = (X / 2) - High\\
 Resistance One = (X / 2) - Low\\
 
+\noindent
 Where X is calculated: \\
 If Close $<$ Open: X = High + (2 x Low) + Close\\
 If Close $>$ Open: X = (2 x High) + Low + Close\\
 If Close = Open: X = High + Low + (2 x Close)\\
 
+\noindent
 Fibonacci Pivot Points. \\
 Pivot Point = (High + Low + Close)/3\\
 Support One = PP - (0.382 x (High  -  Low))\\
@@ -361,8 +415,10 @@ Resistance Three = PP + (1 x (High  -  Low))\\
 []
 \fi
 
+\noindent
 \textbf{Price Channels} - Using three calculations to show an upper, lower, and middle bound, used to indicate the start of an upwards or downward trend and act accordingly.\\
 
+\noindent
 Upper = High(X)\\
 Center = (High(X) + Low(X)) / 2\\
 Lower = Low(X)\\
@@ -380,6 +436,7 @@ The default X value is 20.\\
 
 \textbf{Aroon} - Developed by Tushar Chande, Aroon is indicative of the strength of the current trend. It was designed to be similar but uniquely different to standard momentum oscillators, which focus on price relative to time, whilst Aroon focuses on time relative to price. It has two components, Up and Down, both are shown as percentages. Up will maximise on an upward trend and Down will maximise on a downward trend.\\
 
+\noindent
 Aroon Up = ((X - DaysSinceHigh(X))/X) x 100\\
 Aroon Down = ((X - DaysSinceLow(X))/X) x 100\\
 Default value of X = 25. //
@@ -388,14 +445,17 @@ Default value of X = 25. //
 []
 \fi
 
+\noindent
 \textbf{Aroon Oscillator} - A join of the two values of Aroon into a single value.\\
 
+\noindent
 Aroon Oscillator = Aroon Up - Aroon Down\\
 
 \iffalse
 []
 \fi
 
+\noindent
 \textbf{Average Directional Index (ADX)} - This is part of a group of indicators developed by Welles Wilder. The group is made up of Average Directional Index, Minus Directional Index, and Plus Directional Index, and is called the Directional Movement System. \\
 
 COMPLEX NEED TIME \\
@@ -404,37 +464,46 @@ COMPLEX NEED TIME \\
 []
 \fi
 
+\noindent
 \textbf{Average True Range (ATR)} - Developed by J. Welles Wilder as a measure for volatility, ATR has been used in a wide variety of applications outside of the financial world. The initial idea was based around a concept called True Range, calculated as such:\\
 
+\noindent
 The greatest of:\\
 High(X) - Low(X)\\
 ABS(High(X) - PreviousClose)\\
 ABS(Low(X) - PreviousClose)\\
 
+\noindent
 This was then used in conjunction with the previous ATR to calculate the new ATR.\\
 
+\noindent
 New ATR = ((Prev ATR x (X-1)) + TR) / X - Default X is 14 \\
 
 \iffalse
 []
 \fi
 
+\noindent
 \textbf{BandWidth}  - One of the two indicators derived from Bollinger Bands by John Bollinger, the other being \%B. This is a single value that takes all Bollinger Bands as components.\\
 
+\noindent
 Bandwidth = ((Upper Band - Lower Band) / Middle Band) x 100 \\
 
 \iffalse
 []
 \fi
 
+\noindent
 \textbf{\%B Indicator} - Another Bollinger Band derivative, \%B indicator gives an indication as to the relationship of the current price and the Upper and Lower Bollinger Bands. \\
 
+\noindent
 \%B = (Current Price - Lower Band) / (Upper Band - Lower Band)\\
 
 \iffalse
 []
 \fi
 
+\noindent
 \textbf{Chande Trend Meter (CTM)} - Developed by Tushar Chande. This indicator assigns a numerical score to a stock based on several other indicators.\\
 
 NEED TO RESEARCH CANT FIND AN EQUATION\\
@@ -443,13 +512,17 @@ NEED TO RESEARCH CANT FIND AN EQUATION\\
 []
 \fi
 
+\noindent
 \textbf{Commodity Channel Index (CCI)} - Developed by Donald Lambert. Used to show a comparison between the current price and the average price over a given timespan. Uses multiple other calculations as component parts, including Simple Moving Average, Typical Price, and Mean Deviation.\\
 
+\noindent
 Typical Price = (High + Low + Close) / 3\\
 
+\noindent
 Mean Deviation = SUM(ABS(Period Value - Period Average)) / X\\
 Default X = 20. Find the sum of the deviation from the average value of the last 20 periods within each period. \\
 
+\noindent
 CGI = (Typical Price - X period SMA of Typical Price) / (0.05 x Mean Deviation)//
 Default X = 20.\\
 
@@ -457,8 +530,10 @@ Default X = 20.\\
 []
 \fi
 
+\noindent
 \textbf{Coppock Curve} - Developed by Edwin Coppock. Using a Weighted Moving Average as well as a period based Rate Of Change, this simple indicator as been used by many as a sell indicator as the value crosses the positive-negative boundary. It is calculated as the WMA of the ROC plus the ROC over a different period.\\
 
+\noindent
 Coppock Curve = WeightedMovingAverage(X, RateOfChange(Y)) + RateOfChange(Z)\\
 Default X = 10, Y = 14, Z = 11. \\
 
@@ -466,8 +541,10 @@ Default X = 10, Y = 14, Z = 11. \\
 []
 \fi
 
+\noindent
 \textbf{Correlation Coefficient} - This is a measure of the similarities between two stocks, this is useful to identify trends that effect many stocks. This uses the variance of two stocks using an average price over a given time frame as well as the covariance between them.\\
 
+\noindent
 Variance(Stock$_1$) = Average(Price$^2$, X) - (Average(Price, X)$^2$)\\
 Variance(Stock$_2$) = Average(Price$^2$, X) - (Average(Price, X)$^2$)\\
 Covariance(Stock$_1$, Stock$_2$) = Average(Price(Stock$_1$) x Price(Stock$_2$), X) - (Average(Price(Stock$_1$), X) x Average(Price(Stock$_2$), X))\\
@@ -477,8 +554,10 @@ Correlation Coefficient = Covariance / SQRT(Variance(Stock$_1$) x Variance(Stock
 []
 \fi
 
+\noindent
 \textbf{DecisionPoint Price Momentum Oscillator (PMO)} - An oscillator that is calculated as a smoothed version of the rate of change using the exponential moving average as part of the smoothing process. \\
 
+\noindent
 Smoothing Multiplier = (2 / Time period)\\
 Custom Smoothing Function = {Close - Smoothing Function(previous day)} * Smoothing Multiplier + Smoothing Function(previous day) \\
 PMO Line = 20-period Custom Smoothing of (10 * 35-period Custom Smoothing of ( ( (Today's Price/Yesterday's Price) * 100) - 100) )\\
@@ -488,16 +567,20 @@ PMO Signal Line = 10-period EMA of the PMO Line\\
 []
 \fi
 
+\noindent
 \textbf{Detrended Price Oscillator (DPO)} - Used to identify cycle details. High, low, and cycle length can be calculated.\\
 
+\noindent
 DPO = Price {X/2 + 1} periods ago less the X-period simple moving average.\\
 
 \iffalse
 []
 \fi
 
+\noindent
 \textbf{Mass Index} - Volatility indicator used to show a trend reversal before it occurs. Developed by Donald Dorsey. \\
 
+\noindent
 Single EMA = 9-period exponential moving average (EMA) of the high-low differential \\
 Double EMA = 9-period EMA of the 9-period EMA of the high-low differential \\
 EMA Ratio = Single EMA divided by Double EMA \\
@@ -507,8 +590,10 @@ Mass Index = 25-period sum of the EMA Ratio \\
 []
 \fi
 
+\noindent
 \textbf{MACD (Moving Average Convergence/Divergence Oscillator)} - Developed by Gerald Appel. Is said to be one of the most effective momentum indicators as well as being very simplistic to perform. \\
 
+\noindent
 MACD Line: (12-day EMA - 26-day EMA)\\
 Signal Line: 9-day EMA of MACD Line\\
 MACD Histogram: MACD Line - Signal Line\\
@@ -517,8 +602,10 @@ MACD Histogram: MACD Line - Signal Line\\
 []
 \fi
 
+\noindent
 \textbf{MACD Histogram} - Developed by Thomas Aspray as a development on the MACD, to pre-emptively detect crossovers between the two lines in MACD.\\
 
+\noindent
 MACD: (12-day EMA - 26-day EMA) \\
 Signal Line: 9-day EMA of MACD \\
 MACD Histogram: MACD - Signal Line \\
@@ -527,8 +614,10 @@ MACD Histogram: MACD - Signal Line \\
 []
 \fi
 
+\noindent
 \textbf{Percentage Price Oscillator (PPO)} - A momentum oscillator that is related to MACD. Calculated as a percentage showing the relationship between two moving averages. \\
 
+\noindent
 Percentage Price Oscillator (PPO): {(12-day EMA - 26-day EMA)/26-day EMA} x 100 \\
 Signal Line: 9-day EMA of PPO \\
 PPO Histogram: PPO - Signal Line \\
@@ -537,8 +626,10 @@ PPO Histogram: PPO - Signal Line \\
 []
 \fi
 
+\noindent
 \textbf{Pring's Know Sure Thing (KST)} - Developed by Martin Pring. Using the smoothed rate of change over four different length periods, this momentum oscillator gives a more well based indication of movement than a typical momentum oscillator. \\
 
+\noindent
 RCMA1 = 10-Period SMA of 10-Period Rate-of-Change \\
 RCMA2 = 10-Period SMA of 15-Period Rate-of-Change \\
 RCMA3 = 10-Period SMA of 20-Period Rate-of-Change \\
@@ -550,8 +641,10 @@ Signal Line = 9-period SMA of KST \\
 []
 \fi
 
+\noindent
 \textbf{Pring's Special K} - Developed by Martin Pring, this momentum oscillator is a concatenation of three different velocities to provide more stable prediction of movement. \\
 
+\noindent
 Special K = 10 Period Simple Moving Average of ROC(10) * 1 \\
             + 10 Period Simple Moving Average of ROC(15) * 2 \\
             + 10 Period Simple Moving Average of ROC(20) * 3 \\
@@ -569,16 +662,20 @@ Special K = 10 Period Simple Moving Average of ROC(10) * 1 \\
 []
 \fi
 
+\noindent
 \textbf{Rate of Change (ROC) and Momentum} - A pure momentum oscillator used in many other indicators.\\
 
+\noindent
 ROC = [(Close - Close n periods ago) / (Close n periods ago)] * 100 \\
 
 \iffalse
 []
 \fi
 
+\noindent
 \textbf{Relative Strength Index (RSI)} - Developed by J. Welles Wilder. A range of zero to one hundred, RSI, a momentum oscillator, gives an indication of the speed and change of price movements.\\
 
+\noindent
 RSI = 100 - (100 / 1 + RS) \\
 RS = Average Gain / Average Loss\\
 
@@ -586,6 +683,7 @@ RS = Average Gain / Average Loss\\
 []
 \fi
 
+\noindent
 \textbf{StockCharts Technical Rank (SCTR)} \\
 
 MIGHT BE USEFUL BUT CHECK FIRST\\
@@ -594,14 +692,17 @@ MIGHT BE USEFUL BUT CHECK FIRST\\
 []
 \fi
 
+\noindent
 \textbf{Slope} - A very simple idea. The main concept is to calculate the line of best fit over a given time frame to show to trend over that time frame. This is a very simple tool used to give general trends.\\
 
 \iffalse
 []
 \fi
 
+\noindent
 \textbf{Stochastic Oscillator (Fast, Slow, and Full)} - Developed by George C. Lane. A momentum indicator that uses the close data along with the range between the high and low values over a given period to show the current momentum. Lane states; this "follows the speed or the momentum of price. As a rule, the momentum changes direction before price." \\
 
+\noindent
 \%K = (Close - Lowest Low over X)/(Highest High over X - Lowest Low over X) * 100.\\
 \%D = Simple Moving Average of \%K over Y Periods. \\
 Default value of X is 14. Default value of Y is 3.\\
@@ -610,8 +711,10 @@ Default value of X is 14. Default value of Y is 3.\\
 []
 \fi
 
+\noindent
 \textbf{StochRSI} - Developed together by Tushar Chande and Stanley Kroll. Using Relative Strength Index or RSI, StochRSI is a measure of RSI relative to the max range of RSI over a set period. This indicator has a range of 0 to 1 with 0 indicating the lowest point over the period with 1 indicating the highest point over the period.\\
 
+\noindent
 StochRSI = (RSI - Lowest Low RSI over X) / (Highest High RSI over X - Lowest Low RSI over X)\\
 Default X value is 14.\\
 
@@ -619,8 +722,10 @@ Default X value is 14.\\
 []
 \fi
 
+\noindent
 \textbf{TRIX} - Developed by Jack Hutson. A triple smoothed Exponential Moving Average is used to calculate the percentage change over the last period.\\
 
+\noindent
 Single Smoothed EMA = EMA of Close over X periods.\\
 Double Smoothed EMA = EMA of Single Smoothed EMA over X periods.\\
 Triple Smoothed EMA = EMA of Double Smoothed EMA over X periods.\\
@@ -630,20 +735,24 @@ TRIX = Single period percentage change in Triple Smoothed EMA. \\
 []
 \fi
 
+\noindent
 \textbf{True Strength Index} - Developed by William Blau. Using two double smoothed price changes this is a momentum oscillator with the benefit of being relatively resistant to noise. Made up of two double smoothed price changes and the TSI calculation, this is a relatively simple indicator.\\
 
+\noindent
 Double Smoother Price Change.\\
 PC = Current Price minus Prior Price\\
 Single Smoothed PC = EMA of PC over X periods.\\
 Double Smoothed PC = EMA over Y periods of Single Smoothed PC.\\
 Default X value is 25. Default Y value is 13.\\
 
+\noindent
 Double Smoothed Absolute Price Change. \\
 Absolute PC = ABS(Current Price minus Prior Price)\\
 Single Smoothed PC = EMA of APC over X periods.\\
 Double Smoothed PC = EMA over Y periods of Single Smoothed APC.\\
 Default X value is 25. Default Y value is 13.\\
 
+\noindent
 True Strength Value.\\
 TSI = 100 x (Double Smoothed Price Change / Double Smoothed Absolute Price Change)\\
 
@@ -651,8 +760,10 @@ TSI = 100 x (Double Smoothed Price Change / Double Smoothed Absolute Price Chang
 []
 \fi
 
+\noindent
 \textbf{Ulcer Index} - Developed by Peter Martin and Byron McCann. This volatility indicator was originally designed to measure downside risk in mutual funds, although it has now been re-purposed.  \\
 
+\noindent
 Percent-Drawdown = ((Close - Max Close over X periods)/Max Close over X periods) x 100\\
 Squared Average = (Sum of Percent-Drawdown over X periods Squared)/X\\
 Ulcer Index = Square Root of Squared Average\\
@@ -662,15 +773,19 @@ Default X value is 14.\\
 []
 \fi
 
+\noindent
 \textbf{Ultimate Oscillator} - Developed by Larry Williams. This is a triple time frame based momentum oscillator. The use of multiple time frames is limit the effect that noise can have on a typical momentum oscillator. There are several steps to the Ultimate Oscillator, all of which rely on Buying Pressure, BP, and True Range, TR.\\
 
+\noindent
 BP = Close - Min(Low, Prior Close)\\
 TR = Max(High, Prior Close)  -  Min(Low, Prior Close)\\
 
+\noindent
 Average X = (BP Sum over X periods) / (TR Sum over X periods)\\
 Average Y = (BP Sum over Y periods) / (TR Sum over Y periods)\\
 Average Z = (BP Sum over Z periods) / (TR Sum over Z periods)\\
 
+\noindent
 Ultimate Oscillator = 100 x ((4 x Average X)+(2 x Average Y)+Average Z)/(4+2+1)\\
 Default values are X = 7, Y = 14, Z = 28.\\
 
@@ -678,29 +793,38 @@ Default values are X = 7, Y = 14, Z = 28.\\
 []
 \fi
 
+\noindent
 \textbf{Vortex Indicator} - Developed by Etienne Botes and Douglas Siepman, based on the work of Welles Wilder and Viktor Schauberger. Using the relationship between two oscillators a base, one capturing positive trend movement and the other capturing negative, the vortex indicator is adept as showing the bias of the data.\\
 
+\noindent
 +VM = ABS(Current High - Prior Low)\\
 -VM = ABS(Prior Low - Current High)\\
 
+\noindent
 +VMX = Sum of +VM over X periods \\
 -VMX = Sum of -VM over X periods \\
 
+\noindent
 TRX = Sum of True Range over X periods \\
 
+\noindent
 +VIX = +VMX/TRX \\
 -VIX = -VMX/TRX \\
 
+\noindent
 Default X value is 14.\\
 
+\noindent
 The crossovers of these two values is then used to identify the start and end of a trend and the direction of said trend.\\
 
 \iffalse
 []
 \fi
 
+\noindent
 \textbf{Williams \%R} - Developed by Larry Williams and based on the Stochastic Oscillator developed by George C. Lane. This is the inverse of the Fast SO as the FSO reflects the relationship between the Close and the Lowest Low over a given period, whilst this reflects the relationship between the Close and the Highest High. This momentum indicator has the same benefits and drawbacks as the Stochastic Oscillator.\\
 
+\noindent
 \%R = (Highest High over X - Close)/(Highest High over X - Lowest Low over X) * -100\\
 Default value of X is 14.
 
@@ -775,6 +899,7 @@ This section should be between 2 to 3 pages in length.
 
 - Testing Criteria for each of the stat methods\\
 - decision criteria for each of the peak trough methods\\
+- input variables for the SVM - kernal etc \\
 - conjunction test criteria for each of the good stat methods\\
 - best stat method result possible\\
 - best ml method result possible
@@ -800,6 +925,18 @@ This section should between 1 to 2 pages in length.
 \iffalse
 This section summarises the main points of this paper.  Do not replicate the abstract as the conclusion.  A conclusion might elaborate on the importance of the work or suggest applications and extensions.  This section should be no more than 1 page in length.
 \fi
+
+- extend the number of stat methods used \\
+- test using more data, multiple sources, more complete, more fine grain \\
+- test more ML methods - NN or K-Means or Genetic algorithm for each stock\\
+- use live data? \\
+- stop and put? \\
+
+\iffalse
+#################################################################################
+\fi
+
+\section{References}
 
 
 
