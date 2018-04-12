@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.12.6)  11 APR 2018 18:19
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.12.6)  12 APR 2018 13:28
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -214,6 +214,15 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
 LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <12> not available
 (Font)              Font shape `OT1/ptm/b/it' tried instead on input line 37.
 
+LaTeX Warning: Citation 'tesauro' on page 1 undefined on input line 57.
+
+
+LaTeX Warning: Citation 'Gjerstad' on page 1 undefined on input line 57.
+
+
+LaTeX Warning: Citation 'Cliff' on page 1 undefined on input line 57.
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 57--58
 
  []
@@ -255,9 +264,25 @@ Underfull \hbox (badness 10000) in paragraph at lines 84--85
  []
 
 [2]
+
+LaTeX Warning: Citation 'Saad' on page 3 undefined on input line 86.
+
+
+LaTeX Warning: Citation 'Meng' on page 3 undefined on input line 86.
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 86--87
 
  []
+
+
+LaTeX Warning: Citation 'Kim' on page 3 undefined on input line 88.
+
+
+LaTeX Warning: Citation 'Gerlein' on page 3 undefined on input line 88.
+
+
+LaTeX Warning: Citation 'Lima' on page 3 undefined on input line 88.
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 88--89
@@ -269,12 +294,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 90--91
 
  []
 
-[3]
+
 Underfull \hbox (badness 10000) in paragraph at lines 115--116
 
  []
 
-
+[3]
 Underfull \hbox (badness 10000) in paragraph at lines 117--118
 
  []
@@ -424,12 +449,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 226--228
 
  []
 
-[6]
+
 Underfull \hbox (badness 10000) in paragraph at lines 229--231
 
  []
 
-
+[6]
 Underfull \hbox (badness 10000) in paragraph at lines 238--239
 
  []
@@ -530,12 +555,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 328--330
 
  []
 
-[8]
+
 Underfull \hbox (badness 10000) in paragraph at lines 331--335
 
  []
 
-
+[8]
 Underfull \hbox (badness 10000) in paragraph at lines 340--342
 
  []
@@ -620,12 +645,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 448--450
 
  []
 
-[10]
+
 Underfull \hbox (badness 10000) in paragraph at lines 451--453
 
  []
 
-
+[10]
 Underfull \hbox (badness 10000) in paragraph at lines 458--460
 
  []
@@ -877,12 +902,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 725--727
 
  []
 
-[14]
+
 Underfull \hbox (badness 10000) in paragraph at lines 728--733
 
  []
 
-
+[14]
 Underfull \hbox (badness 10000) in paragraph at lines 738--740
 
  []
@@ -927,12 +952,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 783--787
 
  []
 
-[15]
+
 Underfull \hbox (badness 10000) in paragraph at lines 788--791
 
  []
 
-
+[15]
 Underfull \hbox (badness 10000) in paragraph at lines 796--798
 
  []
@@ -1000,19 +1025,118 @@ Underfull \hbox (badness 10000) in paragraph at lines 929--934
 
  []
 
-[18] [19] (./final paper.aux)
+(./final paper.bbl
+Overfull \hbox (18.76213pt too wide) in paragraph at lines 4--10
+\OT1/ptm/b/n/12 URL: \OT1/ptm/m/it/12 http://www.sciencedirect.com.ezphost.dur.
+ac.uk/science/article/pii/S0957417415007447 
+ []
+
+[18]
+Overfull \hbox (38.74261pt too wide) in paragraph at lines 11--16
+\OT1/ptm/b/n/12 URL: \OT1/ptm/m/it/12 http://cs229.stanford.edu/proj2008/Blokke
+r-TheApplicationofSVMtoAlgorithmicTrading.pdf 
+ []
+
+
+Overfull \hbox (84.97765pt too wide) in paragraph at lines 17--21
+\OT1/ptm/b/n/12 URL: \OT1/ptm/m/it/12 http://firstsearch.oclc.org.ezphost.dur.a
+c.uk/WebZ/FSFETCH?fetchtype=fullrecord:sessionid=fsapp2-
+ []
+
+
+Overfull \hbox (397.50256pt too wide) in paragraph at lines 17--21
+\OT1/ptm/m/it/12 59123-jey6rmml-7lpkdt:entitypagenum=5:0:recno=1:resultset=2:fo
+rmat=FI:next=html/record.html:bad=error/badfetch.html:entitytoprecno=1:entitycu
+rrecno=1:numrecs= 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 23--30
+\OT1/ptm/b/n/12 URL: \OT1/ptm/m/it/12 http://epubs.siam.org.ezphost.dur.ac.uk/d
+oi/pdf/10.1137/130911196
+ []
+
+
+Overfull \hbox (27.72585pt too wide) in paragraph at lines 31--36
+\OT1/ptm/b/n/12 URL: \OT1/ptm/m/it/12 https://www-sciencedirect-com.ezphost.dur
+.ac.uk/science/article/pii/S147466701740468X 
+ []
+
+
+Overfull \hbox (25.86594pt too wide) in paragraph at lines 38--44
+\OT1/ptm/b/n/12 URL: \OT1/ptm/m/it/12 https://www-sciencedirect-com.ezphost.dur
+.ac.uk/science/article/pii/S0957417416000282 
+ []
+
+
+Overfull \hbox (25.86594pt too wide) in paragraph at lines 45--50
+\OT1/ptm/b/n/12 URL: \OT1/ptm/m/it/12 https://www-sciencedirect-com.ezphost.dur
+.ac.uk/science/article/pii/S0899825697905765 
+ []
+
+
+Overfull \hbox (1033.65398pt too wide) in paragraph at lines 67--72
+\OT1/ptm/b/n/12 URL: \OT1/ptm/m/it/12 http://library.dur.ac.uk/search S1?/Yelec
+tronic+and+algorithmic+trading&searchscope=1&SORT=D/Yelectronic+and+algorithmic
++trading&searchscope=1&SORT=D&SUBKEY=electronic+and+algorithmic+trading/1%2C3%2
+C3%2CE/frameset&FF=Yelectronic+and+algorithmic+trading&s 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 74--81
+\OT1/ptm/b/n/12 URL: \OT1/ptm/m/it/12 http://epublications.bond.edu.au/infotech
+[]pubs/110
+ []
+
+
+Overfull \hbox (92.32237pt too wide) in paragraph at lines 74--81
+\OT1/ptm/m/it/12 http://epublications.bond.edu.au/infotech[]pubs/110%5Cnhttp://
+epublications.bond.edu.au/infotech[]pubs/110/ 
+ []
+
+[19]
+Overfull \hbox (26.11789pt too wide) in paragraph at lines 82--87
+\OT1/ptm/b/n/12 URL: \OT1/ptm/m/it/12 https://www-sciencedirect-com.ezphost.dur
+.ac.uk/science/article/pii/S0378437117303916 
+ []
+
+
+Overfull \hbox (25.86594pt too wide) in paragraph at lines 93--99
+\OT1/ptm/b/n/12 URL: \OT1/ptm/m/it/12 https://www-sciencedirect-com.ezphost.dur
+.ac.uk/science/article/pii/S0378437116001928 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 101--108
+\OT1/ptm/b/n/12 URL: \OT1/ptm/m/it/12 https://doi.org/10.1063/1.4915717 http://
+aip.scitation.org/toc/apc/1660/1
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 109--116
+\OT1/ptm/b/n/12 URL: \OT1/ptm/m/it/12 https://researcher.watson.ibm.com/researc
+her/files/us-kephart/dblauc.pdf
+ []
+
+
+Overfull \hbox (92.52553pt too wide) in paragraph at lines 117--122
+\OT1/ptm/b/n/12 URL: \OT1/ptm/m/it/12 https://www-sciencedirect-com.ezphost.dur
+.ac.uk/science/article/pii/S1389041717300359?via%3Dihub 
+ []
+
+) [20] (./final paper.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 1810 strings out of 493014
- 25595 string characters out of 6133351
- 96912 words of memory out of 5000000
- 5335 multiletter control sequences out of 15000+600000
- 17641 words of font info for 37 fonts, out of 8000000 for 9000
+ 1895 strings out of 493014
+ 26948 string characters out of 6133351
+ 96993 words of memory out of 5000000
+ 5415 multiletter control sequences out of 15000+600000
+ 19325 words of font info for 39 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 38i,6n,23p,4318b,172s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 38i,6n,23p,4318b,199s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2016/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
 exlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/te
 xlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texl
@@ -1021,11 +1145,12 @@ e/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2
 016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/20
 16/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2016/texmf-d
 ist/fonts/type1/urw/times/utmbi8a.pfb></usr/local/texlive/2016/texmf-dist/fonts
-/type1/urw/times/utmr8a.pfb>
-Output written on "final paper.pdf" (19 pages, 124163 bytes).
+/type1/urw/times/utmr8a.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/urw
+/times/utmri8a.pfb>
+Output written on "final paper.pdf" (20 pages, 148999 bytes).
 PDF statistics:
- 99 PDF objects out of 1000 (max. 8388607)
- 69 compressed objects within 1 object stream
+ 106 PDF objects out of 1000 (max. 8388607)
+ 74 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

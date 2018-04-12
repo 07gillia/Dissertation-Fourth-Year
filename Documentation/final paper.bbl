@@ -1,3 +1,123 @@
 \begin{thebibliography}{xx}
 
+\harvarditem[Berutich et~al.]{Berutich, L{\'{o}}pez, Luna \harvardand\
+  Quintana}{2016}{Berutich2016}
+Berutich, J.~M., L{\'{o}}pez, F., Luna, F. \harvardand\ Quintana, D.
+  \harvardyearleft 2016\harvardyearright , `{Robust technical trading
+  strategies using GP for algorithmic portfolio selection}', {\em Expert
+  Systems with Applications} {\bf 46},~307--315.
+\newline\harvardurl{http://www.sciencedirect.com.ezphost.dur.ac.uk/science/article/pii/S0957417415007447}
+
+\harvarditem{Blokker \harvardand\ Project}{2008}{Blokker1000}
+Blokker, J. \harvardand\ Project, C. S.~T.  \harvardyearleft
+  2008\harvardyearright , `{The Application of SVM to Algorithmic Trading}',
+  pp.~1--4.
+\newline\harvardurl{http://cs229.stanford.edu/proj2008/Blokker-TheApplicationofSVMtoAlgorithmicTrading.pdf}
+
+\harvarditem{Bollinger}{2002}{Bollinger2002}
+Bollinger, J.  \harvardyearleft 2002\harvardyearright , {\em {Bollinger on
+  Bollinger bands}}, McGraw-Hill.
+\newline\harvardurl{http://firstsearch.oclc.org.ezphost.dur.ac.uk/WebZ/FSFETCH?fetchtype=fullrecord:sessionid=fsapp2-59123-jey6rmml-7lpkdt:entitypagenum=5:0:recno=1:resultset=2:format=FI:next=html/record.html:bad=error/badfetch.html:entitytoprecno=1:entitycurrecno=1:numrecs=}
+
+\harvarditem[Cartea et~al.]{Cartea, Jaimungal \harvardand\
+  Ricci}{2014}{Cartea2014}
+Cartea, {\'{A}}., Jaimungal, S. \harvardand\ Ricci, J.  \harvardyearleft
+  2014\harvardyearright , `{Buy Low, Sell High: A High Frequency Trading
+  Perspective}', {\em SIAM Journal on Financial Mathematics} {\bf
+  5}(1),~415--444.
+\newline\harvardurl{http://epubs.siam.org.ezphost.dur.ac.uk/doi/pdf/10.1137/130911196
+  http://epubs.siam.org/doi/10.1137/130911196}
+
+\harvarditem{Cliff \harvardand\ Bruten}{1998}{Cliff1998}
+Cliff, D. \harvardand\ Bruten, J.  \harvardyearleft 1998\harvardyearright ,
+  `{Less Than Human: Simple Adaptive Trading Agents for CDA Markets}', {\em
+  IFAC Proceedings Volumes} {\bf 31}(16),~117--122.
+\newline\harvardurl{https://www-sciencedirect-com.ezphost.dur.ac.uk/science/article/pii/S147466701740468X}
+
+\harvarditem[Gerlein et~al.]{Gerlein, McGinnity, Belatreche \harvardand\
+  Coleman}{2016}{Gerlein2016}
+Gerlein, E.~A., McGinnity, M., Belatreche, A. \harvardand\ Coleman, S.
+  \harvardyearleft 2016\harvardyearright , `{Evaluating machine learning
+  classification for financial trading: An empirical approach}', {\em Expert
+  Systems with Applications} {\bf 54},~193--207.
+\newline\harvardurl{https://www-sciencedirect-com.ezphost.dur.ac.uk/science/article/pii/S0957417416000282}
+
+\harvarditem{Gjerstad \harvardand\ Dickhaut}{1998}{Gjerstad1998}
+Gjerstad, S. \harvardand\ Dickhaut, J.  \harvardyearleft 1998\harvardyearright
+  , `{Price Formation in Double Auctions}', {\em Games and Economic Behavior}
+  {\bf 22}(1),~1--29.
+\newline\harvardurl{https://www-sciencedirect-com.ezphost.dur.ac.uk/science/article/pii/S0899825697905765}
+
+\harvarditem[Hasbrouck et~al.]{Hasbrouck, Sofianos \harvardand\
+  Sosebee}{2013}{Hasbrouck}
+Hasbrouck, J., Sofianos, G. \harvardand\ Sosebee, D.  \harvardyearleft
+  2013\harvardyearright , `{New York Stock Exchange Systems and Trading
+  Procedures}', {\em Journal of Chemical Information and Modeling} {\bf
+  53}(9),~1689--1699.
+\newline\harvardurl{http://people.stern.nyu.edu/jhasbrou/Research/Working
+  Papers/NYSE.PDF}
+
+\harvarditem[Iqbal et~al.]{Iqbal, Ahmad \harvardand\ Schmidt}{2012}{Iqbal}
+Iqbal, J., Ahmad, I. \harvardand\ Schmidt, G.  \harvardyearleft
+  2012\harvardyearright , `{Can online trading algorithms beat the market? An
+  experimental evaluation}', {\em 3rd Student Conference on Operational
+  Research} {\bf 22}(Scor),~43--52.
+\newline\harvardurl{http://drops.dagstuhl.de/opus/volltexte/2012/3545/pdf/6.pdf}
+
+\harvarditem{Kim}{2007}{Kim2007}
+Kim, K.  \harvardyearleft 2007\harvardyearright , {\em {Electronic and
+  Algoithmic Trading Technology: The Complete Guide}}, Academic Press, an
+  imprint of Elsevier.
+\newline\harvardurl{http://library.dur.ac.uk/search{~}S1?/Yelectronic+and+algorithmic+trading{\&}searchscope=1{\&}SORT=D/Yelectronic+and+algorithmic+trading{\&}searchscope=1{\&}SORT=D{\&}SUBKEY=electronic+and+algorithmic+trading/1{\%}2C3{\%}2C3{\%}2CE/frameset{\&}FF=Yelectronic+and+algorithmic+trading{\&}s}
+
+\harvarditem[Krollner et~al.]{Krollner, Vanstone \harvardand\
+  Finnie}{2010}{Krollner2010}
+Krollner, B., Vanstone, B. \harvardand\ Finnie, G.  \harvardyearleft
+  2010\harvardyearright , `{Financial time series forecasting with machine
+  learning techniques: A survey}', {\em European Symposium on Artificial Neural
+  Networks: Computational and Machine Learning} pp.~25--30.
+\newline\harvardurl{http://epublications.bond.edu.au/infotech{\_}pubs/110
+  http://epublications.bond.edu.au/infotech{\_}pubs/110{\%}5Cnhttp://epublications.bond.edu.au/infotech{\_}pubs/110/}
+
+\harvarditem{Lima}{2017}{Lima2017}
+Lima, L.  \harvardyearleft 2017\harvardyearright , `{Modeling of the financial
+  market using the two-dimensional anisotropic Ising model}', {\em Physica A:
+  Statistical Mechanics and its Applications} {\bf 482},~544--551.
+\newline\harvardurl{https://www-sciencedirect-com.ezphost.dur.ac.uk/science/article/pii/S0378437117303916}
+
+\harvarditem{Madge}{2015}{MadgeAdvisor}
+Madge, S.  \harvardyearleft 2015\harvardyearright , `{Predicting Stock Price
+  Direction using Support Vector Machines}', {\em Independent Work Report} .
+\newline\harvardurl{https://www.cs.princeton.edu/sites/default/files/uploads/saahil{\_}madge.pdf}
+
+\harvarditem[Meng et~al.]{Meng, Zhang \harvardand\ Guo}{2016}{Meng2016}
+Meng, X., Zhang, J.-W. \harvardand\ Guo, H.  \harvardyearleft
+  2016\harvardyearright , `{Quantum Brownian motion model for the stock
+  market}', {\em Physica A: Statistical Mechanics and its Applications} {\bf
+  452},~281--288.
+\newline\harvardurl{https://www-sciencedirect-com.ezphost.dur.ac.uk/science/article/pii/S0378437116001928}
+
+\harvarditem[Saad et~al.]{Saad, {Mohd Jaffar} \harvardand\ {Sains
+  Komputer}}{2015}{Saad2015}
+Saad, S., {Mohd Jaffar}, M. \harvardand\ {Sains Komputer}, F.  \harvardyearleft
+  2015\harvardyearright , `{Review on the structural approach of the
+  Black-Scholes model}',  {\bf 050084}(10).
+\newline\harvardurl{https://doi.org/10.1063/1.4915717
+  http://aip.scitation.org/toc/apc/1660/1
+  https://doi.org/10.1063/1.4915717{\%}0Ahttp://aip.scitation.org/toc/apc/1660/1}
+
+\harvarditem{Tesauro \harvardand\ Das}{2001}{Tesauro2001}
+Tesauro, G. \harvardand\ Das, R.  \harvardyearleft 2001\harvardyearright ,
+  {High-performance bidding agents for the continuous double auction}, {\em in}
+  `Proceedings of the 3rd ACM conference on Electronic Commerce - EC '01',
+  pp.~206--209.
+\newline\harvardurl{https://researcher.watson.ibm.com/researcher/files/us-kephart/dblauc.pdf
+  http://portal.acm.org/citation.cfm?doid=501158.501183}
+
+\harvarditem{Wilinski \harvardand\ Kovalerchuk}{2017}{Wilinski2017}
+Wilinski, A. \harvardand\ Kovalerchuk, B.  \harvardyearleft
+  2017\harvardyearright , `{Visual knowledge discovery and machine learning for
+  investment strategy}', {\em Cognitive Systems Research} {\bf 44},~100--114.
+\newline\harvardurl{https://www-sciencedirect-com.ezphost.dur.ac.uk/science/article/pii/S1389041717300359?via{\%}3Dihub}
+
 \end{thebibliography}
