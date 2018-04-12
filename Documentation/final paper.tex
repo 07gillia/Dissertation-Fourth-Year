@@ -54,7 +54,7 @@ This section briefly introduces the general project background, the research que
 - A bit of the history of trading.\\
 \fi
 
-The stock market has been an early adopter of technology since its inception, with companies wanting to get an edge over their fellows and thus earning the most money. The first computer usage in the stock market was in the early 1970s with the New York Stock Exchange introducing the DOT system or the Designated Order Turnaround system, this allowed for bypassing of brokers and routed an order for specific securities to a specialist on the trading floor \cite{Hasbrouck}. Since this point the use of machines to allow for increase throughput and speed has been pandemic. From this point it was inevitable that computers would be used to aid in the decision making process of what to buy or sell and when. This was shown to be very effective and got significant traction in the financial market in 2001 with the showcase of IBMs MGD and  Hewlett-Packard's ZIP \cite{tesauro}, these two algorithmic strategies were shown to consistently outperform their human counterparts. These were both based on academic papers from 1996 so the academic conception of algorithmic applications in financial markets has been present for several decades\cite{Gjerstad} \cite{Cliff}. Whilst in the current day over one billion shares are traded every day, this would not be possible without computerised assistance. \\
+The stock market has been an early adopter of technology since its inception, with companies wanting to get an edge over their fellows and thus earning the most money. The first computer usage in the stock market was in the early 1970s with the New York Stock Exchange introducing the DOT system or the Designated Order Turnaround system, this allowed for bypassing of brokers and routed an order for specific securities to a specialist on the trading floor \cite{Hasbrouck}. Since this point the use of machines to allow for increase throughput and speed has been pandemic. From this point it was inevitable that computers would be used to aid in the decision making process of what to buy or sell and when. This was shown to be very effective and got significant traction in the financial market in 2001 with the showcase of IBMs MGD and  Hewlett-Packard's ZIP \cite{Tesauro2001}, these two algorithmic strategies were shown to consistently outperform their human counterparts. These were both based on academic papers from 1996 so the academic conception of algorithmic applications in financial markets has been present for several decades\cite{Gjerstad1998} \cite{Cliff1998}. Whilst in the current day over one billion shares are traded every day, this would not be possible without computerised assistance. \\
 
 The aim of any algorithmic trading system is to `beat the market' that is to buy low and sell high so gain the most capital over any given time frame, be that a day, a year, or a decade. This paper will look into the challenge faced by these algorithms and if, using any available tools, it is possible to outstrip any high street banks offering rates. This will be done through simulation of a stock market, using real stock data, and the simulation of buying and selling these stocks by an algorithm.\\
 
@@ -83,9 +83,9 @@ This section presents a survey of existing work on the problems that this projec
 
 The related work in this field is limited. This is due to the state of the art being controlled by large companies that use the work within this field to make money and being the state of the art means that the company that has it will make the most money, resulting in a limited flow of information on anything that is current, as any sharing of information will result in that edge being lost and any money that was being made along with it. There are papers that exist that are seen as classic within the academic field of trading but within the world of algorithmic trading past papers are seen more as a has-been example of what was done in the past and bares little fruit with relevance to what is being done today. \\
 
-Classic financial papers such as those that include the Black-Scholes Model \cite{Saad} are seen as pivotal in the study of academic finance and have been read by many within the financial world but offer very little in the way of computational finance. The same can be said for papers that cover the application and implications of Brownian motion, or the effect of the Efficient Market Hypothesis \cite{Meng}. Both very applicable to the modern world of finance as a whole, but almost unusable within the context of this paper. \\
+Classic financial papers such as those that include the Black-Scholes Model \cite{Saad2015} are seen as pivotal in the study of academic finance and have been read by many within the financial world but offer very little in the way of computational finance. The same can be said for papers that cover the application and implications of Brownian motion, or the effect of the Efficient Market Hypothesis \cite{Meng2016}. Both very applicable to the modern world of finance as a whole, but almost unusable within the context of this paper. \\
 
-Books published within the last decade are so far out of touch with the `Electronic and Algorithmic Trading Technology - The Complete Guide' \cite{Kim}, released in 2007 providing a very detailed description of all routing and pair trading techniques that are being used by a stock exchange to facilitate trading in the modern day and a long history of the adoption of algorithmic trading. Any strategies that are suggested are based on volume weighted average or time weighted average and have already been tested thoroughly and are not ground breaking or competitive within modern markets. Other publications that have been found show similar limitations. Papers based around any machine learning techniques focus on k-means clustering \cite{Gerlein} or the Ising model \ \cite{Lima}, the Monte-Carlo or Wolff algorithm especially, have been thoroughly explored and show thorough testing in modern markets are not competitive as they once were. Any paper that uses a different technique or shows the theoretical possibility of using many techniques in conjunction does not provide data or tangible results for any of the techniques instead suggests theoretical applications and limited or narrow real world applications.\\
+Books published within the last decade are so far out of touch with the `Electronic and Algorithmic Trading Technology - The Complete Guide' \cite{Kim2007}, released in 2007 providing a very detailed description of all routing and pair trading techniques that are being used by a stock exchange to facilitate trading in the modern day and a long history of the adoption of algorithmic trading. Any strategies that are suggested are based on volume weighted average or time weighted average and have already been tested thoroughly and are not ground breaking or competitive within modern markets. Other publications that have been found show similar limitations. Papers based around any machine learning techniques focus on k-means clustering \cite{Gerlein2016} or the Ising model \cite{Lima2017}, the Monte-Carlo or Wolff algorithm especially, have been thoroughly explored and show thorough testing in modern markets are not competitive as they once were. Any paper that uses a different technique or shows the theoretical possibility of using many techniques in conjunction does not provide data or tangible results for any of the techniques instead suggests theoretical applications and limited or narrow real world applications.\\
 
 Within this paper the statistical methods used have been found through papers that explore any data insight model that have been outlined within papers in the last half century, and are still useful within the modern day. These are basic `bread and butter' methods that are useful but not ground breaking. The machine learning technique has been shown to work as well as any other in theory and so will be tested more rigorously.\\
 
@@ -249,9 +249,9 @@ Once a working simulation had been established and all functions had been shown 
 Upper band $=$ Simple Moving Average$(X)$ $+$ (Standard Deviation$(X) * 2$)\\
 Middle band $=$ Simple Moving Average$(X)$\\
 Upper band $=$ Simple Moving Average$(X)$ $-$ (Standard Deviation$(X) * 2$)\\
-
-\noindent
 The standard time period is 20 days.\\
+
+\cite{Wilinski2017}\\
 
 \iffalse
 [Visual knowledge discovery and machine learning for investment strategy]
@@ -306,8 +306,6 @@ Final stage is the use of the previous KAMA value to calculate the next value. \
 
 \noindent
 New KAMA = Previous KAMA + (Smoothing Constant x (Current Price - Previous KAMA))\\
-
-WORK ON THIS ONE \\
 
 \iffalse
 []
@@ -456,15 +454,6 @@ Aroon Oscillator = Aroon Up - Aroon Down\\
 \fi
 
 \noindent
-\textbf{Average Directional Index (ADX)} - This is part of a group of indicators developed by Welles Wilder. The group is made up of Average Directional Index, Minus Directional Index, and Plus Directional Index, and is called the Directional Movement System. \\
-
-COMPLEX NEED TIME \\
-
-\iffalse
-[]
-\fi
-
-\noindent
 \textbf{Average True Range (ATR)} - Developed by J. Welles Wilder as a measure for volatility, ATR has been used in a wide variety of applications outside of the financial world. The initial idea was based around a concept called True Range, calculated as such:\\
 
 \noindent
@@ -504,15 +493,6 @@ Bandwidth = ((Upper Band - Lower Band) / Middle Band) x 100 \\
 \fi
 
 \noindent
-\textbf{Chande Trend Meter (CTM)} - Developed by Tushar Chande. This indicator assigns a numerical score to a stock based on several other indicators.\\
-
-NEED TO RESEARCH CANT FIND AN EQUATION\\
-
-\iffalse
-[]
-\fi
-
-\noindent
 \textbf{Commodity Channel Index (CCI)} - Developed by Donald Lambert. Used to show a comparison between the current price and the average price over a given timespan. Uses multiple other calculations as component parts, including Simple Moving Average, Typical Price, and Mean Deviation.\\
 
 \noindent
@@ -536,19 +516,6 @@ Default X = 20.\\
 \noindent
 Coppock Curve = WeightedMovingAverage(X, RateOfChange(Y)) + RateOfChange(Z)\\
 Default X = 10, Y = 14, Z = 11. \\
-
-\iffalse
-[]
-\fi
-
-\noindent
-\textbf{Correlation Coefficient} - This is a measure of the similarities between two stocks, this is useful to identify trends that effect many stocks. This uses the variance of two stocks using an average price over a given time frame as well as the covariance between them.\\
-
-\noindent
-Variance(Stock$_1$) = Average(Price$^2$, X) - (Average(Price, X)$^2$)\\
-Variance(Stock$_2$) = Average(Price$^2$, X) - (Average(Price, X)$^2$)\\
-Covariance(Stock$_1$, Stock$_2$) = Average(Price(Stock$_1$) x Price(Stock$_2$), X) - (Average(Price(Stock$_1$), X) x Average(Price(Stock$_2$), X))\\
-Correlation Coefficient = Covariance / SQRT(Variance(Stock$_1$) x Variance(Stock$_2$))\\
 
 \iffalse
 []
@@ -686,7 +653,22 @@ RS = Average Gain / Average Loss\\
 \noindent
 \textbf{StockCharts Technical Rank (SCTR)} \\
 
-MIGHT BE USEFUL BUT CHECK FIRST\\
+A collection of indicators that can be condensed into a single value for comprehensive comparison between multiple stocks, allowing for stock ranking to occur. Also very useful as individual components for data insight. The first step of calculation is the six components of the SCTR. These are calculated and given a set weighting and then once calculated, summed together as a multiple of their weighting. \\
+
+\noindent
+Long Term Indicators\\
+Percentage of current price above or below the EMA(200 days). Weighting of 30\%. \\
+RateOfChange(125 days). Weighting of 30\%. \\
+
+\noindent
+Medium Term Indicators\\
+Percentage of current price above or below the EMA(50 days). Weighting of 15\%. \\
+RateOfChange(20 days). Weighting of 15\%. \\
+
+\noindent
+Short Term Indicators\\
+Slope of Percentage Price Oscillator Histogram (PPO) over the last 3 days. Weighting of 5\%. \\
+Relative Strength Index (RSI) for the last 14 days. Weighting of 5\%. \\
 
 \iffalse
 []
@@ -876,6 +858,7 @@ These tables are then used as input to the SVM learning function that is found a
 
 The functions `getPeaks' and `getTroughs' function in a similar way to `shouldBuy' and `shouldSell', they are very tune-able and are able to be changed to very different techniques without having an effect on the main functionality of the simulation. An example of a technique that could be used within these functions is to differentiate. This technique is designed around the idea that data can be modelled as an equation and when the gradient of the line is 0, this is a stationary point, these will either be peaks or troughs. Then the second derivative is used in conjunction with the data either side of the current point to decide if this stationary point is a peak or trough. This is an example of one of the many techniques used. Other techniques used are; \\
 
+\noindent
 Rolling average - Take the highest points over variable length rolling average. \\
 Spikes - Take any point as a peak if both neighbours are lower that that value and the inverse for troughs. \\
 Median - Take the top and bottom X\% of values. 

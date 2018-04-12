@@ -3,17 +3,9 @@ Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: final paper.aux
 The style file: agsm.bst
 Database file #1: references.bib
-Warning--I didn't find a database entry for "tesauro"
-Warning--I didn't find a database entry for "Gjerstad"
-Warning--I didn't find a database entry for "Cliff"
-Warning--I didn't find a database entry for "Saad"
-Warning--I didn't find a database entry for "Meng"
-Warning--I didn't find a database entry for "Kim"
-Warning--I didn't find a database entry for "Gerlein"
-Warning--I didn't find a database entry for "Lima"
 You've used 17 entries,
             2909 wiz_defined-function locations,
-            796 strings with 9734 characters,
+            781 strings with 9657 characters,
 and the built_in function-call counts, 68596 in all, are:
 = -- 11109
 > -- 933
@@ -52,4 +44,3 @@ warning$ -- 0
 while$ -- 386
 width$ -- 0
 write$ -- 240
-(There were 8 warnings)
