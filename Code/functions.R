@@ -501,15 +501,6 @@ adv.get_aroon_oscillator <- function(date, time, stock){
 	return(result)
 }
 
-adv.get_average_directional_index <- function(date, time, stock){
-	# get the ADI
-	# THIS IS COMPLEX AND NEEDS TIME
-
-	result = 0
-
-	return(result)
-}
-
 adv.get_average_true_range <- function(date, time, stock, X){
 	# get the average true range
 
@@ -580,15 +571,6 @@ adv.get_coppock_curve <- function(date, time, stock){
 	}
 
 	result = use.get_average(dummy_list)
-
-	return(result)
-}
-
-adv.get_correlation_coefficient <- function(date, time, stock){
-	# calculate the CC
-	# MIGHT NOT BE USEFUL AT ALL
-
-	result = 0
 
 	return(result)
 }
