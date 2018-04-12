@@ -1,5 +1,11 @@
 \begin{thebibliography}{xx}
 
+\harvarditem{Appel}{2005}{Appel2005}
+Appel, G.  \harvardyearleft 2005\harvardyearright , {\em {Technical analysis:
+  power tools for active investors}}, Financial Times/Prentice Hall.
+\newline\harvardurl{https://books.google.co.uk/books/about/Technical{\_}Analysis.html?id=RFYIAAAACAAJ{\&}redir{\_}esc=y
+  http://dl.acm.org/citation.cfm?id=1408581}
+
 \harvarditem[Berutich et~al.]{Berutich, L{\'{o}}pez, Luna \harvardand\
   Quintana}{2016}{Berutich2016}
 Berutich, J.~M., L{\'{o}}pez, F., Luna, F. \harvardand\ Quintana, D.
@@ -8,16 +14,20 @@ Berutich, J.~M., L{\'{o}}pez, F., Luna, F. \harvardand\ Quintana, D.
   Systems with Applications} {\bf 46},~307--315.
 \newline\harvardurl{http://www.sciencedirect.com.ezphost.dur.ac.uk/science/article/pii/S0957417415007447}
 
+\harvarditem{Blau}{1995}{Blau1995}
+Blau, W.  \harvardyearleft 1995\harvardyearright , {\em {Momentum, direction,
+  and divergence}}, Wiley.
+\newline\harvardurl{https://books.google.co.uk/books/about/Momentum{\_}Direction{\_}and{\_}Divergence.html?id=OmkgfTUx9pMC}
+
 \harvarditem{Blokker \harvardand\ Project}{2008}{Blokker1000}
 Blokker, J. \harvardand\ Project, C. S.~T.  \harvardyearleft
   2008\harvardyearright , `{The Application of SVM to Algorithmic Trading}',
   pp.~1--4.
 \newline\harvardurl{http://cs229.stanford.edu/proj2008/Blokker-TheApplicationofSVMtoAlgorithmicTrading.pdf}
 
-\harvarditem{Bollinger}{2002}{Bollinger2002}
-Bollinger, J.  \harvardyearleft 2002\harvardyearright , {\em {Bollinger on
-  Bollinger bands}}, McGraw-Hill.
-\newline\harvardurl{http://firstsearch.oclc.org.ezphost.dur.ac.uk/WebZ/FSFETCH?fetchtype=fullrecord:sessionid=fsapp2-59123-jey6rmml-7lpkdt:entitypagenum=5:0:recno=1:resultset=2:format=FI:next=html/record.html:bad=error/badfetch.html:entitytoprecno=1:entitycurrecno=1:numrecs=}
+\harvarditem{Bollinger}{1992}{Bollinger1992}
+Bollinger, J.  \harvardyearleft 1992\harvardyearright , `{Using Bollinger
+  Bands}', {\em Stocks {\&} Commodities} {\bf 10}(2),~47--51.
 
 \harvarditem[Cartea et~al.]{Cartea, Jaimungal \harvardand\
   Ricci}{2014}{Cartea2014}
@@ -28,11 +38,23 @@ Cartea, {\'{A}}., Jaimungal, S. \harvardand\ Ricci, J.  \harvardyearleft
 \newline\harvardurl{http://epubs.siam.org.ezphost.dur.ac.uk/doi/pdf/10.1137/130911196
   http://epubs.siam.org/doi/10.1137/130911196}
 
+\harvarditem{Chande \harvardand\ Kroll}{1994}{Chande1994}
+Chande, T.~S. \harvardand\ Kroll, S.  \harvardyearleft 1994\harvardyearright ,
+  {\em {The new technical trader : boost your profit by plugging into the
+  latest indicators}}, Wiley.
+\newline\harvardurl{https://books.google.co.uk/books/about/The{\_}new{\_}technical{\_}trader.html?id=uPMJAQAAMAAJ}
+
 \harvarditem{Cliff \harvardand\ Bruten}{1998}{Cliff1998}
 Cliff, D. \harvardand\ Bruten, J.  \harvardyearleft 1998\harvardyearright ,
   `{Less Than Human: Simple Adaptive Trading Agents for CDA Markets}', {\em
   IFAC Proceedings Volumes} {\bf 31}(16),~117--122.
 \newline\harvardurl{https://www-sciencedirect-com.ezphost.dur.ac.uk/science/article/pii/S147466701740468X}
+
+\harvarditem{Elder}{2002}{Elder2002}
+Elder, A.  \harvardyearleft 2002\harvardyearright , {\em {Come into my trading
+  room: A complete guide to trading}}.
+\newline\harvardurl{https://www.cabafx.com/trading-ebooks-collection/Come{\_}into{\_}my{\_}trading{\_}room.pdf
+  http://books.google.com/books?hl=en{\&}lr={\&}id=mna7CdjGdcYC{\&}oi=fnd{\&}pg=PR4{\&}dq=COME+INTO+MY+TRADING+ROOM+A+Complete+Guide+to+Trading{\&}ots=DFAjhtFkpr{\&}sig=P3BKTG9lgQMpd1i8rJjLMi8R6Vg}
 
 \harvarditem[Gerlein et~al.]{Gerlein, McGinnity, Belatreche \harvardand\
   Coleman}{2016}{Gerlein2016}
@@ -57,12 +79,25 @@ Hasbrouck, J., Sofianos, G. \harvardand\ Sosebee, D.  \harvardyearleft
 \newline\harvardurl{http://people.stern.nyu.edu/jhasbrou/Research/Working
   Papers/NYSE.PDF}
 
+\harvarditem{Hutson}{1983}{Hutson1983}
+Hutson, J.~K.  \harvardyearleft 1983\harvardyearright , `{TRIX : Triple
+  Exponential Smoothing Oscillator}',  {\bf 3}(c),~1--6.
+\newline\harvardurl{https://c.mql5.com/forextsd/forum/63/trix{\_}-{\_}the{\_}original.pdf}
+
 \harvarditem[Iqbal et~al.]{Iqbal, Ahmad \harvardand\ Schmidt}{2012}{Iqbal}
 Iqbal, J., Ahmad, I. \harvardand\ Schmidt, G.  \harvardyearleft
   2012\harvardyearright , `{Can online trading algorithms beat the market? An
   experimental evaluation}', {\em 3rd Student Conference on Operational
   Research} {\bf 22}(Scor),~43--52.
 \newline\harvardurl{http://drops.dagstuhl.de/opus/volltexte/2012/3545/pdf/6.pdf}
+
+\harvarditem{Kaufman}{1998}{Kaufman1998}
+Kaufman, P.~C.  \harvardyearleft 1998\harvardyearright , {\em {Trading Systems
+  and Methods}}, 5th edn, John Wiley {\&} Sons.
+
+\harvarditem{Keltner}{1960}{Keltner1960}
+Keltner, C.~W.  \harvardyearleft 1960\harvardyearright , `{How To Make Money in
+  Stocks}', {\em New York} {\bf 33}(10),~16--18.
 
 \harvarditem{Kim}{2007}{Kim2007}
 Kim, K.  \harvardyearleft 2007\harvardyearright , {\em {Electronic and
@@ -79,6 +114,11 @@ Krollner, B., Vanstone, B. \harvardand\ Finnie, G.  \harvardyearleft
 \newline\harvardurl{http://epublications.bond.edu.au/infotech{\_}pubs/110
   http://epublications.bond.edu.au/infotech{\_}pubs/110{\%}5Cnhttp://epublications.bond.edu.au/infotech{\_}pubs/110/}
 
+\harvarditem{Lambert}{1980}{Lambert1980}
+Lambert, D.  \harvardyearleft 1980\harvardyearright , `{Charting The Market}',
+  {\em Commodities} .
+\newline\harvardurl{http://traders.com/documentation/feedbk{\_}docs/2004/10/Charting/charting.html}
+
 \harvarditem{Lima}{2017}{Lima2017}
 Lima, L.  \harvardyearleft 2017\harvardyearright , `{Modeling of the financial
   market using the two-dimensional anisotropic Ising model}', {\em Physica A:
@@ -90,12 +130,38 @@ Madge, S.  \harvardyearleft 2015\harvardyearright , `{Predicting Stock Price
   Direction using Support Vector Machines}', {\em Independent Work Report} .
 \newline\harvardurl{https://www.cs.princeton.edu/sites/default/files/uploads/saahil{\_}madge.pdf}
 
+\harvarditem{Martin \harvardand\ Mccann}{1992}{Martin1992}
+Martin, P.~G. \harvardand\ Mccann, B.~B.  \harvardyearleft
+  1992\harvardyearright , {\em {The Investor's Guide to Fidelity Funds Winning
+  Strategies for Mutual Fund Investing Publisher's Cataloging in Publication
+  Data}}, Venture Catalyst.
+\newline\harvardurl{http://www.tangotools.com/ui/fkbook.pdf}
+
 \harvarditem[Meng et~al.]{Meng, Zhang \harvardand\ Guo}{2016}{Meng2016}
 Meng, X., Zhang, J.-W. \harvardand\ Guo, H.  \harvardyearleft
   2016\harvardyearright , `{Quantum Brownian motion model for the stock
   market}', {\em Physica A: Statistical Mechanics and its Applications} {\bf
   452},~281--288.
 \newline\harvardurl{https://www-sciencedirect-com.ezphost.dur.ac.uk/science/article/pii/S0378437116001928}
+
+\harvarditem[Meyer et~al.]{Meyer, Dimitriadou, Hornik, Weingessel, Leisch,
+  Chang \harvardand\ Lin}{2017}{Meyer2017}
+Meyer, D., Dimitriadou, E., Hornik, K., Weingessel, A., Leisch, F., Chang,
+  C.-C. \harvardand\ Lin, C.-C.  \harvardyearleft 2017\harvardyearright ,
+  `{Package e1071}'.
+\newline\harvardurl{https://cran.r-project.org/web/packages/e1071/e1071.pdf}
+
+\harvarditem{Murphy}{1999}{Murphy1999}
+Murphy, J.~J.  \harvardyearleft 1999\harvardyearright , {\em {Technical
+  analysis of the financial markets : a comprehensive guide to trading methods
+  and applications}}, New York Institute of Finance.
+\newline\harvardurl{http://library.dur.ac.uk/search{~}S1?/Ytechnical+analysis+of+the+financial+markets+{\&}searchscope=1{\&}SORT=DZ/Ytechnical+analysis+of+the+financial+markets+{\&}searchscope=1{\&}SORT=DZ{\&}extended=1{\&}SUBKEY=technical+analysis+of+the+financial+markets+/1{\%}2C11{\%}2C11{\%}2CE/fram}
+
+\harvarditem{Pring}{2002}{Pring2002}
+Pring, M.~J.  \harvardyearleft 2002\harvardyearright , {\em {Technical Analysis
+  Explained: The Successful Investor's Guide to Spotting Investiment Trends and
+  Turning Points}}, McGraw-Hill.
+\newline\harvardurl{https://books.google.co.uk/books/about/Technical{\_}Analysis{\_}Explained.html?id=ng-4a53H87gC{\&}redir{\_}esc=y}
 
 \harvarditem[Saad et~al.]{Saad, {Mohd Jaffar} \harvardand\ {Sains
   Komputer}}{2015}{Saad2015}
@@ -114,10 +180,19 @@ Tesauro, G. \harvardand\ Das, R.  \harvardyearleft 2001\harvardyearright ,
 \newline\harvardurl{https://researcher.watson.ibm.com/researcher/files/us-kephart/dblauc.pdf
   http://portal.acm.org/citation.cfm?doid=501158.501183}
 
+\harvarditem{Wilder}{1978}{Wilder1978}
+Wilder, J.~W.  \harvardyearleft 1978\harvardyearright , {\em {New concepts in
+  technical trading systems}}, Trend Research.
+
 \harvarditem{Wilinski \harvardand\ Kovalerchuk}{2017}{Wilinski2017}
 Wilinski, A. \harvardand\ Kovalerchuk, B.  \harvardyearleft
   2017\harvardyearright , `{Visual knowledge discovery and machine learning for
   investment strategy}', {\em Cognitive Systems Research} {\bf 44},~100--114.
 \newline\harvardurl{https://www-sciencedirect-com.ezphost.dur.ac.uk/science/article/pii/S1389041717300359?via{\%}3Dihub}
+
+\harvarditem{Wilson}{2008}{Wilson2008}
+Wilson, M.  \harvardyearleft 2008\harvardyearright , {Support Vector Machines},
+  {\em in} `Encyclopedia of Ecology', Elsevier, pp.~3431--3437.
+\newline\harvardurl{http://linkinghub.elsevier.com/retrieve/pii/B9780080454054001683}
 
 \end{thebibliography}
