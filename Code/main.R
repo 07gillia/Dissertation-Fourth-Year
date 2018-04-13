@@ -104,7 +104,7 @@ End_Date = 382
 
 Available_Capital = 100000
 
-Available_Stocks = sort(sample(Stock_Names, 4, replace=F))
+Available_Stocks = sort(sample(Stock_Names, 2, replace=F))
 # Initial value = 44
 
 Available_Dates = unique(Data$DATE)
@@ -113,6 +113,8 @@ sprintf("Stocks that will be used : %s", paste(Available_Stocks, collapse = " ")
 # Output the stocks that will be used
 
 Available_Data = Data[,c("DATE","TIME", Available_Stocks)]
+
+action.set_up()
 
 ####################################################################
 
@@ -164,8 +166,9 @@ for (date in c(Start_Date:End_Date)) {
 			if(!is.na(current_stock_price)){
 				# This means that there is a current price for this stock, time and date
 
-				#all_data_available = Data[Data$DATE <= current_date & Data$TIME <= current_time, c("DATE", "TIME", stock)]
-				#all_data_available = na.omit(all_data_available)
+				if(date >= 370){
+					action.update_tracker(current_date, current_time, stock)
+				}
 
 
 
@@ -199,7 +202,7 @@ for (date in c(Start_Date:End_Date)) {
 						}
 					}
 
-					if(length(to_remove != 0)){
+					if(length(to_remove) != 0){
 						Active = Active[!to_remove, ]
 					}
 				}
@@ -226,5 +229,6 @@ sprintf("The time taken: %f", time.taken)
 
 print(Active)
 print(Sold)
+action.print_trackers()
 
 ####################################################################

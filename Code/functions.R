@@ -109,6 +109,39 @@ action.should_sell <- function(uid, date, time){
 	return(result)
 }
 
+stocks_list = list()
+
+action.set_up <- function(){
+	# a fucntion that allows for storage of test material
+
+	stocks_list <- setNames(vector(length(Available_Stocks), mode="list"), Available_Stocks)
+
+	print(stocks_list)
+
+	for (i in c(1:length(Available_Stocks))) {
+
+		list = stocks_list[i]
+		list = 0
+		stocks_list[i] = list
+	}
+
+	print(stocks_list)
+}
+
+action.update_tracker <- function(date, time, stock){
+	# a function that allows the updating of test material during testing
+
+	result = adv.get_bollinger_bands(date, time, stock)[1]
+
+	list = stocks_list[stock]
+
+	list = list(list, result)
+}
+
+action.print_trackers <- function(){
+	print(stocks_list)
+}
+
 ####################################################################
 # Basic Functions
 ####################################################################
@@ -186,6 +219,12 @@ use.get_x_data_points <- function(date, time, stock, X){
 
 	stock_data = subset(Data, DATE<=date & TIME<=time, select=stock)
 	stock_data = na.omit(stock_data)
+
+	if(length(stock_data[,stock]) < X){
+		print("There has been an issue with get_x_data_points, not enough data")
+		stop()
+	}
+
 	result = tail(stock_data[,stock], X)
 
 	return(result)
