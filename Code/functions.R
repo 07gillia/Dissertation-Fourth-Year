@@ -81,15 +81,18 @@ action.time <- function(time){
 # Decision Functions
 ####################################################################
 
-action.should_buy <- function(current_date, current_time, current_stock){
+action.should_buy <- function(current_date, current_time, current_stock, stock_tracker){
 	# Function that will decide if the current stock should be bought or not
 
 	result = FALSE
 
-	number = runif(1)
+	if(length(stock_tracker) > 1){
 
-	if(number < 0.0001){
-		result = TRUE
+		range = range(tail(stock_tracker,100))
+		
+		if(tail(stock_tracker,1) > (1.1 * range(1))){
+			result = TRUE
+		}
 	}
 
 	return(result)
@@ -100,46 +103,26 @@ action.should_sell <- function(uid, date, time){
 
 	result = FALSE
 
-	number = runif(1)
+	if(length(stock_tracker) > 1){
 
-	if(number < 0.0005){
-		result = TRUE
+		range = range(tail(stock_tracker,100))
+		
+		if(tail(stock_tracker,1) > (0.9 * range(2))){
+			result = TRUE
+		}
 	}
 
 	return(result)
 }
 
-stocks_list = list()
+action.update_tracker <- function(input, date, time, stock){
+	# a function that will add whatever value to the stock tracker
 
-action.set_up <- function(){
-	# a fucntion that allows for storage of test material
+	answer = adv.get_bollinger_bands(date, time, stock)[1]
 
-	stocks_list <- setNames(vector(length(Available_Stocks), mode="list"), Available_Stocks)
+	result = c(input, answer)
 
-	print(stocks_list)
-
-	for (i in c(1:length(Available_Stocks))) {
-
-		list = stocks_list[i]
-		list = 0
-		stocks_list[i] = list
-	}
-
-	print(stocks_list)
-}
-
-action.update_tracker <- function(date, time, stock){
-	# a function that allows the updating of test material during testing
-
-	result = adv.get_bollinger_bands(date, time, stock)[1]
-
-	list = stocks_list[stock]
-
-	list = list(list, result)
-}
-
-action.print_trackers <- function(){
-	print(stocks_list)
+	return(result)
 }
 
 ####################################################################

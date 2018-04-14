@@ -81,9 +81,9 @@ DL7 & Create a testing criteria & Create a method with which to test the strateg
 This section presents a survey of existing work on the problems that this project addresses.  it should be between 2 to 4 pages in length.  The rest of this section shows the formats of subsections as well as some general formatting information for tables, figures, references and equations.
 \fi
 
-The related work in this field is limited. This is due to the state of the art being controlled by large companies that use the work within this field to make money and being the state of the art means that the company that has it will make the most money, resulting in a limited flow of information on anything that is current, as any sharing of information will result in that edge being lost and any money that was being made along with it. There are papers that exist that are seen as classic within the academic field of trading but within the world of algorithmic trading past papers are seen more as a has-been example of what was done in the past and bares little fruit with relevance to what is being done today. \\
+The related work in this field is limited. This is due to the state of the art being controlled by large companies that use the work within this field to make money and being the state of the art means that the company that has it will make the most money, resulting in a limited flow of information on anything that is state of the art, as any sharing of information will result in that edge being lost and any money that was being made along with it. There are papers that exist that are seen as classic within the academic field of trading but within the world of algorithmic trading past papers are seen more as a has-been example of what was done in the past and bares little fruit with relevance to what is being done today. \\
 
-Classic financial papers such as those that include the Black-Scholes Model \cite{Saad2015} are seen as pivotal in the study of academic finance and have been read by many within the financial world but offer very little in the way of computational finance. The same can be said for papers that cover the application and implications of Brownian motion, or the effect of the Efficient Market Hypothesis \cite{Meng2016}. Both very applicable to the modern world of finance as a whole, but almost unusable within the context of this paper. \\
+Classic financial papers such as those that include the Black-Scholes Model \cite{Saad2015} are seen as pivotal in the study of academic finance and have been read by many within the financial world but offer very little in the way of help for computational finance. The same can be said for papers that cover the application and implications of Brownian motion, or the effect of the Efficient Market Hypothesis \cite{Meng2016}. Both very applicable to the modern world of finance as a whole, but almost unusable within the context of this paper. \\
 
 Books published within the last decade are so far out of touch with the `Electronic and Algorithmic Trading Technology - The Complete Guide' \cite{Kim2007}, released in 2007 providing a very detailed description of all routing and pair trading techniques that are being used by a stock exchange to facilitate trading in the modern day and a long history of the adoption of algorithmic trading. Any strategies that are suggested are based on volume weighted average or time weighted average and have already been tested thoroughly and are not ground breaking or competitive within modern markets. Other publications that have been found show similar limitations. Papers based around any machine learning techniques focus on k-means clustering \cite{Gerlein2016} or the Ising model \cite{Lima2017}, the Monte-Carlo or Wolff algorithm especially, have been thoroughly explored and show thorough testing in modern markets are not competitive as they once were. Any paper that uses a different technique or shows the theoretical possibility of using many techniques in conjunction does not provide data or tangible results for any of the techniques instead suggests theoretical applications and limited or narrow real world applications.\\
 
@@ -108,7 +108,7 @@ This section should be between 4 to 7 pages in length.
 
 \subsubsection*{Logic}
 
-The logic behind the simulation was to allow trading at a fine grain level, this needed to be permitted by the data chosen to perform the algorithms on. A drawback was that `tick data' or data for each trade executed was found to be too costly for the project so `minute data' was used. Minute data provides an open, high, low, and close price for a stock in the given minute, this gave plenty of data points per day of trading. A simplification was created at this point, trading was only done on the price that opened the minute. This was done to reduce the complexity of calculating any inter-minute values. The running of the simulation was based on the progression through each date of available trading and for each day iterate through every minute of the trading day, starting at 09:30 until 16:00. Each trading day has 390 points at which trading is possible, if the data permits it. This is available for 382 days in the 18 months of data that was used. 
+The logic behind the simulation was to allow trading at a fine grain level, this needed to be permitted by the data chosen to perform the algorithms on. A drawback was that `tick data' or data for each trade executed by the stock exchange was found to be too costly for the project so `minute data' was used. Minute data provides an open, high, low, and close price for a stock in the given minute, this gave plenty of data points per day of trading. A simplification was created at this point, trading was only done on the price that opened the minute. This was done to reduce the complexity of calculating any inter-minute values. The running of the simulation was based on the progression through each date of available trading and for each day iterate through every minute of the trading day, starting at 09:30 until 16:00. Each trading day has 390 points at which trading is possible, if the data permits it. This is available for 382 days in the 18 months of data that was used. 
 
 \subsubsection*{Data}
 
@@ -140,7 +140,7 @@ Thus reducing computational overhead from the running of the simulation as all d
 
 \subsubsection*{Set up}
 
-The simulation was set up in such a way so as to minimise the impact that gaps in the data would cause. This meant using the data to provide the iteration behaviour. The data input in the form of Table 3 was cast for each row using a typecast function to allow correct manipulation of numerical values the dates were converted to numerical values for correct comparison, as were the times. The stock values were also numerical. \\
+The simulation was set up in such a way so as to minimise the impact that gaps in the data would cause. This meant using the data to provide the iteration behaviour. The data input in the form of Table 3 was cast for each row using a typecast function to allow correct manipulation of numerical values, the dates were converted to numerical values for correct comparison, as were the times. The stock values were also numerical. \\
 
 The simulation then uses all unique dates within the Dates column to allow for iteration through the table at the highest level, through each individual day. One the data had been sub-sampled for that day, then a list of unique minutes was created. Once the data had been further sub-sampled to the current minute, each of the stock columns were iterated through and tested for NA values. If an NA value is present for that stock then it is passed over. If the value is available however then two functions are used, `shouldBuy' and `shouldSell'. The first used is `shouldBuy', this will take input of current date, current time, and current stock, to allow for a decision to be made on weather to buy an amount of that stock or not. These functions are based on manipulations of three other tables, `Active', `Sold', and `Ledger'. They take the form:
 
@@ -167,7 +167,7 @@ Date & Value & Stock Value & Capital Value \\ \hline
 \caption{Ledger}
 \end{longtable}
 
-Each also comes with its own population function, `Buy', `Sell', `Update'. The first two are called if any decision is made. If a stocks value is such that the `shouldBuy' function returns true then the `Buy' function is called, taking input of date, time, stock, and amount. This is then added as another row to the Active table, as this is now an active stock that can be sold. The amount of any given stock that should be purchased is calculated through another function `getAmount', this will test all calculations done in `shouldBuy' and calculate a confidence value that will then dictate, using the amount of liquid capital available, the amount of the stock that will be bought. The `shouldSell' function is then queried every time an updated value is available for any given row in the `Active' table. Using the new value a decision will be made if the stock should be sold, if this is found to be the case then the `Sell' function is called. The function will remove the row of the `Active' table that corresponds to this block of stock to be sold and add it to the `Sold' table along with all the details of the transaction. \\
+Each also comes with its own population function, `Buy', `Sell', `Update'. The first two are called if any decision is made. If a stocks value is such that the `shouldBuy' function returns true then the `Buy' function is called, taking input of date, time, stock, and amount. The amount is dictated by the `amountShouldBuy' function that is an extension of the `shouldBuy' function that returns the amount that should be bought of the current stock. This is then added as another row to the Active table, as this is now an active stock that can be sold. The amount of any given stock that should be purchased is calculated through another function `getAmount', this will test all calculations done in `shouldBuy' and calculate a confidence value that will then dictate, using the amount of liquid capital available, the amount of the stock that will be bought. The `shouldSell' function is then queried every time an updated value is available for any given row in the `Active' table. Using the new value a decision will be made if the stock should be sold, if this is found to be the case then the `Sell' function is called. The function will remove the row of the `Active' table that corresponds to this block of stock to be sold and add it to the `Sold' table along with all the details of the transaction. \\
 
 The final table is `Ledger' which uses the function `Update', this is called on a regular basis to allow for tracking of the algorithm throughout the simulation. All overall details of capital are stored in this table. The Date column is a concatenation of both Time and Date in any other table to allow for minute by minute updates of the simulation or if this is not required then daily updates are possible.
 
@@ -183,49 +183,36 @@ These are some of the more regularly utilised functions in the simulation and ar
 
 \noindent
 \textbf{Buy}(Date, Time, Stock, Amount) - Adds a row to the `Active' table. \\
-
 \noindent
 \textbf{Sell}(RowData, Date, Time, Stock, StockPrice) - Adds a row to the `Sold' table and removes the corresponding row of the `Active' table.\\
-
 \noindent
 \textbf{Update}(Date, TotalCapital) - Adds a row to the `Ledger' table for re-tracking of the simulation.\\
-
 \noindent
 \textbf{shouldBuy}(Time, Date, Stock) - Calculates using any method set if the current stock should be bought at the current price.\\
-
 \noindent
 \textbf{shouldSell}(UniqueID, Date, Time) - Calculates if the given block of stocks should be sold at the current price.\\
-
+\noindent
+\textbf{amountShouldBuy}(Time, Date, Stock) - This is a function that is used to find a confidence value in the current stock price and thus returns the amount of the given stock that should be bought also taking into account the amount of liquid capital that is available at the current time.\\
 \noindent
 \textbf{getMax}(List) - Get the maximum value of the given list.\\
-
 \noindent
 \textbf{getMin}(List) - Get the minimum value of the given list.\\
-
 \noindent
 \textbf{getAverage}(List) - Get the mean value of the given list.\\
-
 \noindent
 \textbf{getSD}(List) - Get the standard deviation of the given list.\\
-
 \noindent
 \textbf{getXDate}(Date, X) - Get the date X days ago.\\
-
 \noindent
 \textbf{getXClose}(Date, Stock, X) - Get the close X days ago.\\
-
 \noindent
 \textbf{getXOpen}(Date, Stock, X) - Get the open X days ago.\\
-
 \noindent
 \textbf{getXDataPoints}(Date, Time, Stock, X) - Get the last X data points for the given stock.\\
-
 \noindent
 \textbf{getXDayDataPoints}(Date, Stock, X) - Get all data for the day X days ago.\\
-
 \noindent
 \textbf{getXSincePrice}(Date, Time, Stock, Price) - Get the number of data points between the current data point and the last data point that had the given price.\\
-
 \noindent
 \textbf{getTotalGainLoss}(Date, Time, Stock, X) - Over the last X data points get the total gain and loss.\\
 
@@ -261,7 +248,6 @@ The standard time period is 20 days.\\
 \noindent
 Long = High(X) - (Average True Range(X) * 3)\\
 Short = Low(X) + (Average True Range(X) * 3)\\
-
 \noindent
 The standard time period is 22 days.\\
 
@@ -312,9 +298,9 @@ New KAMA = Previous KAMA + (Smoothing Constant x (Current Price - Previous KAMA)
 \textbf{Keltner Channels} - \cite{Keltner1960} - Very similar to Bollinger Bands but instead of using standard deviation average true range is used. Created by Chester Keltner, this indicator is made up of three lines in a similar way to Bollinger Bands.\\
 
 \noindent
-Upper Channel Line = Exponential Moving Average(X) + (2 x Average True Range(Y))\\ - Default X = 20, Y = 10 \\
-Middle Line = Exponential Moving Average(X)\\ - Default X = 20 \\
-Lower Channel Line = Exponential Moving Average(X) - (2 x Average True Range(Y))\\ - Default X = 20, Y = 10 \\
+Upper Channel Line = Exponential Moving Average(X) + (2 x Average True Range(Y))\\
+Middle Line = Exponential Moving Average(X)\\
+Lower Channel Line = Exponential Moving Average(X) - (2 x Average True Range(Y))\\ Default X = 20, Y = 10 \\
 
 \iffalse
 []
@@ -391,13 +377,13 @@ Support One = (X / 2) - High\\
 Resistance One = (X / 2) - Low\\
 
 \noindent
-Where X is calculated: \\
+Where X is calculated as: \\
 If Close $<$ Open: X = High + (2 x Low) + Close\\
 If Close $>$ Open: X = (2 x High) + Low + Close\\
 If Close = Open: X = High + Low + (2 x Close)\\
 
 \noindent
-Fibonacci Pivot Points. \\
+Fibonacci Pivot Points. These are similar to the standard pivot points but use different spacing techniques, namely the Fibonacci sequence.\\
 Pivot Point = (High + Low + Close)/3\\
 Support One = PP - (0.382 x (High  -  Low))\\
 Support Two = PP - (0.618 x (High  -  Low))\\
@@ -411,13 +397,13 @@ Resistance Three = PP + (1 x (High  -  Low))\\
 \fi
 
 \noindent
-\textbf{Price Channels} - \cite{Murphy1999} - Using three calculations to show an upper, lower, and middle bound, used to indicate the start of an upwards or downward trend and act accordingly.\\
+\textbf{Price Channels} - \cite{Murphy1999} - Using three calculations to show an upper, lower, and middle bound, used to indicate the start of an upwards or downward trend.\\
 
 \noindent
 Upper = High(X)\\
 Center = (High(X) + Low(X)) / 2\\
 Lower = Low(X)\\
-The default X value is 20.\\
+The default X value is 20.
 
 \iffalse
 []
@@ -429,12 +415,12 @@ The default X value is 20.\\
 
 \subsubsection*{Technical Indicators}
 
-\textbf{Aroon} - \cite{Chande1994} - Developed by Tushar Chande, Aroon is indicative of the strength of the current trend. It was designed to be similar but uniquely different to standard momentum oscillators, which focus on price relative to time, whilst Aroon focuses on time relative to price. It has two components, Up and Down, both are shown as percentages. Up will maximise on an upward trend and Down will maximise on a downward trend.\\
+\textbf{Aroon} - \cite{Chande1994} - Developed by Tushar Chande; Aroon is indicative of the strength of the current trend. It was designed to be similar but uniquely different to standard momentum oscillators, which focus on price relative to time, Aroon focuses on time relative to price. It has two components, Up and Down, both are shown as percentages. Up will maximise on an upward trend and Down will maximise on a downward trend.\\
 
 \noindent
 Aroon Up = ((X - DaysSinceHigh(X))/X) x 100\\
 Aroon Down = ((X - DaysSinceLow(X))/X) x 100\\
-Default value of X = 25.
+Default value of X = 25.\\
 
 \iffalse
 []
@@ -442,7 +428,6 @@ Default value of X = 25.
 
 \noindent
 \textbf{Aroon Oscillator} - A join of the two values of Aroon into a single value.\\
-
 \noindent
 Aroon Oscillator = Aroon Up - Aroon Down\\
 
@@ -460,7 +445,7 @@ ABS(High(X) - PreviousClose)\\
 ABS(Low(X) - PreviousClose)\\
 
 \noindent
-This was then used in conjunction with the previous ATR to calculate the new ATR.\\
+This was then used in conjunction with the previous true range to calculate the new ATR.\\
 
 \noindent
 New ATR = ((Prev ATR x (X-1)) + TR) / X - Default X is 14 \\
@@ -471,7 +456,6 @@ New ATR = ((Prev ATR x (X-1)) + TR) / X - Default X is 14 \\
 
 \noindent
 \textbf{BandWidth} - \cite{Murphy1999} - One of the two indicators derived from Bollinger Bands by John Bollinger, the other being \%B. This is a single value that takes all Bollinger Bands as components.\\
-
 \noindent
 Bandwidth = ((Upper Band - Lower Band) / Middle Band) x 100 \\
 
@@ -481,7 +465,6 @@ Bandwidth = ((Upper Band - Lower Band) / Middle Band) x 100 \\
 
 \noindent
 \textbf{\%B Indicator} - \cite{Murphy1999} - Another Bollinger Band derivative, \%B indicator gives an indication as to the relationship of the current price and the Upper and Lower Bollinger Bands. \\
-
 \noindent
 \%B = (Current Price - Lower Band) / (Upper Band - Lower Band)\\
 
@@ -823,13 +806,12 @@ Once each of these methods had been implemented they were each tested. With each
 
 \subsection*{Machine Learning}
 
-Machine Learning is a very broad topic with much of contemporary computer science based on it or consisting of research done around it. The main technique that is being applied is that of a Support Vector Machine or SVM. This maximises the distance between two clusters, and is based in statistical learning theory. Using a kernel mapping, that is mapping a vector into a higher dimensional space, allows for linear separation to be performed, even on non linear datasets if the correct kernel mapping is chosen. Linear separation is the key to this machine learning technique, it maximises the distance between the known elements of each of the two classes using was is basically a constraint satisfaction problem. This `margin' between the two classes is our confidence in the separation, if the margin is small then there is very little distance within the higher dimensional space between the two classes meaning a smaller confidence of success, if the margin is large then there is a higher confidence in the successful determination of a given points class \cite{Wilson2008}. 
+Machine Learning is a very broad topic with much of contemporary computer science based on it or consisting of research done around it. The main technique that is being applied here is that of a Support Vector Machine or SVM. This maximises the distance between two clusters, and is based in statistical learning theory. Using a kernel mapping, that is mapping a vector into a higher dimensional space, allows for linear separation to be performed, even on non linear datasets if the correct kernel mapping is chosen. Linear separation is the key to this machine learning technique, it maximises the distance between the known elements of each of the two classes using was is basically a constraint satisfaction problem. This `margin' between the two classes is our confidence in the separation, if the margin is small then there is very little distance within the higher dimensional space between the two classes meaning a smaller confidence of success, if the margin is large then there is a higher confidence in the successful determination of a given points class. \cite{Wilson2008}
 
 \subsubsection*{Set Up}
 
 The set up of data and input revolved around two functions. These are `getPeaks' and `getTroughs'.
-
-They take input of date, time, stock, and X, X is the number of data points that will be used to make a decision about the buying or selling potential of the given data point. After X/2 data points have passed then a decision will be made using X/2 data points either side. `getPeaks' will take this input, sub-sample the data and decide if this point was optimal to sell at, meaning it is a peak. `getTroughs' will do the opposite, it will decide if this is a point at which it would have been optimal to buy. This data is then stored in tables `SVMBuyData' and `SVMSellData'. These are in the form:
+They take input of date, time, stock, and X. X is the number of data points that will be used to make a decision about the buying or selling potential of the given data point. After X/2 data points have passed then a decision will be made using X/2 data points either side. `getPeaks' will take this input, sub-sample the data and decide if this point was optimal to sell at, meaning it is a peak. `getTroughs' will do the opposite, it will decide if this is a point at which it would have been optimal to buy. This data is then stored in tables `SVMBuyData' and `SVMSellData'. These are in the form:
 
 \label{units}
 \begin{longtable}{ |p{2.25cm}|p{2.25cm}|p{2.25cm}|p{2.25cm}| }\hline\hline

@@ -104,7 +104,7 @@ End_Date = 382
 
 Available_Capital = 100000
 
-Available_Stocks = sort(sample(Stock_Names, 2, replace=F))
+Available_Stocks = sort(sample(Stock_Names, 1, replace=F))
 # Initial value = 44
 
 Available_Dates = unique(Data$DATE)
@@ -114,7 +114,7 @@ sprintf("Stocks that will be used : %s", paste(Available_Stocks, collapse = " ")
 
 Available_Data = Data[,c("DATE","TIME", Available_Stocks)]
 
-action.set_up()
+stock_tracker = c()
 
 ####################################################################
 
@@ -166,8 +166,8 @@ for (date in c(Start_Date:End_Date)) {
 			if(!is.na(current_stock_price)){
 				# This means that there is a current price for this stock, time and date
 
-				if(date >= 370){
-					action.update_tracker(current_date, current_time, stock)
+				if(date >= 60){
+					stock_tracker = action.update_tracker(stock_tracker, current_date, current_time, stock)
 				}
 
 
@@ -175,7 +175,7 @@ for (date in c(Start_Date:End_Date)) {
 				####################################################
 				# Check if the stock should be bought
 
-				if(action.should_buy(current_date, current_time, stock) & date >= 130){
+				if(action.should_buy(current_date, current_time, stock, stock_tracker) & date >= 130){
 					# Test critiera for buy and that trading is open
 
 					Active = action.buy(current_date, current_time, stock, 1000)
@@ -229,6 +229,6 @@ sprintf("The time taken: %f", time.taken)
 
 print(Active)
 print(Sold)
-action.print_trackers()
+print(Ledger)
 
 ####################################################################
