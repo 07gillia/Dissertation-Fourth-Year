@@ -210,6 +210,8 @@ for (date in c(Start_Date:End_Date)) {
 		}				
 	}
 
+	Ledger = action.update(current_date, Available_Capital)
+
 	percentage = (date - Start_Date) / (End_Date - Start_Date) * 100
     cat("\r",format(round(percentage, 3), nsmall = 3), "%")
     # show a percentage in the terminal
@@ -227,8 +229,6 @@ sprintf("The time taken: %f", time.taken)
 
 #graphs.plot(Ledger)
 
-print(Active)
-print(Sold)
 print(Ledger)
 
 ####################################################################

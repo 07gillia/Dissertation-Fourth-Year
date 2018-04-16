@@ -42,14 +42,14 @@ action.update <- function(date, capital){
 
 	if(nrow(Active) > 0){
 		for (x in c(1:nrow(Active))) {
-			value_stock = value_stock + Active[x,5] * Active[x,6]
-			value_capital = value_capital - Active[x,5] * Active[x,6]
+			value_stock = value_stock + Active[[x,5]] * Active[[x,6]]
+			value_capital = value_capital - Active[[x,5]] * Active[[x,6]]
 		}
 	}
 
 	if(nrow(Sold) > 0){
-		for (x in c(1:nrow(Sold))) {
-			value_capital = value_capital + Sold[x,9] * Sold[x,5] - Sold[x,5] * Sold[x,6]
+		for (x in c(1:(nrow(Sold) - 1))) {
+			value_capital = value_capital + (Sold[[x,10]] * Sold[[x,5]]) - (Sold[[x,5]] * Sold[[x,6]])
 		}
 	}
 
@@ -88,9 +88,9 @@ action.should_buy <- function(current_date, current_time, current_stock, stock_t
 
 	if(length(stock_tracker) > 1){
 
-		range = range(tail(stock_tracker,100))
+		range = range(tail(stock_tracker,1000))
 		
-		if(tail(stock_tracker,1) > (1.1 * range(1))){
+		if(tail(stock_tracker,1) > (1.04 * range(1))){
 			result = TRUE
 		}
 	}
@@ -105,9 +105,9 @@ action.should_sell <- function(uid, date, time){
 
 	if(length(stock_tracker) > 1){
 
-		range = range(tail(stock_tracker,100))
+		range = range(tail(stock_tracker,1000))
 		
-		if(tail(stock_tracker,1) > (0.9 * range(2))){
+		if(tail(stock_tracker,1) > (0.96 * range(2))){
 			result = TRUE
 		}
 	}
