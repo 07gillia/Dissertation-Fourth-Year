@@ -108,13 +108,13 @@ This section should be between 4 to 7 pages in length.
 #################################################################################
 \fi
 
-\subsection*{Simulation}
+\subsection{Simulation}
 
-\subsubsection*{Logic}
+\subsubsection{Logic}
 
 The logic behind the simulation was to allow trading at a fine grain level, this needed to be permitted by the data chosen to perform the algorithms on.!!!! CHANGE TO MAKE +VE !!!! A drawback was that `tick data' or data for each trade executed by the stock exchange was found to be too costly for the project so `minute data' was used. Minute data provides an open, high, low, and close price for a stock in the given minute, this gave plenty of data points per day of trading. A simplification was created at this point, trading was only done on the price that opened the minute. This was done to reduce the complexity of calculating any inter-minute values. The running of the simulation was based on the progression through each date of available trading and for each day iterate through every minute of the trading day, starting at 09:30 until 16:00. Each trading day has 390 points at which trading is possible, if the data permits it. This is available for 382 days in the 18 months of data that was used. 
 
-\subsubsection*{Data}
+\subsubsection{Data}
 
 Forty Five different stocks were used in this paper, taking from each the maximum number of data points available between 01/03/2016 and 01/09/2017 giving an eighteen month window in which the first six months did not allow for trading to occur, only for data collection and training of models, which will be discussed in depth further in the paper, then the final twelve months are for testing each algorithmic approach. There were some limitations with the data that was used. Due to the volatility of the stock market and the fact that some days trading was halted for a myriad of reasons, there are not 390 data points per day, for eighteen months. Trading is not available on weekends, or on bank or national holidays, or if trading is halted for some other reason. This meant that the solution had to take into account holes in the data. These gaps are also not regular, any given day can be cut short or a whole day could be taken without a pattern. Gaps also exist in minutes that no trades were executed, this removes any values from the data and removes the possibility of trading within these minutes.\\
 
@@ -146,7 +146,7 @@ ADD MORE ROWS TO THE TABLES\\
 
 Thus reducing computational overhead from running the simulation as all data manipulation had been done prior to the data being used. In the final form no other alterations had to be made to the data other than set data types. 
 
-\subsubsection*{Set up}
+\subsubsection{Set up}
 
 The simulation was set up in such a way so as to minimise the impact that gaps in the data would cause. This meant using the data to provide the iteration behaviour. The data input in the form of Table 3 was cast for each row using a typecast function to allow correct manipulation of numerical values, the dates were converted to numerical values for correct comparison, as were the times. The stock values were also numerical. \\
 
@@ -191,7 +191,7 @@ The simulation was set up in an iterative way in order to minimise the disruptio
 ADD THREE TABLES TO SHOW HOW THEY LOOK\\
 \fi
 
-\subsubsection*{Functions}
+\subsubsection{Functions}
 
 These are some of the more regularly utilised functions in the simulation and are the key underpinnings of the statistical and machine learning techniques that are used throughout the simulation. \\
 
@@ -236,7 +236,7 @@ MAKE SELL MORE CLEAR \\
 #################################################################################
 \fi
 
-\subsection*{Statistical Methods}
+\subsection{Statistical Methods}
 
 Once a working simulation had been established and all functions had been shown to be working through hard coding of behaviour, statistical methods had to be implemented. These were separated into two groups, the first are called technical overlays, these are methods that provided insight into the data by providing numbers that are on the same scale as the price itself, whilst technical indicators are the other group and these give insight into the data through numbers that are in no way related to the stock price, and thus allow much more insightful comparisons to be made inter-stock as opposed to intra-stock, that is comparing two stocks is easier if technical indicators are used as opposed to using technical overlays which are very dependant on the stock price and do not translate as well to comparisons between two unique stocks. \\
 
@@ -244,7 +244,7 @@ Once a working simulation had been established and all functions had been shown 
 #################################################################################
 \fi
 
-\subsubsection*{Technical Overlays}
+\subsubsection{Technical Overlays}
 
 \textbf{Bollinger Bands} - \cite{Bollinger1992} - Developed by John Bollinger, these are volatility bands placed above and bellow the current stock price and are based on the standard deviation. These are designed to give an indication of how the volatility of a given stock changes over time. For any given stock over a time frame X, the three bands are calculated as such:\\
 
@@ -429,7 +429,7 @@ The default X value is 20.
 #################################################################################
 \fi
 
-\subsubsection*{Technical Indicators}
+\subsubsection{Technical Indicators}
 
 \textbf{Aroon} - \cite{Chande1994} - Developed by Tushar Chande; Aroon is indicative of the strength of the current trend. It was designed to be similar but uniquely different to standard momentum oscillators, which focus on price relative to time, Aroon focuses on time relative to price. It has two components, Up and Down, both are shown as percentages. Up will maximise on an upward trend and Down will maximise on a downward trend.\\
 
@@ -559,7 +559,6 @@ Mass Index = 25-period sum of the EMA Ratio \\
 \noindent
 MACD Line: (12-day EMA - 26-day EMA)\\
 Signal Line: 9-day EMA of MACD Line\\
-MACD Histogram: MACD Line - Signal Line\\
 
 \iffalse
 []
@@ -569,8 +568,6 @@ MACD Histogram: MACD Line - Signal Line\\
 \textbf{MACD Histogram} - \cite{Murphy1999} - Developed by Thomas Aspray as a development on the MACD, to pre-emptively detect crossovers between the two lines in MACD.\\
 
 \noindent
-MACD: (12-day EMA - 26-day EMA) \\
-Signal Line: 9-day EMA of MACD \\
 MACD Histogram: MACD - Signal Line \\
 
 \iffalse
@@ -812,7 +809,7 @@ Default value of X is 14.
 #################################################################################
 \fi
 
-\subsubsection*{Testing}
+\subsubsection{Testing}
 
 Once each of these methods had been implemented they were each tested. With each being subtly different, the exact testing methods used for each one differed slightly. An example; with Moving Averages two were calculated with the difference being the length over which they were calculated. Then the relationship between these two was observed and if the shorter term average was significantly higher than the longer term average then an upward trend was being observed, when the short term average was significantly lower than the long term average then the opposite was true. Once each has been tested individually they can also be used in conjunction with other techniques, this has also been shown in the results section. \\
 
@@ -820,11 +817,11 @@ Once each of these methods had been implemented they were each tested. With each
 #################################################################################
 \fi
 
-\subsection*{Machine Learning}
+\subsection{Machine Learning}
 
 Machine Learning is a very broad topic with much of contemporary computer science based on it or consisting of research done around it. The main technique that is being applied here is that of a Support Vector Machine or SVM. This maximises the distance between two clusters, and is based in statistical learning theory. Using a kernel mapping, that is mapping a vector into a higher dimensional space, allows for linear separation to be performed, even on non linear datasets if the correct kernel mapping is chosen. Linear separation is the key to this machine learning technique, it maximises the distance between the known elements of each of the two classes using was is basically a constraint satisfaction problem. This `margin' between the two classes is our confidence in the separation, if the margin is small then there is very little distance within the higher dimensional space between the two classes meaning a smaller confidence of success, if the margin is large then there is a higher confidence in the successful determination of a given points class. \cite{Wilson2008}
 
-\subsubsection*{Set Up}
+\subsubsection{Set Up}
 
 The set up of data and input revolved around two functions. These are `getPeaks' and `getTroughs'.
 They take input of date, time, stock, and X. X is the number of data points that will be used to make a decision about the buying or selling potential of the given data point. After X/2 data points have passed then a decision will be made using X/2 data points either side. `getPeaks' will take this input, sub-sample the data and decide if this point was optimal to sell at, meaning it is a peak. `getTroughs' will do the opposite, it will decide if this is a point at which it would have been optimal to buy. This data is then stored in tables `SVMBuyData' and `SVMSellData'. These are in the form:
@@ -856,7 +853,7 @@ Rolling average - Take the highest points over variable length rolling average. 
 Spikes - Take any point as a peak if both neighbours are lower that that value and the inverse for troughs. \\
 Median - Take the top and bottom X\% of values. 
 
-\subsubsection*{Query}
+\subsubsection{Query}
 
 The query function within the e1071 library is very simple, given an SVM that has learnt its separator a function call will return the group that the given point belongs to.
 
@@ -866,12 +863,11 @@ This system is managed within the `shouldBuy' and `shouldSell' functions that we
 #################################################################################
 \fi
 
-\section{Results}
+\section{Results and Evaluation}
 
 \iffalse
 this section presents the results of the solutions.  It should include information on experimental settings.  The results should demonstrate the claimed benefits/disadvantages of the proposed solutions.
 This section should be between 2 to 3 pages in length.
-\fi
 
 - Testing Criteria for each of the stat methods\\
 - decision criteria for each of the peak trough methods\\
@@ -880,17 +876,57 @@ This section should be between 2 to 3 pages in length.
 - best stat method result possible\\
 - best ml method result possible
 
-\iffalse
-#################################################################################
-\fi
-
-\section{Evaluation}
-
-\iffalse
 This section should between 1 to 2 pages in length.
 \fi
 
+The statistical methods throughout this paper have been tested in slightly unique ways, as explained within the testing section. This will be outlined for each of the methods. The machine learning methods will also be outlined but individually.\\
 
+\noindent
+\textbf{Technical Overlays}
+
+\noindent
+\textbf{Bollinger Bands} - Buy criteria will be based on percentage values in conjunction with the spread of the upper and lower band, giving an indication of volatility. The sell criteria is purely based on the relationship between the current price and middle band.\\
+\textbf{Chandelier Exit} - The buy criteria is based on the relationship between the current moving average and the stock price at any given moment. The sell criteria is purely based on the conjunction between the long and short values of this overlay.\\
+\textbf{Ichimoku Cloud} - The buy and sell criteria are based on the relationship between the A and B leading span with the other values providing momentum information.\\
+\textbf{KAMA} - Allowing for clear identification of turning points, the buy and sell criteria are based on the difference between the KAMA value and the stock price.\\
+\textbf{Keltner Channels} - Uses the same criteria as Bollinger Bands just with slightly different behaviour due to the differences between them.\\
+\textbf{Moving Averages} - Both Exponential and Simple moving averages were tested with basic comparison filters to give buy and sell criteria.\\
+\textbf{Moving Averages Envelopes} - The buy criteria is based on the relationship between stock price and the lower envelope with the sell criteria being the relationship between the stock price and upper envelope.\\
+\textbf{Parabolic SAR} - Tracking of rising and falling SAR values gives an inference as to the correct time to buy and sell and these have been used as the criteria.\\
+\textbf{Pivot Points} - The criteria for all three types of pivot point are similar with the only caveat being the number of support and resistance values that are taken into consideration as the buy and sell criteria change along with the value of the pivot point.\\
+\textbf{Price Channels} - Buying criteria is based on a moving average value in conjunction with a downward trend. Selling criteria is based purely on an inverting upward trend.\\
+
+\noindent
+\textbf{Technical Indicators}
+
+\noindent
+\textbf{Aroon} - Buy and sell criteria both based on the relationship between a moving average and the current stock price with conjunction of the trend information provided by the relationship between the up and down values.\\
+\textbf{Aroon Oscillator} - Very similar to the Aroon test criteria but instead of using the relationship between up and down only the oscillator value is used.\\
+\textbf{Average True Range} - Using a moving average with bounded buy and sell criteria, ATR is used to indicate volatility of the price at a given point and this will impact the bounds used.\\
+\textbf{BandWidth} - Buy and sell are both based on percentage criteria of the bandwidth value as it is an inference of Bollinger Bands.\\
+\textbf{\%B Indicator} - The same as BandWidth as they are both Bollinger Band derivatives. \\
+\textbf{Commodity Channel Index} - Percentage criteria for buy and sell using the final CGI value.\\
+\textbf{Coppock Curve} - The buy criteria is based on a moving average and the stock price with the sell criteria being based on the sign of the indicator.\\
+\textbf{DecsionPoint Price Momentum Oscillator} - Using the value of the indicator in conjunction with a moving averages relationship with the stock price; buy is based on the moving averages relationship and not cut short by using the momentum indicator, the same is done in the inverse for sell.\\
+\textbf{Detrended Price Oscillator} - \\
+\textbf{Mass Index} - The buy and sell criteria are based on the calculation of the current trend and then use the indicator the show a trend reversal before the trend changes.\\
+\textbf{Moving Average Convergence/Divergence Oscillator} - Used within the buy and sell criteria in the same was as all other momentum oscillators; in conjunction with a moving average and bounds.\\
+\textbf{MACD Histogram} - Used identically to MACD, with the limitation of no inter-value relationship information being available. \\
+\textbf{Percentage Price Oscillator} - Percentage bound for buy and sell criteria based on previous values of the PPO. \\
+\textbf{Pring's Know Sure Thing} - Another momentum oscillator tested in conjunction with a moving average. \\
+\textbf{Pring's Special K} - Using a percentage bound based around past values to give an indication of movement prediction.\\
+\textbf{Rate of Change and Momentum} - Used in conjunction to a moving average, this most basic momentum oscillator is the foundation for most of the more advance versions and so is tested in the same way.\\
+\textbf{Relative Strength Index} - Using previous values of RSI, bounds are calculated at the upper and lower range of the value 0 to 100 to give an indicator as to when buying and selling should occur. The bounds have an initial value and are changed based on the data. \\
+\textbf{StockCharts Technical Rank} - Using the final value of SCTR, as well as the relationship between individual components, a confidence is calculated with respect to the changing of the price, as well as the direction of the change. \\
+\textbf{Slope} - Using the current slope value over the last set number of data points an inference can be made as to the future direction of the stock price. This projection is then used to indicate buying and selling patterns. \\
+\textbf{Stochastic Oscillator} - Using the momentum value in conjunction with a moving average, confidence in the projection of price is known and thus buy and sell behaviour is simple. \\
+\textbf{StochRSI} - Using the previous values of the indicator upper and lower bounds are calculated to allow for buying and selling behaviour to be inferred. \\
+\textbf{TRIX} - Using percentage bounds, the current TRIX value is compared to a set of previous TRIX values and decisions on buying and selling are made on this relationship.\\
+\textbf{True Strength Index} - Using percentage bounds based on previous TSI values, buying and selling behaviour is inferred. \\
+\textbf{Ulcer Index} - The volatility shown using this indicator is used with regard to bounds initially set over a moving average and altered to reflect the volatility of the market. \\
+\textbf{Ultimate Oscillator} - The smoothed momentum that this indicator shows is used in addition to a moving average to allow for inference within a trend to show turning points within the data and reduce the possibility of leaving a trend early. \\
+\textbf{Vortex Indicator} - The relationship between the two oscillators calculated is used as trend and momentum information and all behaviours are inferred from these values and their relationship. \\
+\textbf{Williams \%R} - Used in an identical way to the Stochastic Oscillator, as this is an inference of that. \\
 
 \iffalse
 #################################################################################
