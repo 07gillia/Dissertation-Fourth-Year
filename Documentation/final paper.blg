@@ -6,14 +6,14 @@ Database file #1: references.bib
 Warning--empty publisher in Elder2002
 You've used 31 entries,
             2909 wiz_defined-function locations,
-            881 strings with 12453 characters,
-and the built_in function-call counts, 106608 in all, are:
+            855 strings with 9446 characters,
+and the built_in function-call counts, 106530 in all, are:
 = -- 17086
 > -- 1445
 < -- 0
 + -- 7974
 - -- 434
-* -- 9045
+* -- 8993
 := -- 21807
 add.period$ -- 31
 call.type$ -- 31
@@ -27,13 +27,13 @@ if$ -- 19078
 int.to.chr$ -- 5
 int.to.str$ -- 0
 missing$ -- 40
-newline$ -- 123
+newline$ -- 97
 num.names$ -- 319
 pop$ -- 173
 preamble$ -- 1
 purify$ -- 465
 quote$ -- 0
-skip$ -- 383
+skip$ -- 409
 stack$ -- 0
 substring$ -- 23873
 swap$ -- 88
@@ -44,5 +44,5 @@ type$ -- 104
 warning$ -- 1
 while$ -- 689
 width$ -- 0
-write$ -- 421
+write$ -- 395
 (There was 1 warning)
