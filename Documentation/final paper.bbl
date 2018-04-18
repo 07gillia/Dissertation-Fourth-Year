@@ -41,6 +41,11 @@ Cliff, D. \harvardand\ Bruten, J.  \harvardyearleft 1998\harvardyearright ,
   `{Less Than Human: Simple Adaptive Trading Agents for CDA Markets}', {\em
   IFAC Proceedings Volumes} {\bf 31}(16),~117--122.
 
+\harvarditem{Duffie}{2012}{Duffie2012}
+Duffie, D.  \harvardyearleft 2012\harvardyearright , {\em {Dark markets asset
+  pricing and information transmission in over-the-counter markets}}, Princeton
+  University Press.
+
 \harvarditem{Elder}{2002}{Elder2002}
 Elder, A.  \harvardyearleft 2002\harvardyearright , {\em {Come into my trading
   room: A complete guide to trading}}.
@@ -86,6 +91,10 @@ Keltner, C.~W.  \harvardyearleft 1960\harvardyearright , `{How To Make Money in
 Kim, K.  \harvardyearleft 2007\harvardyearright , {\em {Electronic and
   Algoithmic Trading Technology: The Complete Guide}}, Academic Press, an
   imprint of Elsevier.
+
+\harvarditem{Kleinman}{2005}{Kleinman2005}
+Kleinman, G.  \harvardyearleft 2005\harvardyearright , {\em {Trading
+  commodities and financial futures: a step-by-step guide to mastering ...}}
 
 \harvarditem[Krollner et~al.]{Krollner, Vanstone \harvardand\
   Finnie}{2010}{Krollner2010}
@@ -141,6 +150,11 @@ Pring, M.~J.  \harvardyearleft 2002\harvardyearright , {\em {Technical Analysis
 Saad, S., {Mohd Jaffar}, M. \harvardand\ {Sains Komputer}, F.  \harvardyearleft
   2015\harvardyearright , `{Review on the structural approach of the
   Black-Scholes model}',  {\bf 050084}(10).
+
+\harvarditem{Team}{2013}{Team2013}
+Team, R.~C.  \harvardyearleft 2013\harvardyearright , `{The R Project for
+  Statistical Computing}', {\em Http://Www.R-Project.Org/} pp.~1--12.
+\newline\harvardurl{https://www.r-project.org/}
 
 \harvarditem{Tesauro \harvardand\ Das}{2001}{Tesauro2001}
 Tesauro, G. \harvardand\ Das, R.  \harvardyearleft 2001\harvardyearright ,

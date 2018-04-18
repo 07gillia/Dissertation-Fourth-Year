@@ -1,42 +1,52 @@
-\documentclass[12pt,a4paper]{article}
+\documentclass[conference]{IEEEtran}
 \usepackage{times}
-\usepackage{durhampaper}
+%\usepackage{durhampaper}
 \usepackage{harvard}
 \usepackage{graphicx}
-\usepackage{longtable}
+\usepackage{tabu}
 
 \citationmode{abbr}
 \bibliographystyle{agsm}
 
-\title{Timeframe Trading Algorithms}
+\newcommand*\rot{\rotatebox{90}}
+
+\title{Time Frame Trading Algorithms}
+\author{A. L. Gillies\\ M. R. Gadouleau\\ MEng Computer Science}
+
+\iffalse
+\title{Time Frame Trading Algorithms}
 \author{A.L. Gillies}
 \student{A.L. Gillies}
 \supervisor{M. R. Gadouleau}
 \degree{MEng Computer Science}
+\fi
 
 \date{}
 \begin{document}
 \maketitle
 
+\noindent
 \begin{abstract}
 \iffalse
 The abstract must be a Structured Abstract with the headings {\bf Context/Background}, {\bf Aims}, {\bf Method}, {\bf Results}, and {\bf Conclusions}.  This section should not be longer than half of a page, and having no more than one or two sentences under each heading is advised.\\
 \fi
 
-{\bf Context/Background} - Algorithmic trading is characterised by an entirely hands off approach to stock market trading. All data manipulation, mathematical inference, machine learning and trade execution is done autonomously. With this approach, how much of an improvement can be gained over a standard interest rate provided by a high street bank, in the time frame given?\\
+{\bf Context/Background} - Algorithmic trading is characterised by an entirely hands off approach to stock market trading. All data manipulation, mathematical inference, machine learning and trade execution is done autonomously. With this approach, how much of an improvement can be gained over a standard interest rate provided by a high street bank, in the time frame given?
 
-{\bf Aims} - Using the average interest rate calculated from British banks, the aim of this paper is to show, through implementation of statistical and machine learning techniques, that algorithmic trading can improve the annual return on investment over a given time frame.\\
+{\bf Aims} - Using the average interest rate calculated from British banks, the aim of this paper is to show, through implementation of statistical and machine learning techniques, that algorithmic trading can improve the annual return on investment over a given time frame.
 
-{\bf Method} - This paper will consider two possibilities for implementation of the system, a purely statistical method, relying on known practices and techniques, and a hybrid system incorporating both statistical reasoning and machine learning. The known statistical practices are mostly used by human traders to allow for data insight and are well vetted. The machine learning techniques are widely used in other contexts, with limited academic papers being available for this area.\\
+{\bf Method} - This paper will consider two possibilities for implementation of the system, a purely statistical method, relying on known practices and techniques, and a hybrid system incorporating both statistical reasoning and machine learning. The known statistical practices are mostly used by human traders to allow for data insight and are well vetted. The machine learning techniques are widely used in other contexts, with limited academic papers being available for this area.
 
-{\bf Results} - \\
+{\bf Results} - The Support Vector Machine that made up the Machine Learning component of the testing outstripped all statistical methods by a significant margin, which in turn returned significantly higher results that is available through any high street bank.
 
-{\bf Conclusions} - \\
+{\bf Conclusions} - This project was a success but contains an unbound task, there is always going to be a better method. The methods used within this paper are the result of limited time and resources, any extension to this project would reduce these limitations.
 \end{abstract}
 
+\iffalse
 \begin{keywords}
 Algorithmic, Machine Learning, Statistics, R, Trading, Stocks
 \end{keywords}
+\fi
 
 \iffalse
 #################################################################################
@@ -54,14 +64,16 @@ This section briefly introduces the general project background, the research que
 - A bit of the history of trading.\\
 \fi
 
-The stock market has been an early adopter of technology since its inception, with companies wanting to get an edge over their fellows and thus earning the most money. The first computer usage in the stock market was in the early 1970s with the New York Stock Exchange introducing the DOT system or the Designated Order Turnaround system. This allowed for bypassing of brokers and routed an order for specific securities to a specialist on the trading floor \cite{Hasbrouck}. Since this point the use of machines to allow for increase throughput and speed has been pandemic. It was inevitable that computers would be used to aid in the decision making process of what to buy or sell and when. This was shown to be very effective and got significant traction in the financial market in 2001 with the showcase of IBMs MGD and  Hewlett-Packard's ZIP \cite{Tesauro2001}. These two algorithmic strategies were shown to consistently outperform their human counterparts. They were both based on academic papers from 1996 showing the academic conception of algorithmic applications in financial markets has been present for several decades \cite{Gjerstad1998}, \cite{Cliff1998}. Whilst in the current day over one billion shares are traded every day, this would not be possible without computerised assistance. \\
+The stock market has been an early adopter of technology since its inception, with companies wanting to get an edge over their fellows and thus earning the most money. The first computer usage in the stock market was in the early 1970s with the New York Stock Exchange introducing the DOT system or the Designated Order Turnaround system. This allowed for bypassing of brokers and routed an order for specific securities to a specialist on the trading floor \cite{Hasbrouck}. The definition of `broker is an entity that buys and sells goods or assets for others, in this case `securities' which are defined as a financial instrument that holds monitary value. Since this point the use of machines to allow for increase throughput and speed has been pandemic. It was inevitable that computers would be used to aid in the decision making process of what to buy or sell and when. This was shown to be very effective and got significant traction in the financial market in 2001 with the showcase of IBMs MGD and  Hewlett-Packard's ZIP \cite{Tesauro2001}. These two algorithmic strategies were shown to consistently outperform their human counterparts. They were both based on academic papers from 1996 showing the academic conception of algorithmic applications in financial markets has been present for several decades \cite{Gjerstad1998}, \cite{Cliff1998}. Whilst in the current day over one billion shares are traded every day, this would not be possible without computerised assistance. 
 
-The aim of any algorithmic trading system is to `beat the market' that is to buy low and sell high so gain the most capital over any given time frame, be that a day, a year, or a decade. This paper will look into the challenge faced by these algorithms and if, using any available tools, it is possible to outstrip any high street banks offering rates. This will be done through simulation of a stock market, using real stock data, and the simulation of buying and selling these stocks by an algorithm.\\
+The aim of any algorithmic trading system is to `beat the market' that is to buy low and sell high so gain the most capital over any given time frame, be that a day, a year, or a decade. This paper will look into the challenge faced by these algorithms and if, using any available tools, it is possible to outstrip any high street banks offering rates. This will be done through simulation of a stock market, using real stock data, and the simulation of buying and selling these stocks by an algorithm.
 
-WHAT IS THE FOLLOWING??? \\
+\setlength\extrarowheight{2pt}
 
+\begin{table*}
+\centering
 \label{units}
-\begin{longtable}{ |p{1.5cm}|p{5.5cm}|p{8cm}| }\hline\hline
+\begin{tabu}{ |l|l|p{10cm}| }\hline\hline
 Unique ID & Deliverable & Description \\ \hline
 DL1 & Simulate the financial market & Have data for at least 10 companies for at least a year, with data for each minute where data is available. \\ \hline
 DL2 & Allow buying and selling of stocks & Have a functional buying and selling mechanism, with the data collected for each transaction processed. \\ \hline
@@ -70,10 +82,12 @@ DL4 & Implement a purely statistic strategy & Using just the statistical methods
 DL5 & Create a hybrid strategy & Implement a machine learning trading strategy that uses the stock data as well as any statistical methods that are helpful to maximise profit made over the time frame given. \\ \hline
 DL6 & Implement tracking systems & Implement graphical and table outputs for the results of the computer logic and trading performance. \\ \hline
 DL7 & Create a testing criteria & Create a method with which to test the strategy so as to avoid over fitting. \\ \hline
+\end{tabu}
+\vspace{2 mm}
 \caption{Deliverables}
-\end{longtable}
+\end{table*}
 
-PRESENT RESULTS??? \\
+This project will be based around the deliverables in table 1.
 
 \iffalse
 #################################################################################
@@ -85,6 +99,7 @@ PRESENT RESULTS??? \\
 This section presents a survey of existing work on the problems that this project addresses.  it should be between 2 to 4 pages in length.  The rest of this section shows the formats of subsections as well as some general formatting information for tables, figures, references and equations.
 \fi
 
+\iffalse
 The related work in this field is limited. This is due to the state of the art being controlled by large companies that use the work within this field to make money and being the state of the art means that the company that has it will make the most money, resulting in a limited flow of information on anything that is state of the art, as any sharing of information will result in that edge being lost and any money that was being made along with it. There are papers that exist that are seen as classic within the academic field of trading but within the world of algorithmic trading past papers are seen more as a has-been example of what was done in the past and bares little fruit with relevance to what is being done today. \\
 
 Classic financial papers such as those that include the Black-Scholes Model \cite{Saad2015} are seen as pivotal in the study of academic finance and have been read by many within the financial world but offer very little in the way of help for computational finance. The same can be said for papers that cover the application and implications of Brownian motion, or the effect of the Efficient Market Hypothesis \cite{Meng2016}. Both very applicable to the modern world of finance as a whole, but almost unusable within the context of this paper. \\
@@ -92,6 +107,17 @@ Classic financial papers such as those that include the Black-Scholes Model \cit
 Books published within the last decade are so far out of touch with the `Electronic and Algorithmic Trading Technology - The Complete Guide' \cite{Kim2007}, released in 2007 provides a very detailed description of all routing and pair trading techniques that are being used by a stock exchange to facilitate trading in the modern day and a long history of the adoption of algorithmic trading. But any strategies that are suggested are based on volume weighted average or time weighted average and have already been tested thoroughly. But are not ground breaking or competitive within modern markets. Other publications that have been found show similar limitations. Papers based around any machine learning techniques focus on k-means clustering \cite{Gerlein2016} or the Ising model \cite{Lima2017}, the Monte-Carlo or Wolff algorithm especially, have been thoroughly explored and show thorough testing in modern markets are not as competitive as they once were. Any paper that uses a different technique or shows the theoretical possibility of using many techniques in conjunction does not provide data or tangible results for any of the techniques instead suggests theoretical applications and limited or narrow real world applications.\\
 
 Within this paper the statistical methods used have been found through papers that explore any data insight model that have been outlined within papers in the last half century, and are still useful within the modern day. These are basic `bread and butter' methods that are useful but not ground breaking. The machine learning technique has been shown to work as well as any other in theory and so will be tested more rigorously.\\
+\fi
+
+As has been mentioned previously, this field is not made up of companies or researchers that are willing to share their recent breakthroughs. This results in a copious amount of research being available for techniques that are seen as antiquated, with very little being published on state-of-the-art. Any modern technique that is being used is done so by an institution that is using the technique to profit from the stock market, this `edge'  will be guarded until it is no longer useful.
+
+The papers that are based in this field, and are available, are focused on statistical implementation. With multiple books being published on the topic. Some based on single strategies but most being compendiums of multiple strategies, for example \cite{Murphy1999}. There are a few papers that include more complex models such as the Black-Scholes Model \cite{Saad2015} which are seen as pivotal to the world of economics and finance, but have little benefit to computational finance. The same can be said for papers that cover the application and implications of Brownian motion, or the effect of the Efficient Market Hypothesis \cite{Meng2016}. Both very applicable to the modern world of finance as a whole, but almost unusable within the context of this paper.
+
+This results in a juxtaposition of copious amounts of research into the statistical methods that are available and their reasoning, with a significant paradigm shift into the research that is based around machine learning in this context.
+
+The most useful piece of research for the statistical methods is \cite{Murphy1999}. This book is a compendium of trading strategies that were used in the time period of 1950 to 1980, there is also ample detail on market analysis and any human readable charts that can be used within a trading scenario, whilst also giving details of the philosophy behind the trading. It also compares the use of computerised aids within a financial market with a purely human system. Electronic and Algorithmic Trading Technology \cite{Kim2007} contains multiple strategies and specific statistical methods that are useful within this context. It also shows a significant amount of detail about the surrounding systems, for example matching software that is used within a stock exchange that is not relevant. Written more from the view of a stock exchange significant time and detail is given to the automation of`order flow' or the matching of buying and selling parties within a stock exchange. Trading Commodities and Financial Futures \cite{Kleinman2005} is written very much for a human trader to learn from. With sections on psychology of trading and the history of trading being indicative of this. The techniques used can also be applied within computerised finance and are discussed in great depth. `Dark markets asset pricing and information transmission in over-the-counter markets' \cite{Duffie2012} contains very little in the way of strategies but is useful to give a wider picture of the world surrounding trading and the legal aspects of it. The data aspect that is touched upon within this book is very useful in giving ideas for the data that is to be used throughout this paper.
+
+There exists few papers that are both within this domain and relevant machine learning. Those that fall into both categories are limited in other ways. Some being too general to be of significant use, others being more in line with an academic look at the history of the domain. `Evaluating machine learning classification for financial trading: An empirical approach' \cite{Gerlein2016} is one of the papers that was found to have test results but was limited in that no strategies were provided and very little detail is given about the very basic models that are employed within the paper. The point is made that complex models have downsides and that occam's razor may play a role. `Predicting Stock Price Direction using Support Vector Machines' \cite{MadgeAdvisor} is a very relevant paper that provides insight into the predictive powers of an SVM when used in conjunction with momentum and volatility measures. This is limited in that testing was done with very general data and shows very little promise with respect to short term predictions. `Visual knowledge discovery and machine learning for investment strategy' \cite{Wilinski2017} is very useful for detailed information regarding machine learning data manipulation before input but does not specify any details of machine learning, just that it will be used in future. `Buy Low, Sell High: A High Frequency Trading Perspective' \cite{Cartea2014} is based within the world of High Frequency trading and whilst this would be useful to an extension of this paper, we do not take into account market reactions to actions taken within this paper so it is beyond scope.
 
 \iffalse
 #################################################################################
@@ -112,76 +138,88 @@ This section should be between 4 to 7 pages in length.
 
 This section will outline in detail all components of the simulation and their interconnectivity. \\
 
-\subsubsection{Logic}
+\subsubsection{Methodology}
 
-The logic behind the simulation was to allow trading at a fine grain level, this needed to be permitted by the data chosen to perform the algorithms on.!!!! CHANGE TO MAKE +VE !!!! A drawback was that `tick data' or data for each trade executed by the stock exchange was found to be too costly for the project so `minute data' was used. Minute data provides an open, high, low, and close price for a stock in the given minute, this gave plenty of data points per day of trading. A simplification was created at this point, trading was only done on the price that opened the minute. This was done to reduce the complexity of calculating any inter-minute values. The running of the simulation was based on the progression through each date of available trading and for each day iterate through every minute of the trading day, starting at 09:30 until 16:00. Each trading day has 390 points at which trading is possible, if the data permits it. This is available for 382 days in the 18 months of data that was used. 
+The logic behind the simulation was to allow trading at a fine grain level, this needed to be permitted by the data chosen to perform the algorithms on. The data that was available grows from `tick data' or data for every trade executed, to 'minute data`, giving details of all trades within that minute, and growing until 'day data`, which is the same as minute but with a wider range. A drawback was that `tick data' or data for each trade executed by the stock exchange was found to be too costly for the project so `minute data' was used. Minute data provides an open, high, low, and close price for a stock in the given minute, this gave plenty of data points per day of trading. A simplification was created at this point, trading was only done on the price that opened the minute. This was done to reduce the complexity of calculating any inter-minute values. The running of the simulation was based on the progression through each date of available trading and for each day iterate through every minute of the trading day, starting at 09:30 until 16:00. Each trading day has 390 points at which trading is possible, if the data permits it. This is available for 382 days in the 18 months of data that was used. 
+
+The programming language that was chosen for this task was R \cite{Team2013}. This was chosen over other languages due to its extensive data manipulation capabilities as well as the contained mathematics functions such as standard deviation and differentiation. The data manipulation allows for large sets of incomplete data to be sub-sampled and manipulated into a usable form. The mathematical functions will form a basis for the statistical methods that are to be implemented.
 
 \subsubsection{Data}
 
 Forty five different stocks were used in this paper, taking from each the maximum number of data points available between 01/03/2016 and 01/09/2017 giving an eighteen month window in which the first six months did not allow for trading to occur, only for data collection and training of models, which will be discussed in depth further in the paper, then the final twelve months are for testing each algorithmic approach. There were some limitations with the data that was used. Due to the volatility of the stock market and the fact that some days trading was halted for a myriad of reasons, there are not 390 data points per day, for eighteen months. Trading is not available on weekends, or on bank or national holidays, or if trading is halted for some other reason. This meant that the solution had to take into account holes in the data. These gaps are also not regular, any given day can be cut short or a whole day could be taken without a pattern. Gaps also exist in minutes that no trades were executed, this removes any values from the data and removes the possibility of trading within these minutes.\\
 
-The data was taken from the NASDAQ, the second largest stock market in the world. The number of stocks used was arbitrarily big enough to provide enough data to test any given algorithm, some of which were found to prefer an abundance of data whilst others were much more short sighted and volatile. \\
-
-HOW BIG DID THE COMPANIES HAVE TO BE???? \\
+The data was taken from the NASDAQ, the second largest stock market in the world. The number of stocks used was arbitrarily big enough to provide enough data to test any given algorithm, some of which were found to prefer an abundance of data whilst others were much more short sighted and volatile. The most frequently traded stocks were chosen to allow for the most complete data.\\
 
 The data downloaded was in the form:
 
+\begin{table*}
+\centering
 \label{units}
-\begin{longtable}{ |p{1.5cm}|p{1.5cm}|p{1.5cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}| }\hline\hline
+\begin{tabu}{ |p{1.5cm}|p{1.5cm}|p{1.5cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}| }\hline\hline
 Ticker & Date & Time & Open & High & Low & Close \\ \hline
 AA & 01/03/16 & 09:30 & 9.1100000 & 9.1300000 & 9.1100000 & 9.1100000 \\ \hline
+AA & 01/03/16 & 09:31 & 9.1000000 & 9.1200000 & 9.0800000 & 9.0900000 \\ \hline
 ... & ... & ... & ... & ... & ... & ... \\ \hline
+\end{tabu}
+\vspace{2 mm}
 \caption{AA Data}
-\end{longtable}
+\end{table*}
 
 This was then converted using an R script into the form:
 
+\begin{table*}
+\centering
 \label{units}
-\begin{longtable}{ |p{1.5cm}|p{1.5cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}|p{1.5cm}| }\hline\hline
+\begin{tabu}{ |p{1.5cm}|p{1.5cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}|p{1.5cm}| }\hline\hline
 Date & Time & AA & AAPL & ADBE & AIG & ... \\ \hline
 01/03/16 & 09:30 & 9.11 & 97.66 & 86.15 & 50.59 & ... \\ \hline
+01/03/16 & 09:31 & 9.10 & 97.58 & 86.22 & 50.67 & ... \\ \hline
 ... & ... & ... & ... & ... & ... & ... \\ \hline
+\end{tabu}
+\vspace{2 mm}
 \caption{All Data}
-\end{longtable}
-
-ADD MORE ROWS TO THE TABLES\\
+\end{table*}
 
 Thus reducing computational overhead from running the simulation as all data manipulation had been done prior to the data being used. In the final form no other alterations had to be made to the data other than set data types. 
 
-\subsubsection{Set up}
+\subsubsection{Set-up}
 
 The simulation was set up in such a way so as to minimise the impact that gaps in the data would cause. This meant using the data to provide the iteration behaviour. The data input in the form of Table 3 was cast for each row using a typecast function to allow correct manipulation of numerical values, the dates were converted to numerical values for correct comparison, as were the times. The stock values were also numerical. \\
 
-STATE WHAT NA MEANS\\
+The simulation then uses all unique dates within the Dates column to allow for iteration through the table at the highest level, through each individual day. Once the data had been sub-sampled for that day, then a list of unique minutes was created. Once the data had been further sub-sampled to the current minute, each of the stock columns were iterated through and tested for NA, or Not Available, values. If an NA value is present for that stock then it is passed over. If the value is available however then two functions are used, `shouldBuy' and `shouldSell'. The first used is `shouldBuy', this will take input of current date, current time, and current stock, to allow for a decision to be made on whether to buy an amount of that stock or not. These functions are based on manipulations of three other tables, `Active', `Sold', and `Ledger'. They take the form:
 
-The simulation then uses all unique dates within the Dates column to allow for iteration through the table at the highest level, through each individual day. Once the data had been sub-sampled for that day, then a list of unique minutes was created. Once the data had been further sub-sampled to the current minute, each of the stock columns were iterated through and tested for NA values. If an NA value is present for that stock then it is passed over. If the value is available however then two functions are used, `shouldBuy' and `shouldSell'. The first used is `shouldBuy', this will take input of current date, current time, and current stock, to allow for a decision to be made on whether to buy an amount of that stock or not. These functions are based on manipulations of three other tables, `Active', `Sold', and `Ledger'. They take the form:
-
+\begin{table*}
+\centering
 \label{units}
-\begin{longtable}{ |p{2.25cm}|p{2.25cm}|p{2.25cm}|p{2.25cm}|p{2.25cm}|p{2.25cm}| }\hline\hline
+\begin{tabu}{ |p{2.25cm}|p{2.25cm}|p{2.25cm}|p{2.25cm}|p{2.25cm}|p{2.25cm}| }\hline\hline
 Unique ID & Date Bought & Time Bought & Stock & Number of Shares & Cost per Share \\ \hline
 ... & ... & ... & ... & ... & ... \\ \hline
+\end{tabu}
+\vspace{2 mm}
 \caption{Active}
-\end{longtable}
+\end{table*}
 
+\begin{table*}
+\centering
 \label{units}
-\begin{longtable}{ |p{2.25cm}|p{2.25cm}|p{2.25cm}|p{2.25cm}|p{2.25cm}|p{2.25cm}| }\hline\hline
-Unique ID & Date Bought & Time Bought & Stock & Number of Shares & Cost per Share \\ \hline
-... & ... & ... & ... & ... & ... \\ \hline
-Amount Bought & Date Sold & Time Sold & Price per Share & Amount Sold & \\ \hline
-... & ... & ... & ... & ... &  \\ \hline
+\begin{tabu}{ |l|l|l|l|l|l|l|l|l|l|l|l| }\hline\hline
+\rot{Unique ID} & \rot{Date Bought} & \rot{Time Bought} & \rot{Stock} & \rot{No. of Shares} & \rot{Cost per Share} & \rot{Amount Bought} & \rot{Date Sold} & \rot{Time Sold} & \rot{Price per Share} & \rot{Amount Sold}\\ \hline
+... & ... & ... & ... & ... & ... & ... & ... & ... & ... & ... \\ \hline
+\end{tabu}
+\vspace{2 mm}
 \caption{Sold}
-\end{longtable}
+\end{table*}
 
-RE FORMAT TO MAKE CLEARER \\
-
+\begin{table*}
+\centering
 \label{units}
-\begin{longtable}{ |p{2.25cm}|p{2.25cm}|p{2.25cm}|p{2.25cm}| }\hline\hline
-Date & Value & Stock Value & Capital Value \\ \hline
+\begin{tabu}{ |p{2.25cm}|p{2.25cm}|p{2.25cm}|p{2.25cm}| }\hline\hline
+Date & Total Value & Stock Value & Capital Value \\ \hline
 ... & ... & ... & ...  \\ \hline
+\end{tabu}
+\vspace{2 mm}
 \caption{Ledger}
-\end{longtable}
-
-WHAT IS VALUE, ADD SUBSCRIPTS \\ 
+\end{table*}
 
 Each also comes with its own population function, `Buy', `Sell', `Update'. The first two are called if any decision is made. If a stocks value is such that the `shouldBuy' function returns true then the `Buy' function is called, taking input of date, time, stock, and amount. The amount is dictated by the `amountShouldBuy' function that is an extension of the `shouldBuy' function that returns the amount that should be bought of the current stock. This is then added as another row to the Active table, as this is now an active stock that can be sold. The amount of any given stock that should be purchased is calculated through another function `getAmount', this will test all calculations done in `shouldBuy' and calculate a confidence value that will then dictate, using the amount of liquid capital available, the amount of the stock that will be bought. The `shouldSell' function is then queried every time an updated value is available for any given row in the `Active' table. Using the new value a decision will be made if the stock should be sold, if this is found to be the case then the `Sell' function is called. The function will remove the row of the `Active' table that corresponds to this block of stock to be sold and add it to the `Sold' table along with all the details of the transaction. \\
 
@@ -197,10 +235,10 @@ ADD THREE TABLES TO SHOW HOW THEY LOOK\\
 
 These are some of the more regularly utilised functions in the simulation and are the key underpinnings of the statistical and machine learning techniques that are used throughout the simulation. \\
 
-MAKE SELL MORE CLEAR \\
-
+\begin{table*}
+\centering
 \label{units}
-\begin{longtable}{ |p{4cm}|p{4cm}|p{6cm}| }\hline\hline
+\begin{tabu}{ |p{4cm}|p{4cm}|p{6cm}| }\hline\hline
 Function & Arguments & Details \\ \hline
 Buy() & Date, Time, Stock, Amount & Adds a row to the `Active' table.  \\ \hline
 Sell() & Row Data, Date, Time, Stock, Stock Price & Adds a row to the `Sold' table and removes the corresponding row of the `Active' table.  \\ \hline
@@ -219,8 +257,10 @@ getXDataPoints() & Date, Time, Stock, X & Get the last X data points for the giv
 getXDayDataPoints() & Date, Stock, X & Get all data for the day X days ago. \\ \hline
 getXSincePrice() & Date, Time, Stock, Price & Get the number of data points between the current data point and the last data point that had the given price.  \\ \hline
 getTotalGainLoss() & Date, Time, Stock, X &  Over the last X data points get the total gain and loss. \\ \hline
+\end{tabu}
+\vspace{2 mm}
 \caption{Basic Functions}
-\end{longtable}
+\end{table*}
 
 \iffalse
 \noindent
@@ -629,7 +669,7 @@ Signal Line = 9-period SMA of KST \\
 \fi
 
 \noindent
-\textbf{Pring's Special K} - \cite{Pring2002} - Developed by Martin Pring, this momentum oscillator is a concatenation of three different velocities to provide more stable prediction of movement. \\
+\textbf{Pring's Special K} - \cite{Pring2002} - Developed by Martin Pring, this momentum oscillator is a concatenation of three different velocities, short, medium, and long term, to provide more stable prediction of movement. This is a sum of the three different velocities which are each made up of a weighted sum of different components.\\
 
 \noindent
 Special K = 10 Period Simple Moving Average of ROC(10) * 1 \\
@@ -797,17 +837,21 @@ Default values are X = 7, Y = 14, Z = 28.\\
 \textbf{Vortex Indicator} - Developed by Etienne Botes and Douglas Siepman, based on the work of Welles Wilder and Viktor Schauberger. Using the relationship between two oscillators, one capturing positive trend movement and the other capturing negative, the vortex indicator is adept as showing the bias of the data.\\
 
 \noindent
+Positive and negative Vortex Measurement.\\
 +VM = ABS(Current High - Prior Low)\\
 -VM = ABS(Prior Low - Current High)\\
 
 \noindent
+Positive and negative Vortex Measurement over X.\\
 +VMX = Sum of +VM over X periods \\
 -VMX = Sum of -VM over X periods \\
 
 \noindent
+True range over X.\\
 TRX = Sum of True Range over X periods \\
 
 \noindent
+Positive and negative Vortex Indicator over X.\\
 +VIX = +VMX/TRX \\
 -VIX = -VMX/TRX \\
 
@@ -853,21 +897,29 @@ Machine Learning is a very broad topic with much of contemporary computer scienc
 The set up of data and input revolved around two functions. These are `getPeaks' and `getTroughs'.
 They take input of date, time, stock, and X. X is the number of data points that will be used to make a decision about the buying or selling potential of the given data point. After X/2 data points have passed then a decision will be made using X/2 data points either side. `getPeaks' will take this input, sub-sample the data and decide if this point was optimal to sell at, meaning it is a peak. `getTroughs' will do the opposite, it will decide if this is a point at which it would have been optimal to buy. This data is then stored in tables `SVMBuyData' and `SVMSellData'. These are in the form of tables 8 and 9.
 
+\begin{table*}
+\centering
 \label{units}
-\begin{longtable}{ |p{2.25cm}|p{2.25cm}|p{2.25cm}|p{2.25cm}| }\hline\hline
+\begin{tabu}{ |p{2.25cm}|p{2.25cm}|p{2.25cm}|p{2.25cm}| }\hline\hline
 Date & Time & Stock Value & Should Buy \\ \hline
 01/03/16 & 09:30 & 9.11 & False  \\ \hline
 ... & ... & ... & ...  \\ \hline
+\end{tabu}
+\vspace{2 mm}
 \caption{SVMBuyData}
-\end{longtable}
+\end{table*}
 
+\begin{table*}
+\centering
 \label{units}
-\begin{longtable}{ |p{2.25cm}|p{2.25cm}|p{2.25cm}|p{2.25cm}| }\hline\hline
+\begin{tabu}{ |p{2.25cm}|p{2.25cm}|p{2.25cm}|p{2.25cm}| }\hline\hline
 Date & Time & Stock Value & Should Sell \\ \hline
 01/03/16 & 09:30 & 9.11 & False  \\ \hline
 ... & ... & ... & ...  \\ \hline
+\end{tabu}
+\vspace{2 mm}
 \caption{SVMSellData}
-\end{longtable}
+\end{table*}
 
 These tables are then used as input to the SVM learning function that is found as part of the e1071 CRAN library, which contains all set up and query functions for the SVM \cite{Meyer2017}.\\
 
@@ -906,8 +958,7 @@ This section should between 1 to 2 pages in length.
 
 The statistical methods throughout this paper have been tested in slightly unique ways, as explained within the testing section. This will be outlined for each of the methods. The machine learning methods will also be outlined but individually.\\
 
-\noindent
-\textbf{Technical Overlays}
+\subsection{Technical Overlays}
 
 \noindent
 \textbf{Bollinger Bands} - Buy criteria will be based on percentage values in conjunction with the spread of the upper and lower band, giving an indication of volatility. The sell criteria is purely based on the relationship between the current price and middle band. Single variable of X was tested at X = 20, 15, and 35, with 20 being the default.\\
@@ -921,8 +972,7 @@ The statistical methods throughout this paper have been tested in slightly uniqu
 \textbf{Pivot Points} - The criteria for all three types of pivot point are similar with the only caveat being the number of support and resistance values that are taken into consideration as the buy and sell criteria change along with the value of the pivot point. These were only tested at default configurations.\\
 \textbf{Price Channels} - Buying criteria is based on a moving average value in conjunction with a downward trend. Selling criteria is based purely on an inverting upward trend. Takes a single variable with default value of 20, was then tested at 15 and 25 as well.\\
 
-\noindent
-\textbf{Technical Indicators}
+\subsection{Technical Indicators}
 
 \noindent
 \textbf{Aroon} - Buy and sell criteria both based on the relationship between a moving average and the current stock price with conjunction of the trend information provided by the relationship between the up and down values. Single input value tested at 25 (default), 20, and 30.\\
@@ -953,14 +1003,66 @@ The statistical methods throughout this paper have been tested in slightly uniqu
 \textbf{Vortex Indicator} - The relationship between the two oscillators calculated is used as trend and momentum information and all behaviours are inferred from these values and their relationship. With single input default value of 14, 10 and 18 were tested as well.\\
 \textbf{Williams \%R} - Used in an identical way to the Stochastic Oscillator, as this is an inference of that. Taking a single input value, along with the default 14, 10, and 18 were also tested.\\
 
-\noindent
-\textbf{Support Vector Machine}
+\subsection{Support Vector Machines}
 
 The first part of the testing of the support vector machine, or SVM, was to perform a search over variable space to find the best variables to use for testing. The variables that needed to be tested consist of the data manipulation to start with, then the kernel that was to be used, as well as degree, C, and gamma, which are inputs to the function. These are all used within each of the SVMs, each of which are since class classifiers. 
 
 Data manipulation was split into differentiation, rolling average, spikes, and median. All discussed in section C.1. The kernel choice, also discussed in section C.1, is between a linear kernel, polynomial kernel, sigmoid function, and a radial basis function. These are all available through the e1071 library \cite{Meyer2017}. The degree, C value, and gamma are all searched via the library's built in grid search function. 
 
+\subsection{Results}
 
+\begin{table*}
+\centering
+\label{units}
+\begin{tabu}{ |p{4cm}|p{4cm}|p{4cm}|}\hline\hline
+Method & Parameters & Result \\ \hline
+Parabolic SAR & Default & 8.94\% \\ \hline
+KAMA & Default & 8.29\% \\ \hline
+Ichimoku Cloud & Default & 8.02\% \\ \hline
+MACD & Default & 7.12\% \\ \hline
+Mass Index & Default & 6.78\% \\ \hline
+Bollinger Bands & 25 & 5.83\% \\ \hline
+StockCharts Technical Rank & Default & 5.41\% \\ \hline
+DecisionPoint Price Momentum Oscillator & Default & 5.16\% \\ \hline
+Stochastic Oscillator & 14, 4 & 4.92\% \\ \hline
+Pivot Points & Default & 2.19\% \\ \hline
+\end{tabu}
+\vspace{2 mm}
+\caption{Top 10 Individual Results}
+\end{table*}
+
+\begin{table*}
+\centering
+\label{units}
+\begin{tabu}{ |p{4cm}|p{4cm}|p{4cm}|}\hline\hline
+Methods & Parameters & Result \\ \hline
+MACD + KAMA & Default, Default & 11.39\% \\ \hline
+Bollinger Bands + DecisionPoint Price Momentum Oscillator & 25, Default & 11.23\% \\ \hline
+MACD + Parabolic SAR & Default, Default & 10.86\% \\ \hline
+MACD + Mass Index & Default, Default & 10.84\% \\ \hline
+Stochastic Oscillator + KAMA & 14, 4, Default & 10.83\% \\ \hline
+MACD + Pivot Points & Default, Default & 10.44\% \\ \hline
+Stochastic Oscillator + Parabolic SAR & 14, 4, Default & 8.18\% \\ \hline
+Bollinger Bands + KAMA & 25, Default & 6.96\% \\ \hline
+StockCharts Technical Rank + Parabolic SAR & Default, Default & 6.19\% \\ \hline
+Bollinger Bands + Pivot Points & 25, Default &  6.02\%\\ \hline
+\end{tabu}
+\vspace{2 mm}
+\caption{Top 10 Conjunction Results}
+\end{table*}
+
+\begin{table*}
+\centering
+\label{units}
+\begin{tabu}{ |p{4cm}|p{4cm}|p{4cm}|}\hline\hline
+Method & Parameters & Result \\ \hline
+SVM & Rolling Average + Sigmoid Function & 18.41\% \\ \hline
+SVM & Median + Sigmoid Function & 17.98\% \\ \hline
+SVM & Differentiation + Sigmoid Function & 16.17\% \\ \hline
+\end{tabu}
+\vspace{2 mm}
+\caption{Top Three Support Vector Machine Results}
+\end{table*}
 
 \iffalse
 #################################################################################
@@ -977,6 +1079,18 @@ This section summarises the main points of this paper.  Do not replicate the abs
 - use live data? \\
 - stop and put? \\
 \fi
+
+This section will outline the trends seen within the results that this paper has found and will also discuss the possible routes that could be taken if this project was to be extended.
+
+\subsection*{Trends}
+
+As the results so clearly show in table X it is very possible to outstrip the target set by a typical high street bank, using only statistical methodology. The table also shows a clear bias towards functions that base their methodology around the identification of the end of trends and the resultant information that is provided. This is a general trend however as their a several that are not based around this idea. Instead they are complete packages that calculate momentum and trend information and use it within either long reaching or complex systems. 
+Another trend is seen within table XI, the conjunction of a method based around the identification of trends and another method based around more complex moving averages give very promising results. 
+The final results table, XII, gives a clear indication as to the direction that the research should take. The benefits of machine learning within this context cannot be overstated. The results of the best of the SVM tests clearly shows that statistical methods have a place within this field, it is just relegated to data manipulation to help improve the input for machine learning techniques.\\
+
+\subsection*{Extension}
+
+If this project was to be extended the first change that would be made would be data with a finer granularity. The data used in this paper was limited by the financial aspect of data acquisition, the paper and its findings were not hindered in this but it was a known limiting factor. Another data extension that should be considered is using live data. This would be data that is periodically taken from a stock exchange to give a more realistic approach to live trading. Maintaining that statistical methods are useful and will be needed no matter how advance the projects machine learning techniques become the number of data manipulation and extraction techniques that would be tested would be increased, this is an open ended task as no data would be perfect. The final extension would be to test a wider range of machine learning techniques. The use of neural networks within contemporary computer science is significant and this would be an obvious next step for this paper.
 
 \iffalse
 #################################################################################
