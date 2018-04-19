@@ -9,6 +9,8 @@
 \bibliographystyle{agsm}
 
 \newcommand*\rot{\rotatebox{90}}
+\def\tablename{Table}
+\def\figurename{Figure}
 
 \title{Time Frame Trading Algorithms}
 \author{A. L. Gillies\\ M. R. Gadouleau\\ MEng Computer Science}
@@ -25,28 +27,29 @@
 \begin{document}
 \maketitle
 
+\thispagestyle{plain}
+\pagestyle{plain}
+
 \noindent
 \begin{abstract}
 \iffalse
 The abstract must be a Structured Abstract with the headings {\bf Context/Background}, {\bf Aims}, {\bf Method}, {\bf Results}, and {\bf Conclusions}.  This section should not be longer than half of a page, and having no more than one or two sentences under each heading is advised.\\
 \fi
 
-{\bf Context/Background} - Algorithmic trading is characterised by an entirely hands off approach to stock market trading. All data manipulation, mathematical inference, machine learning and trade execution is done autonomously. With this approach, how much of an improvement can be gained over a standard interest rate provided by a high street bank, in the time frame given?
+Algorithmic trading is characterised by an entirely hands off approach to stock market trading. All data manipulation, mathematical inference, machine learning and trade execution is done autonomously. With this approach, how much of an improvement can be gained over a standard interest rate provided by a high street bank, in the time frame given?
 
-{\bf Aims} - Using the average interest rate calculated from British banks, the aim of this paper is to show, through implementation of statistical and machine learning techniques, that algorithmic trading can improve the annual return on investment over a given time frame.
+Using the average interst rate calculated from British banks in conjunction with implementation of both statistical and machine learning techniques show that algorithmic trading can improve the annual return on investment over a given time frame.
 
-{\bf Method} - This paper will consider two possibilities for implementation of the system, a purely statistical method, relying on known practices and techniques, and a hybrid system incorporating both statistical reasoning and machine learning. The known statistical practices are mostly used by human traders to allow for data insight and are well vetted. The machine learning techniques are widely used in other contexts, with limited academic papers being available for this area.
+This paper will consider two possibilities for implementation of the system, a purely statistical method, relying on known practices and techniques, and a hybrid system incorporating both statistical reasoning and machine learning. The known statistical practices are mostly used by human traders to allow for data insight and are well vetted. \cite{Murphy1999} The machine learning techniques are widely used in other contexts, with limited academic papers being available for this area.
 
-{\bf Results} - The Support Vector Machine that made up the Machine Learning component of the testing outstripped all statistical methods by a significant margin, which in turn returned significantly higher results that is available through any high street bank.
+The Support Vector Machine that made up the Machine Learning component of the testing outstripped all statistical methods by a significant margin, which in turn returned significantly higher results than is available through any high street bank.
 
-{\bf Conclusions} - This project was a success but contains an unbound task, there is always going to be a better method. The methods used within this paper are the result of limited time and resources, any extension to this project would reduce these limitations.
+This project was a success but contains an unbound task, there is always going to be a better method. The methods used within this paper are the result of limited time and resources, any extension to this project would reduce these limitations. Possible extensions include a wider range of machine learning techniques and using data of a finer grain, over a wider time frame.\\
+
+\noindent
+Keywords - Algorithmic, Machine Learning, Statistics, R, Trading, Stocks
+
 \end{abstract}
-
-\iffalse
-\begin{keywords}
-Algorithmic, Machine Learning, Statistics, R, Trading, Stocks
-\end{keywords}
-\fi
 
 \iffalse
 #################################################################################
@@ -64,7 +67,7 @@ This section briefly introduces the general project background, the research que
 - A bit of the history of trading.\\
 \fi
 
-The stock market has been an early adopter of technology since its inception, with companies wanting to get an edge over their fellows and thus earning the most money. The first computer usage in the stock market was in the early 1970s with the New York Stock Exchange introducing the DOT system or the Designated Order Turnaround system. This allowed for bypassing of brokers and routed an order for specific securities to a specialist on the trading floor \cite{Hasbrouck}. The definition of `broker is an entity that buys and sells goods or assets for others, in this case `securities' which are defined as a financial instrument that holds monitary value. Since this point the use of machines to allow for increase throughput and speed has been pandemic. It was inevitable that computers would be used to aid in the decision making process of what to buy or sell and when. This was shown to be very effective and got significant traction in the financial market in 2001 with the showcase of IBMs MGD and  Hewlett-Packard's ZIP \cite{Tesauro2001}. These two algorithmic strategies were shown to consistently outperform their human counterparts. They were both based on academic papers from 1996 showing the academic conception of algorithmic applications in financial markets has been present for several decades \cite{Gjerstad1998}, \cite{Cliff1998}. Whilst in the current day over one billion shares are traded every day, this would not be possible without computerised assistance. 
+The stock market has been an early adopter of technology since its inception, as companies want to get an edge over their fellows and thus earn the most money. The first computer usage in the stock market was in the early 1970s with the New York Stock Exchange introducing  the Designated Order Turnaround system (DOT). This allowed for bypassing of brokers and routed an order for specific securities to a specialist on the trading floor \cite{Hasbrouck}. The definition of `broker' is an entity that buys and sells goods or assets for others, in this case `securities' which are defined as a financial instrument that holds monitary value. Since this point the use of machines to allow for increase throughput and speed has been pandemic. It was inevitable that computers would be used to aid in the decision making process of what to buy or sell and when. This was shown to be very effective and got significant traction in the financial market in 2001 with the showcase of IBMs MGD and  Hewlett-Packard's ZIP \cite{Tesauro2001}. These two algorithmic strategies were shown to consistently outperform their human counterparts. They were both based on papers from 1996 showing that academic conception of algorithmic applications in financial markets has been present for several decades \cite{Gjerstad1998}, \cite{Cliff1998}. Whilst in the current day over one billion shares are traded every day, this would not be possible without computerised assistance. 
 
 The aim of any algorithmic trading system is to `beat the market' that is to buy low and sell high so gain the most capital over any given time frame, be that a day, a year, or a decade. This paper will look into the challenge faced by these algorithms and if, using any available tools, it is possible to outstrip any high street banks offering rates. This will be done through simulation of a stock market, using real stock data, and the simulation of buying and selling these stocks by an algorithm.
 
@@ -72,7 +75,6 @@ The aim of any algorithmic trading system is to `beat the market' that is to buy
 
 \begin{table*}
 \centering
-\label{units}
 \begin{tabu}{ |l|l|p{10cm}| }\hline\hline
 Unique ID & Deliverable & Description \\ \hline
 DL1 & Simulate the financial market & Have data for at least 10 companies for at least a year, with data for each minute where data is available. \\ \hline
@@ -85,9 +87,10 @@ DL7 & Create a testing criteria & Create a method with which to test the strateg
 \end{tabu}
 \vspace{2 mm}
 \caption{Deliverables}
+\label{fig: Tables Deliverables}
 \end{table*}
 
-This project will be based around the deliverables in table 1.
+This project will be based around the deliverables in table \ref{fig: Tables Deliverables}.
 
 \iffalse
 #################################################################################
@@ -109,15 +112,15 @@ Books published within the last decade are so far out of touch with the `Electro
 Within this paper the statistical methods used have been found through papers that explore any data insight model that have been outlined within papers in the last half century, and are still useful within the modern day. These are basic `bread and butter' methods that are useful but not ground breaking. The machine learning technique has been shown to work as well as any other in theory and so will be tested more rigorously.\\
 \fi
 
-As has been mentioned previously, this field is not made up of companies or researchers that are willing to share their recent breakthroughs. This results in a copious amount of research being available for techniques that are seen as antiquated, with very little being published on state-of-the-art. Any modern technique that is being used is done so by an institution that is using the technique to profit from the stock market, this `edge'  will be guarded until it is no longer useful.
+As has been mentioned previously, this field is made up of companies or researchers that are unwilling to share their recent breakthroughs. This results in a copious amount of research being available for techniques that are seen as antiquated, with very little being published on state-of-the-art. Any modern technique that is being used is done so by an institution that is using the technique to profit from the stock market, this `edge'  will be guarded until it is no longer useful.
 
-The papers that are based in this field, and are available, are focused on statistical implementation. With multiple books being published on the topic. Some based on single strategies but most being compendiums of multiple strategies, for example \cite{Murphy1999}. There are a few papers that include more complex models such as the Black-Scholes Model \cite{Saad2015} which are seen as pivotal to the world of economics and finance, but have little benefit to computational finance. The same can be said for papers that cover the application and implications of Brownian motion, or the effect of the Efficient Market Hypothesis \cite{Meng2016}. Both very applicable to the modern world of finance as a whole, but almost unusable within the context of this paper.
+The papers that are based in this field, and are available, are focused on statistical implementation. With multiple books being published on the topic. Some based on single strategies but most being compendiums of multiple strategies, for example \cite{Murphy1999}. There are a few papers that include more complex models such as the Black-Scholes Model \cite{Saad2015} which are seen as pivotal to the world of economics and finance, but have little benefit to computational finance. The same can be said for papers that cover the application and implications of Brownian motion, or the effect of the Efficient Market Hypothesis \cite{Meng2016}. Both very applicable to the modern world of finance as a whole, but almost unusable within the context of this paper. This is due to the highly fluid and abstract nature of these theorems that are used to try to explain the world of economics more as a whole instead of giving finer details on more specific topics within this area.
 
 This results in a juxtaposition of copious amounts of research into the statistical methods that are available and their reasoning, with a significant paradigm shift into the research that is based around machine learning in this context.
 
 The most useful piece of research for the statistical methods is \cite{Murphy1999}. This book is a compendium of trading strategies that were used in the time period of 1950 to 1980, there is also ample detail on market analysis and any human readable charts that can be used within a trading scenario, whilst also giving details of the philosophy behind the trading. It also compares the use of computerised aids within a financial market with a purely human system. Electronic and Algorithmic Trading Technology \cite{Kim2007} contains multiple strategies and specific statistical methods that are useful within this context. It also shows a significant amount of detail about the surrounding systems, for example matching software that is used within a stock exchange that is not relevant. Written more from the view of a stock exchange significant time and detail is given to the automation of`order flow' or the matching of buying and selling parties within a stock exchange. Trading Commodities and Financial Futures \cite{Kleinman2005} is written very much for a human trader to learn from. With sections on psychology of trading and the history of trading being indicative of this. The techniques used can also be applied within computerised finance and are discussed in great depth. `Dark markets asset pricing and information transmission in over-the-counter markets' \cite{Duffie2012} contains very little in the way of strategies but is useful to give a wider picture of the world surrounding trading and the legal aspects of it. The data aspect that is touched upon within this book is very useful in giving ideas for the data that is to be used throughout this paper.
 
-There exists few papers that are both within this domain and relevant machine learning. Those that fall into both categories are limited in other ways. Some being too general to be of significant use, others being more in line with an academic look at the history of the domain. `Evaluating machine learning classification for financial trading: An empirical approach' \cite{Gerlein2016} is one of the papers that was found to have test results but was limited in that no strategies were provided and very little detail is given about the very basic models that are employed within the paper. The point is made that complex models have downsides and that occam's razor may play a role. `Predicting Stock Price Direction using Support Vector Machines' \cite{MadgeAdvisor} is a very relevant paper that provides insight into the predictive powers of an SVM when used in conjunction with momentum and volatility measures. This is limited in that testing was done with very general data and shows very little promise with respect to short term predictions. `Visual knowledge discovery and machine learning for investment strategy' \cite{Wilinski2017} is very useful for detailed information regarding machine learning data manipulation before input but does not specify any details of machine learning, just that it will be used in future. `Buy Low, Sell High: A High Frequency Trading Perspective' \cite{Cartea2014} is based within the world of High Frequency trading and whilst this would be useful to an extension of this paper, we do not take into account market reactions to actions taken within this paper so it is beyond scope.
+The limiting factor for papers within this domain is that they are not also within the field of machine learning. Those that fall into both categories are limited in other ways. Some being too general to be of significant use, others being more in line with an academic look at the history of the domain. `Evaluating machine learning classification for financial trading: An empirical approach' \cite{Gerlein2016} is one of the papers that was found to have test results but was limited in that no strategies were provided and very little detail is given about the very basic models that are employed within the paper. The point is made that complex models have downsides and that Occam's Razor may play a role. `Predicting Stock Price Direction using Support Vector Machines' \cite{MadgeAdvisor} is a very relevant paper that provides insight into the predictive powers of an SVM when used in conjunction with momentum and volatility measures. This is limited in that testing was done with very general data and shows very little promise with respect to short term predictions. `Visual knowledge discovery and machine learning for investment strategy' \cite{Wilinski2017} is very useful for detailed information regarding machine learning data manipulation before input but does not specify any details of machine learning, just that it will be used in future. `Buy Low, Sell High: A High Frequency Trading Perspective' \cite{Cartea2014} is based within the world of High Frequency trading and whilst this would be useful to an extension of this paper, we do not take into account market reactions to actions taken within this paper so it is beyond scope.
 
 \iffalse
 #################################################################################
@@ -130,31 +133,34 @@ This section presents the solutions to the problems in detail.  The design and i
 This section should be between 4 to 7 pages in length.
 \fi
 
+The solution is outlined in several sections that split the task into the stages that were followed in order to test the viability of all claims within this paper.
+
 \iffalse
 #################################################################################
 \fi
 
 \subsection{Simulation}
 
-This section will outline in detail all components of the simulation and their interconnectivity. \\
+This section will outline in detail all components of the simulation and their interconnectivity. The purpose of this section is to give details on all work that was done outside of the implementation of the algorithms tested. Simple implementation would not allow for testing of these algorithms. \\
 
 \subsubsection{Methodology}
 
-The logic behind the simulation was to allow trading at a fine grain level, this needed to be permitted by the data chosen to perform the algorithms on. The data that was available grows from `tick data' or data for every trade executed, to 'minute data`, giving details of all trades within that minute, and growing until 'day data`, which is the same as minute but with a wider range. A drawback was that `tick data' or data for each trade executed by the stock exchange was found to be too costly for the project so `minute data' was used. Minute data provides an open, high, low, and close price for a stock in the given minute, this gave plenty of data points per day of trading. A simplification was created at this point, trading was only done on the price that opened the minute. This was done to reduce the complexity of calculating any inter-minute values. The running of the simulation was based on the progression through each date of available trading and for each day iterate through every minute of the trading day, starting at 09:30 until 16:00. Each trading day has 390 points at which trading is possible, if the data permits it. This is available for 382 days in the 18 months of data that was used. 
+The logic behind the simulation was to allow trading at a fine grain level, this needed to be permitted by the data chosen to perform the algorithms on. The data that was available grows from `tick data' or data for every trade executed, to 'minute data`, giving details of all trades within that minute, and growing until 'day data`, which is the same as minute but with a wider range. A drawback was that `tick data' was found to be too costly for the project so `minute data' was used. Minute data provides an open, high, low, and close price for a stock in the given minute, this gave plenty of data points per day of trading. A simplification was created at this point, trading was only done on the price that opened the minute. This was done to reduce the complexity of calculating any inter-minute values. The running of the simulation was based on the progression through each date of available trading and for each day iterate through every minute of the trading day, starting at 09:30 until 16:00. Each trading day has 390 points at which trading is possible, if the data permits it. This is available for 382 days in the 18 months of data that was used. 
 
 The programming language that was chosen for this task was R \cite{Team2013}. This was chosen over other languages due to its extensive data manipulation capabilities as well as the contained mathematics functions such as standard deviation and differentiation. The data manipulation allows for large sets of incomplete data to be sub-sampled and manipulated into a usable form. The mathematical functions will form a basis for the statistical methods that are to be implemented.
 
 \subsubsection{Data}
 
-Forty five different stocks were used in this paper, taking from each the maximum number of data points available between 01/03/2016 and 01/09/2017 giving an eighteen month window in which the first six months did not allow for trading to occur, only for data collection and training of models, which will be discussed in depth further in the paper, then the final twelve months are for testing each algorithmic approach. There were some limitations with the data that was used. Due to the volatility of the stock market and the fact that some days trading was halted for a myriad of reasons, there are not 390 data points per day, for eighteen months. Trading is not available on weekends, or on bank or national holidays, or if trading is halted for some other reason. This meant that the solution had to take into account holes in the data. These gaps are also not regular, any given day can be cut short or a whole day could be taken without a pattern. Gaps also exist in minutes that no trades were executed, this removes any values from the data and removes the possibility of trading within these minutes.\\
+45 different stocks were used in this paper, taking from each the maximum number of data points available between 01/03/2016 and 01/09/2017 giving an 18 month window in which the first 6 months did not allow for trading to occur, only for data collection and training of models, which will be discussed in depth further in the paper, then the final 12 months are for testing each algorithmic approach. There were some limitations with the data that was used. Due to the volatility of the stock market and the fact that some days trading was halted for a myriad of reasons, there are not 390 data points per day, for 18 months. Trading is not available on weekends, or on bank or national holidays, or if trading is halted for some other reason. This meant that the solution had to take into account holes in the data. These gaps are also not regular, any given day can be cut short or a whole day could be taken without a pattern. Gaps also exist in minutes that no trades were executed, this removes any values from the data and removes the possibility of trading within these minutes.
 
-The data was taken from the NASDAQ, the second largest stock market in the world. The number of stocks used was arbitrarily big enough to provide enough data to test any given algorithm, some of which were found to prefer an abundance of data whilst others were much more short sighted and volatile. The most frequently traded stocks were chosen to allow for the most complete data.\\
+The data was taken from the NASDAQ, the second largest stock market in the world. The number of stocks used was arbitrarily big enough to provide enough data to test any given algorithm, some of which were found to prefer an abundance of data whilst others were much more short sighted and volatile. The most frequently traded stocks were chosen to allow for the most complete data.
 
-The data downloaded was in the form:
+The data was first downloaded in the form shown in Table \ref{fig: Table Data Input}, it was then converted using an R script into the form shown in Table \ref{fig: Table Data Formatted}. Thus reducing computational overhead from running the simulation as all data manipulation had been done prior to the data being used. In the final form no other alterations had to be made to the data other than set data types. 
+
+Some examples of the formatted data in use can be seen in Figures  \ref{fig:AXP Stock Price},\ref{fig:IBM Stock Price},\ref{fig:MSFT Stock Price},\ref{fig:YAHOO Stock Price},\ref{fig:AA Stock Price},\ref{fig:AMAT Stock Price},\ref{fig:HD Stock Price}, and \ref{fig:MCD Stock Price}.
 
 \begin{table*}
 \centering
-\label{units}
 \begin{tabu}{ |p{1.5cm}|p{1.5cm}|p{1.5cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}| }\hline\hline
 Ticker & Date & Time & Open & High & Low & Close \\ \hline
 AA & 01/03/16 & 09:30 & 9.1100000 & 9.1300000 & 9.1100000 & 9.1100000 \\ \hline
@@ -162,14 +168,12 @@ AA & 01/03/16 & 09:31 & 9.1000000 & 9.1200000 & 9.0800000 & 9.0900000 \\ \hline
 ... & ... & ... & ... & ... & ... & ... \\ \hline
 \end{tabu}
 \vspace{2 mm}
-\caption{AA Data}
+\caption{Data of a single stock, in this case AA.}
+\label{fig: Table Data Input}
 \end{table*}
-
-This was then converted using an R script into the form:
 
 \begin{table*}
 \centering
-\label{units}
 \begin{tabu}{ |p{1.5cm}|p{1.5cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}|p{1.5cm}| }\hline\hline
 Date & Time & AA & AAPL & ADBE & AIG & ... \\ \hline
 01/03/16 & 09:30 & 9.11 & 97.66 & 86.15 & 50.59 & ... \\ \hline
@@ -177,53 +181,104 @@ Date & Time & AA & AAPL & ADBE & AIG & ... \\ \hline
 ... & ... & ... & ... & ... & ... & ... \\ \hline
 \end{tabu}
 \vspace{2 mm}
-\caption{All Data}
+\caption{Formatted data of all stocks used.}
+\label{fig: Table Data Formatted}
 \end{table*}
 
-Thus reducing computational overhead from running the simulation as all data manipulation had been done prior to the data being used. In the final form no other alterations had to be made to the data other than set data types. 
+\begin{figure}
+\includegraphics[width=0.5\textwidth, angle=0]{AXP.pdf}
+\caption{A graph showing the AXP stock price over the time frame used.}
+\label{fig:AXP Stock Price}
+\end{figure}
+
+\begin{figure}
+\includegraphics[width=0.5\textwidth, angle=0]{IBM.pdf}
+\caption{A graph showing the IBM stock price over the time frame used.}
+\label{fig:IBM Stock Price}
+\end{figure}
+
+\begin{figure}
+\includegraphics[width=0.5\textwidth, angle=0]{MSFT.pdf}
+\caption{A graph showing the MSFT stock price over the time frame used.}
+\label{fig:MSFT Stock Price}
+\end{figure}
+
+\begin{figure}
+\includegraphics[width=0.5\textwidth, angle=0]{YAHOO.pdf}
+\caption{A graph showing the YAHOO stock price over the time frame used.}
+\label{fig:YAHOO Stock Price}
+\end{figure}
+
+\iffalse
+################
+\fi
+
+\begin{figure}
+\includegraphics[width=0.5\textwidth, angle=0]{AA.pdf}
+\caption{A graph showing the AA stock price over a single day.}
+\label{fig:AA Stock Price}
+\end{figure}
+
+\begin{figure}
+\includegraphics[width=0.5\textwidth, angle=0]{AMAT.pdf}
+\caption{A graph showing the AMAT stock price over a single day.}
+\label{fig:AMAT Stock Price}
+\end{figure}
+
+\begin{figure}
+\includegraphics[width=0.5\textwidth, angle=0]{HD.pdf}
+\caption{A graph showing the HD stock price over a single day.}
+\label{fig:HD Stock Price}
+\end{figure}
+
+\begin{figure}
+\includegraphics[width=0.5\textwidth, angle=0]{MCD.pdf}
+\caption{A graph showing the MCD stock price over a single day.}
+\label{fig:MCD Stock Price}
+\end{figure}
 
 \subsubsection{Set-up}
 
-The simulation was set up in such a way so as to minimise the impact that gaps in the data would cause. This meant using the data to provide the iteration behaviour. The data input in the form of Table 3 was cast for each row using a typecast function to allow correct manipulation of numerical values, the dates were converted to numerical values for correct comparison, as were the times. The stock values were also numerical. \\
+The simulation was set up in such a way so as to minimise the impact that gaps in the data would cause. This meant using the data to provide the iteration behaviour. The data input in the form of Table \ref{fig: Table Data Formatted} was cast for each row using a typecast function to allow correct manipulation of numerical values, the dates were converted to numerical values for correct comparison, as were the times. The stock values were also numerical. 
 
-The simulation then uses all unique dates within the Dates column to allow for iteration through the table at the highest level, through each individual day. Once the data had been sub-sampled for that day, then a list of unique minutes was created. Once the data had been further sub-sampled to the current minute, each of the stock columns were iterated through and tested for NA, or Not Available, values. If an NA value is present for that stock then it is passed over. If the value is available however then two functions are used, `shouldBuy' and `shouldSell'. The first used is `shouldBuy', this will take input of current date, current time, and current stock, to allow for a decision to be made on whether to buy an amount of that stock or not. These functions are based on manipulations of three other tables, `Active', `Sold', and `Ledger'. They take the form:
+The simulation then uses all unique dates within the Dates column to allow for iteration through the table at the highest level, through each individual day. Once the data had been sub-sampled for that day, then a list of unique minutes was created. Once the data had been further sub-sampled to the current minute, each of the stock columns were iterated through and tested for NA, or Not Available, values. If an NA value is present for that stock then it is passed over. If the value is available however then two functions are used, `shouldBuy' and `shouldSell'. The first used is `shouldBuy', this will take input of current date, current time, and current stock, to allow for a decision to be made on whether to buy an amount of that stock or not. These functions are based on manipulations of three other tables, `Active', `Sold', and `Ledger'. These are shown in tables IV, V, and VI, respectively.
 
 \begin{table*}
 \centering
-\label{units}
 \begin{tabu}{ |p{2.25cm}|p{2.25cm}|p{2.25cm}|p{2.25cm}|p{2.25cm}|p{2.25cm}| }\hline\hline
 Unique ID & Date Bought & Time Bought & Stock & Number of Shares & Cost per Share \\ \hline
 ... & ... & ... & ... & ... & ... \\ \hline
 \end{tabu}
 \vspace{2 mm}
 \caption{Active}
+\label{fig: Active}
 \end{table*}
 
 \begin{table*}
 \centering
-\label{units}
 \begin{tabu}{ |l|l|l|l|l|l|l|l|l|l|l|l| }\hline\hline
 \rot{Unique ID} & \rot{Date Bought} & \rot{Time Bought} & \rot{Stock} & \rot{No. of Shares} & \rot{Cost per Share} & \rot{Amount Bought} & \rot{Date Sold} & \rot{Time Sold} & \rot{Price per Share} & \rot{Amount Sold}\\ \hline
 ... & ... & ... & ... & ... & ... & ... & ... & ... & ... & ... \\ \hline
 \end{tabu}
 \vspace{2 mm}
 \caption{Sold}
+\label{fig: Sold}
 \end{table*}
 
 \begin{table*}
 \centering
-\label{units}
 \begin{tabu}{ |p{2.25cm}|p{2.25cm}|p{2.25cm}|p{2.25cm}| }\hline\hline
 Date & Total Value & Stock Value & Capital Value \\ \hline
 ... & ... & ... & ...  \\ \hline
 \end{tabu}
 \vspace{2 mm}
 \caption{Ledger}
+\label{fig: Ledger}
 \end{table*}
 
-Each also comes with its own population function, `Buy', `Sell', `Update'. The first two are called if any decision is made. If a stocks value is such that the `shouldBuy' function returns true then the `Buy' function is called, taking input of date, time, stock, and amount. The amount is dictated by the `amountShouldBuy' function that is an extension of the `shouldBuy' function that returns the amount that should be bought of the current stock. This is then added as another row to the Active table, as this is now an active stock that can be sold. The amount of any given stock that should be purchased is calculated through another function `getAmount', this will test all calculations done in `shouldBuy' and calculate a confidence value that will then dictate, using the amount of liquid capital available, the amount of the stock that will be bought. The `shouldSell' function is then queried every time an updated value is available for any given row in the `Active' table. Using the new value a decision will be made if the stock should be sold, if this is found to be the case then the `Sell' function is called. The function will remove the row of the `Active' table that corresponds to this block of stock to be sold and add it to the `Sold' table along with all the details of the transaction. \\
+Each also comes with its own population function, `Buy', `Sell', `Update'. The first two are called if any decision is made. If a stocks value is such that the `shouldBuy' function returns true then the `Buy' function is called, taking input of date, time, stock, and amount. The amount is dictated by the `amountShouldBuy' function that is an extension of the `shouldBuy' function that returns the amount of the current stock that should be bought. This is then added as another row to the `Active' table, as this is now an active stock that can be sold. The amount of any given stock that should be purchased is calculated through another function `getAmount', this will test all calculations done in `shouldBuy' and calculate a confidence value that will then, using the amount of liquid capital available, dictate the amount of the stock that will be bought. The `shouldSell' function is then queried every time an updated value is available for any given row in the `Active' table. Using the new value a decision will be made if the stock should be sold, if this is found to be the case then the `Sell' function is called. The function will remove the row of the `Active' table that corresponds to this block of stock to be sold and add it to the `Sold' table along with all the details of the transaction. 
 
-The final table is `Ledger' which uses the function `Update', this is called on a regular basis to allow for tracking of the algorithm throughout the simulation. All overall details of capital are stored in this table. The Date column is a concatenation of both Time and Date in any other table to allow for minute by minute updates of the simulation or if this is not required then daily updates are possible.
+The final table is `Ledger' which uses the function `Update'. this is called on a regular basis to allow for tracking of the algorithm throughout the simulation. All overall details of capital are stored in this table. The `Date' column is a concatenation of both `Time' and `Date' in any other table to allow for minute by minute updates of the simulation or if this is not required then daily updates are possible.\\
 
 \iffalse
 The simulation was set up in an iterative way in order to minimise the disruptions that missing data would cause, whilst also being exhaustive and searching for data given a reference point is straightforward, so no data point is missed or an inaccurate search is done. A simple testing framework was set up during implementation, variable controlled which stocks were being iterated through at any given moment,what dates were available, when any trade execution could commence, and the amount of capital that was available to any given algorithm. Once these had been established then each date from the start date to the end date variables was found through merged table of all dates across all stocks as some stocks are available to trade when others are not, these are then iterated through. Within this loop is another very similar loop that performs the same action but for minutes rather than dates. All available times are found for the specific date, and iterated through. Finally, for each stock that is available, during testing not all stocks were used so as to help with the removal of bugs, instead a random number generator would choose a predefined number of stocks and iterate over these instead. A stock value is found for that date, at that time, for that stock. Once this has been done then then calculations can be made to decide if any action needs to be taken given this new information. Any buy or sell actions are handled by a single function each that will take in all current information, including the time, date, and stock price. These two functions shall be known as the `shouldBuy' and `shouldSell' functions throughout this paper. These functions will be given all available information and will then make a decision using the methods they have been assigned. Any action that is taken will be stored in tables set up before the simulation was started. There are three tables, initially only two were used but a third was introduced at a later date to increase the speed of execution of the simulation. These tables are `Active', `Sold', and `Ledger'. Active is any bundle of stocks that have been bought by the algorithm, stored as a row containing; A unique identifying number to allow for easy retrieval of the row, the date on which the stock was bought, the time at which the stock was bought, the name of the stock, the number of shares that were bought during this execution, and the cost per share or stock price as these are the same. This table is iterated through every time a new stock price becomes available for a stock that is present in the table and the `shouldSell' function is called, then any necessary calculations are done to decide if this bundle of stocks should be sold or not. If it is decided that this bundle should be sold then this row is removed from the `Active' table and added to the `Sold' table. This table contains the same headers as the `Active' table with the addition of the total amount bought, meaning number of shares multiplied by price they were bought at, the date sold on, the time sold at, the price per share that they were sold at, and the total amount sold. The two totals, total bought and total sold, may seem to be superfluous by they are relied upon by the final table. This table is the most used, it has a row added each time a change is made within the simulation regardless of any actions taken. Each minute a new row is added to this table to keep track of all capital that is within the simulation, the reason for this table is to show at the end of the simulation all trades that were performed and the amount of capital that is liquid or in stocks at any given moment. During implementation minute by minute updates were not required and this only served to increase the execution time of the simulation by a significant amount, and thus the function that adds a new row to this table was only called at the end of each day iteration instead of at the end of each minute iteration. This table contains the heading; date - this was a concatenation of both time and date with a simplified name, value - this was the total value within the simulation, stock value - this is the total amount of capital that are currently within stocks, and capital value - this is the amount of liquid capital available. \\
@@ -233,11 +288,10 @@ ADD THREE TABLES TO SHOW HOW THEY LOOK\\
 
 \subsubsection{Functions}
 
-These are some of the more regularly utilised functions in the simulation and are the key underpinnings of the statistical and machine learning techniques that are used throughout the simulation. \\
+Shown in Table \ref{fig: Table Basic Functions} are some of the more regularly utilised functions in the simulation and are the key underpinnings of the statistical and machine learning techniques that are used throughout the simulation. \\
 
 \begin{table*}
 \centering
-\label{units}
 \begin{tabu}{ |p{4cm}|p{4cm}|p{6cm}| }\hline\hline
 Function & Arguments & Details \\ \hline
 Buy() & Date, Time, Stock, Amount & Adds a row to the `Active' table.  \\ \hline
@@ -260,6 +314,7 @@ getTotalGainLoss() & Date, Time, Stock, X &  Over the last X data points get the
 \end{tabu}
 \vspace{2 mm}
 \caption{Basic Functions}
+\label{fig: Table Basic Functions}
 \end{table*}
 
 \iffalse
@@ -305,13 +360,13 @@ getTotalGainLoss() & Date, Time, Stock, X &  Over the last X data points get the
 
 \subsection{Statistical Methods}
 
-Once a working simulation had been established and all functions had been shown to be working through hard coding of behaviour, statistical methods had to be implemented. These were separated into two groups, the first are called technical overlays, these are methods that provided insight into the data by providing numbers that are on the same scale as the price itself, whilst technical indicators are the other group and these give insight into the data through numbers that are in no way related to the stock price, and thus allow much more insightful comparisons to be made inter-stock as opposed to intra-stock, that is comparing two stocks is easier if technical indicators are used as opposed to using technical overlays which are very dependant on the stock price and do not translate as well to comparisons between two unique stocks. \\
+Once a working simulation had been established and all functions had been shown to be working, statistical methods had to be implemented. These were separated into two groups, the first are called technical overlays, these are methods that provided insight into the data by providing numbers that are on the same scale as the price itself. Whilst technical indicators are the other group and these give insight into the data through numbers that are in no way related to the stock price, and thus allow much more insightful comparisons to be made inter-stock as opposed to intra-stock, that is comparing two stocks is easier if technical indicators are used as opposed to using technical overlays which are very dependant on the stock price and do not translate as well to comparisons between two unique stocks. \\
 
 \iffalse
 #################################################################################
 \fi
 
-\subsubsection{Technical Overlays}
+\subsubsection{Technical Overlays} Defined as a statistical method that is dependant on the price. \\
 
 \textbf{Bollinger Bands} - \cite{Bollinger1992} - Developed by John Bollinger, these are volatility bands placed above and bellow the current stock price and are based on the standard deviation. These are designed to give an indication of how the volatility of a given stock changes over time. For any given stock over a time frame X, the three bands are calculated as such:\\
 
@@ -365,13 +420,13 @@ Volatility = Sum(Absolute Value(Close - CloseXPeridsAgo(X))) - Default X is 1, t
 The next stage of KAMA is a smoothing constant is calculated. \\
 
 \noindent
-Smoothing Constant = ((Efficiency Ratio x (fastest SC - slowest SC)) + slowest SC)$^2$\\
+Smoothing Constant = ((Efficiency Ratio * (fastest SC - slowest SC)) + slowest SC)$^2$\\
 
 \noindent
 Final stage is the use of the previous KAMA value to calculate the next value. \\
 
 \noindent
-New KAMA = Previous KAMA + (Smoothing Constant x (Current Price - Previous KAMA))\\
+New KAMA = Previous KAMA + (Smoothing Constant * (Current Price - Previous KAMA))\\
 
 \iffalse
 []
@@ -381,19 +436,19 @@ New KAMA = Previous KAMA + (Smoothing Constant x (Current Price - Previous KAMA)
 \textbf{Keltner Channels} - \cite{Keltner1960} - Very similar to Bollinger Bands but instead of using standard deviation average true range is used. Created by Chester Keltner, this indicator is made up of three lines in a similar way to Bollinger Bands.\\
 
 \noindent
-Upper Channel Line = Exponential Moving Average(X) + (2 x Average True Range(Y))\\
+Upper Channel Line = Exponential Moving Average(X) + (2 * Average True Range(Y))\\
 Middle Line = Exponential Moving Average(X)\\
-Lower Channel Line = Exponential Moving Average(X) - (2 x Average True Range(Y))\\ Default X = 20, Y = 10 \\
+Lower Channel Line = Exponential Moving Average(X) - (2 * Average True Range(Y))\\ Default X = 20, Y = 10 \\
 
 \iffalse
 []
 \fi
 
 \noindent
-\textbf{Moving Averages} - \cite{Murphy1999} - These can come in multiple forms with multiple names. The catch all term for this type of smoothing average is a moving average. The most simple is known as a Simple Moving Average. This takes the average of the last X data points. There is no weighting or extra steps. A more complex version is the Exponential Moving Average, this uses weighting to give the more recent values more significance in the calculation. The initial value of EMA is the same as the SMA for the same period as EMA requires an initial value.\\
+\textbf{Moving Averages} - \cite{Murphy1999} - These can come in multiple forms with multiple names. The catch all term for this type of smoothing average is a moving average. The most simple is known as a Simple Moving Average (SMA). This takes the average of the last X data points. There is no weighting or extra steps. A more complex version is the Exponential Moving Average (EMA), this uses weighting to give the more recent values more significance in the calculation. The initial value of EMA is the same as the SMA for the same period as EMA requires an initial value.\\
 
 \noindent
-EMA$_{Today}$ = (Current Stock Price x K) + (EMA$_{Yesterday}$ x (1 - K)) \\
+EMA$_{Today}$ = (Current Stock Price * K) + (EMA$_{Yesterday}$ * (1 - K)) \\
 K = 2 / (N + 1) \\
 N = Number of periods over which the EMA is applied \\
 
@@ -405,8 +460,8 @@ N = Number of periods over which the EMA is applied \\
 \textbf{Moving Average Envelopes} - \cite{Murphy1999} - Based on a Moving Average, this is a percentage based envelope that provide parallel bands above and below the Moving Average. Gives an indication of trends in the data as well as an indicator for stocks that are overbought and oversold when the trend is flat.\\
 
 \noindent
-Upper Envelope = MovingAverage(X) + (MovingAverage(X) x Y)\\
-Lower Envelope = MovingAverage(X) - (MovingAverage(X) x Y)\\
+Upper Envelope = MovingAverage(X) + (MovingAverage(X) * Y)\\
+Lower Envelope = MovingAverage(X) - (MovingAverage(X) * Y)\\
 Typical values X = 20 and Y = 0.025\\
 
 \iffalse
@@ -448,9 +503,9 @@ These are used to indicate a trend and once a price falls to the other side of t
 \noindent
 Standard Pivot Points. \\
 Pivot Point = (High + Low + Close)/3\\
-Support One = (PP x 2) - High\\
+Support One = (PP * 2) - High\\
 Support Two = PP - (High - Low)\\
-Resistance One = (PP x 2) - Low\\
+Resistance One = (PP * 2) - Low\\
 Resistance Two = PP + (High - Low)\\
 
 \noindent
@@ -461,19 +516,19 @@ Resistance One = (X / 2) - Low\\
 
 \noindent
 Where X is calculated as: \\
-If Close $<$ Open: X = High + (2 x Low) + Close\\
-If Close $>$ Open: X = (2 x High) + Low + Close\\
-If Close = Open: X = High + Low + (2 x Close)\\
+If Close $<$ Open: X = High + (2 * Low) + Close\\
+If Close $>$ Open: X = (2 * High) + Low + Close\\
+If Close = Open: X = High + Low + (2 * Close)\\
 
 \noindent
 Fibonacci Pivot Points. These are similar to the standard pivot points but use different spacing techniques, namely the Fibonacci sequence.\\
 Pivot Point = (High + Low + Close)/3\\
-Support One = PP - (0.382 x (High  -  Low))\\
-Support Two = PP - (0.618 x (High  -  Low))\\
-Support Three = PP - (1 x (High  -  Low))\\
-Resistance One = PP + (0.382 x (High  -  Low))\\
-Resistance Two = PP + (0.618 x (High  -  Low))\\
-Resistance Three = PP + (1 x (High  -  Low))\\
+Support One = PP - (0.382 * (High  -  Low))\\
+Support Two = PP - (0.618 * (High  -  Low))\\
+Support Three = PP - (1 * (High  -  Low))\\
+Resistance One = PP + (0.382 * (High  -  Low))\\
+Resistance Two = PP + (0.618 * (High  -  Low))\\
+Resistance Three = PP + (1 * (High  -  Low))\\
 
 \iffalse
 []
@@ -486,7 +541,7 @@ Resistance Three = PP + (1 x (High  -  Low))\\
 Upper = High(X)\\
 Center = (High(X) + Low(X)) / 2\\
 Lower = Low(X)\\
-The default X value is 20.
+The default X value is 20.\\
 
 \iffalse
 []
@@ -496,13 +551,13 @@ The default X value is 20.
 #################################################################################
 \fi
 
-\subsubsection{Technical Indicators}
+\subsubsection{Technical Indicators} Defined as a statistical method that is not dependent on the price. \\
 
-\textbf{Aroon} - \cite{Chande1994} - Developed by Tushar Chande; Aroon is indicative of the strength of the current trend. It was designed to be similar but uniquely different to standard momentum oscillators, which focus on price relative to time, Aroon focuses on time relative to price. It has two components, Up and Down, both are shown as percentages. Up will maximise on an upward trend and Down will maximise on a downward trend.\\
+\textbf{Aroon} - \cite{Chande1994} - Aroon is indicative of the strength of the current trend. It was designed to be similar but uniquely different to standard momentum oscillators, which focus on price relative to time, Aroon focuses on time relative to price. It has two components, Up and Down, both are expressed as percentages. Up will maximise on an upward trend and Down will maximise on a downward trend.\\
 
 \noindent
-Aroon Up = ((X - DaysSinceHigh(X))/X) x 100\\
-Aroon Down = ((X - DaysSinceLow(X))/X) x 100\\
+Aroon Up = ((X - DaysSinceHigh(X))/X) * 100\\
+Aroon Down = ((X - DaysSinceLow(X))/X) * 100\\
 Default value of X = 25.\\
 
 \iffalse
@@ -519,7 +574,7 @@ Aroon Oscillator = Aroon Up - Aroon Down\\
 \fi
 
 \noindent
-\textbf{Average True Range (ATR)} - \cite{Wilder1978} - Developed by J. Welles Wilder as a measure for volatility, ATR has been used in a wide variety of applications outside of the financial world. The initial idea was based around a concept called True Range, calculated as such:\\
+\textbf{Average True Range (ATR)} - \cite{Wilder1978} - Developed as a measure for volatility, ATR has been used in a wide variety of applications outside of the financial world. The initial idea was based around a concept called True Range, calculated as such:\\
 
 \noindent
 The greatest of:\\
@@ -531,16 +586,16 @@ ABS(Low(X) - PreviousClose)\\
 This was then used in conjunction with the previous true range to calculate the new ATR.\\
 
 \noindent
-New ATR = ((Prev ATR x (X-1)) + TR) / X - Default X is 14 \\
+New ATR = ((Prev ATR * (X-1)) + TR) / X - Default X is 14 \\
 
 \iffalse
 []
 \fi
 
 \noindent
-\textbf{BandWidth} - \cite{Murphy1999} - One of the two indicators derived from Bollinger Bands by John Bollinger, the other being \%B. This is a single value that takes all Bollinger Bands as components.\\
+\textbf{BandWidth} - \cite{Murphy1999} - One of the two indicators derived from Bollinger Bands, the other being \%B. This is a single value that takes all Bollinger Bands as components.\\
 \noindent
-Bandwidth = ((Upper Band - Lower Band) / Middle Band) x 100 \\
+Bandwidth = ((Upper Band - Lower Band) / Middle Band) * 100 \\
 
 \iffalse
 []
@@ -556,7 +611,7 @@ Bandwidth = ((Upper Band - Lower Band) / Middle Band) x 100 \\
 \fi
 
 \noindent
-\textbf{Commodity Channel Index (CCI)} - \cite{Lambert1980} - Developed by Donald Lambert. Used to show a comparison between the current price and the average price over a given timespan. Uses multiple other calculations as component parts, including Simple Moving Average, Typical Price, and Mean Deviation.\\
+\textbf{Commodity Channel Index (CCI)} - \cite{Lambert1980} - Used to show a comparison between the current price and the average price over a given timespan. Uses multiple other calculations as component parts, including Simple Moving Average, Typical Price, and Mean Deviation.\\
 
 \noindent
 Typical Price = (High + Low + Close) / 3\\
@@ -566,7 +621,7 @@ Mean Deviation = SUM(ABS(Period Value - Period Average)) / X\\
 Default X = 20. Find the sum of the deviation from the average value of the last 20 periods within each period. \\
 
 \noindent
-CGI = (Typical Price - X period SMA of Typical Price) / (0.05 x Mean Deviation)//
+CGI = (Typical Price - X period SMA of Typical Price) / (0.05 * Mean Deviation)//
 Default X = 20.\\
 
 \iffalse
@@ -621,7 +676,7 @@ Mass Index = 25-period sum of the EMA Ratio \\
 \fi
 
 \noindent
-\textbf{MACD (Moving Average Convergence/Divergence Oscillator)} - \cite{Appel2005} - Developed by Gerald Appel. Is said to be one of the most effective momentum indicators as well as being very simplistic to perform. \\
+\textbf{MACD (Moving Average Convergence/Divergence Oscillator)} - \cite{Appel2005} - Is said to be one of the most effective momentum indicators as well as being very simplistic to perform. \\
 
 \noindent
 MACD Line: (12-day EMA - 26-day EMA)\\
@@ -645,7 +700,7 @@ MACD Histogram: MACD - Signal Line \\
 \textbf{Percentage Price Oscillator (PPO)} - \cite{Murphy1999} - A momentum oscillator that is related to MACD. Calculated as a percentage showing the relationship between two moving averages. \\
 
 \noindent
-Percentage Price Oscillator (PPO): {(12-day EMA - 26-day EMA)/26-day EMA} x 100 \\
+Percentage Price Oscillator (PPO): {(12-day EMA - 26-day EMA)/26-day EMA} * 100 \\
 Signal Line: 9-day EMA of PPO \\
 PPO Histogram: PPO - Signal Line \\
 
@@ -654,14 +709,14 @@ PPO Histogram: PPO - Signal Line \\
 \fi
 
 \noindent
-\textbf{Pring's Know Sure Thing (KST)} - \cite{Pring2002} - Developed by Martin Pring. Using the smoothed rate of change over four different length periods, this momentum oscillator gives a more well based indication of movement than a typical momentum oscillator. \\
+\textbf{Pring's Know Sure Thing (KST)} - \cite{Pring2002} - Using the smoothed rate of change over four different length periods, this momentum oscillator gives a more well based indication of movement than a typical momentum oscillator. \\
 
 \noindent
 RCMA1 = 10-Period SMA of 10-Period Rate-of-Change \\
 RCMA2 = 10-Period SMA of 15-Period Rate-of-Change \\
 RCMA3 = 10-Period SMA of 20-Period Rate-of-Change \\
 RCMA4 = 15-Period SMA of 30-Period Rate-of-Change \\
-KST = (RCMA1 x 1) + (RCMA2 x 2) + (RCMA3 x 3) + (RCMA4 x 4) \\
+KST = (RCMA1 * 1) + (RCMA2 * 2) + (RCMA3 * 3) + (RCMA4 * 4) \\
 Signal Line = 9-period SMA of KST \\
 
 \iffalse
@@ -669,7 +724,7 @@ Signal Line = 9-period SMA of KST \\
 \fi
 
 \noindent
-\textbf{Pring's Special K} - \cite{Pring2002} - Developed by Martin Pring, this momentum oscillator is a concatenation of three different velocities, short, medium, and long term, to provide more stable prediction of movement. This is a sum of the three different velocities which are each made up of a weighted sum of different components.\\
+\textbf{Pring's Special K} - \cite{Pring2002} - This momentum oscillator is a concatenation of three different velocities, short, medium, and long term, to provide more stable prediction of movement. This is a sum of the three different velocities which are each made up of a weighted sum of different components.\\
 
 \noindent
 Special K = 10 Period Simple Moving Average of ROC(10) * 1 \\
@@ -700,7 +755,7 @@ ROC = [(Close - Close n periods ago) / (Close n periods ago)] * 100 \\
 \fi
 
 \noindent
-\textbf{Relative Strength Index (RSI)} - \cite{Wilder1978} - Developed by J. Welles Wilder. A range of zero to one hundred, RSI, a momentum oscillator, gives an indication of the speed and change of price movements.\\
+\textbf{Relative Strength Index (RSI)} - \cite{Wilder1978} - A range of zero to one hundred, RSI, a momentum oscillator, gives an indication of the speed and change of price movements.\\
 
 \noindent
 RSI = 100 - (100 / 1 + RS) \\
@@ -752,7 +807,7 @@ Default value of X is 14. Default value of Y is 3.\\
 \fi
 
 \noindent
-\textbf{StochRSI} - \cite{Chande1994} - Developed together by Tushar Chande and Stanley Kroll. Using Relative Strength Index or RSI, StochRSI is a measure of RSI relative to the max range of RSI over a set period. This indicator has a range of 0 to 1 with 0 indicating the lowest point over the period with 1 indicating the highest point over the period.\\
+\textbf{StochRSI} - \cite{Chande1994} - Using Relative Strength Index or RSI, StochRSI is a measure of RSI relative to the max range of RSI over a set period. This indicator has a range of 0 to 1 with 0 indicating the lowest point over the period with 1 indicating the highest point over the period.\\
 
 \noindent
 StochRSI = (RSI - Lowest Low RSI over X) / (Highest High RSI over X - Lowest Low RSI over X)\\
@@ -763,7 +818,7 @@ Default X value is 14.\\
 \fi
 
 \noindent
-\textbf{TRIX} - \cite{Hutson1983} - Developed by Jack Hutson. A triple smoothed Exponential Moving Average is used to calculate the percentage change over the last period.\\
+\textbf{TRIX} - \cite{Hutson1983} - A triple smoothed Exponential Moving Average is used to calculate the percentage change over the last period.\\
 
 \noindent
 Single Smoothed EMA = EMA of Close over X periods.\\
@@ -776,7 +831,7 @@ TRIX = Single period percentage change in Triple Smoothed EMA. \\
 \fi
 
 \noindent
-\textbf{True Strength Index} - \cite{Blau1995} - Developed by William Blau. Using two double smoothed price changes this is a momentum oscillator with the benefit of being relatively resistant to noise. Made up of two double smoothed price changes and the TSI calculation, this is a relatively simple indicator.\\
+\textbf{True Strength Index} - \cite{Blau1995} - Using two double smoothed price changes this is a momentum oscillator with the benefit of being relatively resistant to noise. Made up of two double smoothed price changes and the TSI calculation, this is a relatively simple indicator.\\
 
 \noindent
 Double Smoother Price Change.\\
@@ -794,19 +849,19 @@ Default X value is 25. Default Y value is 13.\\
 
 \noindent
 True Strength Value.\\
-TSI = 100 x (Double Smoothed Price Change / Double Smoothed Absolute Price Change)\\
+TSI = 100 * (Double Smoothed Price Change / Double Smoothed Absolute Price Change)\\
 
 \iffalse
 []
 \fi
 
 \noindent
-\textbf{Ulcer Index} - \cite{Martin1992} - Developed by Peter Martin and Byron McCann. This volatility indicator was originally designed to measure downside risk in mutual funds, although it has now been re-purposed.  \\
+\textbf{Ulcer Index} - \cite{Martin1992} - This volatility indicator was originally designed to measure downside risk in mutual funds, although it has now been re-purposed.  \\
 
 \noindent
-Percent-Drawdown = ((Close - Max Close over X periods)/Max Close over X periods) x 100\\
-Squared Average = (Sum of Percent-Drawdown over X periods Squared)/X\\
-Ulcer Index = Square Root of Squared Average\\
+Percent-Drawdown = ((Close - Max Close over X periods)/Max Close over X periods) * 100\\
+Squared Average = ((Sum of Percent-Drawdown over X periods)$^2$)/X\\
+Ulcer Index = $\sqrt{Squared Average}$\\
 Default X value is 14.\\
 
 \iffalse
@@ -826,7 +881,7 @@ Average Y = (BP Sum over Y periods) / (TR Sum over Y periods)\\
 Average Z = (BP Sum over Z periods) / (TR Sum over Z periods)\\
 
 \noindent
-Ultimate Oscillator = 100 x ((4 x Average X)+(2 x Average Y)+Average Z)/(4+2+1)\\
+Ultimate Oscillator = 100 * ((4 * Average X)+(2 * Average Y)+Average Z)/(4+2+1)\\
 Default values are X = 7, Y = 14, Z = 28.\\
 
 \iffalse
@@ -870,7 +925,7 @@ The crossovers of these two values is then used to identify the start and end of
 
 \noindent
 \%R = (Highest High over X - Close)/(Highest High over X - Lowest Low over X) * -100\\
-Default value of X is 14.
+Default value of X is 14.\\
 
 \iffalse
 []
@@ -882,7 +937,7 @@ Default value of X is 14.
 
 \subsubsection{Testing}
 
-Once each of these methods had been implemented they were each tested. With each being subtly different, the exact testing methods used for each one differed slightly. An example; with Moving Averages two were calculated with the difference being the length over which they were calculated. Then the relationship between these two was observed and if the shorter term average was significantly higher than the longer term average then an upward trend was being observed, when the short term average was significantly lower than the long term average then the opposite was true. Once each has been tested individually they can also be used in conjunction with other techniques, this has also been shown in the results section. 
+Once each of these methods had been implemented they were tested. With each being subtly different, the exact testing methods used for each one differed slightly. An example; with Moving Averages two were calculated with the difference being the length over which they were calculated. Then the relationship between these two was observed and if the shorter term average was significantly higher than the longer term average then an upward trend was being observed, when the short term average was significantly lower than the long term average then the opposite was true. Once each has been tested individually they can also be used in conjunction with other techniques, this has also been shown in the results section. 
 
 \iffalse
 #################################################################################
@@ -890,16 +945,15 @@ Once each of these methods had been implemented they were each tested. With each
 
 \subsection{Machine Learning}
  \noindent
-Machine Learning is a very broad topic with much of contemporary computer science based on it or consisting of research done around it. The main technique that is being applied here is that of a Support Vector Machine or SVM. This maximises the distance between two clusters, and is based in statistical learning theory. Using a kernel mapping, that is mapping a vector into a higher dimensional space, allows for linear separation to be performed, even on non linear datasets if the correct kernel mapping is chosen. Linear separation is the key to this machine learning technique, it maximises the distance between the known elements of each of the two classes using was is basically a constraint satisfaction problem. This `margin' between the two classes is our confidence in the separation, if the margin is small then there is very little distance within the higher dimensional space between the two classes meaning a smaller confidence of success, if the margin is large then there is a higher confidence in the successful determination of a given points class. \cite{Wilson2008}
+Machine Learning is a very broad topic with much of contemporary computer science based on it or consisting of research done around it. The main technique that is being applied here is that of a Support Vector Machine or SVM. This maximises the distance between two clusters, and is based in statistical learning theory. Using a kernel mapping, mapping a vector into a higher dimensional space, allows for linear separation to be performed, even on non linear datasets if the correct kernel mapping is chosen. Linear separation is the key to this machine learning technique, it maximises the distance between the known elements of each of the two classes using was is basically a constraint satisfaction problem. This `margin' between the two classes is our confidence in the separation, if the margin is small then there is very little distance within the higher dimensional space between the two classes meaning a smaller confidence of success, if the margin is large then there is a higher confidence in the successful determination of a given points class. \cite{Wilson2008}\\
 
 \subsubsection{Set Up}
 
 The set up of data and input revolved around two functions. These are `getPeaks' and `getTroughs'.
-They take input of date, time, stock, and X. X is the number of data points that will be used to make a decision about the buying or selling potential of the given data point. After X/2 data points have passed then a decision will be made using X/2 data points either side. `getPeaks' will take this input, sub-sample the data and decide if this point was optimal to sell at, meaning it is a peak. `getTroughs' will do the opposite, it will decide if this is a point at which it would have been optimal to buy. This data is then stored in tables `SVMBuyData' and `SVMSellData'. These are in the form of tables 8 and 9.
+They take input of date, time, stock, and X. X is the number of data points that will be used to make a decision about the buying or selling potential of the given data point. After X/2 data points have passed then a decision will be made using X/2 data points either side. `getPeaks' will take this input, sub-sample the data and decide if this point was optimal to sell at, meaning it is a peak. `getTroughs' will do the opposite, it will decide if this is a point at which it would have been optimal to buy. This data is then stored in tables `SVMBuyData' and `SVMSellData'. These are in the form of tables \ref{fig: Table SVM Buy Data} and \ref{fig: Table SVM Sell Data}.
 
 \begin{table*}
 \centering
-\label{units}
 \begin{tabu}{ |p{2.25cm}|p{2.25cm}|p{2.25cm}|p{2.25cm}| }\hline\hline
 Date & Time & Stock Value & Should Buy \\ \hline
 01/03/16 & 09:30 & 9.11 & False  \\ \hline
@@ -907,11 +961,11 @@ Date & Time & Stock Value & Should Buy \\ \hline
 \end{tabu}
 \vspace{2 mm}
 \caption{SVMBuyData}
+\label{fig: Table SVM Buy Data}
 \end{table*}
 
 \begin{table*}
 \centering
-\label{units}
 \begin{tabu}{ |p{2.25cm}|p{2.25cm}|p{2.25cm}|p{2.25cm}| }\hline\hline
 Date & Time & Stock Value & Should Sell \\ \hline
 01/03/16 & 09:30 & 9.11 & False  \\ \hline
@@ -919,6 +973,7 @@ Date & Time & Stock Value & Should Sell \\ \hline
 \end{tabu}
 \vspace{2 mm}
 \caption{SVMSellData}
+\label{fig: Table SVM Sell Data}
 \end{table*}
 
 These tables are then used as input to the SVM learning function that is found as part of the e1071 CRAN library, which contains all set up and query functions for the SVM \cite{Meyer2017}.\\
@@ -928,13 +983,13 @@ The functions `getPeaks' and `getTroughs' function in a similar way to `shouldBu
 \noindent
 Rolling average - Take the highest points over variable length rolling average. \\
 Spikes - Take any point as a peak if both neighbours are lower that that value and the inverse for troughs. \\
-Median - Take the top and bottom X\% of values. 
+Median - Take the top and bottom X\% of values. \\
 
 \subsubsection{Query}
 
 The query function within the e1071 library is very simple, given an SVM that has learnt its separator a function call will return the group that the given point belongs to.
 
-This system is managed within the `shouldBuy' and `shouldSell' functions that were discussed within the statistical methods section. These have been modified so as to retrain and query the `shouldBuySVM' and the `shouldSellSVM' each time that they are called. Firstly one of these functions will be called within the simulation, for simplicity, `shouldBuy' will be used as an example. `shouldBuy' is called, within this function is the call to create and train the SVM associated with this function, namely `shouldBuySVM', this is trained on the dataframe that is shown in table 7. The data within this dataframe has been continuously updated throughout the simulation so as to avoid bulk computation when the SVM is used. This is done by continual calls to the `getPeaks' function on regular intervals. Once the SVM has been trained then it is queried with the latest price for the given stock. This will return a class and then a decision will be made based on the class that has been returned.
+This system is managed within the `shouldBuy' and `shouldSell' functions that were discussed within the statistical methods section. These have been modified so as to retrain and query the `shouldBuySVM' and the `shouldSellSVM' each time that they are called. Firstly one of these functions will be called within the simulation, for simplicity, `shouldBuy' will be used as an example. `shouldBuy' is called, within this function is the call to create and train the SVM associated with this function, namely `shouldBuySVM', this is trained on the dataframe that is shown in table \ref{fig: Table SVM Buy Data}. The data within this dataframe has been continuously updated throughout the simulation so as to avoid bulk computation when the SVM is used. This is done by continual calls to the `getPeaks' function on regular intervals. Once the SVM has been trained then it is queried with the latest price for the given stock. This will return a class and then a decision will be made based on the class that has been returned.
 
 \iffalse
 #################################################################################
@@ -960,60 +1015,94 @@ The statistical methods throughout this paper have been tested in slightly uniqu
 
 \subsection{Technical Overlays}
 
-\noindent
-\textbf{Bollinger Bands} - Buy criteria will be based on percentage values in conjunction with the spread of the upper and lower band, giving an indication of volatility. The sell criteria is purely based on the relationship between the current price and middle band. Single variable of X was tested at X = 20, 15, and 35, with 20 being the default.\\
-\textbf{Chandelier Exit} - The buy criteria is based on the relationship between the current moving average and the stock price at any given moment. The sell criteria is purely based on the conjunction between the long and short values of this overlay. Single variable of X was tested at X = 22, 17, and 27, with 22 being the default.\\
-\textbf{Ichimoku Cloud} - The buy and sell criteria are based on the relationship between the A and B leading span with the other values providing momentum information. This has five variables and was not tested at any other values besides default.\\
-\textbf{KAMA} - Allowing for clear identification of turning points, the buy and sell criteria are based on the difference between the KAMA value and the stock price. This has three variables and was not tested at any other values besides default.\\
-\textbf{Keltner Channels} - Uses the same criteria as Bollinger Bands just with slightly different behaviour due to the differences between them. Takes two variables with default X = 20 and Y = 10, was tested at (15, 10), (25, 10), (20, 5), and (20, 15).\\
-\textbf{Moving Averages} - Both Exponential and Simple moving averages were tested with basic comparison filters to give buy and sell criteria. Takes a single input and has no default, was tested at 5, 10, 15, 20, 25, and 30.\\
-\textbf{Moving Averages Envelopes} - The buy criteria is based on the relationship between stock price and the lower envelope with the sell criteria being the relationship between the stock price and upper envelope. Takes two variables with default X = 20 and Y = 0.025. Tested at (15, 0.025) and (25, 0.025).\\
-\textbf{Parabolic SAR} - Tracking of rising and falling SAR values gives an inference as to the correct time to buy and sell and these have been used as the criteria. This has no variables to be tested.\\
-\textbf{Pivot Points} - The criteria for all three types of pivot point are similar with the only caveat being the number of support and resistance values that are taken into consideration as the buy and sell criteria change along with the value of the pivot point. These were only tested at default configurations.\\
-\textbf{Price Channels} - Buying criteria is based on a moving average value in conjunction with a downward trend. Selling criteria is based purely on an inverting upward trend. Takes a single variable with default value of 20, was then tested at 15 and 25 as well.\\
+\textbf{Bollinger Bands} - Buy criteria will be based on percentage values in conjunction with the spread of the upper and lower band, giving an indication of volatility. The sell criteria is purely based on the relationship between the current price and middle band. Single variable of X was tested at X = 20, 15, and 35, with 20 being the default.
+
+\textbf{Chandelier Exit} - The buy criteria is based on the relationship between the current moving average and the stock price at any given moment. The sell criteria is purely based on the conjunction between the long and short values of this overlay. Single variable of X was tested at X = 22, 17, and 27, with 22 being the default.
+
+\textbf{Ichimoku Cloud} - The buy and sell criteria are based on the relationship between the A and B leading span with the other values providing momentum information. This has five variables and was not tested at any other values besides default.
+
+\textbf{KAMA} - Allowing for clear identification of turning points, the buy and sell criteria are based on the difference between the KAMA value and the stock price. This has three variables and was not tested at any other values besides default.
+
+\textbf{Keltner Channels} - Uses the same criteria as Bollinger Bands just with slightly different behaviour due to the differences between them. Takes two variables with default X = 20 and Y = 10, was tested at (15, 10), (25, 10), (20, 5), and (20, 15).
+
+\textbf{Moving Averages} - Both Exponential and Simple moving averages were tested with basic comparison filters to give buy and sell criteria. Takes a single input and has no default, was tested at 5, 10, 15, 20, 25, and 30.
+
+\textbf{Moving Averages Envelopes} - The buy criteria is based on the relationship between stock price and the lower envelope with the sell criteria being the relationship between the stock price and upper envelope. Takes two variables with default X = 20 and Y = 0.025. Tested at (15, 0.025) and (25, 0.025).
+
+\textbf{Parabolic SAR} - Tracking of rising and falling SAR values gives an inference as to the correct time to buy and sell and these have been used as the criteria. This has no variables to be tested.
+
+\textbf{Pivot Points} - The criteria for all three types of pivot point are similar with the only caveat being the number of support and resistance values that are taken into consideration as the buy and sell criteria change along with the value of the pivot point. These were only tested at default configurations.
+
+\textbf{Price Channels} - Buying criteria is based on a moving average value in conjunction with a downward trend. Selling criteria is based purely on an inverting upward trend. Takes a single variable with default value of 20, was then tested at 15 and 25 as well.
 
 \subsection{Technical Indicators}
 
-\noindent
-\textbf{Aroon} - Buy and sell criteria both based on the relationship between a moving average and the current stock price with conjunction of the trend information provided by the relationship between the up and down values. Single input value tested at 25 (default), 20, and 30.\\
-\textbf{Aroon Oscillator} - Very similar to the Aroon test criteria but instead of using the relationship between up and down only the oscillator value is used. Single input tested at 25 (default), 20, and 30.\\
-\textbf{Average True Range} - Using a moving average with bounded buy and sell criteria, ATR is used to indicate volatility of the price at a given point and this will impact the bounds used. This has not variables that needed to be tested. \\
-\textbf{BandWidth} - Buy and sell are both based on percentage criteria of the bandwidth value as it is an inference of Bollinger Bands. Using Bollinger Bands as a base, this has a single input and was tested at 20 (default), 15, and 25.\\
-\textbf{\%B Indicator} - The same as BandWidth as they are both Bollinger Band derivatives. Both derivatives were tested at the same values as well.\\
-\textbf{Commodity Channel Index} - Percentage criteria for buy and sell using the final CGI value. Taking a single input variable that was tested at 20 (default), 15, and 25. \\
-\textbf{Coppock Curve} - The buy criteria is based on a moving average and the stock price with the sell criteria being based on the sign of the indicator. This takes three variables and was only tested at the default values.\\
-\textbf{DecsionPoint Price Momentum Oscillator} - Using the value of the indicator in conjunction with a moving averages relationship with the stock price; buy is based on the moving averages relationship and not cut short by using the momentum indicator, the same is done in the inverse for sell. This was only tested at the default values.\\
-\textbf{Detrended Price Oscillator} - This was tested and found to have limited use as a single indicator. Takes a single input and was tested at 15, 20, 25, and 30.\\
-\textbf{Mass Index} - The buy and sell criteria are based on the calculation of the current trend and then use the indicator the show a trend reversal before the trend changes. This was tested at default values.\\
-\textbf{Moving Average Convergence/Divergence Oscillator} - Used within the buy and sell criteria in the same was as all other momentum oscillators; in conjunction with a moving average and bounds. This was tested at default values.\\
-\textbf{MACD Histogram} - Used identically to MACD, with the limitation of no inter-value relationship information being available. This was tested at default values. \\
-\textbf{Percentage Price Oscillator} - Percentage bound for buy and sell criteria based on previous values of the PPO. This was tested at default values.\\
-\textbf{Pring's Know Sure Thing} - Another momentum oscillator tested in conjunction with a moving average. This was tested at default values.\\
-\textbf{Pring's Special K} - Using a percentage bound based around past values to give an indication of movement prediction. This was tested at default. \\
-\textbf{Rate of Change and Momentum} - Used in conjunction to a moving average, this most basic momentum oscillator is the foundation for most of the more advance versions and so is tested in the same way. This takes a single input with no default and was tested at 5, 10, 20, 30, 50, and 100.\\
-\textbf{Relative Strength Index} - Using previous values of RSI, bounds are calculated at the upper and lower range of the value 0 to 100 to give an indicator as to when buying and selling should occur. The bounds have an initial value and are changed based on the data. This takes a single input with 10, 20, and 30 being tested.\\
-\textbf{StockCharts Technical Rank} - Using the final value of SCTR, as well as the relationship between individual components, a confidence is calculated with respect to the changing of the price, as well as the direction of the change. This was only tested at default values. \\
-\textbf{Slope} - Using the current slope value over the last set number of data points an inference can be made as to the future direction of the stock price. This projection is then used to indicate buying and selling patterns. Taking a single input, this was tested at 10, 20, and 30.\\
-\textbf{Stochastic Oscillator} - Using the momentum value in conjunction with a moving average, confidence in the projection of price is known and thus buy and sell behaviour is simple. This takes two input values, with defaults (14, 3), this was tested along with (12, 3), (16, 3) and (14,2), (14, 4).\\
-\textbf{StochRSI} - Using the previous values of the indicator upper and lower bounds are calculated to allow for buying and selling behaviour to be inferred. This takes a single input with a default value of 14, this was tested, as was 10, 12, 16, and 18. \\
-\textbf{TRIX} - Using percentage bounds, the current TRIX value is compared to a set of previous TRIX values and decisions on buying and selling are made on this relationship. This takes a single input and was tested at 10, 20, and 30. \\
-\textbf{True Strength Index} - Using percentage bounds based on previous TSI values, buying and selling behaviour is inferred. With two input values, the default (25, 13) was tested. As was (20, 13) and (30, 13).\\
-\textbf{Ulcer Index} - The volatility shown using this indicator is used with regard to bounds initially set over a moving average and altered to reflect the volatility of the market. Taking a single input, with default value 14, 10 and 18 were tested along with the default.\\
-\textbf{Ultimate Oscillator} - The smoothed momentum that this indicator shows is used in addition to a moving average to allow for inference within a trend to show turning points within the data and reduce the possibility of leaving a trend early. This takes three input variables that were tested at (7, 14, 28), (6, 12, 24), and (8, 16, 32), with the first being the default values.\\
-\textbf{Vortex Indicator} - The relationship between the two oscillators calculated is used as trend and momentum information and all behaviours are inferred from these values and their relationship. With single input default value of 14, 10 and 18 were tested as well.\\
-\textbf{Williams \%R} - Used in an identical way to the Stochastic Oscillator, as this is an inference of that. Taking a single input value, along with the default 14, 10, and 18 were also tested.\\
+\textbf{Aroon} - Buy and sell criteria both based on the relationship between a moving average and the current stock price with conjunction of the trend information provided by the relationship between the up and down values. Single input value tested at 25 (default), 20, and 30.
+
+\textbf{Aroon Oscillator} - Very similar to the Aroon test criteria but instead of using the relationship between up and down only the oscillator value is used. Single input tested at 25 (default), 20, and 30.
+
+\textbf{Average True Range} - Using a moving average with bounded buy and sell criteria, ATR is used to indicate volatility of the price at a given point and this will impact the bounds used. This has not variables that needed to be tested. 
+
+\textbf{BandWidth} - Buy and sell are both based on percentage criteria of the bandwidth value as it is an inference of Bollinger Bands. Using Bollinger Bands as a base, this has a single input and was tested at 20 (default), 15, and 25.
+
+\textbf{\%B Indicator} - The same as BandWidth as they are both Bollinger Band derivatives. Both derivatives were tested at the same values as well.
+
+\textbf{Commodity Channel Index} - Percentage criteria for buy and sell using the final CGI value. Taking a single input variable that was tested at 20 (default), 15, and 25.
+
+\textbf{Coppock Curve} - The buy criteria is based on a moving average and the stock price with the sell criteria being based on the sign of the indicator. This takes three variables and was only tested at the default values.
+
+\textbf{DecsionPoint Price Momentum Oscillator} - Using the value of the indicator in conjunction with a moving averages relationship with the stock price; buy is based on the moving averages relationship and not cut short by using the momentum indicator, the same is done in the inverse for sell. This was only tested at the default values.
+
+\textbf{Detrended Price Oscillator} - This was tested and found to have limited use as a single indicator. Takes a single input and was tested at 15, 20, 25, and 30.
+
+\textbf{Mass Index} - The buy and sell criteria are based on the calculation of the current trend and then use the indicator the show a trend reversal before the trend changes. This was tested at default values.
+
+\textbf{Moving Average Convergence/Divergence Oscillator} - Used within the buy and sell criteria in the same was as all other momentum oscillators; in conjunction with a moving average and bounds. This was tested at default values.
+
+\textbf{MACD Histogram} - Used identically to MACD, with the limitation of no inter-value relationship information being available. This was tested at default values. 
+
+\textbf{Percentage Price Oscillator} - Percentage bound for buy and sell criteria based on previous values of the PPO. This was tested at default values.
+
+\textbf{Pring's Know Sure Thing} - Another momentum oscillator tested in conjunction with a moving average. This was tested at default values.
+
+\textbf{Pring's Special K} - Using a percentage bound based around past values to give an indication of movement prediction. This was tested at default. 
+
+\textbf{Rate of Change and Momentum} - Used in conjunction to a moving average, this most basic momentum oscillator is the foundation for most of the more advance versions and so is tested in the same way. This takes a single input with no default and was tested at 5, 10, 20, 30, 50, and 100.
+
+\textbf{Relative Strength Index} - Using previous values of RSI, bounds are calculated at the upper and lower range of the value 0 to 100 to give an indicator as to when buying and selling should occur. The bounds have an initial value and are changed based on the data. This takes a single input with 10, 20, and 30 being tested.
+
+\textbf{StockCharts Technical Rank} - Using the final value of SCTR, as well as the relationship between individual components, a confidence is calculated with respect to the changing of the price, as well as the direction of the change. This was only tested at default values.
+
+\textbf{Slope} - Using the current slope value over the last set number of data points an inference can be made as to the future direction of the stock price. This projection is then used to indicate buying and selling patterns. Taking a single input, this was tested at 10, 20, and 30.
+
+\textbf{Stochastic Oscillator} - Using the momentum value in conjunction with a moving average, confidence in the projection of price is known and thus buy and sell behaviour is simple. This takes two input values, with defaults (14, 3), this was tested along with (12, 3), (16, 3) and (14,2), (14, 4).
+
+\textbf{StochRSI} - Using the previous values of the indicator upper and lower bounds are calculated to allow for buying and selling behaviour to be inferred. This takes a single input with a default value of 14, this was tested, as was 10, 12, 16, and 18.
+
+\textbf{TRIX} - Using percentage bounds, the current TRIX value is compared to a set of previous TRIX values and decisions on buying and selling are made on this relationship. This takes a single input and was tested at 10, 20, and 30. 
+
+\textbf{True Strength Index} - Using percentage bounds based on previous TSI values, buying and selling behaviour is inferred. With two input values, the default (25, 13) was tested. As was (20, 13) and (30, 13).
+
+\textbf{Ulcer Index} - The volatility shown using this indicator is used with regard to bounds initially set over a moving average and altered to reflect the volatility of the market. Taking a single input, with default value 14, 10 and 18 were tested along with the default.
+
+\textbf{Ultimate Oscillator} - The smoothed momentum that this indicator shows is used in addition to a moving average to allow for inference within a trend to show turning points within the data and reduce the possibility of leaving a trend early. This takes three input variables that were tested at (7, 14, 28), (6, 12, 24), and (8, 16, 32), with the first being the default values.
+
+\textbf{Vortex Indicator} - The relationship between the two oscillators calculated is used as trend and momentum information and all behaviours are inferred from these values and their relationship. With single input default value of 14, 10 and 18 were tested as well.
+
+\textbf{Williams \%R} - Used in an identical way to the Stochastic Oscillator, as this is an inference of that. Taking a single input value, along with the default 14, 10, and 18 were also tested.
 
 \subsection{Support Vector Machines}
 
-The first part of the testing of the support vector machine, or SVM, was to perform a search over variable space to find the best variables to use for testing. The variables that needed to be tested consist of the data manipulation to start with, then the kernel that was to be used, as well as degree, C, and gamma, which are inputs to the function. These are all used within each of the SVMs, each of which are since class classifiers. 
+The first part of the testing of the support vector machine, or SVM, was to perform a search over variable space to find the best variables to use for testing. The variables that need to be tested consist of the data manipulation to start with, then the kernel that was to be used, as well as degree, C, and gamma, which are inputs to the function. These are all used within each of the SVMs, each of which are since class classifiers. 
 
 Data manipulation was split into differentiation, rolling average, spikes, and median. All discussed in section C.1. The kernel choice, also discussed in section C.1, is between a linear kernel, polynomial kernel, sigmoid function, and a radial basis function. These are all available through the e1071 library \cite{Meyer2017}. The degree, C value, and gamma are all searched via the library's built in grid search function. 
 
 \subsection{Results}
 
+This section shows the best results that could be achieved within three sections of the paper. The first section would be a purely statistical method used alone. The second is a conjunction of two or more statistical methods. The third is any formulation of support vector machine. These are shown in tables \ref{fig: Table Individual Results}, \ref{fig: Table Conjunction Results}, and \ref{fig: Table SVM Results}, respectively.
+
 \begin{table*}
 \centering
-\label{units}
 \begin{tabu}{ |p{4cm}|p{4cm}|p{4cm}|}\hline\hline
 Method & Parameters & Result \\ \hline
 Parabolic SAR & Default & 8.94\% \\ \hline
@@ -1029,11 +1118,11 @@ Pivot Points & Default & 2.19\% \\ \hline
 \end{tabu}
 \vspace{2 mm}
 \caption{Top 10 Individual Results}
+\label{fig: Table Individual Results}
 \end{table*}
 
 \begin{table*}
 \centering
-\label{units}
 \begin{tabu}{ |p{4cm}|p{4cm}|p{4cm}|}\hline\hline
 Methods & Parameters & Result \\ \hline
 MACD + KAMA & Default, Default & 11.39\% \\ \hline
@@ -1049,19 +1138,20 @@ Bollinger Bands + Pivot Points & 25, Default &  6.02\%\\ \hline
 \end{tabu}
 \vspace{2 mm}
 \caption{Top 10 Conjunction Results}
+\label{fig: Table Conjunction Results}
 \end{table*}
 
 \begin{table*}
 \centering
-\label{units}
 \begin{tabu}{ |p{4cm}|p{4cm}|p{4cm}|}\hline\hline
 Method & Parameters & Result \\ \hline
-SVM & Rolling Average + Sigmoid Function & 18.41\% \\ \hline
+SVM & Differentiation + Sigmoid Function & 18.41\% \\ \hline
 SVM & Median + Sigmoid Function & 17.98\% \\ \hline
-SVM & Differentiation + Sigmoid Function & 16.17\% \\ \hline
+SVM & Rolling Average + Sigmoid Function & 16.17\% \\ \hline
 \end{tabu}
 \vspace{2 mm}
 \caption{Top Three Support Vector Machine Results}
+\label{fig: Table SVM Results}
 \end{table*}
 
 \iffalse
@@ -1080,23 +1170,21 @@ This section summarises the main points of this paper.  Do not replicate the abs
 - stop and put? \\
 \fi
 
-This section will outline the trends seen within the results that this paper has found and will also discuss the possible routes that could be taken if this project was to be extended.
+This section outlines the trends seen within the results that this paper has found and will also discuss the possible routes that could be taken if this project was to be extended.
 
-\subsection*{Trends}
+\subsection{Trends}
 
-As the results so clearly show in table X it is very possible to outstrip the target set by a typical high street bank, using only statistical methodology. The table also shows a clear bias towards functions that base their methodology around the identification of the end of trends and the resultant information that is provided. This is a general trend however as their a several that are not based around this idea. Instead they are complete packages that calculate momentum and trend information and use it within either long reaching or complex systems. 
-Another trend is seen within table XI, the conjunction of a method based around the identification of trends and another method based around more complex moving averages give very promising results. 
-The final results table, XII, gives a clear indication as to the direction that the research should take. The benefits of machine learning within this context cannot be overstated. The results of the best of the SVM tests clearly shows that statistical methods have a place within this field, it is just relegated to data manipulation to help improve the input for machine learning techniques.\\
+As the results in Table \ref{fig: Table Individual Results} so clearly show it is very possible to outstrip the target set by a typical high street bank, using only statistical methodology. The table also shows a clear bias towards functions that base their methodology around the identification of the end of trends and the resultant information that is provided. This is a general trend however as there are several that are not based around this idea. Instead they are complete packages that calculate momentum and trend information and use it within either long reaching or complex systems. 
+Another trend is seen within Table \ref{fig: Table Conjunction Results}, the conjunction of a method based around the identification of trends and another method based around more complex moving averages give very promising results. 
+The final results in Table \ref{fig: Table SVM Results} gives a clear indication as to the direction that the research should take. The benefits of machine learning within this context cannot be overstated. The results of the best of the SVM tests clearly shows that statistical methods have a place within this field, it is just relegated to data manipulation to help improve the input for machine learning techniques.\\
 
-\subsection*{Extension}
+\subsection{Extension}
 
-If this project was to be extended the first change that would be made would be data with a finer granularity. The data used in this paper was limited by the financial aspect of data acquisition, the paper and its findings were not hindered in this but it was a known limiting factor. Another data extension that should be considered is using live data. This would be data that is periodically taken from a stock exchange to give a more realistic approach to live trading. Maintaining that statistical methods are useful and will be needed no matter how advance the projects machine learning techniques become the number of data manipulation and extraction techniques that would be tested would be increased, this is an open ended task as no data would be perfect. The final extension would be to test a wider range of machine learning techniques. The use of neural networks within contemporary computer science is significant and this would be an obvious next step for this paper.
+An extension to this project that would be a boon to the testing would be data with a finer granularity. The data used in this paper was limited by the financial aspect of data acquisition, the paper and its findings were not hindered in this but it was a known limiting factor. Another data extension that should be considered is using live data. This would be data that is periodically taken from a stock exchange to provide a more realistic approach to live trading. We maintain that statistical methods are useful and will be needed no matter how advanced the project's machine learning techniques become. The number of data manipulation and extraction techniques that would be tested would be increased, this is an open ended task as no data would be perfect. The final extension would be to test a wider range of machine learning techniques. The use of deep learning within contemporary computer science is significant and this would be an obvious next step for this area.
 
 \iffalse
 #################################################################################
 \fi
-
-\section{References}
 
 \bibliography{references}
 

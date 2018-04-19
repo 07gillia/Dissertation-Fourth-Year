@@ -18,7 +18,7 @@ sprintf("The working directory is : %s", getwd())
 
 # Set a source file for the functions
 source("functions.R")
-#source("graphs.R")
+source("graphs.R")
 
 # Weird timezone settings
 Sys.setenv(TZ="Europe/London")
@@ -126,6 +126,8 @@ stock_tracker = c()
 # random_time = sample(time_vec$TIME,1)
 # test_vec = subset(Data, DATE==random_day, select=random_stock)
 
+graphs.plot_this()
+
 ####################################################################
 # Iterate through each row
 
@@ -228,6 +230,8 @@ sprintf("The time taken: %f", time.taken)
 ####################################################################
 
 #graphs.plot(Ledger)
+
+print(stock_tracker)
 
 print(Ledger)
 
