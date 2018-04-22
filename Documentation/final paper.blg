@@ -5,45 +5,45 @@ The style file: agsm.bst
 Database file #1: references.bib
 Warning--empty publisher in Elder2002
 Warning--empty publisher in Kleinman2005
-You've used 34 entries,
+You've used 36 entries,
             2909 wiz_defined-function locations,
-            873 strings with 9846 characters,
-and the built_in function-call counts, 112201 in all, are:
-= -- 17941
-> -- 1517
+            886 strings with 10333 characters,
+and the built_in function-call counts, 117185 in all, are:
+= -- 18739
+> -- 1565
 < -- 0
-+ -- 8337
-- -- 455
-* -- 9415
-:= -- 23068
-add.period$ -- 34
-call.type$ -- 34
-change.case$ -- 465
-chr.to.int$ -- 34
-cite$ -- 36
-duplicate$ -- 571
-empty$ -- 1112
-format.name$ -- 560
-if$ -- 20079
++ -- 8697
+- -- 469
+* -- 9807
+:= -- 24132
+add.period$ -- 36
+call.type$ -- 36
+change.case$ -- 493
+chr.to.int$ -- 36
+cite$ -- 38
+duplicate$ -- 593
+empty$ -- 1164
+format.name$ -- 578
+if$ -- 20959
 int.to.chr$ -- 5
 int.to.str$ -- 0
 missing$ -- 45
-newline$ -- 107
-num.names$ -- 349
-pop$ -- 198
+newline$ -- 115
+num.names$ -- 369
+pop$ -- 216
 preamble$ -- 1
-purify$ -- 510
+purify$ -- 540
 quote$ -- 0
-skip$ -- 445
+skip$ -- 465
 stack$ -- 0
-substring$ -- 25011
-swap$ -- 96
-text.length$ -- 476
+substring$ -- 26111
+swap$ -- 98
+text.length$ -- 504
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 112
+type$ -- 120
 warning$ -- 2
-while$ -- 755
+while$ -- 797
 width$ -- 0
-write$ -- 431
+write$ -- 455
 (There were 2 warnings)
