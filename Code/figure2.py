@@ -19,18 +19,18 @@ a = float('nan')
 peaks = []
 troughs = []
 
-for x in range(1,5001):
+for x in range(1,55001):
 	peaks.append(a)
 	troughs.append(a)
 
-for x in range(5000,(len(dataframe['DATETIME'])-1)):
+for x in range(55000,(len(dataframe['DATETIME'])-1)):
 
-	stock_price = float(dataframe.iloc[x, 11])
-	previous_stock_price = float(dataframe.iloc[(x-1),11])
-	next_stock_price = float(dataframe.iloc[(x+1),11])
+	stock_price = float(dataframe.iloc[x, 17])
+	previous_stock_price = float(dataframe.iloc[(x-1),17])
+	next_stock_price = float(dataframe.iloc[(x+1),17])
 
 	start = x - 2490
-	data = dataframe.iloc[start:x,11]
+	data = dataframe.iloc[start:x,17]
 
 	average_price = float(np.mean(data))
 
@@ -64,15 +64,17 @@ dataframe['peaks'] = peaks
 dataframe['troughs'] = troughs
 
 DATETIMES = dataframe['DATETIME'].tolist()
+stockPrice = dataframe['DD'].tolist()
 
 # print(dataframe)
 
-plt.scatter(DATETIMES, peaks, color='b')
-plt.scatter(DATETIMES, troughs, color='r')
+plt.plot(DATETIMES, stockPrice, color='g')
+plt.scatter(DATETIMES, peaks, s=2, color='b')
+plt.scatter(DATETIMES, troughs, s=2, color='r')
 
-plt.legend(['Sell Points', 'Buy Points'], loc='upper left')
+plt.legend(['Sell Points', 'Sell Points', 'Buy Points'], loc='upper left')
 
-plt.suptitle('BAC SVM Input Classes')
+plt.suptitle('DD SVM Results')
 plt.xlabel('Time')
 plt.ylabel('Stock Price (£)')
 plt.savefig("figure.pdf", bbox_inches='tight')

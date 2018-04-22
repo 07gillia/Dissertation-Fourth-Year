@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.12.6)  21 APR 2018 14:25
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.12.6)  22 APR 2018 10:22
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -403,35 +403,42 @@ Underfull \hbox (badness 2846) in paragraph at lines 314--314
 []\OT1/ptm/m/n/8 Row Data, Date, Time, Stock,
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 363--364
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 369--370
-
- []
-
 [5 <./AA.pdf> <./AMAT.pdf
 
 pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./AMAT.pdf): PDF inclusion: 
 multiple pdfs with page group included in a single page
->]
-Underfull \hbox (badness 1596) in paragraph at lines 371--372
-[]\OT1/ptm/b/n/10 Bollinger Bands \OT1/ptm/m/n/10 - ([]Bollinger[] 1992) - De-v
-el-oped by
+>] <HDDayBollinger.pdf, id=246, 517.73424pt x 428.41054pt>
+File: HDDayBollinger.pdf Graphic file (type pdf)
+
+<use HDDayBollinger.pdf>
+Package pdftex.def Info: HDDayBollinger.pdf used on input line 368.
+(pdftex.def)             Requested size: 258.0pt x 213.4922pt.
+
+Overfull \hbox (6.0pt too wide) in paragraph at lines 368--369
+[][] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 371--372
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+<HDDayMACD.pdf, id=247, 517.73424pt x 428.41054pt>
+File: HDDayMACD.pdf Graphic file (type pdf)
+ <use HDDayMACD.pdf>
+Package pdftex.def Info: HDDayMACD.pdf used on input line 374.
+(pdftex.def)             Requested size: 258.0pt x 213.4922pt.
+
+Overfull \hbox (6.0pt too wide) in paragraph at lines 374--375
+[][] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 383--384
 
  []
 
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 374.
 
-Underfull \hbox (badness 10000) in paragraph at lines 373--378
+Underfull \hbox (badness 10000) in paragraph at lines 385--386
 
  []
 
@@ -440,58 +447,36 @@ Underfull \hbox (badness 10000) in paragraph at lines 373--378
 pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./MCD.pdf): PDF inclusion: m
 ultiple pdfs with page group included in a single page
 >]
-Underfull \hbox (badness 10000) in paragraph at lines 383--385
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 388.
+
+Underfull \hbox (badness 10000) in paragraph at lines 387--392
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 386--391
+Underfull \hbox (badness 10000) in paragraph at lines 397--399
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 396--398
+Underfull \hbox (badness 10000) in paragraph at lines 400--405
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 399--406
+Underfull \hbox (badness 10000) in paragraph at lines 410--412
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 411--413
+Underfull \hbox (badness 10000) in paragraph at lines 413--420
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 425--427
 \OT1/ptm/b/n/10 Kaufman's Adap-tive Mov-ing Av-er-age (KAMA) \OT1/ptm/m/n/10 -
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 411--413
-
- []
-
-
-Underfull \hbox (badness 3568) in paragraph at lines 414--418
-\OT1/ptm/m/n/10 Change = Ab-so-lute Value(Close(Now) - Clo-s-eX-Pe-ri-od-
- []
-
-
-Underfull \hbox (badness 4859) in paragraph at lines 414--418
-\OT1/ptm/m/n/10 Volatility = Sum(Absolute Value(Close - Clo-s-eX-Perid-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 414--418
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 419--421
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 422--424
-
  []
 
 
@@ -500,263 +485,282 @@ Underfull \hbox (badness 10000) in paragraph at lines 425--427
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 428--430
+Underfull \hbox (badness 3568) in paragraph at lines 428--432
+\OT1/ptm/m/n/10 Change = Ab-so-lute Value(Close(Now) - Clo-s-eX-Pe-ri-od-
+ []
+
+
+Underfull \hbox (badness 4859) in paragraph at lines 428--432
+\OT1/ptm/m/n/10 Volatility = Sum(Absolute Value(Close - Clo-s-eX-Perid-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 428--432
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 435--437
+Underfull \hbox (badness 10000) in paragraph at lines 433--435
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 438--442
+Underfull \hbox (badness 10000) in paragraph at lines 436--438
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 447--449
+Underfull \hbox (badness 10000) in paragraph at lines 439--441
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 450--454
+Underfull \hbox (badness 10000) in paragraph at lines 442--444
+
+ []
+
+[7 <./HDDayBollinger.pdf> <./HDDayMACD.pdf
+
+pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./HDDayMACD.pdf): PDF inclus
+ion: multiple pdfs with page group included in a single page
+>]
+Underfull \hbox (badness 10000) in paragraph at lines 449--451
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 459--461
+Underfull \hbox (badness 10000) in paragraph at lines 452--456
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 462--466
+Underfull \hbox (badness 10000) in paragraph at lines 461--463
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 471--473
+Underfull \hbox (badness 10000) in paragraph at lines 464--468
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 477--480
+Underfull \hbox (badness 10000) in paragraph at lines 473--475
 
  []
 
-[7]
-Underfull \hbox (badness 10000) in paragraph at lines 481--483
+
+Underfull \hbox (badness 10000) in paragraph at lines 476--480
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 485--487
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 491--494
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 495--497
 \OT1/ptm/m/n/10 SAR = SAR$[]$ + AF$[]$(EP$[]$ -
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 481--483
+Underfull \hbox (badness 10000) in paragraph at lines 495--497
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 487--489
+Underfull \hbox (badness 10000) in paragraph at lines 501--503
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 490--492
+Underfull \hbox (badness 10000) in paragraph at lines 504--506
 \OT1/ptm/m/n/10 SAR = SAR$[]$ - AF$[]$(EP$[]$ -
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 490--492
+Underfull \hbox (badness 10000) in paragraph at lines 504--506
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 493--495
+Underfull \hbox (badness 10000) in paragraph at lines 507--509
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 500--502
+Underfull \hbox (badness 10000) in paragraph at lines 514--516
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 503--510
+Underfull \hbox (badness 10000) in paragraph at lines 517--524
 
  []
 
 
-Underfull \hbox (badness 5548) in paragraph at lines 511--516
+Underfull \hbox (badness 5548) in paragraph at lines 525--530
 \OT1/ptm/m/n/10 Denmark Pivot Points. These are the most com-plex
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 511--516
+Underfull \hbox (badness 10000) in paragraph at lines 525--530
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 517--522
+Underfull \hbox (badness 10000) in paragraph at lines 531--536
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 523--532
+Underfull \hbox (badness 10000) in paragraph at lines 537--546
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 537--539
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 540--545
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 554--555
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 556--557
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 558--562
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 567--571
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 576--578
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 579--584
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 585--587
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 588--590
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 595--599
-
- []
-
-
-Underfull \hbox (badness 2150) in paragraph at lines 604--608
-\OT1/ptm/m/n/10 deriva-tive, %B in-di-ca-tor gives an in-di-ca-tion as to the
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 604--608
+Underfull \hbox (badness 10000) in paragraph at lines 551--553
 
  []
 
 [8]
-Underfull \hbox (badness 10000) in paragraph at lines 613--615
+Underfull \hbox (badness 10000) in paragraph at lines 554--559
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 616--618
+Underfull \hbox (badness 10000) in paragraph at lines 568--569
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 619--622
+Underfull \hbox (badness 10000) in paragraph at lines 570--571
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 623--626
+Underfull \hbox (badness 10000) in paragraph at lines 572--576
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 631--633
+Underfull \hbox (badness 10000) in paragraph at lines 581--585
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 634--637
+Underfull \hbox (badness 10000) in paragraph at lines 590--592
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 593--598
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 599--601
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 602--604
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 609--613
+
+ []
+
+
+Underfull \hbox (badness 2150) in paragraph at lines 618--622
+\OT1/ptm/m/n/10 deriva-tive, %B in-di-ca-tor gives an in-di-ca-tion as to the
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 618--622
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 627--629
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 630--632
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 633--636
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 637--640
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 645--647
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 648--651
 \OT1/ptm/m/n/10 Coppock Curve = Weight-ed-Movin-gAv-er-age(X,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 634--637
+Underfull \hbox (badness 10000) in paragraph at lines 648--651
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 642--644
+Underfull \hbox (badness 10000) in paragraph at lines 656--658
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 645--650
+Underfull \hbox (badness 10000) in paragraph at lines 659--664
 \OT1/ptm/m/n/10 Custom Smooth-ing Func-tion = Close - Smooth-ing
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 645--650
+Underfull \hbox (badness 10000) in paragraph at lines 659--664
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 655--657
+Underfull \hbox (badness 10000) in paragraph at lines 669--671
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 658--660
+Underfull \hbox (badness 10000) in paragraph at lines 672--674
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 665--667
+Underfull \hbox (badness 10000) in paragraph at lines 679--681
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 668--673
+Underfull \hbox (badness 10000) in paragraph at lines 682--687
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 678--680
+[9]
+Underfull \hbox (badness 10000) in paragraph at lines 692--694
 \OT1/ptm/b/n/10 MACD (Mov-ing Av-er-age Con-ver-gence/Divergence
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 678--680
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 681--684
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 689--691
-
  []
 
 
@@ -765,182 +769,182 @@ Underfull \hbox (badness 10000) in paragraph at lines 692--694
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 699--701
+Underfull \hbox (badness 10000) in paragraph at lines 695--698
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 702--706
+Underfull \hbox (badness 10000) in paragraph at lines 703--705
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 711--713
+Underfull \hbox (badness 10000) in paragraph at lines 706--708
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 714--721
+Underfull \hbox (badness 10000) in paragraph at lines 713--715
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 726--728
+Underfull \hbox (badness 10000) in paragraph at lines 716--720
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 729--742
-
- []
-
-[9]
-Underfull \hbox (badness 10000) in paragraph at lines 747--749
+Underfull \hbox (badness 10000) in paragraph at lines 725--727
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 750--752
+Underfull \hbox (badness 10000) in paragraph at lines 728--735
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 757--759
+Underfull \hbox (badness 10000) in paragraph at lines 740--742
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 760--763
+Underfull \hbox (badness 10000) in paragraph at lines 743--756
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 768--770
+Underfull \hbox (badness 10000) in paragraph at lines 761--763
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 771--775
+Underfull \hbox (badness 10000) in paragraph at lines 764--766
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 776--780
+Underfull \hbox (badness 10000) in paragraph at lines 771--773
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 781--785
+Underfull \hbox (badness 10000) in paragraph at lines 774--777
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 790--792
+Underfull \hbox (badness 10000) in paragraph at lines 782--784
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 797--799
+Underfull \hbox (badness 10000) in paragraph at lines 785--789
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 800--804
+Underfull \hbox (badness 10000) in paragraph at lines 790--794
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 809--811
+Underfull \hbox (badness 10000) in paragraph at lines 795--799
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 812--815
+Underfull \hbox (badness 10000) in paragraph at lines 804--806
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 820--822
+Underfull \hbox (badness 10000) in paragraph at lines 811--813
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 823--828
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 833--835
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 836--842
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 843--849
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 850--853
+Underfull \hbox (badness 10000) in paragraph at lines 814--818
 
  []
 
 [10]
-Underfull \hbox (badness 10000) in paragraph at lines 858--860
+Underfull \hbox (badness 10000) in paragraph at lines 823--825
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 861--866
+Underfull \hbox (badness 10000) in paragraph at lines 826--829
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 834--836
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 837--842
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 847--849
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 850--856
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 857--863
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 864--867
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 872--874
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 875--880
 \OT1/ptm/m/n/10 Percent-Drawdown = ((Close - Max Close over X
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 861--866
+Underfull \hbox (badness 10000) in paragraph at lines 875--880
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 871--873
+Underfull \hbox (badness 10000) in paragraph at lines 885--887
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 874--877
+Underfull \hbox (badness 10000) in paragraph at lines 888--891
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 878--882
+Underfull \hbox (badness 10000) in paragraph at lines 892--896
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 883--886
+Underfull \hbox (badness 10000) in paragraph at lines 897--900
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 891--893
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 894--898
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 899--903
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 904--907
+Underfull \hbox (badness 10000) in paragraph at lines 905--907
 
  []
 
@@ -950,71 +954,94 @@ Underfull \hbox (badness 10000) in paragraph at lines 908--912
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 913--915
+Underfull \hbox (badness 10000) in paragraph at lines 913--917
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 916--918
+Underfull \hbox (badness 10000) in paragraph at lines 918--921
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 923--925
+Underfull \hbox (badness 10000) in paragraph at lines 922--926
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 926--929
+Underfull \hbox (badness 10000) in paragraph at lines 927--929
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 947--949
+Underfull \hbox (badness 10000) in paragraph at lines 930--932
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 937--939
 
  []
 
 [11]
-Underfull \hbox (badness 10000) in paragraph at lines 979--980
+Underfull \hbox (badness 10000) in paragraph at lines 940--943
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 981--982
+Underfull \hbox (badness 10000) in paragraph at lines 961--963
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 983--987
+Underfull \hbox (badness 10000) in paragraph at lines 993--994
 
  []
 
+<Poster/SVMBuyPoints.pdf, id=418, 498.5689pt x 428.41054pt>
+File: Poster/SVMBuyPoints.pdf Graphic file (type pdf)
 
-Underfull \hbox (badness 1688) in paragraph at lines 992--993
+<use Poster/SVMBuyPoints.pdf>
+Package pdftex.def Info: Poster/SVMBuyPoints.pdf used on input line 1005.
+(pdftex.def)             Requested size: 258.0pt x 221.69615pt.
+
+Overfull \hbox (6.0pt too wide) in paragraph at lines 1005--1006
+[][] 
+ []
+
+
+Underfull \hbox (badness 1688) in paragraph at lines 1014--1015
 []\OT1/ptm/m/n/10 This sys-tem is man-aged within the `should-Buy' and
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 1014--1015
+[12 <./Poster/SVMBuyPoints.pdf>]
+Underfull \hbox (badness 10000) in paragraph at lines 1036--1037
 
  []
 
+[13] [14] <SVMResults.pdf, id=477, 518.22508pt x 428.41054pt>
+File: SVMResults.pdf Graphic file (type pdf)
 
-Underfull \vbox (badness 1424) has occurred while \output is active []
+<use SVMResults.pdf>
+Package pdftex.def Info: SVMResults.pdf used on input line 1129.
+(pdftex.def)             Requested size: 258.0pt x 213.28302pt.
 
- [12]
-[13]
-Underfull \hbox (badness 5446) in paragraph at lines 1118--1118
+Overfull \hbox (6.0pt too wide) in paragraph at lines 1129--1130
+[][] 
+ []
+
+
+Underfull \hbox (badness 5446) in paragraph at lines 1148--1148
 []\OT1/ptm/m/n/8 DecisionPoint Price Mo-men-tum
  []
 
 
-Underfull \hbox (badness 5771) in paragraph at lines 1138--1138
+Underfull \hbox (badness 5771) in paragraph at lines 1168--1168
 []\OT1/ptm/m/n/8 StockCharts Tech-ni-cal Rank +
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1177--1180
+Underfull \hbox (badness 10000) in paragraph at lines 1207--1210
 
  []
 
@@ -1024,13 +1051,10 @@ Underfull \hbox (badness 1533) in paragraph at lines 23--26
 /it/8 Stocks & Com-modi-ties
  []
 
-[14]
-Underfull \vbox (badness 1852) has occurred while \output is active []
+[15 <./SVMResults.pdf>]
+Underfull \vbox (badness 2644) has occurred while \output is active []
 
-
-Underfull \vbox (badness 1852) has occurred while \output is active []
-
- [15])
+ [16])
 
 ** Conference Paper **
 Before submitting the final camera ready copy, remember to:
@@ -1042,14 +1066,14 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the appropriate paper size.
 
-[16
+[17
 
 ] (./final paper.aux) ) 
 Here is how much of TeX's memory you used:
- 3489 strings out of 493014
- 55056 string characters out of 6133351
- 138492 words of memory out of 5000000
- 6999 multiletter control sequences out of 15000+600000
+ 3514 strings out of 493014
+ 55541 string characters out of 6133351
+ 137529 words of memory out of 5000000
+ 7019 multiletter control sequences out of 15000+600000
  39904 words of font info for 73 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  38i,14n,23p,4318b,380s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1063,10 +1087,10 @@ fb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb>
 /texlive/2016/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/local/texlive/
 2016/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2016/texmf
 -dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on "final paper.pdf" (16 pages, 1145093 bytes).
+Output written on "final paper.pdf" (17 pages, 1651236 bytes).
 PDF statistics:
- 382 PDF objects out of 1000 (max. 8388607)
- 109 compressed objects within 2 object streams
+ 565 PDF objects out of 1000 (max. 8388607)
+ 134 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
- 41 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 61 words of extra memory for PDF output out of 10000 (max. 10000000)
 

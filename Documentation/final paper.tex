@@ -118,9 +118,9 @@ The papers that are based in this field, and are available, are focused on stati
 
 This results in a juxtaposition of copious amounts of research into the statistical methods that are available and their reasoning, with a significant paradigm shift into the research that is based around machine learning in this context.
 
-The most useful piece of research for the statistical methods is \cite{Murphy1999}. This book is a compendium of trading strategies that were used in the time period of 1950 to 1980, there is also ample detail on market analysis and any human readable charts that can be used within a trading scenario, whilst also giving details of the philosophy behind the trading. It also compares the use of computerised aids within a financial market with a purely human system. Electronic and Algorithmic Trading Technology \cite{Kim2007} contains multiple strategies and specific statistical methods that are useful within this context. It also shows a significant amount of detail about the surrounding systems, for example matching software that is used within a stock exchange that is not relevant. Written more from the view of a stock exchange significant time and detail is given to the automation of`order flow' or the matching of buying and selling parties within a stock exchange. Trading Commodities and Financial Futures \cite{Kleinman2005} is written very much for a human trader to learn from. With sections on psychology of trading and the history of trading being indicative of this. The techniques used can also be applied within computerised finance and are discussed in great depth. `Dark markets asset pricing and information transmission in over-the-counter markets' \cite{Duffie2012} contains very little in the way of strategies but is useful to give a wider picture of the world surrounding trading and the legal aspects of it. The data aspect that is touched upon within this book is very useful in giving ideas for the data that is to be used throughout this paper.
+The most useful piece of research for the statistical methods is \cite{Murphy1999}. This book is a compendium of trading strategies that were used in the time period of 1950 to 1980, there is also ample detail on market analysis and any human readable charts that can be used within a trading scenario, whilst also giving details of the philosophy behind the trading. It also compares the use of computerised aids within a financial market with a purely human system. Electronic and Algorithmic Trading Technology \cite{Kim2007} contains multiple strategies and specific statistical methods that are useful within this context. It also shows a significant amount of detail about the surrounding systems, for example matching software that is used within a stock exchange that is not relevant. Written more from the view of a stock exchange, significant time and detail is given to the automation of`order flow' more commonly known as the matching of buying and selling parties within a stock exchange. Trading Commodities and Financial Futures \cite{Kleinman2005} is written very much for a human trader to learn from. With sections on psychology of trading and the history of trading being indicative of this. The techniques used can also be applied within computerised finance and are discussed in great depth. `Dark markets asset pricing and information transmission in over-the-counter markets' \cite{Duffie2012} contains very little in the way of strategies but is useful to give a wider picture of the world surrounding trading and the legal aspects of it. The data aspect that is touched upon within this book is very useful in giving ideas for the data that is to be used throughout this paper.
 
-The limiting factor for papers within this domain is that they are not also within the field of machine learning. Those that fall into both categories are limited in other ways. Some being too general to be of significant use, others being more in line with an academic look at the history of the domain. `Evaluating machine learning classification for financial trading: An empirical approach' \cite{Gerlein2016} is one of the papers that was found to have test results but was limited in that no strategies were provided and very little detail is given about the very basic models that are employed within the paper. The point is made that complex models have downsides and that Occam's Razor may play a role. `Predicting Stock Price Direction using Support Vector Machines' \cite{MadgeAdvisor} is a very relevant paper that provides insight into the predictive powers of an SVM when used in conjunction with momentum and volatility measures. This is limited in that testing was done with very general data and shows very little promise with respect to short term predictions. `Visual knowledge discovery and machine learning for investment strategy' \cite{Wilinski2017} is very useful for detailed information regarding machine learning data manipulation before input but does not specify any details of machine learning, just that it will be used in future. `Buy Low, Sell High: A High Frequency Trading Perspective' \cite{Cartea2014} is based within the world of High Frequency trading and whilst this would be useful to an extension of this paper, we do not take into account market reactions to actions taken within this paper so it is beyond scope.
+The limiting factor for papers within this domain is that they are not within the field of machine learning in addition to being within the domain of computer finance. The inverse can be said for papers within the field of machine learning. Those that fall into both categories are limited in other ways. Some being too general to be of significant use, others being more in line with an academic look at the history of the domain. `Evaluating machine learning classification for financial trading: An empirical approach' \cite{Gerlein2016} is one of the papers that was found to have test results but was limited in that no strategies were provided and very little detail is given about the very basic models that are employed within the paper. The point is made that complex models have downsides and that Occam's Razor may play a role. `Predicting Stock Price Direction using Support Vector Machines' \cite{MadgeAdvisor} is a very relevant paper that provides insight into the predictive powers of an SVM when used in conjunction with momentum and volatility measures. This is limited in that testing was done with very general data and shows very little promise with respect to short term predictions. `Visual knowledge discovery and machine learning for investment strategy' \cite{Wilinski2017} is very useful for detailed information regarding machine learning data manipulation before input but does not specify any details of machine learning, just that it will be used in future. `Buy Low, Sell High: A High Frequency Trading Perspective' \cite{Cartea2014} is based within the world of High Frequency trading and whilst this would be useful to an extension of this paper, we do not take into account market reactions to actions taken within this paper so it is beyond scope.
 
 \iffalse
 #################################################################################
@@ -360,7 +360,21 @@ getTotalGainLoss() & Date, Time, Stock, X &  Over the last X data points get the
 
 \subsection{Statistical Methods}
 
-Once a working simulation had been established and all functions had been shown to be working, statistical methods had to be implemented. These were separated into two groups, the first are called technical overlays, these are methods that provided insight into the data by providing numbers that are on the same scale as the price itself. Whilst technical indicators are the other group and these give insight into the data through numbers that are in no way related to the stock price, and thus allow much more insightful comparisons to be made inter-stock as opposed to intra-stock, that is comparing two stocks is easier if technical indicators are used as opposed to using technical overlays which are very dependant on the stock price and do not translate as well to comparisons between two unique stocks. \\
+Once a working simulation had been established and all functions had been shown to be working, statistical methods had to be implemented. These were separated into two groups, the first are called technical overlays, these are methods that provided insight into the data by providing numbers that are on the same scale as the price itself. Whilst technical indicators are the other group and these give insight into the data through numbers that are in no way related to the stock price, and thus allow much more insightful comparisons to be made inter-stock as opposed to intra-stock, that is comparing two stocks is easier if technical indicators are used as opposed to using technical overlays which are very dependant on the stock price and do not translate as well to comparisons between two unique stocks. 
+
+An example of a technical overlay is the Bollinger Band, the calculation of which will be shown in the following section. This technical overlay, shown in figure \ref{fig:HDDayBollinger}, clearly has an output range that is dictated by the stock price. An example of a technical indicator is the MACD, this will be explained further in the paper. This can be seen in figure \ref{fig:HDDayMACD} and shows that the stock price has no bearing on the final value of the indicator.
+
+\begin{figure}
+\includegraphics[width=0.5\textwidth, angle=0]{HDDayBollinger.pdf}
+\caption{A graph showing the change in the value of Bollinger Bands as the value of the HD stock changes.}
+\label{fig:HDDayBollinger}
+\end{figure}
+
+\begin{figure}
+\includegraphics[width=0.5\textwidth, angle=0]{HDDayMACD.pdf}
+\caption{A graph showing the change in the value of MACD as the value of the HD stock changes.}
+\label{fig:HDDayMACD}
+\end{figure}
 
 \iffalse
 #################################################################################
@@ -368,7 +382,7 @@ Once a working simulation had been established and all functions had been shown 
 
 \subsubsection{Technical Overlays} Defined as a statistical method that is dependant on the price. \\
 
-\textbf{Bollinger Bands} - \cite{Bollinger1992} - Developed by John Bollinger, these are volatility bands placed above and bellow the current stock price and are based on the standard deviation. These are designed to give an indication of how the volatility of a given stock changes over time. For any given stock over a time frame X, the three bands are calculated as such:\\
+\textbf{Bollinger Bands} - \cite{Bollinger1992} - These are volatility bands placed above and bellow the current stock price and are based on the standard deviation. These are designed to give an indication of how the volatility of a given stock changes over time. For any given stock over a time frame X, the three bands are calculated as such:\\
 
 \noindent
 Upper band $=$ Simple Moving Average$(X)$ $+$ (Standard Deviation$(X) * 2$)\\
@@ -409,7 +423,7 @@ Chikou Span or Lagging span = CloseXPeriodsAgo(X) - Default X is 26\\
 \fi
 
 \noindent
-\textbf{Kaufman's Adaptive Moving Average (KAMA)} - \cite{Kaufman1998} - Created by Perry Kaufman, this indicator is designed to remove market noise during volatile periods. It takes three parameters, X, Y, and Z. X is the number of periods that is used by the first step of the calculation, known as the efficiency ratio. This will be shown later. The second is the number of periods for the first and fastest exponential moving average or EMA. Third is the number of periods for the second and slowest EMA. The defaults for these values are (10, 2, 30). \\
+\textbf{Kaufman's Adaptive Moving Average (KAMA)} - \cite{Kaufman1998} - This indicator is designed to remove market noise during volatile periods. It takes three parameters, X, Y, and Z. X is the number of periods that is used by the first step of the calculation, known as the efficiency ratio. This will be shown later. The second is the number of periods for the first and fastest exponential moving average or EMA. Third is the number of periods for the second and slowest EMA. The defaults for these values are (10, 2, 30). \\
 
 \noindent
 Efficiency Ratio = Change/Volatility\\
@@ -469,7 +483,7 @@ Typical values X = 20 and Y = 0.025\\
 \fi
 
 \noindent
-\textbf{Parabolic SAR} - \cite{Wilder1978} - Developed by Welles Wilder. SAR stands for `stop and reverse', this was called a Parabolic Time/Price System. This indicator follows the stock price as the trend is formed, and will then `stop and reverse' when the trend ends, to follow the new trend. This is one of the more complex indicators.\\
+\textbf{Parabolic SAR} - \cite{Wilder1978} - SAR stands for `stop and reverse', this was called a Parabolic Time/Price System. This indicator follows the stock price as the trend is formed, and will then `stop and reverse' when the trend ends, to follow the new trend. This is one of the more complex indicators.\\
 
 \noindent
 In the case of a rising SAR:
@@ -978,12 +992,20 @@ Date & Time & Stock Value & Should Sell \\ \hline
 
 These tables are then used as input to the SVM learning function that is found as part of the e1071 CRAN library, which contains all set up and query functions for the SVM \cite{Meyer2017}.\\
 
-The functions `getPeaks' and `getTroughs' function in a similar way to `shouldBuy' and `shouldSell', they are very tune-able and are able to be changed to very different techniques without having an effect on the main functionality of the simulation. An example of a technique that could be used within these functions is to differentiate. This technique is designed around the idea that data can be modelled as an equation and when the gradient of the line is 0, this is a stationary point, these will either be peaks or troughs. Then the second derivative is used in conjunction with the data either side of the current point to decide if this stationary point is a peak or trough. This is an example of one of the many techniques used. Other techniques used are; \\
+The functions `getPeaks' and `getTroughs' function in a similar way to `shouldBuy' and `shouldSell', they are very tune-able and are able to be changed to very different techniques without having an effect on the main functionality of the simulation. An example of a technique that could be used within these functions is to differentiate. This technique is designed around the idea that data can be modelled as an equation and when the gradient of the line is 0, this is a stationary point, these will either be peaks or troughs. Then the second derivative is used in conjunction with the data either side of the current point to decide if this stationary point is a peak or trough. This is an example of one of the many techniques used. Other techniques used are; 
 
 \noindent
 Rolling average - Take the highest points over variable length rolling average. \\
 Spikes - Take any point as a peak if both neighbours are lower that that value and the inverse for troughs. \\
-Median - Take the top and bottom X\% of values. \\
+Median - Take the top and bottom X\% of values. 
+
+An example of the results of these techniques is shown in figure X, showing the results of the `spikes' technique. 
+
+\begin{figure}
+\includegraphics[width=0.5\textwidth, angle=0]{Poster/SVMBuyPoints.pdf}
+\caption{A graph showing the resulting data of the `spikes' technique used to create the input data for both SVMs.}
+\label{fig:SVMBuyPoints}
+\end{figure}
 
 \subsubsection{Query}
 
@@ -1100,6 +1122,14 @@ Data manipulation was split into differentiation, rolling average, spikes, and m
 \subsection{Results}
 
 This section shows the best results that could be achieved within three sections of the paper. The first section would be a purely statistical method used alone. The second is a conjunction of two or more statistical methods. The third is any formulation of support vector machine. These are shown in tables \ref{fig: Table Individual Results}, \ref{fig: Table Conjunction Results}, and \ref{fig: Table SVM Results}, respectively.
+
+The most successful result is shown in figure \ref{fig:SVMResults}. This shows the points at which the most successful SVM bought and sold this specific stock. This gives an indication as to the success of this algorithm. The reason for the lack of decisions in the first six months is due to this being designated as a learning period and is not within the allotted trading time frame.
+
+\begin{figure}
+\includegraphics[width=0.5\textwidth, angle=0]{SVMResults.pdf}
+\caption{A graph showing the buying and selling points of both SVMs trained on the stock DD, as well as the stock price of DD.}
+\label{fig:SVMResults}
+\end{figure}
 
 \begin{table*}
 \centering
