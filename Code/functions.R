@@ -1094,18 +1094,179 @@ adv.get__R <- function(date, time, stock){
 # Machine Learning - All ML related stuff
 ####################################################################
 
-# create a function that takes in current time, date, and stock
-# then creates a table that has column decision
-# this will mostly be populated with NO
-# for both SVMs
-# but where troughs and peaks exist 
-# it is YES for buy and sell SVMs respectively
-# the functions that decided these peaks and troughs will be the deciding bit
+# Create the data frame for storing the peaks
+SVMBuyData = data.frame(
+	Date = double(),
+	Time = double(),
+	Stock_Value = double(),
+	Should_Buy = logical(),
+    stringsAsFactors=FALSE
+)
 
-# x  <- sample(1:10, 10, replace=TRUE)
-# y  <- sample(1:1000, 10, replace=TRUE)
+SVMSellData = data.frame(
+	Date = double(),
+	Time = double(),
+	Stock_Value = double(),
+	Should_Sell = logical(),
+    stringsAsFactors=FALSE
+)
 
-# svm_model1 <- svm(x,y)
-# summary(svm_model1)
+ml.get_peaks <- function(time, date, stock){
+	# a function that will, given time date and stock use all available data within this stock to make 
+	# a decision about if a given point is a peak or not
+
+	data_to_use = Data[Data$DATE < date & Data$TIME < time,]
+
+	for (i in data_to_use) {
+		# iterate through all available data
+
+		decision = get_differential_peak(i)
+
+		SVMBuyData[nrow(SVMBuyData), ] = c(date, time, data_to_use[data_to_use$DATE = date & data_to_use$TIME = time, stock], decision)
+	}
+
+	return(SVMBuyData)
+}
+
+ml.get_troughs <-function(time, date, stock){
+	# a function that will given time date and stock use all available data within this stock to make
+	# a decison about if a given point is a peak or not
+
+	data_to_use = Data[Data$DATE < date & Data$TIME < time, stock]
+
+	for (i in data_to_use) {
+		# iterate through all available data
+
+		decision = get_differential_trough(i)
+
+		SVMBuyData[nrow(SVMBuyData), ] = c(date, time, data_to_use[data_to_use$DATE = date & data_to_use$TIME = time, stock], decision)
+	}
+
+	return(SVMBuyData)
+}
+
+ml.get_rolling_average_peak <- function(X){
+
+	result = FALSE
+
+	mean = use.get_average(data_to_use)
+
+	for (i in data_to_use) {
+		if(data_to_use[i] > 1.1 * mean){
+			result = TRUE
+		}
+	}
+
+	return(result)
+}
+
+ml.get_rolling_average_trough <- function(X){
+
+	result = FALSE
+
+	mean = use.get_average(data_to_use)
+
+	for (i in data_to_use) {
+		if(data_to_use[i] < 0.9 * mean){
+			result = TRUE
+		}
+	}
+
+	return(result)
+}
+
+ml.get_spikes_peak <- function(X){
+
+	result = FALSE
+
+	for (i in data_to_use) {
+		if(data_to_use[i] > data_to_use[i-1] & data_to_use[i] > data_to_use[i+1]){
+			result = TRUE
+		}
+	}
+
+	return(result)
+}
+
+ml.get_spikes_trough <- function(X){
+
+	result = FALSE
+
+	for (i in data_to_use) {
+		if(data_to_use[i] < data_to_use[i-1] & data_to_use[i] < data_to_use[i+1]){
+			result = TRUE
+		}
+	}
+
+	return(result)
+}
+
+ml.get_differential_peak <- function(X){
+
+	result = FALSE
+
+	for (i in data_to_use) {
+		running_average = average(data_to_use[:i])
+		diff_1 = lm(running_average)
+		diff_2 = lm(diff_1)
+
+		if(diff_1 < 0.05 & diff_2 > 0){
+			result = TRUE
+		}
+	}
+
+	return(result)
+}
+
+ml.get_differential_trough <- function(X){
+
+	result = FALSE
+
+	for (i in data_to_use) {
+		running_average = average(data_to_use[:i])
+		diff_1 = lm(running_average)
+		diff_2 = lm(diff_1)
+
+		if(diff_1 < 0.05 & diff_2 < 0){
+			result = TRUE
+		}
+	}
+
+	return(result)
+}
+
+ml.get_median_peak <- function(X){
+
+	result = FALSE
+
+	range = range(data_to_use)
+
+	max = use.get_max(data_to_use)
+
+	for (i in data_to_use) {
+		if(data_to_use[i] > max - (range * 0.1)){
+			result = TRUE
+		}
+	}
+
+	return(result)
+}
+
+ml.get_median_trough <- function(X){
+
+	result = FALSE
+
+	range = range(data_to_use)
+
+	min = use.get_min(data_to_use)
+
+	for (i in data_to_use) {
+		if(data_to_use[i] < max + (range * 0.1)){
+			result = TRUE
+		}
+	}
+
+	return(result)
+}
 
 ####################################################################
