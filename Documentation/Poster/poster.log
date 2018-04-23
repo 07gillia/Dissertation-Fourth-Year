@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.12.6)  21 APR 2018 14:48
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.12.6)  23 APR 2018 10:03
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1581,7 +1581,7 @@ File: table3.png Graphic file (type png)
  <use table3.png>
 Package pdftex.def Info: table3.png used on input line 186.
 (pdftex.def)             Requested size: 302.64468pt x 47.48805pt.
- (./poster.bbl)
+
 <../HDYearBollinger.pdf, id=23, 506.23816pt x 428.41054pt>
 File: ../HDYearBollinger.pdf Graphic file (type pdf)
 
@@ -1657,22 +1657,22 @@ Package rerunfilecheck Info: File `poster.out' has not changed.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 187.
  ) 
 Here is how much of TeX's memory you used:
- 19917 strings out of 493014
- 369056 string characters out of 6133351
- 497585 words of memory out of 5000000
+ 19914 strings out of 493014
+ 369030 string characters out of 6133351
+ 499723 words of memory out of 5000000
  22967 multiletter control sequences out of 15000+600000
  7109 words of font info for 26 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 56i,20n,79p,756b,1431s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 56i,20n,79p,774b,1431s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb
 ></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmss12.pfb>
-</usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb
-></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
-
-Output written on poster.pdf (1 page, 1660527 bytes).
+</usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></
+usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb><
+/usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
+Output written on poster.pdf (1 page, 1674345 bytes).
 PDF statistics:
- 334 PDF objects out of 1000 (max. 8388607)
- 80 compressed objects within 1 object stream
+ 338 PDF objects out of 1000 (max. 8388607)
+ 83 compressed objects within 1 object stream
  10 named destinations out of 1000 (max. 500000)
  103 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -1,15 +1,12 @@
 This is BibTeX, Version 0.99d (TeX Live 2016)
 Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: poster.aux
-I couldn't open style file harvard.bst
----line 19 of file poster.aux
- : \bibstyle{harvard
- :                  }
-I'm skipping whatever remains of this command
-I found no style file---while reading file poster.aux
+I found no \citation commands---while reading file poster.aux
+I found no \bibdata command---while reading file poster.aux
+I found no \bibstyle command---while reading file poster.aux
 You've used 0 entries,
             0 wiz_defined-function locations,
-            85 strings with 500 characters,
+            83 strings with 486 characters,
 and the built_in function-call counts, 0 in all, are:
 = -- 0
 > -- 0
@@ -48,4 +45,4 @@ warning$ -- 0
 while$ -- 0
 width$ -- 0
 write$ -- 0
-(There were 2 error messages)
+(There were 3 error messages)

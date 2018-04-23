@@ -388,7 +388,9 @@ An example of a technical overlay is the Bollinger Band, the calculation of whic
 Upper band $=$ Simple Moving Average$(X)$ $+$ (Standard Deviation$(X) * 2$)\\
 Middle band $=$ Simple Moving Average$(X)$\\
 Lower band $=$ Simple Moving Average$(X)$ $-$ (Standard Deviation$(X) * 2$)\\
-The standard time period is 20 days.\\
+The standard time period is 20 days.
+
+The complexity of these calculations is fairly low, with the upper and lower band being equidistant from the middle band. The middle band is a simple moving average from the last 20 days. This meaning that all values for the last 20 days are used to find the mean which is the value of the middle band. Standard deviation is a measure of how much a group of data differs from the mean of this data, in this case the values of the last 20 days. These are then used within the equations stated.\\
 
 \iffalse
 []
@@ -403,20 +405,24 @@ Short = Low(X) + (Average True Range(X) * 3)\\
 \noindent
 The standard time period is 22 days.\\
 
+The calculation of `High(X)' is done by taking the last X days of data and finding the maximum value. The `Low(X)' is calculated by finding the minimum value of the last X days of data. The average true range is shown in significant detail later in the technical indicators section.
+
 \iffalse
 []
 \fi
 
 \noindent
-\textbf{Ichimoku Cloud} - \cite{Murphy1999} - A multifaceted indicator developed by Goichi Hosoda, a Japanese journalist. This is an average based trend identifying indicator based on the standard candlestick charts. This indicator is used as a basis in a number of other theories including Target Price Theory. There are five plots within Ichimoku Cloud.\\
+\textbf{Ichimoku Cloud} - \cite{Murphy1999} - A multifaceted indicator developed by Goichi Hosoda, a Japanese journalist. This is an average based trend identifying indicator based on the standard candlestick charts. A candle stick chart is a method of showing the data for a given period in a graphical format using 4 data values. These are Open, Close, High, and Low. This indicator is used as a basis in a number of other theories including Target Price Theory. There are five plots within Ichimoku Cloud.\\
 
 \noindent
 Using time period X.\\
-Tenkan-sen or Conversion line = (High(X) + Low(X)) / 2  - Default X is 9 \\
-Kijun-sen or Base line = (High(X) + Low(X)) / 2 - Default X is 26 \\
-Senkou Span A or Leading span A = (Conversion Line + Base Line) / 2 \\
-Senkou Span B or Leading span B = (High(X) + Low(X)) / 2 - Default X is 52 \\
-Chikou Span or Lagging span = CloseXPeriodsAgo(X) - Default X is 26\\
+Tenkan-sen or Conversion line = (High(X) + Low(X)) / 2  - Default X is 9 days\\
+Kijun-sen or Base line = (High(X) + Low(X)) / 2 - Default X is 26 days\\
+Senkou Span A or Leading span A = (Conversion Line + Base Line) / 2 days \\
+Senkou Span B or Leading span B = (High(X) + Low(X)) / 2 - Default X is 52 days\\
+Chikou Span or Lagging span = CloseXPeriodsAgo(X) - Default X is 26 days\\
+
+This is a much more complex calculation. `High(X)' and `Low(X)' are straight forward, but their use later in the calculation is more complex. The meaning of `CloseXPeriodsAgo(X)' is to find the final value of the day, X days ago. For example if X is 1, then the final value of the previous day is taken.\\
 
 \iffalse
 []
@@ -427,19 +433,18 @@ Chikou Span or Lagging span = CloseXPeriodsAgo(X) - Default X is 26\\
 
 \noindent
 Efficiency Ratio = Change/Volatility\\
-Change = Absolute Value(Close(Now) - CloseXPeriodsAgo(X)) - Default X is 10 \\
-Volatility = Sum(Absolute Value(Close - CloseXPeridsAgo(X))) - Default X is 1, this sum is done 10 times, for the last 10 changes in price.\\
+Change = Absolute Value(Close() - CloseXPeriodsAgo(X)) - Default X is 10 \\
+Volatility = Sum(Absolute Value(Close() - CloseXPeridsAgo(X))) - Default X is 1, this sum is done 10 times, for the last 10 changes in price.\\
 
 \noindent
-The next stage of KAMA is the calculation of a smoothing constant. \\
+The next stage of KAMA is the calculation of a smoothing constant. 
 
 \noindent
-Smoothing Constant = ((Efficiency Ratio * (fastest SC - slowest SC)) + slowest SC)$^2$\\
+Smoothing Constant (SC) = ((Efficiency Ratio * (fastest SC - slowest SC)) + slowest SC)$^2$\\
+The fastest smoothing constant is the calculation of an exponential moving average for the shortest period of time. The slowest smoothing constant is the EMA of the longest period of time. Typical value are 2 days and 30 days respectively.
 
 \noindent
 Final stage is the use of the previous KAMA value to calculate the next value. \\
-
-\noindent
 New KAMA = Previous KAMA + (Smoothing Constant * (Current Price - Previous KAMA))\\
 
 \iffalse
@@ -453,6 +458,8 @@ New KAMA = Previous KAMA + (Smoothing Constant * (Current Price - Previous KAMA)
 Upper Channel Line = Exponential Moving Average(X) + (2 * Average True Range(Y))\\
 Middle Line = Exponential Moving Average(X)\\
 Lower Channel Line = Exponential Moving Average(X) - (2 * Average True Range(Y))\\ Default X = 20, Y = 10 \\
+
+The exponential moving average function finds the weighted average of the last X days. The weight is dictated by an exponential function with the final values having the most weight.\\
 
 \iffalse
 []
@@ -574,6 +581,8 @@ Aroon Up = ((X - DaysSinceHigh(X))/X) * 100\\
 Aroon Down = ((X - DaysSinceLow(X))/X) * 100\\
 Default value of X = 25.\\
 
+The functions `DaysSinceHigh(X)' and `DaysSinceLow(X)' are used to find the number of days since the stock had value X.
+
 \iffalse
 []
 \fi
@@ -593,14 +602,16 @@ Aroon Oscillator = Aroon Up - Aroon Down\\
 \noindent
 The greatest of:\\
 High(X) - Low(X)\\
-ABS(High(X) - PreviousClose)\\
-ABS(Low(X) - PreviousClose)\\
+AbsoluteValue(High(X) - PreviousClose)\\
+AbsoluteValue(Low(X) - PreviousClose)\\
 
 \noindent
 This was then used in conjunction with the previous true range to calculate the new ATR.\\
 
 \noindent
-New ATR = ((Prev ATR * (X-1)) + TR) / X - Default X is 14 \\
+New ATR = ((Prev ATR * (X-1)) + True Range) / X - Default X is 14 \\
+
+'PreviousClose` is used to find the previous days final value or close.\\
 
 \iffalse
 []
@@ -638,6 +649,8 @@ Default X = 20. Find the sum of the deviation from the average value of the last
 CGI = (Typical Price - X period SMA of Typical Price) / (0.05 * Mean Deviation)//
 Default X = 20.\\
 
+`SUM()' is a function used to find the value of the sum of all components. `ABS()' gives the absolute value.\\
+
 \iffalse
 []
 \fi
@@ -646,8 +659,11 @@ Default X = 20.\\
 \textbf{Coppock Curve} - Developed by Edwin Coppock. Using a Weighted Moving Average as well as a period based Rate Of Change, this simple indicator as been used by many as a sell indicator as the value crosses the positive-negative boundary. It is calculated as the WMA of the ROC plus the ROC over a different period.\\
 
 \noindent
-Coppock Curve = WeightedMovingAverage(X, RateOfChange(Y)) + RateOfChange(Z)\\
+Coppock Curve = WeightedMovingAverage(X, RoC)\\
+RoC = RateOfChange(Y) + RateOfChange(Z)\\
 Default X = 10, Y = 14, Z = 11. \\
+
+`WeightedMovingAverage(X, Y)' gives the weighted moving average of the list Y over X values. `RateOfChange' is a function that is given in significantly more detail further on.
 
 \iffalse
 []
@@ -660,7 +676,7 @@ Default X = 10, Y = 14, Z = 11. \\
 Smoothing Multiplier = (2 / Time period)\\
 Custom Smoothing Function = {Close - Smoothing Function(previous day)} * Smoothing Multiplier + Smoothing Function(previous day) \\
 PMO Line = 20-period Custom Smoothing of (10 * 35-period Custom Smoothing of ( ( (Today's Price/Yesterday's Price) * 100) - 100) )\\
-PMO Signal Line = 10-period EMA of the PMO Line\\
+PMO Signal Line = 10-period Exponential Moving Average of the PMO Line\\
 
 \iffalse
 []
@@ -726,10 +742,10 @@ PPO Histogram: PPO - Signal Line \\
 \textbf{Pring's Know Sure Thing (KST)} - \cite{Pring2002} - Using the smoothed rate of change over four different length periods, this momentum oscillator gives a more well based indication of movement than a typical momentum oscillator. \\
 
 \noindent
-RCMA1 = 10-Period SMA of 10-Period Rate-of-Change \\
-RCMA2 = 10-Period SMA of 15-Period Rate-of-Change \\
-RCMA3 = 10-Period SMA of 20-Period Rate-of-Change \\
-RCMA4 = 15-Period SMA of 30-Period Rate-of-Change \\
+RCMA1 = 10-Period Simple Moving Average of 10-Period Rate-of-Change \\
+RCMA2 = 10-Period Simple Moving Average of 15-Period Rate-of-Change \\
+RCMA3 = 10-Period Simple Moving Average of 20-Period Rate-of-Change \\
+RCMA4 = 15-Period Simple Moving Average of 30-Period Rate-of-Change \\
 KST = (RCMA1 * 1) + (RCMA2 * 2) + (RCMA3 * 3) + (RCMA4 * 4) \\
 Signal Line = 9-period SMA of KST \\
 
@@ -775,6 +791,8 @@ ROC = [(Close - Close n periods ago) / (Close n periods ago)] * 100 \\
 RSI = 100 - (100 / 1 + RS) \\
 RS = Average Gain / Average Loss\\
 
+Average gain is the average number of value increase over a set number of periods. An example is the average gain over the last 14 days would be the average of the amount of increase in value per day for 14 days. The Average Loss is the same but for the amount of decrease in value.\\
+
 \iffalse
 []
 \fi
@@ -812,7 +830,7 @@ Relative Strength Index (RSI) for the last 14 days. Weighting of 5\%. \\
 \textbf{Stochastic Oscillator} - \cite{Murphy1999} - Developed by George C. Lane. A momentum indicator that uses the close data along with the range between the high and low values over a given period to show the current momentum. Lane states; this ``follows the speed or the momentum of price. As a rule, the momentum changes direction before price.'' \\
 
 \noindent
-\%K = (Close - Lowest Low over X)/(Highest High over X - Lowest Low over X) * 100.\\
+\%K = (Close - Low(X))/(High(X) - Low(X)) * 100.\\
 \%D = Simple Moving Average of \%K over Y Periods. \\
 Default value of X is 14. Default value of Y is 3.\\
 
@@ -824,7 +842,7 @@ Default value of X is 14. Default value of Y is 3.\\
 \textbf{StochRSI} - \cite{Chande1994} - Using Relative Strength Index or RSI, StochRSI is a measure of RSI relative to the max range of RSI over a set period. This indicator has a range of 0 to 1 with 0 indicating the lowest point over the period with 1 indicating the highest point over the period.\\
 
 \noindent
-StochRSI = (RSI - Lowest Low RSI over X) / (Highest High RSI over X - Lowest Low RSI over X)\\
+StochRSI = (RSI - Low of RSI over X) / (High of RSI over X - Low of RSI over X)\\
 Default X value is 14.\\
 
 \iffalse
@@ -890,9 +908,9 @@ BP = Close - Min(Low, Prior Close)\\
 TR = Max(High, Prior Close)  -  Min(Low, Prior Close)\\
 
 \noindent
-Average X = (BP Sum over X periods) / (TR Sum over X periods)\\
-Average Y = (BP Sum over Y periods) / (TR Sum over Y periods)\\
-Average Z = (BP Sum over Z periods) / (TR Sum over Z periods)\\
+Average X = (Sum of BP over X periods) / (Sum of TR over X periods)\\
+Average Y = (Sum of BP over Y periods) / (Sum of TR over Y periods)\\
+Average Z = (Sum of BP over Z periods) / (Sum of TR over Z periods)\\
 
 \noindent
 Ultimate Oscillator = 100 * ((4 * Average X)+(2 * Average Y)+Average Z)/(4+2+1)\\
@@ -938,7 +956,7 @@ The crossovers of these two values is then used to identify the start and end of
 \textbf{Williams \%R} - \cite{Murphy1999} - Developed by Larry Williams and based on the Stochastic Oscillator developed by George C. Lane. This is the inverse of the Fast SO as the FSO reflects the relationship between the Close and the Lowest Low over a given period, whilst this reflects the relationship between the Close and the Highest High. This momentum indicator has the same benefits and drawbacks as the Stochastic Oscillator.\\
 
 \noindent
-\%R = (Highest High over X - Close)/(Highest High over X - Lowest Low over X) * -100\\
+\%R = (High(X) - Close)/(High(X) - Low(X)) * -100\\
 Default value of X is 14.\\
 
 \iffalse
