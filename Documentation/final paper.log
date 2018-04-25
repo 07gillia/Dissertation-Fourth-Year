@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.12.6)  24 APR 2018 11:43
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.12.6)  24 APR 2018 15:47
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -462,6 +462,11 @@ Underfull \hbox (badness 10000) in paragraph at lines 403--408
  []
 
 
+Underfull \hbox (badness 10000) in paragraph at lines 409--410
+
+ []
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 415--417
 
  []
@@ -710,12 +715,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 645--648
 
  []
 
-
+[9]
 Underfull \hbox (badness 10000) in paragraph at lines 649--652
 
  []
 
-[9]
+
 Underfull \hbox (badness 10000) in paragraph at lines 653--654
 
  []
@@ -727,6 +732,16 @@ Underfull \hbox (badness 10000) in paragraph at lines 659--661
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 662--666
+
+ []
+
+
+Underfull \hbox (badness 7740) in paragraph at lines 667--668
+[]\OT1/ptm/m/n/10 `WeightedMovingAverage(X, Y)' gives the weighted
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 667--668
 
  []
 
@@ -920,7 +935,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 883--886
 
  []
 
-
+[11]
 Underfull \hbox (badness 10000) in paragraph at lines 891--893
 
  []
@@ -935,7 +950,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 894--899
 
  []
 
-[11]
+
 Underfull \hbox (badness 10000) in paragraph at lines 904--906
 
  []
@@ -1037,6 +1052,9 @@ Underfull \hbox (badness 10000) in paragraph at lines 1055--1056
  []
 
 [13 <./Poster/SVMBuyPoints.pdf>] [14]
+Underfull \vbox (badness 1424) has occurred while \output is active []
+
+
 <SVMResults.pdf, id=477, 518.22508pt x 428.41054pt>
 File: SVMResults.pdf Graphic file (type pdf)
  <use SVMResults.pdf>
@@ -1109,7 +1127,7 @@ b></usr/local/texlive/2016/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/lo
 cal/texlive/2016/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/local/texli
 ve/2016/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2016/te
 xmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on "final paper.pdf" (17 pages, 1654053 bytes).
+Output written on "final paper.pdf" (17 pages, 1654066 bytes).
 PDF statistics:
  565 PDF objects out of 1000 (max. 8388607)
  134 compressed objects within 2 object streams
